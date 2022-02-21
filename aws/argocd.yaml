@@ -4,7 +4,6 @@ metadata:
   # argocd deployment for fiware namespace
   name: fiware-argocd
 spec: 
-  spec:
   dex:
     # delegate auth to the openshift cluster
     openShiftOAuth: true
