@@ -1,4 +1,6 @@
 sealed-secrets:
+  podSecurityContext:
+    enabled: false
   containerSecurityContext:
     enabled: true
     readOnlyRootFilesystem: true
