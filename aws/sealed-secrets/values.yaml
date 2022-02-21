@@ -5,4 +5,4 @@ sealed-secrets:
     enabled: true
     readOnlyRootFilesystem: true
     runAsNonRoot: true
-    runAsUser: 1000581000
+    runAsUser: 1000710001
