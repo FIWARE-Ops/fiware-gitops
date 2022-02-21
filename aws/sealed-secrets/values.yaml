@@ -1,5 +1,6 @@
-containerSecurityContext:
-  enabled: true
-  readOnlyRootFilesystem: true
-  runAsNonRoot: true
-  runAsUser: 1000581000
+sealed-secrets:
+  containerSecurityContext:
+    enabled: true
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 1000581000
