@@ -1,4 +1,4 @@
-fiware/orion-ld:
+fiware-orion-ld:
   db:
     hosts:
       - fiware-mongo-db-mongodb
