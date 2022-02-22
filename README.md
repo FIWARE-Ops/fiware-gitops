@@ -392,7 +392,7 @@ Check the MongoDB values file to see it referencing the created secret - [mongo-
    
    Source:
    -> Repository URL: https://github.com/FIWARE-Ops/fiware-gitops
-   -> Path: aws/fiware/mongodb
+   -> Path: aws/fiware/orion-ld
    
    Destination:
    -> Cluster URL: -- use the URL of the cluster added via argocd-cli 

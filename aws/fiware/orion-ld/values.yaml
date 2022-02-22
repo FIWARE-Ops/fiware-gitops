@@ -3,10 +3,10 @@ orion-ld:
     db:
       hosts:
         - fiware-mongo-db-mongodb
-      user: root
+      user: orion
       existingSecret:
         name: mongodb-secret
-        key: mongodb-root-password
+        key: mongodb-password
 
   mongo:
     # we want to use the individually deployed mongodb
