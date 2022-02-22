@@ -12,7 +12,6 @@ spec:
       g, system:cluster-admins, role:admin
     scopes: '[groups]' 
   server:
-    host: argocd.apps.fiware-dev-aws.fiware.dev
     # will use the cluster default cert, wich is issued by lets encrypt -> not correctly flagged insecure but required to work properly
     insecure: true
     route:
