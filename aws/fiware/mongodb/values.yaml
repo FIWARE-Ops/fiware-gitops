@@ -3,6 +3,7 @@ mongodb:
     enabled: true
     existingSecret: mongodb-secret
     username: orion
+    database: admin
   
   architecture: standalone
   podSecurityContext:
