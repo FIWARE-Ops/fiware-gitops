@@ -338,7 +338,7 @@ can only be decrypted by the [sealed-secrets controller they were created at.](h
    -> Namespace: fiware
 ```
 
-7. Click create and wait until the sealed-secret is deployed and an unsealed secret is create from itsea:
+7. Click create and wait until the sealed-secret is deployed and an unsealed secret is created from it:
 
    ![FIWARE Secrets](./doc/fiware-secrets.png)
 
@@ -371,3 +371,13 @@ Check the MongoDB values file to see it referencing the created secret - [mongo-
    Helm:
    You can provide specific overrides, everything else will be taken from the values-file inside the repository(and thus automatically updated together with the repo).
 ```
+
+3. Click create and wait :
+
+   ![FIWARE Secrets](./doc/mongo-app.png)
+
+### 10. Deploy Orion-LD
+
+1. Click on "NEW APP"
+
+   ![NEW APP](./doc/new-app.png)

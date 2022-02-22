@@ -11,11 +11,11 @@ mongodb:
     enabled: false
   resources:
     limits:
-      cpu: 1000m
-      memory: 2048Mi
+      cpu: 200m
+      memory: 512Mi
     requests:
-      cpu: 1000m
-      memory: 2048Mi
+      cpu: 200m
+      memory: 512Mi
   persistence:
     enabled: true
     size: 8Gi
