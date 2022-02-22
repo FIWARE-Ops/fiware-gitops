@@ -176,7 +176,47 @@ Due to permission restrictions, we need to setup ArgoCD with enough permissions 
       https://kubernetes.default.svc (1 namespaces)  in-cluster                                                            Unknown    
 ```
 
-### 6. Deploy [bitnami/sealed-secrets](https://github.com/bitnami-labs/sealed-secrets)
+### 6. Deploy namespaces
+
+Since we want to properly separate the workloads in our cluster, we need to manage [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). Following git-ops,
+we will put the namespace-definitions into a [repository](./aws/namespaces) and let ArgoCD create them for us.
+
+>:bulb: The following documentation uses the UI to deploy the applications. The same can be achieved via the argocd-cli.
+
+1. Login to ArgoCD
+
+
+   Open ```kubectl get routes -n argocd -o json | jq  -r '.items[0].spec.host'``` in the browser
+
+
+2. Click on "NEW APP"
+
+   ![NEW APP](./doc/new-app.png)
+
+3. Fill out the form
+
+   ![NEW APP - Form](./doc/new-app-form.png)
+
+```
+   General:
+   -> Application name: namespaces
+   -> Project: default
+   -> Sync Policy: automatic
+   
+   Source:
+   -> Repository URL: https://github.com/FIWARE-Ops/fiware-gitops
+   -> Path: aws/sealed-secrets
+   
+   Destination:
+   -> Cluster URL: -- use the URL of the cluster added via argocd-cli 
+```
+
+4. Click create and wait until its running:
+
+   ![Namespaces App](./doc/namespaces-app.png)
+
+
+### 7. Deploy [bitnami/sealed-secrets](https://github.com/bitnami-labs/sealed-secrets)
 
 Using GitOps, means every deployed resource is represented in a git-repository. While this is not a problem for most resources, secrets need to be handled differently.
 We use the [bitnami/sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) project for that. It uses asymmetric cryptography for creating secrets and only decrypt them inside the cluster.
@@ -185,18 +225,12 @@ ArgoCD [only supporting values-files inside the same repository as the chart](ht
 In order to workaround that shortcomming, we are using "wrapper charts". A wrapper-chart does consist of a [Chart.yaml](https://helm.sh/docs/topics/charts/#the-chartyaml-file) with a dependency to the actual chart. Besides that, we have a [values.yaml](https://helm.sh/docs/chart_template_guide/values_files/) with our specific overrides.
 See the [sealed-secrets folder](./aws/sealed-secrets) as an example.
 
->:note: The following documentation uses the UI to deploy the applications. The same can be achieved via the argocd-cli.
-
-1. Login to ArgoCD 
-
-
-   Open ```kubectl get routes -n argocd -o json | jq  -r '.items[0].spec.host'``` in the browser
    
-2. Click on "NEW APP"
+1. Click on "NEW APP"
 
    ![NEW APP](./doc/new-app.png)
 
-3. Fill out the form
+2. Fill out the form
    
    ![NEW APP - Form](./doc/new-app-form.png)
 ```
@@ -211,7 +245,7 @@ See the [sealed-secrets folder](./aws/sealed-secrets) as an example.
    
    Destination:
    -> Cluster URL: -- use the URL of the cluster added via argocd-cli 
-   -> Namespace: sealed-secrets - will be created when using helm
+   -> Namespace: sealed-secrets
    
    Helm:
    You can provide specific overrides, everything else will be taken from the values-file inside the repository(and thus automatically updated together with the repo).
@@ -220,13 +254,90 @@ See the [sealed-secrets folder](./aws/sealed-secrets) as an example.
 
    ![Sealed Secrets App](./doc/sealed-secrets-app.png)
    
-### 7. Create secrets
+### 8. Create secrets
 
 The first applications to be deployed will be the [Orion-LD ContextBroker](https://github.com/FIWARE/context.Orion-LD) together with its [MongoDB](https://www.mongodb.com).
 In order to communicate in a secure way, the need to use a secret. We will create a `secrets`-application for our target namespace ```fiware``` and prepare the secrets via ```sealed-secrets```.
+For your secrets to be secure, a different repository should be used. The [secret-files](./aws/fiware/secrets) inside this repository will only work with our cluster, since they
+can only be decrypted by the [sealed-secrets controller they were created at.](https://github.com/bitnami-labs/sealed-secrets#overview)
 
-1. Create namespace
+1. Create the manifest for the secret(mongodb-secret.yaml) to be used at mongodb(the data-entries need to follow the requirements of the target chart, e.g. [bitnami/mongodb](https://github.com/bitnami/charts/tree/master/bitnami/mongodb)): 
+```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     # name of the secret
+     name: mongodb-secret
+     # namespace the secret should be deployed to - important, sealed-secrets will check the namespace before decryption
+     namespace: fiware
+   data:
+     # the actual data, needs to be base64 encoded
+     mongodb-password: cGFzc3dvcmQ=
+     mongodb-replica-set-key: cGFzc3dvcmQ=
+     mongodb-root-password: cGFzc3dvcmQ=
+```
+>:warning: Do never push this file to git. If it happens by accident, try not to remove it but replace all of them. 
+
+2. Install kubeseal
+   
+   
+   kubeseal is the client-side application for creating the sealed-secrets. Install it, following the [official documentation](https://github.com/bitnami-labs/sealed-secrets#homebrew)
+
+3. Seal the secret
+   
+   
+   The secrets now needs to be encrypted before put into git:
 
 ```shell
-   kubectl create namespace fiware
+   # pipe the manifest into kubeseal. We need to specify the controller and its namespace, since we installed it out of its default location
+   kubeseal <mongodb-secret.yaml >mongodb-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
 ```
+   
+   The resulting "mongodb-sealed-secret.yaml" will look similar to:
+
+```yaml
+   apiVersion: bitnami.com/v1alpha1
+   kind: SealedSecret
+   metadata:
+      name: mongodb-secret
+      namespace: fiware
+   spec:
+      encryptedData:
+         mongodb-password: AgALc3Y7I6MhLszeRVbfyWnQVi0Jdjrozxyw1syAWRbIzAKsw8TkI1h+6zcUIp7v5U+/G3LZerTZoZyr61cLXeoBNCXTPH5JDM9lhfFcvP2rOfyicEo7E8pAzfsqh9BflUcGhUJADajCtQVhvTonArt+xYsEx0TFs97/Q9Vp1boj/GyO/vc/9Ly++hs29/Dh1W1QSyNXRs5glZKdGveVJCzQ4iZFf+V6aJfrXUpHNgZyNuMGzpPJlzy6TpiqnKqu1RoiFCByVazeU5IRi13VAut4W/aFeCEWoaJZhHrWHLxaJWbSKzmR2Lpk48n7e4tBPjFvQPf3Ej05qdrwTTwKo+TWkSU4DpY307NDO+k0DSOpq3SvZfEQYh3DPAj4grXfyHBXjz9mDmg3ZApztBdxwCRRIG2Uh3DfY15AkYMWPkkqhisApPJdb8AWjydsEutxf7gc8MLRyYBRrKP7ewJjzGXOs3AGJMzoV3BA/kK8madk9nyLQGIA0cff4MgTXDe1XCiBUeE/AOlbFe9Z/X/NDUc6P3HGhf6mpvL2V4RxBEMqAc9EVEmM+LVT40mKXyi7g9oMDDAbY7Mp9XMhY+B2o+IxqeW08kMzyIODMuJ8h9om8A4MW1MrxWpi2P7SoV4/fRmgetkb1rpabR2Jd0arB+RHEA2/zhwDeDbNGRoNkh9esN1A566ALJO+YxxCyFc3lpNe5eeTqgnDz59uCFJwauKkc4AzIwbHBmAYnnGfPBrhMOJRNdxJ
+         mongodb-replica-set-key: AgAbieAbFOoVy4lBiNQDU+rmJAre8p3ThmDMzSmnaBOhnKqwYk3zOxcZfEyPKXHfI1PPv8It/H44gzykM4NP8Hi9QQKjdBqYkvE77zfOLPQAjcbwkfxjdpfsUx85n7KcCwFuQLY1Xu/b8G6zxI/+XW/f/sKuiX2qAcKlzMLk2dAWkeU8TgA+S5jYPPgHyDAEnJaKlRoKq7ADUeQaee8Bt9HvQhhNDOEZyhuyLrOo/fTajYXK2u0maLARf79ja908oBqpc/H5gQAP/Sd3+Q7U6pS+Eo7k8+t1LnG7G+Hbc62aJMoEZo4pJhMyqy+wFjqmZihjVJCEkf6qP0TuLBO5tN2EYs5Jr8pegbrCFuUexqf62YItQ+U//24iEUVNrUM9QaBBupCWt0gdoDQTEK5e6+dyYvf6zmKZw6sfQKYbLNEwzJdJp26K71IBQwGdjmbZIkpBHV7u7QeLO8SG3VaoHOfFHC3vMRE4UAd7afwrHuK26Tsd1dU1m1tK9nnwLqR0AoYuHHK7ZQAt1iLOg5xuiENIp3K2ZVxzmK+I5J3coE3ic5KSTRi12fSEaV5Rk504GJQ7O+m75UImdYBe+tvmbvsyAzwkMiJwGxWI9MaKwA8ceKQPldq0ilTFTcogQ4dq8Vw9Zy8JvSmd0NpOZP4xXNQN5K0YpEOBgDN7+U7dm3ar9lO8ErjIhCASezWCHa1ymGInF5tqpKiT30/gXANjUeTO2fdKs3c/DuEj27Z4M/hVmdhc24pB
+         mongodb-root-password: AgAeMwbU6j+vlUXEgLRVFtscIjC7xHXz8w16qjJzhUbpe7EcXAq24qCzHo0hJA2b3oZmbu6OeNnQALjPVfUZ5Kz4CiQf8klCe3RECqYbMo+rAslZPclMgnOzuVIfNVrbr6W0pvQNnnzr3s+DSINki9Qudq18qjSrK3hvjroibB9TF771I5PleptAzdm10Y+kwRTKDTwTqWSFPPzQqJKFE/JAnL/oC+Li4woaDGJTuvEqsfl2qrpmEF+76iCRk2OjMGMVuV+ighIcemI5yUcCvL9DnxbcybA8x2vd6r7p+3ZbQat+6l2FLhTmh/78vwNWKuQyWLD/gPOqo8VI7tBwX8AQhXfKCHLleBE4DnepGH+r6dzKfBZGXKokynWXvfcXr4rBI5scfVHIJpagrYOShv1UIsFdV1nD8CVlsQEXZ9ZOdcbm4ZduT3X0OJ7+vooccPPEucV1S3HdifPDjA032zHJRAYMBqA+CL2RRr+JpnvHVMoPS4f6KT8y3ydadllg7dFSIzyNciSY9uaLDQ28im6fa5aqXoQtKQZmUWSXIa4bd06dHJdygm+eQUDzxrZmAY48sRi6IvTtTZeU/MKiQDzmTTkBDa1Cimsly2ceMBnFE5FLd/D/aTE2LWTRMrRXCxNkFiTKf3wE+919HdjgHREAZjtNQd+plQlm6fhIaXtIDUtXL5qOkporXACKnykdZdhNYkkMdkBcqjNLpvTZ49nsXiTrX8fWT6v29920jTDHuySJspBZ
+      template:
+         metadata:
+            name: mongodb-secret
+            namespace: fiware
+```
+
+4. Push the mongodb-sealed-secret.yaml file to your repository
+
+5. Click on "NEW APP" - this step will continously repeat:wink:
+
+   ![NEW APP](./doc/new-app.png)
+
+6. Fill out the form - in contrast to "sealed-secrets" this will consist of plain manifests(like "namespaces")
+
+> the example will use this repository, please replace with your own
+
+```
+   General:
+   -> Application name: fiware-secrets
+   -> Project: default
+   -> Sync Policy: automatic
+   
+   Source:
+   -> Repository URL: <YOUR_REPOSITORY>
+   -> Path: aws/fiware/secrets
+   
+   Destination:
+   -> Cluster URL: -- use the URL of the cluster added via argocd-cli 
+   # NEEDS to be the same as defined in the secret
+   -> Namespace: fiware
+```
+
+7. Click create and wait until the sealed-secret is deployed and an unsealed secret is create from itsea:
+
+   ![FIWARE Secrets](./doc/fiware-secrets.png)
