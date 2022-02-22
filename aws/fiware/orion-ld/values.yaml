@@ -1,3 +1,5 @@
 orion-ld:
   db:
     hosts:
+      - fiware-mongo-db-mongodb-0.fiware-mongo-db-mongodb-headless.fiware.svc.cluster.local
+      - fiware-mongo-db-mongodb-1.fiware-mongo-db-mongodb-headless.fiware.svc.cluster.local
