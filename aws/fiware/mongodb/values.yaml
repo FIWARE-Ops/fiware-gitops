@@ -3,8 +3,7 @@ mongodb:
     enabled: true
     existingSecret: mongodb-secret
   
-  architecture: replicaset
-  replicaCount: 2
+  architecture: standalone
   podSecurityContext:
     enabled: false
   containerSecurityContext:
