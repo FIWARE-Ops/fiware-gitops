@@ -6,7 +6,7 @@ orion-ld:
       user: orion
       existingSecret:
         name: mongodb-secret
-        key: mongodb-password
+        key: mongodb-passwords
 
   mongo:
     # we want to use the individually deployed mongodb
