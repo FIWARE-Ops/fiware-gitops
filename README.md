@@ -341,3 +341,33 @@ can only be decrypted by the [sealed-secrets controller they were created at.](h
 7. Click create and wait until the sealed-secret is deployed and an unsealed secret is create from itsea:
 
    ![FIWARE Secrets](./doc/fiware-secrets.png)
+
+### 9. Deploy MongoDB
+
+Deployment of the applications and databases will now all follow the same pattern - create an application in ArgoCD, that references the repository.
+Check the MongoDB values file to see it referencing the created secret - [mongo-db.auth.existingSecret](./aws/fiware/mongodb/values.yaml).
+
+
+1. Click on "NEW APP"
+
+   ![NEW APP](./doc/new-app.png)
+
+2. Fill out the Form
+
+```
+   General:
+   -> Application name: fiware-mongo-db
+   -> Project: default
+   -> Sync Policy: automatic
+   
+   Source:
+   -> Repository URL: https://github.com/FIWARE-Ops/fiware-gitops
+   -> Path: aws/fiware/mongodb
+   
+   Destination:
+   -> Cluster URL: -- use the URL of the cluster added via argocd-cli 
+   -> Namespace: fiware
+   
+   Helm:
+   You can provide specific overrides, everything else will be taken from the values-file inside the repository(and thus automatically updated together with the repo).
+```
