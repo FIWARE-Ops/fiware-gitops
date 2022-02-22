@@ -381,3 +381,23 @@ Check the MongoDB values file to see it referencing the created secret - [mongo-
 1. Click on "NEW APP"
 
    ![NEW APP](./doc/new-app.png)
+
+2. Fill out the Form
+
+```
+   General:
+   -> Application name: fiware-orion-ld
+   -> Project: default
+   -> Sync Policy: automatic
+   
+   Source:
+   -> Repository URL: https://github.com/FIWARE-Ops/fiware-gitops
+   -> Path: aws/fiware/mongodb
+   
+   Destination:
+   -> Cluster URL: -- use the URL of the cluster added via argocd-cli 
+   -> Namespace: fiware
+   
+   Helm:
+   You can provide specific overrides, everything else will be taken from the values-file inside the repository(and thus automatically updated together with the repo).
+```
