@@ -1,0 +1,13 @@
+metadata:
+  name: namespaces
+  namespace: argocd
+spec:
+  destination:
+    server: https://api.fiware-dev-aws.fiware.dev:6443
+  project: default
+  source:
+    path: aws/namespaces
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

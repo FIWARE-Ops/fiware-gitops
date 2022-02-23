@@ -13,8 +13,21 @@ More information about GitOps:
 When following all described steps, the resulting cluster will be a fully working copy of the Kubernetes Clusters, operated by the [FIWARE Foundation e.V.](https://www.fiware.org).
 If a cluster is already available, you can skip the steps already fulfilled. Be aware that this might require changes to the following steps, depending on the degree of deviation from the proposed setup.
 
+1. [Prepare AWS account](#1-prepare-aws-account)
+2. [Install OpenShift cluster](#2-install-openshift-cluster)
+3. [Install certificates](#3-install-certificates)
+4. [Install ArgoCD](#4-install-argocd)
+5. [Prepare ArgoCD for namespaced deployments](#5-prepare-argocd-for-namespaced-deployments)
+6. [Deploy namespaces](#6-deploy-namespaces)
+7. [Deploy bitnami/sealed-secrets](#7-deploy-bitnamisealed-secretshttpsgithubcombitnami-labssealed-secrets)
+8. [Create secrets](#8-create-secrets)
+9. [Deploy MongoDB](#9-deploy-mongodb)
+10. [Deploy Orion-LD](#10-deploy-orion-ld)
 
-### 1. Prepare AWS  account
+>:bulb: For a better understanding of the process, all application-deployments(starting at step 6.) are executed through the ArgoCD-UI. However, all of them also can be 
+> done through the argocd-cli. See the [cli-installation documentation](./aws/apps/README.md) for that.
+
+### 1. Prepare AWS account
 
 In order to use the OpenShift installers, provided by RedHat, an AWS account is required: https://aws.amazon.com
 The account needs to be prepared, following the steps described in [OpenShift - configure AWS account](https://docs.openshift.com/container-platform/4.7/installing/installing_aws/installing-aws-account.html#installing-aws-account)
