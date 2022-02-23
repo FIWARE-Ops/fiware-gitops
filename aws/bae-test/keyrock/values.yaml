@@ -2,7 +2,7 @@ keyrock:
   statefulset:
     image:
       repository: wistefan/keyrock
-      tag: latest
+      tag: 0.0.1
   db:
     user: admin
     host: database-keyrock-test.cfee2rce0uaw.us-east-1.rds.amazonaws.com
