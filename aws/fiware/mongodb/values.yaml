@@ -1,8 +1,8 @@
 mongodb:
   auth:
     enabled: true
-    #existingSecret: mongodb-secret
-    rootPassword: root
+    existingSecret: mongodb-secret
+    
   architecture: standalone
   podSecurityContext:
     enabled: false
