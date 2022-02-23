@@ -11,7 +11,7 @@ More information about GitOps:
 ## How to setup
 
 When following all described steps, the resulting cluster will be a fully working copy of the Kubernetes Clusters, operated by the [FIWARE Foundation e.V.](https://www.fiware.org).
-If a cluster is already available, you can skip the steps already fulfilled. Be aware that this might require changes to the following steps, depending on the degree of deviation from the proposed setup.
+If a cluster is already available, you can skip the steps that are already fulfilled. Be aware that this might require changes to the following steps, depending on the degree of deviation from the proposed setup.
 
 1. [Prepare AWS account](#1-prepare-aws-account)
 2. [Install OpenShift cluster](#2-install-openshift-cluster)
