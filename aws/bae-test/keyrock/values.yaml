@@ -1,0 +1,5 @@
+keyrock:
+  db:
+    user: admin
+    host: database-keyrock-test.cfee2rce0uaw.us-east-1.rds.amazonaws.com
+  existingSecret: keyrock-secret
