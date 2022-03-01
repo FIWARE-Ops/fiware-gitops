@@ -3,8 +3,8 @@ name: keyrock
 description: Chart holder for argo-cd
 
 type: application
-version: 0.2.0
-appVersion: "8.0.0"
+version: 0.2.1
+appVersion: "8.1.0"
 
 dependencies:
 - name: keyrock
