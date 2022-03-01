@@ -8,5 +8,5 @@ keyrock:
       value: "*"
     - name: IDM_DB_NAME
       value: "bae_test_idm"
-    - names: IDM_DB_SEED
+    - name: IDM_DB_SEED
       value: "true"
