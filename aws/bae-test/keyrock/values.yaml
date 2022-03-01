@@ -8,7 +8,7 @@ keyrock:
       tag: kim-dev-rc5
   additionalEnvVars:
     - name: IDM_DEBUG
-      value: true
+      value: "true"
     - name: DEBUG
       value: "*"
     - name: IDM_HOST
