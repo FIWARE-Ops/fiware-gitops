@@ -5,6 +5,8 @@ keyrock:
   existingSecret: keyrock-secret
   additionalEnvVars:
     - name: DEBUG
-      value: "idm:*"
-    - name: IDM_DEBUG
+      value: "*"
+    - name: IDM_DB_NAME
+      value: "bae_test_idm"
+    - names: IDM_DB_SEED
       value: "true"
