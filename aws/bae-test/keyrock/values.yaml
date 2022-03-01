@@ -6,7 +6,7 @@ keyrock:
   statefulset:
     image:
       repository: wistefan/idm
-      tag: 0.0.1
+      tag: 0.0.2
   additionalEnvVars:
     - name: DEBUG
       value: "*"
@@ -14,7 +14,5 @@ keyrock:
       value: "http://localhost:8080"
     - name: IDM_DB_NAME
       value: "bae_test_idm"
-    - name: IDM_DB_SEED
-      value: "true"
     - name: IDM_DEBUG
       value: "true"
