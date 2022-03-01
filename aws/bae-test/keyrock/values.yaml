@@ -6,6 +6,8 @@ keyrock:
   additionalEnvVars:
     - name: DEBUG
       value: "*"
+    - name: IDM_HOST
+      value: "http://localhost:8080"
     - name: IDM_DB_NAME
       value: "bae_test_idm"
     - name: IDM_DB_SEED
