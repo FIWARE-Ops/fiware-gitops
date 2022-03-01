@@ -15,3 +15,5 @@ keyrock:
       value: "bae_test_idm"
     - name: IDM_DB_SEED
       value: "true"
+    - name: IDM_DEBUG
+      value: "true"
