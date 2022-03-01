@@ -4,5 +4,7 @@ keyrock:
     host: database-keyrock-test.cfee2rce0uaw.us-east-1.rds.amazonaws.com
   existingSecret: keyrock-secret
   additionalEnvVars:
+    - name: DEBUG
+      value: "idm:*"
     - name: IDM_DEBUG
       value: "true"
