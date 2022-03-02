@@ -1,7 +1,7 @@
 keyrock:
   db:
     user: admin
-    host: kr4.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+    host: kr6.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
   existingSecret: keyrock-secret
   statefulset:
     image:
