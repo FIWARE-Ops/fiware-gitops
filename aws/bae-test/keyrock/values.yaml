@@ -1,7 +1,7 @@
 keyrock:
   db:
     user: admin
-    host: keyrock-test.proxy-cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+    host: kr7.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
   existingSecret: keyrock-secret
   statefulset:
     image:
