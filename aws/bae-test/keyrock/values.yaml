@@ -1,12 +1,8 @@
 keyrock:
   db:
     user: admin
-    host: keyrock.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+    host: keyrock-test.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
   existingSecret: keyrock-secret
-  statefulset:
-    image:
-      repository: wistefan/idm
-      tag: 0.0.12
   additionalEnvVars:
     - name: DEBUG
       value: "*"
