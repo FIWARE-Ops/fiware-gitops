@@ -6,7 +6,7 @@ keyrock:
   statefulset:
     image:
       repository: wistefan/idm
-      tag: 0.0.5
+      tag: 0.0.6
   additionalEnvVars:
     - name: DEBUG
       value: "*"
