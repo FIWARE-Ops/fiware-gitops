@@ -1,7 +1,7 @@
 keyrock:
   db:
     user: admin
-    host: kr.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+    host: kr2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
   existingSecret: keyrock-secret
   additionalEnvVars:
     - name: DEBUG
