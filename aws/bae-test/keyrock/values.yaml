@@ -13,7 +13,7 @@ keyrock:
     - name: IDM_HOST
       value: "http://localhost:8080"
     - name: IDM_DB_NAME
-      value: "bae_test_idm"
+      value: "bae_test_idm-2"
     - name: IDM_DEBUG
       value: "true"
     - name: IDM_DB_SEED
