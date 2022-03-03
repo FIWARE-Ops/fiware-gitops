@@ -7,7 +7,7 @@ data:
     #!/bin/bash
 
     # activate plugin
-      curl --location --request PUT 'http://token-vault/v1/sys/plugins/catalog/secret/vault-ethereum' \
+      curl --location --request PUT 'http://token-vault:8200/v1/sys/plugins/catalog/secret/vault-ethereum' \
     --header 'X-Vault-Token: ${VAULT_TOKEN}' \
     --header 'Content-Type: application/json' \
       --data-raw '{
@@ -16,7 +16,7 @@ data:
     }'
     
     # mount plugin
-    curl --location --request POST 'http://token-vault/v1/sys/mounts/ethereum' \
+    curl --location --request POST 'http://token-vault:8200/v1/sys/mounts/ethereum' \
     --header 'X-Vault-Token: ${VAULT_TOKEN}' \
     --header 'Content-Type: application/json' \
       --data-raw '{
