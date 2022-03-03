@@ -1,0 +1,9 @@
+vault:
+  global:
+    openshift: true
+  server:
+    image:
+      repository: quay.io/fiware/vault-ethereum
+      tag: 1.0.0
+  injector:
+    enabled: false
