@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vault-setup-job
+spec:
+  template:
+    spec:
+      volumes:
+        - name: setup-script
+          configMap:
+            name: vault-setup-script
+            defaultMode: 0777
+      containers:
+        - name: put-plugin
+          image: ellerbrock/alpine-bash-curl-ssl
+          volumeMounts:
+            - mountPath: /setup-script
+              name: setup-script
+          env:
+            - name: VAULT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: account-secret
+                  key: vaultToken
+          command: ["/setup-script/setup.sh"]
+      restartPolicy: Never
