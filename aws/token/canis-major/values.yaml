@@ -80,13 +80,13 @@ deployment:
   additionalAnnotations: {}
     ## canismajor resource requests and limits, we leave the default empty to make that a concious choice by the user.
     ## for the autoscaling to make sense, you should configure this.
-    # resources:
-    # limits:
-    # cpu: 100m
-    # memory: 128Mi
-    # requests:
-    # cpu: 100m
-  # memory: 128Mi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 500m
+      memory: 1024Mi
   # -- selector template
   # ref: https://kubernetes.io/docs/user-guide/node-selection/
   nodeSelector: {}
