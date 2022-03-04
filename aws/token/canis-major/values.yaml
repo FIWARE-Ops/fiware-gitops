@@ -55,7 +55,7 @@ deployment:
     # -- path to be used as base
     path: ngsi-ld/v1
     # -- tenant to be used with the api
-    tenant: orion-ld
+    tenant: orion
   # -- configuration to be used when connecting with an ethereum compatible blockchain
   ethereum:
     # -- should canis-major connect to an ethereum blockchain
