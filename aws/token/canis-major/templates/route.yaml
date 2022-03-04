@@ -18,6 +18,8 @@ spec:
   {{- end }}
   port:
     targetPort: {{ .Values.port }}
+  tls:
+    termination: edge
   to:
     kind: Service
     name: {{ $fullName }}
