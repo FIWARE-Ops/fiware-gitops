@@ -16,6 +16,8 @@ spec:
   {{- if .Values.route.host }}
   host: {{ .Values.route.host }}
   {{- end }}
+  port:
+    targetPort: {{ .Values.port }}
   to:
     kind: Service
     name: {{ $fullName }}
