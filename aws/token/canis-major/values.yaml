@@ -44,7 +44,7 @@ deployment:
     # ref: https://quay.io/repository/fiware/canis-major
     repository: quay.io/fiware/canis-major
     # -- tag of the image to be used
-    tag: trace-1
+    tag: trace-2
     # -- specification of the image pull policy
     pullPolicy: IfNotPresent
 
