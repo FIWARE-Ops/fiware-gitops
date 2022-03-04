@@ -62,26 +62,26 @@ spec:
             timeoutSeconds: {{ .Values.deployment.readinessProbe.timeoutSeconds }}
           env:
             - name: MICRONAUT_SERVER_PORT
-              value: {{ .Values.port }}
+              value: {{ .Values.port | quote }}
             - name: ENDPOINTS_ALL_PORT
               value: {{ .Values.deployment.healthPort | quote }}
             - name: MICRONAUT_HTTP_SERVICES_NGSI_URL
-              value: {{ .Values.deployment.ngsi.url }}
+              value: {{ .Values.deployment.ngsi.url | quote }}
             - name: MICRONAUT_HTTP_SERVICES_NGSI_PATH
-              value: {{ .Values.deployment.ngsi.path }}
+              value: {{ .Values.deployment.ngsi.path | quote }}
             - name: GENERAL_NGIS_TENANT
               value: {{ .Values.deployment.ngsi.tenant }}
             - name: ETHEREUM_ENABLED
-              value: {{ .Values.deployment.ethereum.enabled | quote}}
+              value: {{ .Values.deployment.ethereum.enabled | quote }}
             {{- if .Values.deployment.defaultAccount.enabled }}
             - name: ETHEREUM_DLT_ADDRESS
-              value: {{ .Values.deployment.ethereum.dltAddress }}
+              value: {{ .Values.deployment.ethereum.dltAddress | quote }}
             - name: ETHEREUM_CONTRACT_ADDRESS
               value: {{ .Values.deployment.ethereum.contractAddress | quote }}
             - name: ETHEREUM_GAS
-              value: {{ .Values.deployment.ethereum.gas }}
+              value: {{ .Values.deployment.ethereum.gas | quote }}
             - name: ETHEREUM_GAS_PRICE
-              value: {{ .Values.deployment.ethereum.gasPrice }}
+              value: {{ .Values.deployment.ethereum.gasPrice | quote }}
             {{- end }}
             - name: DEFAULT_ACCOUNT_ENABLED
               value: {{ .Values.deployment.defaultAccount.enabled | quote }}
@@ -95,8 +95,10 @@ spec:
             {{- with .Values.additionalEnvVars }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
+          {{- with .Values.deployment.resources }}
           resources:
-            {{- toYaml .Values.deployment.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.deployment.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
