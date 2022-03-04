@@ -78,10 +78,6 @@ spec:
               value: {{ .Values.deployment.ethereum.dltAddress | quote }}
             - name: ETHEREUM_CONTRACT_ADDRESS
               value: {{ .Values.deployment.ethereum.contractAddress | quote }}
-            - name: ETHEREUM_GAS
-              value: {{ .Values.deployment.ethereum.gas | quote }}
-            - name: ETHEREUM_GAS_PRICE
-              value: {{ .Values.deployment.ethereum.gasPrice | quote }}
             {{- end }}
             - name: DEFAULT_ACCOUNT_ENABLED
               value: {{ .Values.deployment.defaultAccount.enabled | quote }}
