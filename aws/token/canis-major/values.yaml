@@ -70,7 +70,7 @@ deployment:
     gasPrice: 0
 
   # -- configuration for the default account to be used in case no wallet information is provided
-  default:
+  defaultAccount:
     # -- should a default account be used
     enabled: true
 
