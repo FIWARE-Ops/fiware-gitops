@@ -8,6 +8,10 @@ in a block-chain([alastria](https://alastria.io/en/)).
 > - it uses the [defaultAccount-Feature of canis-major](https://github.com/FIWARE/CanisMajor/blob/master/src/main/java/org/fiware/canismajor/configuration/DefaultAccountProperties.java#L10-L14), see [Signature-delegation ADR](https://github.com/FIWARE/CanisMajor/blob/master/docs/adrs/delegate-signatur.md) for the alternative
 > - the installation is very small, thus might not be sufficient for production load
 
+
+Overview:
+![Deployment view](./cm-deployment.svg)
+
 ## Components
 
 - [Orion-LD ContextBroker](https://github.com/FIWARE/context.Orion-LD) for persisting transaction receipts in [NGSI-LD](https://docbox.etsi.org/isg/cim/open/Latest%20release%20NGSI-LD%20API%20for%20public%20comment.pdf)
