@@ -6,7 +6,7 @@ keyrock:
   statefulset:
     image:
       repository: wistefan/keyrock
-      tag: jf-2
+      tag: jf-3
   additionalEnvVars:
     - name: DEBUG
       value: "*"
