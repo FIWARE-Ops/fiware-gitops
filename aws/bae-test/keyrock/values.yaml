@@ -8,8 +8,6 @@ keyrock:
       repository: wistefan/keyrock
       tag: jf-1
   additionalEnvVars:
-    - name: DEBUG
-      value: "*"
     - name: IDM_HOST
       value: "http://localhost:8080"
     - name: IDM_DB_NAME
@@ -18,3 +16,5 @@ keyrock:
       value: "true"
     - name: IDM_DB_SEED
       value: "true"
+  route:
+    enabled: true
