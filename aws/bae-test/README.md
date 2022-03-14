@@ -18,5 +18,5 @@ After creating the instance, go to the security group connected with the RDF ins
 
 - select security group and edit inbound rule:
 ![Security groups](./sc-overview.png)
-- add inbound rule(0.0.0.0/0 would allow requests from everywhere, you should be more restritive in a production environment)
+- add inbound rule(0.0.0.0/0 would allow requests from everywhere, you should be more restrictive in a production environment)
 ![Inbound rule](./ir-overview.png)
