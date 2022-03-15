@@ -9,6 +9,8 @@ business-api-ecosystem:
         repository: wistefan/bae
         tag: latest
     port: 8080
+    serviceAccount:
+      create: true
   bizEcosystemChargingBackend:
     existingSecret: bae-charging-backend-secret
     existingCertSecret: bae-charging-backend-cert-secret
