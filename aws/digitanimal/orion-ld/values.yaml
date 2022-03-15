@@ -2,10 +2,10 @@ orion-ld:
   broker:
     db:
       hosts:
-        -  mongo-3-6.cluster-cifkfl9vchfo.eu-central-1.docdb.amazonaws.com
-      user: mongoadmin
+        -  digitanimal-mongo-db-mongodb
+      user: root
       existingSecret:
-        name: documentdb-secret
+        name: mongodb-secret
         key: mongodb-root-password
       noDevTrace: false
 
