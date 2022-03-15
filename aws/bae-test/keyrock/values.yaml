@@ -9,7 +9,7 @@ keyrock:
       tag: jf
   additionalEnvVars:
     - name: IDM_HOST
-      value: "http://localhost:8080"
+      value: "http://bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev"
     - name: IDM_DB_NAME
       value: "bae_test_idm"
     - name: IDM_DEBUG
@@ -18,3 +18,6 @@ keyrock:
       value: "true"
   route:
     enabled: true
+    host: http://bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev/
+    tls:
+      termination: edge
