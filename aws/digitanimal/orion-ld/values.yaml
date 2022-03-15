@@ -1,0 +1,14 @@
+orion-ld:
+  broker:
+    db:
+      hosts:
+        - mongo.cifkfl9vchfo.eu-central-1.docdb.amazonaws.com
+      user: admin
+      existingSecret:
+        name: documentdb-secret
+        key: mongodb-root-password
+      noDevTrace: false
+
+  mongo:
+    # we want to use the individually deployed mongodb
+    enabled: false
