@@ -18,6 +18,6 @@ keyrock:
       value: "true"
   route:
     enabled: true
-    host: http://bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev/
+    host: bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev
     tls:
       termination: edge
