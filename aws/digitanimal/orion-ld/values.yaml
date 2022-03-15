@@ -2,7 +2,7 @@ orion-ld:
   broker:
     db:
       hosts:
-        - mongo.cifkfl9vchfo.eu-central-1.docdb.amazonaws.com
+        -  mongo-3-6.cluster-cifkfl9vchfo.eu-central-1.docdb.amazonaws.com
       user: mongoadmin
       existingSecret:
         name: documentdb-secret
