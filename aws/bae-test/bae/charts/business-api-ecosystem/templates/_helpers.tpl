@@ -387,7 +387,7 @@ Charging backend secrets
     {{- end -}}
 {{- end -}}
 
-{{/+
+{{/*
 API secret
 */}}
 {{- define "bizEcosystemApis.secretName" -}}
