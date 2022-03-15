@@ -1,0 +1,12 @@
+apiVersion: v2
+name: keyrock
+description: Chart holder for argo-cd
+
+type: application
+version: 0.2.2
+appVersion: "8.1.0"
+
+dependencies:
+  - name: business-api-ecosystem
+    version: 0.2.6
+    repository: file://./charts/business-api-ecosystem

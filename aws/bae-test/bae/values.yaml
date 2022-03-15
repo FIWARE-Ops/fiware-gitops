@@ -1,0 +1,72 @@
+business-api-ecosystem:
+  bizEcosystemApis:
+    existingSecret: bae-apis-secret
+    db:
+      host: kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+      user: admin
+    deployment:
+      image:
+        repository: wistefan/bae
+        tag: latest
+    port: 8080
+  bizEcosystemChargingBackend:
+    existingSecret: bae-charging-backend-secret
+    existingCertSecret: bae-charging-backend-cert-secret
+    db:
+      database: charging_db
+      host: mongo.cluster-cifkfl9vchfo.eu-central-1.docdb.amazonaws.com
+      user: mongoadmin
+    deployment:
+      image:
+        pullPolicy: Always
+        repository: fiware/biz-ecosystem-charging-backend
+        tag: v7.9.0-rc3
+    payment:
+      method: paypal
+    paypal:
+      clientId: AcpWBNZUGQ3fUgG3nG54xMonW7E5gwXUANpyrap1g-E6KzvwEpy-X_8TPJXvM68HgMm_jW2kjkiRvb_x
+    port: 8006
+    token:
+      enabled: true
+      identifier: EU.EORI.NLMARKETPLA
+  bizEcosystemLogicProxy:
+    existingSecret: bae-logic-proxy-secret
+    existingCertSecret: bae-logic-proxy-cert-secret
+    db:
+      database: belp_db
+      host: mongo.cluster-cifkfl9vchfo.eu-central-1.docdb.amazonaws.com
+      user: belp
+    deployment:
+      image:
+        pullPolicy: Always
+        repository: fiware/biz-ecosystem-logic-proxy
+        tag: v7.9.0-rc3
+    externalIdp:
+      enabled: true
+    route:
+      enabled: true
+      tls:
+        termination: edge
+    nodeEnvironment: production
+    port: 8004
+    theme:
+      enabled: true
+      image: i4trust/bae-i4trust-theme:v0.0.5
+      imagePullPolicy: Always
+      name: i4trust
+      size: 4Gi
+      sourcePath: /bae-i4trust-theme
+    token:
+      enabled: true
+      identifier: EU.EORI.NLMARKETPLA
+  bizEcosystemRss:
+    existingSecret: bae-rss-secret
+    db:
+      host: kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+      user: admin
+      url: jdbc:mysql://kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com:3306/RSS
+    port: 8080
+#  externalUrl: https://marketplace.i4trust.fiware.io
+  oauth:
+    clientId: 0a7080f1-8b56-4643-9a77-7697ff2294a9
+#    server: https://marketplace-accounts.i4trust.fiware.io
