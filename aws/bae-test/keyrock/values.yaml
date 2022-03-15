@@ -6,8 +6,8 @@ keyrock:
   existingSecret: keyrock-secret
   statefulset:
     image:
-      repository: wistefan/keyrock
-      tag: jf
+      repository: fiware/idm
+      tag: i4trust-rc4
   additionalEnvVars:
     - name: IDM_TITLE
       value: i4Trust Marketplace IdM
