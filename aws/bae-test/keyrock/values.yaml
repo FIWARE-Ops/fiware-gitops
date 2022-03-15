@@ -1,22 +1,208 @@
-keyrock:
-  db:
-    user: admin
-    host: kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
-  existingSecret: keyrock-secret
-  statefulset:
-    image:
-      repository: wistefan/keyrock
-      tag: jf
-  additionalEnvVars:
-    - name: IDM_HOST
-      value: "http://bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev"
-    - name: IDM_DB_NAME
-      value: "bae_test_idm"
-    - name: IDM_DEBUG
-      value: "true"
-    - name: IDM_DB_SEED
-      value: "true"
-  route:
-    enabled: true
-    tls:
-      termination: edge
+db:
+  user: admin
+  host: kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+existingSecret: keyrock-secret
+statefulset:
+  image:
+    repository: wistefan/keyrock
+    tag: jf
+
+    # -- specification of the image pull policy
+    pullPolicy: IfNotPresent
+    # -- initial number of target replications, can be different if autoscaling is enabled
+  replicaCount: 1
+  # -- number of old replicas to be retained
+  revisionHistoryLimit: 3
+  ## configuration of the keyrock update strategy
+  updateStrategy:
+    # -- type of the update
+    type: RollingUpdate
+  ## configuration of the image to be used
+
+  # -- additional labels for the deployment, if required
+  additionalLabels: { }
+  # -- additional annotations for the deployment, if required
+  additionalAnnotations: { }
+    ## keyrock resource requests and limits, we leave the default empty to make that a concious choice by the user.
+    ## for the autoscaling to make sense, you should configure this.
+    # resources:
+    # limits:
+    # cpu: 100m
+    # memory: 128Mi
+  # requests:
+  # cpu: 100m
+  # memory: 128Mi
+  # -- selector template
+  # ref: https://kubernetes.io/docs/user-guide/node-selection/
+  nodeSelector: { }
+  # -- tolerations template
+  # ref: ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  tolerations: [ ]
+  # -- affinity template
+  # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  affinity: { }
+  ## liveness and readiness probes of the keyrock broker, they will be evaluated against the version endpoint
+  # ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 30
+  readinessProbe:
+    initialDelaySeconds: 31
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 30
+additionalEnvVars:
+  - name: IDM_HOST
+    value: "http://bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev"
+  - name: IDM_DB_NAME
+    value: "bae_test_idm"
+  - name: IDM_DEBUG
+    value: "true"
+  - name: IDM_DB_SEED
+    value: "true"
+route:
+  enabled: true
+  tls:
+    termination: edge
+
+## Default values for keyrock.
+## This is a YAML-formatted file.
+## Declare variables to be passed into your templates.
+
+# -- option to override the name config in the _helpers.tpl
+nameOverride: ""
+# -- option to override the fullname config in the _helpers.tpl
+fullnameOverride: ""
+
+## configuration for the k8s service to access keyrock
+service:
+  # -- service type
+  type: ClusterIP
+  # -- port to be used by the service
+  port: 8080
+  # -- addtional annotations, if required
+  annotations: {}
+
+# -- if a keyrock specific service account should be used, it can be configured here
+# ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+serviceAccount:
+  # -- specifies if the account should be created
+  create: false
+
+
+
+
+
+## pod autoscaling configuration, use for automatic scaling of the broker pods
+autoscaling:
+  #  -- should autoscaling be enabled for keyrock
+  enabled: false
+  # -- minimum number of running pods
+  minReplicas: 1
+  # -- maximum number of running pods
+  maxReplicas: 10
+  # -- metrics to react on
+  metrics: []
+  ## List of MetricSpecs to decide whether to scale
+  # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#metricspec-v2beta2-autoscaling
+  # scaler targets to hold average cpu around 80%
+  #- type: Resource
+  #  resource:
+  #    name: cpu
+  #     target:
+  #      type: Utilization
+  #      averageUtilization: 80
+  ## scaler targets to hold average memory around 80%
+  #  - type: Resource
+  #    resource:
+  #      name: memory
+  #      target:
+  #        type: Utilization
+  #        averageUtilization: 80
+
+## ingress configuration
+ingress:
+  # -- should there be an ingress to connect keyrock with the public internet
+  enabled: false
+  # -- annotations to be added to the ingress
+  annotations: {}
+    # kubernetes.io/ingress.class: "ambassador"
+    ## example annotations, allowing cert-manager to automatically create tls-certs and forcing everything to use ssl.
+    # kubernetes.io/tls-acme: "true"
+  # ingress.kubernetes.io/ssl-redirect: "true"
+  # -- all hosts to be provided
+  hosts: []
+    ## provide a hosts and the paths that should be available
+    # - host: localhost
+    # paths:
+  # - /
+  # -- configure the ingress' tls
+  tls: []
+    # - secretName: keyrock-tls
+    # hosts:
+  # - keyrock.fiware.org
+
+# -- port that the keyrock container uses
+port: 8080
+## database configuration for keyrock
+
+## admin configuration for accessing keyrock
+admin:
+  # -- username of the initial keyrock admin
+  user: admin
+  # -- password of the initial admin, leave empty to get a generated one
+  password: admin
+  # -- email address of the admin user
+  email: admin@admin.org
+
+# -- use an already existing secret, if provided the other secrets are ignored. Expected keys are dbPassword and adminPassword
+# existingSecret:
+
+## Certificates configuration
+certs:
+  # -- Algorithm to firm ID tokens for OIDC
+  oidcJwtAlgorithm: HS256
+  ## Configuration for PVC mounted at certs/ directory for persistance of HTTPS and application certificates/keys
+  pvc:
+    # -- Create PVC mounted at certs/ directory for persistance of HTTPS and application certificates/keys
+    enabled: False
+    # -- Size of the PVC for certs/ directory
+    size: 1Gi
+    # -- Annotations of the PVC for certs/ directory
+    annotations: {}
+## Theme configuration for Keyrock
+theme:
+  # -- Enable theme
+  enabled: false
+  # -- Name of the theme
+  name: default
+  # -- Size of PVCs to be created
+  size: 50Mi
+  # -- PVC Annotations
+  annotations: {}
+  # -- Image which holds the theme files
+  image: my-theme-image:latest
+  # -- specification of the image pull policy
+  imagePullPolicy: IfNotPresent
+  # -- Path to the source theme files inside the container
+  sourceTheme: /themes/my-theme
+  # -- Path to the source image files inside the container
+  sourceImg: /img/my-theme
+  ## Optional: Path to the source fonts files inside the container
+  #sourceFonts: /fonts/my-fonts
+  ## Optional: Path to the source favicon directory inside the container
+  #sourceFavicon: /favicon
+  # -- Mount path for the source theme files
+  mountTheme: /opt/fiware-idm/themes/my-theme
+  # -- Mount path for the source image files
+  mountImg: /opt/fiware-idm/public/img/my-theme
+  # -- Mount path for the source fonts files
+  mountFonts: /opt/fiware-idm/public/fonts/my-fonts
+  # -- Mount path for the source favicon
+  mountFavicon: /opt/fiware-idm/public/favicon.ico
+
+
+
+
