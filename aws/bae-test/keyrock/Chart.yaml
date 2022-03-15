@@ -1,12 +1,18 @@
-apiVersion: v2
+apiVersion: v1
 name: keyrock
-description: Chart holder for argo-cd
-
-type: application
 version: 0.2.1
-appVersion: "8.1.0"
-
-dependencies:
-- name: keyrock
-  version: 0.2.1
-  repository: https://fiware.github.io/helm-charts
+appVersion: 8.1.0
+home: https://fiware-idm.readthedocs.io/en/latest/
+description: A Helm chart for running the fiware idm keyrock on kubernetes.
+icon: https://fiware.github.io/catalogue/img/fiware.png
+keywords:
+- fiware
+- keyrock
+- idm
+sources:
+- https://github.com/ging/fiware-idm
+maintainers:
+- name: wistefan
+  email: stefan.wiedemann@fiware.org
+- name: dwendland
+  email: dennis.wendland@fiware.org
