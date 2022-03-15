@@ -8,9 +8,8 @@ keyrock:
     image:
       repository: wistefan/keyrock
       tag: jf
+  host: http://bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev
   additionalEnvVars:
-    - name: IDM_HOST
-      value: "http://bae-test-keyrock-bae-test.apps.fiware-dev-aws.fiware.dev"
     - name: IDM_DB_NAME
       value: "bae_test_idm"
     - name: IDM_DEBUG
