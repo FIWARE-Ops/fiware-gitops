@@ -3,7 +3,7 @@ orion-ld:
     db:
       hosts:
         - mongo.cifkfl9vchfo.eu-central-1.docdb.amazonaws.com
-      user: admin
+      user: mongoadmin
       existingSecret:
         name: documentdb-secret
         key: mongodb-root-password
