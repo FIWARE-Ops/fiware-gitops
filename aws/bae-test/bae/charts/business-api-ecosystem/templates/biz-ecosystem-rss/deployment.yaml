@@ -54,7 +54,7 @@ spec:
           livenessProbe:
             exec:
               command:
-                - /glassfish4/glassfish/bin/asadmin
+                - asadmin
                 - show-component-status
                 - DSRevenueSharing
             initialDelaySeconds: {{ .Values.bizEcosystemRss.deployment.livenessProbe.initialDelaySeconds }}
@@ -64,7 +64,7 @@ spec:
           readinessProbe:
             exec:
               command:
-                - /glassfish4/glassfish/bin/asadmin
+                - asadmin
                 - show-component-status
                 - DSRevenueSharing
             initialDelaySeconds: {{ .Values.bizEcosystemRss.deployment.readinessProbe.initialDelaySeconds }}
