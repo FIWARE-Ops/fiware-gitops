@@ -65,6 +65,8 @@ spec:
               value: {{ .Values.bizEcosystemApis.db.host | quote }}
             - name: MYSQL_USER
               value: {{ .Values.bizEcosystemApis.db.user | quote }}
+            - name: MYSQL_PORT
+              value: {{ .Values.bizEcosystemApis.db.port | quote }}
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:

@@ -185,6 +185,10 @@ bizEcosystemApis:
     host: mysql
     ## -- password for connecting the database
     password: pass
+    ## -- user for connecting the db
+    user: user
+    ## -- port to connect the database
+    port: 3306
     
 
 
