@@ -324,7 +324,7 @@ Template for TMForum APIs initContainer check
   image: "{{ .ctx.Values.initContainer.apis.image }}"
   imagePullPolicy: {{ .ctx.Values.initContainer.apis.imagePullPolicy | quote }}
   command: ['sh', '-c',
-    'while ! wget "http://{{ include "bizEcosystemApis.fullhostname" .ctx }}/{{ .path }}"; do echo "Waiting for APIs"; ((i++)) && ((i=={{ .ctx.Values.initContainer.apis.maxRetries }})) && break; sleep {{ .ctx.Values.initContainer.apis.sleepInterval }}; done;']
+    'while ! curl "http://{{ include "bizEcosystemApis.fullhostname" .ctx }}/{{ .path }}/"; do echo "Waiting for APIs"; ((i++)) && ((i=={{ .ctx.Values.initContainer.apis.maxRetries }})) && break; sleep {{ .ctx.Values.initContainer.apis.sleepInterval }}; done;']
 {{- end }}
 
 {{/*
@@ -335,7 +335,7 @@ Template for Charging Backend initContainer check
   image: "{{ .ctx.Values.initContainer.apis.image }}"
   imagePullPolicy: {{ .ctx.Values.initContainer.apis.imagePullPolicy | quote }}
   command: ['sh', '-c',
-    'while ! wget "http://{{ include "bizEcosystemChargingBackend.fullhostname" .ctx }}/{{ .path }}"; do echo "Waiting for APIs"; ((i++)) && ((i=={{ .ctx.Values.initContainer.apis.maxRetries }})) && break; sleep {{ .ctx.Values.initContainer.apis.sleepInterval }}; done;']
+    'while ! curl "http://{{ include "bizEcosystemChargingBackend.fullhostname" .ctx }}/{{ .path }}/"; do echo "Waiting for APIs"; ((i++)) && ((i=={{ .ctx.Values.initContainer.apis.maxRetries }})) && break; sleep {{ .ctx.Values.initContainer.apis.sleepInterval }}; done;']
 {{- end }}
 
 {{/*

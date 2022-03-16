@@ -84,7 +84,7 @@ initContainer:
     ## -- Name:
     name: wait-for-apis
     ## -- Image
-    image: busybox
+    image: curlimages/curl
     ## -- Image pull policy
     imagePullPolicy: IfNotPresent
     ## -- Maximum number of retries to check for API avilability
