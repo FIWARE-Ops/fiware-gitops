@@ -7,7 +7,7 @@ business-api-ecosystem:
     deployment:
       image:
         repository: wistefan/bae
-        tag: api-2
+        tag: api-3
     port: 8080
     serviceAccount:
       create: true
