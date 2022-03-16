@@ -283,8 +283,6 @@ bizEcosystemRss:
     host: mysql
     ## -- port of the database to be used
     port: 3306
-    ## -- URL connection string of the database to be used
-    url: jdbc:mysql://mysql:3306/RSS
     ## -- driver class name for connection to the database to be used
     driver: com.mysql.jdbc.Driver
     ## -- username for connecting the database

@@ -63,6 +63,11 @@ business-api-ecosystem:
       identifier: EU.EORI.NLMARKETPLA
   bizEcosystemRss:
     existingSecret: bae-rss-secret
+
+    deployment:
+      image:
+        repository: wistefan/rss
+        tag: latest
     db:
       host: kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
       user: admin

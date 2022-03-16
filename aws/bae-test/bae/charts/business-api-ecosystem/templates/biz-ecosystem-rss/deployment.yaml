@@ -76,8 +76,6 @@ spec:
               value: {{ .Values.bizEcosystemRss.db.host | quote }}
             - name: MYSQL_PORT
               value: {{ .Values.bizEcosystemRss.db.port | quote }}
-            - name: BAE_RSS_DATABASE_URL
-              value: {{ .Values.bizEcosystemRss.db.url | quote }}
             - name: BAE_RSS_DATABASE_USERNAME
               value: {{ .Values.bizEcosystemRss.db.user | quote }}
             - name: BAE_RSS_DATABASE_PASSWORD
