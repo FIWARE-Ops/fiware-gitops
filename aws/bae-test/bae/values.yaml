@@ -21,8 +21,8 @@ business-api-ecosystem:
     deployment:
       image:
         pullPolicy: Always
-        repository: fiware/biz-ecosystem-charging-backend
-        tag: v7.9.0-rc3
+        repository: wistefan/charging
+        tag: latest
     payment:
       method: paypal
     paypal:
