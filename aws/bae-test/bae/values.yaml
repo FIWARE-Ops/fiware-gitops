@@ -22,7 +22,7 @@ business-api-ecosystem:
       image:
         pullPolicy: Always
         repository: wistefan/charging
-        tag: latest
+        tag: py3
     payment:
       method: paypal
     paypal:
