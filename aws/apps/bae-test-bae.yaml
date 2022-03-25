@@ -1,0 +1,16 @@
+metadata:
+  name: bae-test-bae
+  namespace: argocd
+spec:
+  destination:
+    namespace: bae-test
+    server: https://api.fiware-dev-aws.fiware.dev:6443
+  project: default
+  source:
+    path: aws/bae-test/bae
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

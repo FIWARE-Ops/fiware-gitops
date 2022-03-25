@@ -20,3 +20,33 @@ After creating the instance, go to the security group connected with the RDF ins
 ![Security groups](./sc-overview.png)
 - add inbound rule(0.0.0.0/0 would allow requests from everywhere, you should be more restrictive in a production environment)
 ![Inbound rule](./ir-overview.png)
+
+## BAE
+
+Similar to the mysql in keyrock, we do use [AWS DocumentDB](https://aws.amazon.com/documentdb/) for providing the [mongoDB](https://www.mongodb.com) compatible storage backend.
+
+To create one, follow the described steps:
+
+1. Create a parameter group to allow non-tls connections(not fully supported by the components yet)
+![Parameter groups](./pg-overview.png)
+   1. Create a group
+   2. Open the group an select the tls configuration:
+      ![Parameter group configuration](./pg-config.png)
+   3. Edit the "tls"-entry and set it to "disabled"
+2. Create a security group:
+![Security group](./sg-config.png)
+   * choose a name and put it into the VPC of your Openshift Cluster(:warning: DocumentDB only allows connections from within the same VPC)
+   * create an inbound rule that allows traffic from the openshift-clusters ip-range, all at least port 27017
+3. Create a DocumentDB cluster with the following config:
+![DocumentDB create](./create-documentdb.png)
+   * engine version: 4.0.0
+   * master-username: mongoadmin, master-password: <your-secure-password>
+   * in advanced settings:
+     * select the VPC that the openshift cluster is using(DocumentDB only allows connections from within the same VPC)
+     * select the security group you created in the previous step
+     * wait until its available
+The correct configuration can be checked by connecting with a mongo-cli from inside the cluster:
+```shell
+   kubectl run -it --rm --image=mongo --restart=Never mongo-client -- bash
+   $root@mongo-client:/# mongo --host <CLUSTER_URL>:27017 --username mongoadmin --password <YOUR_PASSWORD>
+```

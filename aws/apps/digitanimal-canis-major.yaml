@@ -1,0 +1,16 @@
+metadata:
+  name: digitanimal-canis-major
+  namespace: argocd
+spec:
+  destination:
+    namespace: digitanimal
+    server: https://api.fiware-dev-aws.fiware.dev:6443
+  project: default
+  source:
+    path: aws/digitanimal/canis-major
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
