@@ -44,7 +44,7 @@ deployment:
     # ref: https://quay.io/wi_stefan/tm-forum-api
     repository: quay.io/wi_stefan/tm-forum-api
     # -- tag of the image to be used
-    tag: 0.0.2
+    tag: 0.0.3
     # -- specification of the image pull policy
     pullPolicy: IfNotPresent
 
