@@ -1,0 +1,16 @@
+metadata:
+  name: tmforum-poc
+  namespace: argocd
+spec:
+  destination:
+    namespace: tmforum
+    server: https://api.fiware-dev-aws.fiware.dev:6443
+  project: default
+  source:
+    path: aws/tmforum/tmforum-poc
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

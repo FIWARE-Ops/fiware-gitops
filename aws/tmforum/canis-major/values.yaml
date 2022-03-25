@@ -163,5 +163,5 @@ prometheus:
 additonalEnvVars: []
 
 # -- existing secret to be used for retrieving the defaultAccount key
-existingSecret: tmforum-account-secret
+existingSecret: account-secret
 
