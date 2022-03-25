@@ -1,0 +1,26 @@
+{{- if .Values.route.enabled -}}
+{{- $fullName := include "tmforum.fullname" . -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "tmforum.fullname" . }}
+  labels:
+    {{ include "tmforum.labels" . | nindent 4 }}
+  {{- if .Values.route.annotations }}
+  annotations:
+    {{- with .Values.route.annotations }}
+      {{- toYaml . | nindent 4 }}
+      {{- end }}
+  {{- end }}
+spec:
+  {{- if .Values.route.host }}
+  host: {{ .Values.route.host }}
+  {{- end }}
+  port:
+    targetPort: {{ .Values.port }}
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: {{ $fullName }}
+{{- end }}
