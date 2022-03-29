@@ -46,7 +46,7 @@ deployment:
     # -- tag of the image to be used
     tag: 1.2.0-PRE-36
     # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   # -- configuration for connecting the ngsi-ld api
   ngsi:
