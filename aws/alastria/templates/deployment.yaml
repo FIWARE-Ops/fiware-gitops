@@ -1,0 +1,118 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "alastria.fullname" . }}
+  labels:
+    {{ include "alastria.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: {{ .Values.deployment.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "alastria.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        {{ include "alastria.labels" . | nindent 8 }}
+          {{- with .Values.deployment.additionalLabels }}
+          {{- toYaml . | nindent 8 }}
+          {{- end }}
+      {{- if .Values.deployment.additionalAnnotations -}}
+      annotations:
+        prometheus.io/scrape: {{ .Values.prometheus.enabled | quote }}
+        prometheus.io/path: {{ .Values.prometheus.path }}
+        prometheus.io/port: 6060
+        {{- with .Values.deployment.additionalAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- end }}
+    spec:
+      serviceAccountName: {{ include "alastria.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+          image: "{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}"
+          ports:
+            - name: geth
+              containerPort: 21000
+              protocol: TCP
+            - name: constellation
+              containerPort: 9000
+              protocol: TCP
+            - name: websocket
+              containerPort: 80
+              protocol: TCP
+            - name: statistics
+              containerPort: 8086
+              protocol: TCP
+            - name: resolver
+              containerPort: 53
+              protocol: TCP
+            - name: prometheus
+              containerPort: 6060
+              protocol: TCP
+#          livenessProbe:
+#            httpGet:
+#              path: /health
+#              port: http-health
+#            initialDelaySeconds: {{ .Values.deployment.livenessProbe.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.deployment.livenessProbe.periodSeconds }}
+#            successThreshold: {{ .Values.deployment.livenessProbe.successThreshold }}
+#            timeoutSeconds: {{ .Values.deployment.livenessProbe.timeoutSeconds }}
+#          readinessProbe:
+#            httpGet:
+#              path: /health
+#              port: http-health
+#            initialDelaySeconds: {{ .Values.deployment.readinessProbe.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.deployment.readinessProbe.periodSeconds }}
+#            successThreshold: {{ .Values.deployment.readinessProbe.successThreshold }}
+#            timeoutSeconds: {{ .Values.deployment.readinessProbe.timeoutSeconds }}
+          env:
+            - name: NODE_NAME
+              value: {{ .Values.node.name | quote }}
+            - name: NODE_TYPE
+              value: {{ .Values.node.type | quote }}
+            - name: COMPANY_NAME
+              value: {{ .Values.node.companyName | quote }}
+            - name: CPU
+              value: {{ .Values.node.cpu | quote }}
+            - name: RAM
+              value: {{ .Values.node.ram | quote }}
+            - name: SEQ
+              value: {{ .Values.node.seq | quote }}
+            - name: ENABLE_CONSTELLATION
+              value: {{ .Values.node.constellation | quote }}
+            - name: DIRECTORY
+              value: /opt/alastria
+            {{- with .Values.additionalEnvVars }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- with .Values.deployment.resources }}
+          resources:
+            limits:
+              cpu: {{ .Values.node.cpu }}
+              memory: {{ .Values.node.ram }}Gi
+              requests:
+                cpu: {{ .Values.node.cpu }}
+                memory:  {{ .Values.node.cpu }}Gi
+          {{- end }}
+          volumeMounts:
+            - name: work-dir
+              mountPath: /opt/alastria
+      volumes:
+        - name: work-dir
+          persistentVolumeClaim:
+            claimName: {{ include "alastria.fullname" . }}
+      {{- with .Values.deployment.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.deployment.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.deployment.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

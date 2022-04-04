@@ -1,0 +1,6 @@
+apiVersion: v2
+name: alastria
+description: Helm chart for running an alastria regular node
+type: application
+version: 0.0.1
+appVersion: "testnet2"

@@ -1,0 +1,100 @@
+## Default values for canismajor.
+## This is a YAML-formatted file.
+## Declare variables to be passed into your templates.
+
+# -- option to override the name config in the _helpers.tpl
+nameOverride: ""
+# -- option to override the fullname config in the _helpers.tpl
+fullnameOverride: ""
+
+## configuration for the k8s service to access canismajor
+service:
+  # -- service type
+  type: ClusterIP
+  # -- addtional annotations, if required
+  annotations: {}
+
+# -- if a canismajor specific service account should be used, it can be configured here
+# ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+serviceAccount:
+  # -- specifies if the account should be created
+  create: false
+
+# information corresponding to this alastria node
+node:
+  # name of the node
+  name: FIWARE
+  # type of the node
+  type: general
+  # company name running the instance
+  companyName: FIWARE Foundation e.V.
+  # cpus to be used for the node
+  cpu: 2
+  # ram to be assigned to the node
+  ram: 4
+  # sequential starting at
+  seq: 00
+  # constellation enabled?
+  constellation: false
+  # storage to be reservede
+  storageSize: 256Gi
+
+## deployment specific configuration
+deployment:
+  # -- number of old replicas to be retained
+  revisionHistoryLimit: 3
+  ## configuration of the image to be used
+  image:
+    # -- canismajor image name
+    # ref: https://quay.io/repository/fiware/canis-major
+    repository: quay.io/wi_stefan/alastria
+    # -- tag of the image to be used
+    tag: 0.0.1
+    # -- specification of the image pull policy
+    pullPolicy: IfNotPresent
+
+  # -- additional labels for the deployment, if required
+  additionalLabels: {}
+  # -- additional annotations for the deployment, if required
+  additionalAnnotations: {}
+  # -- selector template
+  # ref: https://kubernetes.io/docs/user-guide/node-selection/
+  nodeSelector: {}
+  # -- tolerations template
+  # ref: ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  tolerations: []
+  # -- affinity template
+  # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  affinity: {}
+  ## liveness and readiness probes of the canismajor broker, they will be evaluated against the version endpoint
+  # ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 30
+  readinessProbe:
+    initialDelaySeconds: 31
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 30
+
+## openshift specific route definition. Will not work on plain k8s
+route:
+  ## -- should the deployment create openshift routes
+  enabled: false
+  # -- annotations to be added to the route
+  annotations: {}
+  # -- host to be used
+  # host: localhost
+
+## configuration for prometheus montioring
+prometheus:
+  # -- should prometheus scrape be enabled
+  enabled: true
+  # -- path for prometheus scrape
+  path: /prometheus
+
+# -- a list of additional env vars to be set, check the canismajor docu for all available options
+additonalEnvVars: []
+
