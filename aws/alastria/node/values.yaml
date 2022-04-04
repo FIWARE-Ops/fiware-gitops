@@ -10,7 +10,7 @@ fullnameOverride: ""
 ## configuration for the k8s service to access canismajor
 service:
   # -- service type
-  type: Loadbalancer
+  type: LoadBalancer
   # -- addtional annotations, if required
   annotations: {}
 
