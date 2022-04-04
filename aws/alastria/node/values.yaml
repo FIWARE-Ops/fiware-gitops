@@ -29,7 +29,7 @@ node:
   # company name running the instance
   branch: main
   # external ip
-  externalIp: 1.2.3.4
+  externalIp: ad194640f9acc468e82f76ad2ad186c3-1849052090.eu-central-1.elb.amazonaws.com
   # cpus to be used for the node
   cpu: 2
   # ram to be assigned to the node
