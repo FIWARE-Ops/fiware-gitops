@@ -2,9 +2,9 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ include "alastria.fullname" . }}
-  {{- with .Values.alastria.annotations  }}
+  {{- with .Values.deployment.additionalAnnotations }}
   annotations:
-  {{ toYaml . | indent 4 }}
+    {{ toYaml . | indent 4 }}
   {{- end }}
   labels:
     {{- include "alastria.labels" . | nindent 4 }}
