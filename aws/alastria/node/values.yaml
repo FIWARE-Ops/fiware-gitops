@@ -27,15 +27,13 @@ node:
   # type of the node
   type: general
   # company name running the instance
-  companyName: FIWARE Foundation e.V.
+  branch: main
+  # external ip
+  externalIp: 1.2.3.4
   # cpus to be used for the node
   cpu: 2
   # ram to be assigned to the node
   ram: 4
-  # sequential starting at
-  seq: 00
-  # constellation enabled?
-  constellation: false
   # storage to be reservede
   storageSize: 256Gi
 
@@ -47,7 +45,7 @@ deployment:
   image:
     # -- canismajor image name
     # ref: https://quay.io/repository/fiware/canis-major
-    repository: quay.io/wi_stefan/alastria
+    repository: quay.io/wi_stefan/alastria-node
     # -- tag of the image to be used
     tag: 0.0.1
     # -- specification of the image pull policy

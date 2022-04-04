@@ -15,6 +15,10 @@ spec:
       targetPort: 21000
       protocol: TCP
       name: geth
+    - port: 6060
+      targetPort: 6060
+      protocol: TCP
+      name: monitoring
   selector:
     app.kubernetes.io/name: {{ include "alastria.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

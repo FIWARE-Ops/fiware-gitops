@@ -37,6 +37,9 @@ spec:
             - name: geth
               containerPort: 21000
               protocol: TCP
+            - name: http
+              containerPort: 22000
+              protocol: TCP
             - name: constellation
               containerPort: 9000
               protocol: TCP
@@ -73,18 +76,10 @@ spec:
               value: {{ .Values.node.name | quote }}
             - name: NODE_TYPE
               value: {{ .Values.node.type | quote }}
-            - name: COMPANY_NAME
-              value: {{ .Values.node.companyName | quote }}
-            - name: CPU
-              value: {{ .Values.node.cpu | quote }}
-            - name: RAM
-              value: {{ .Values.node.ram | quote }}
-            - name: SEQ
-              value: {{ .Values.node.seq | quote }}
-            - name: ENABLE_CONSTELLATION
-              value: {{ .Values.node.constellation | quote }}
-            - name: DIRECTORY
-              value: /opt/alastria
+            - name: NODE_BRANCH
+              value: {{ .Values.node.branch | quote }}
+            - name: EXTERNAL_IP
+              value: {{ .Values.node.externalIp | quote }}
             {{- with .Values.additionalEnvVars }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
@@ -99,7 +94,7 @@ spec:
           {{- end }}
           volumeMounts:
             - name: work-dir
-              mountPath: /opt/alastria
+              mountPath: /opt/alastria/data
       volumes:
         - name: work-dir
           persistentVolumeClaim:
