@@ -47,7 +47,7 @@ deployment:
     # ref: https://quay.io/repository/fiware/canis-major
     repository: quay.io/wi_stefan/alastria-node
     # -- tag of the image to be used
-    tag: 0.0.1
+    tag: 0.0.2
     # -- specification of the image pull policy
     pullPolicy: IfNotPresent
 
