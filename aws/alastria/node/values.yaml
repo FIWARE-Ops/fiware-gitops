@@ -10,7 +10,7 @@ fullnameOverride: ""
 ## configuration for the k8s service to access canismajor
 service:
   # -- service type
-  type: ClusterIP
+  type: Loadbalancer
   # -- addtional annotations, if required
   annotations: {}
 
@@ -80,7 +80,7 @@ deployment:
 ## openshift specific route definition. Will not work on plain k8s
 route:
   ## -- should the deployment create openshift routes
-  enabled: true
+  enabled: false
   # -- annotations to be added to the route
   annotations: {}
   # -- host to be used
