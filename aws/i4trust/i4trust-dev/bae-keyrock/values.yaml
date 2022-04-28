@@ -1,0 +1,30 @@
+keyrock:
+  statefulset:
+    image:
+      repository: fiware/idm
+      tag: i4trust-rc7
+
+  db:
+    user: admin
+    host: kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+
+  existingSecret: bae-keyrock-secret
+
+  route:
+    enabled: true
+    host: i4trust-dev-bae-keyrock.apps.fiware-dev-aws.fiware.dev
+    tls:
+      termination: edge
+
+  additionalEnvVars:
+    - name: IDM_TITLE
+      value: i4Trust Marketplace IDP (DEV)
+    - name: IDM_DEBUG
+      value: "true"
+    - name: DEBUG
+      value: "*"
+    - name: IDM_DB_NAME
+      value: i4trust_dev_bae_idm
+    - name: IDM_DB_SEED
+      value: "true"
+    
