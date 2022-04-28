@@ -5,8 +5,12 @@ keyrock:
       tag: i4trust-rc7
 
   db:
+    user: root
+    host: i4trust-dev-mysql
+
+  admin:
     user: admin
-    host: kr-2.cifkfl9vchfo.eu-central-1.rds.amazonaws.com
+    email: dennis.wendland@fiware.org
 
   existingSecret: bae-keyrock-secret
 

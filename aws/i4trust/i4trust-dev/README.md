@@ -38,6 +38,26 @@ instance.
 ### Keyrock
 
 * DB setup incl. secret
+Create a Secret manifest in the secrets/ folder:
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bae-keyrock-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  adminPassword: <BASE64_ADMIN_PASSWORD>
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <bae-keyrock-secret.manifest.yaml >bae-keyrock-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
 * On UI: Create application, note down client-id/-secret
 
 ### BAE
