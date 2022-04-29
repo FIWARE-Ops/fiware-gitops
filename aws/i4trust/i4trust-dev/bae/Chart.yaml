@@ -10,4 +10,4 @@ dependencies:
   - name: business-api-ecosystem
     version: 0.3.0
     #repository: https://fiware.github.io/helm-charts
-    file://./charts/business-api-ecosystem
+    repository: file://./charts/business-api-ecosystem
