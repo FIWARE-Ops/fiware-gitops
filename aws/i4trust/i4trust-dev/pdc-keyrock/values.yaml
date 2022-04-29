@@ -1,4 +1,4 @@
-pdc-keyrock:
+keyrock:
   statefulset:
     image:
       repository: fiware/idm
