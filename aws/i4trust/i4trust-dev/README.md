@@ -33,6 +33,7 @@ kubeseal <mysql-secret.manifest.yaml >mysql-sealed-secret.yaml -o yaml --control
 
 MongoDB is deployed with the bitnami chart.
 
+* MongoDB root password
 To create an own secret, change to the secrets/ folder and create a 
 secret manifest `mongodb-secret.manifest.yaml`:
 ```yaml
@@ -53,6 +54,26 @@ data:
 Create a sealed secret with `kubeseal`:
 ```shell
 kubeseal <mongodb-secret.manifest.yaml >mongodb-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* MongoDB user passwords for init-db scripts
+Create a secret manifest `mongodb-envs-secret.manifest.yaml`:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-envs-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded PW for charging user
+  MONGO_BAE_CHARGING_PW: <BASE64_PASSWORD>
+  # Base64 encoded PW for belp user
+  MONGO_BAE_BELP_PW: <BASE64_PASSWORD>
+```
+
+Create a sealed secret:
+```shell
+kubeseal <mongodb-envs-secret.manifest.yaml >mongodb-envs-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
 ```
 
 
