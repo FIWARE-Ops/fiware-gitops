@@ -210,8 +210,12 @@ data:
   dbPassword: <BASE64_PASSWORD>
   # PayPal client secret
   paypalClientSecret: <BASE64_CLIENT_SECRET>
+  # Password of SMTP (dummy)
+  smtpPassword: <BASE64_DUMMY>
+  # IDP password for plugins (dummy)
+  pluginsIdmPassword: <BASE64_DUMMY>
 ```
-where `dbPassword` must match to the charging user password of the MongoDB.
+where `dbPassword` must match to the charging user password of the MongoDB. Dummys can be set with any base64 encoded string.
 
 Create a sealed secret with `kubeseal`:
 ```shell
