@@ -298,6 +298,57 @@ As admin, one can also add further external IDPs, like for Packet Delivery or Ha
 
 ## Packet Delivery Company
 
+The environment of Packet Delivery Company consists of:
+* Keyrock IDP
+* orion-ld Context Broker
+* Activation Service (in addition to Authorization Registry)
+* PEP/PDP Gateway
+
+An external Authorisation Registry is configured.
+
+
+### Keyrock
+
+* Setup of database and admin credentials Secret
+Create a Secret manifest `pdc-keyrock-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pdc-keyrock-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  adminPassword: <BASE64_ADMIN_PASSWORD>
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <pdc-keyrock-secret.manifest.yaml >pdc-keyrock-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* Setup of key/certs secret
+Create a Secret manifest `pdc-keyrock-cert-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pdc-keyrock-cert-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  cert: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  key: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <pdc-keyrock-cert-secret.manifest.yaml >pdc-keyrock-cert-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
 
 
 
