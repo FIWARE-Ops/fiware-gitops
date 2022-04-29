@@ -284,6 +284,16 @@ kubeseal <bae-lp-cert-secret.manifest.yaml >bae-lp-cert-sealed-secret.yaml -o ya
 ```
 
 
+### Usage
+
+The marketplace is accessible via the URL [https://i4trust-dev-bae.apps.fiware-dev-aws.fiware.dev/](https://i4trust-dev-bae.apps.fiware-dev-aws.fiware.dev/). 
+
+The 'Local IDP' login option allows to login using the locally configured Keyrock IDP. In order to be able to perform administrative tasks on the 
+marketplace, a user on the local Keyrock instance must be authorized in the marketplace application with the admin role.
+
+As admin, one can also add further external IDPs, like for Packet Delivery or Happy Pets.
+
+
 
 
 ## Packet Delivery Company
