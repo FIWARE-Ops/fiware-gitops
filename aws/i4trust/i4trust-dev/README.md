@@ -8,7 +8,7 @@ Components for the development stage in namespace `i4trust-dev`.
 
 ### MySQL
 
-MySQL is used with the t3n chart.
+MySQL is deployed with the t3n chart.
 
 To create an own secret, change to the secrets/ folder and create a 
 secret manifest `mysql-secret.manifest.yaml`:
@@ -27,6 +27,38 @@ Create a sealed secret with `kubeseal`:
 ```shell
 kubeseal <mysql-secret.manifest.yaml >mysql-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
 ```
+
+
+### MongoDB
+
+MongoDB is deployed with the bitnami chart.
+
+To create an own secret, change to the secrets/ folder and create a 
+secret manifest `mongodb-secret.manifest.yaml`:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  # name of the secret
+  name: mongodb-secret
+  # namespace the secret should be deployed to - important, sealed-secrets will check the namespace before decryption
+  namespace: i4trust-dev
+data:
+  # the actual data, needs to be base64 encoded
+  mongodb-password: <BASE64_PASSWORD>
+  mongodb-replica-set-key: <BASE64_PASSWORD>
+  mongodb-root-password: <BASE64_PASSWORD>
+```
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <mongodb-secret.manifest.yaml >mongodb-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
+### elasticsearch
+
+
 
 
 
