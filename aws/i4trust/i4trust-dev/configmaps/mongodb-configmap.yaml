@@ -14,7 +14,7 @@ data:
     admin.auth(rootUser, rootPassword);
 
     use charging_db;
-    var passwd = '$(cat "$MONGO_BAE_CHARGING_PW")';
+    var passwd = '$MONGO_BAE_CHARGING_PW';
     db.createUser(
     {
       user: 'charging',
@@ -28,7 +28,7 @@ data:
     });
 
     use belp_db;
-    var passwd = '$(cat "$MONGO_BAE_BELP_PW")';
+    var passwd = '$MONGO_BAE_BELP_PW';
     db.createUser(
     {
       user: 'belp',
