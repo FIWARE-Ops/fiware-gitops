@@ -6,10 +6,10 @@ metadata:
 data:
   init-db.sh: |
     export
-    mongo -- "$MONGO_INITDB_DATABASE" <<EOF
+    mongo <<EOF
 
-    var rootUser = '$MONGO_INITDB_ROOT_USERNAME';
-    var rootPassword = '$MONGO_INITDB_ROOT_PASSWORD';
+    var rootUser = '$MONGODB_ROOT_USER';
+    var rootPassword = '$MONGODB_ROOT_PASSWORD';
     var admin = db.getSiblingDB('admin');
     admin.auth(rootUser, rootPassword);
 
