@@ -2,6 +2,29 @@
 
 Components for the development stage in namespace `i4trust-dev`.
 
+## ServiceAccount
+
+Some applications need root priviliges. They have to use the ServiceAccount created with the manifest 
+[./serviceaccounts/i4trust-dev-root-runner.yaml](./serviceaccounts/i4trust-dev-root-runner.yaml).
+
+When the ServiceAccount was created within the namespace, add it to the privileged users:
+```shell
+oc edit scc privileged
+```
+In the open editor, add the new service account under `users:`, e.g.
+```yaml
+users:
+- system:admin
+- ...
+- system:serviceaccount:i4trust-dev:i4trust-dev-root-runner
+- ...
+```
+
+In case of an error when patching, there was a `yaml` file created under `/tmp`. Enforce the replacement by e.g.
+```shell
+oc replace -f /tmp/oc-edit-pzvsn.yaml
+```
+
 
 ## Databases
 
