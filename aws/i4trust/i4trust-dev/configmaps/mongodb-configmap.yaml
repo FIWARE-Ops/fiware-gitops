@@ -6,7 +6,8 @@ metadata:
 data:
   init-db.sh: |
     set -e
-    mongo <<EOF
+    export
+    mongo -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD <<EOF
 
     use charging_db
     db.createUser(
