@@ -5,7 +5,6 @@ metadata:
   namespace: i4trust-dev
 data:
   init-db.sh: |
-    export
     mongo <<EOF
 
     var rootUser = '$MONGODB_ROOT_USER';
