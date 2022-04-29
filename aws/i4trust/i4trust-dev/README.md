@@ -102,7 +102,7 @@ kubeseal <mongodb-envs-secret.manifest.yaml >mongodb-envs-sealed-secret.yaml -o 
 
 ### elasticsearch
 
-
+No further configuration required.
 
 
 
