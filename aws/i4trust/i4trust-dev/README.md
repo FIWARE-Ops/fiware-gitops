@@ -91,8 +91,8 @@ instance.
 ### Keyrock
 
 * DB setup incl. secret
-Create a Secret manifest in the secrets/ folder:
-```
+Create a Secret manifest `bae-keyrock-secret.manifest.yaml` in the secrets/ folder:
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -111,13 +111,150 @@ kubeseal <bae-keyrock-secret.manifest.yaml >bae-keyrock-sealed-secret.yaml -o ya
 ```
 
 
-* On UI: Create application, note down client-id/-secret
+* Create Application for marketplace
+Login on [Keyrock](https://i4trust-dev-bae-keyrock.apps.fiware-dev-aws.fiware.dev/) with the admin credentials and create a new application.
+
+Fill in the following values:
+```yaml
+Name: i4Trust Marketplace
+Description: "Enter some description"
+URL: https://i4trust-dev-bae.apps.fiware-dev-aws.fiware.dev
+Callback-URL: http://i4trust-dev-bae.apps.fiware-dev-aws.fiware.dev/auth/fiware/callback
+Grant-Type: "Authorization Code, Refresh Token"
+```
+and add the follwing roles:
+```yaml
+roles:
+	- admin
+	- orgAdmin
+	- seller
+	- customer
+```
+
+When the application was created, note down the client ID and client secret.
+
 
 ### BAE
 
-* DB setup incl. secrets
-* Add oauth2 credentials of BAE Keyrock instance as sealed-secret
-* i4Trust related secrets for private key
+* APIs
+Create a Secret manifest `bae-apis-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bae-apis-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <bae-apis-secret.manifest.yaml >bae-apis-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* RSS
+Create a Secret manifest `bae-rss-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bae-rss-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <bae-rss-secret.manifest.yaml >bae-rss-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* Charging Backend
+Create a Secret manifest `bae-cb-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bae-cb-secret
+  namespace: i4trust-dev
+data:
+  # MongoDB charing user password
+  dbPassword: <BASE64_PASSWORD>
+  # PayPal client secret
+  paypalClientSecret: <BASE64_CLIENT_SECRET>
+```
+where `dbPassword` must match to the charging user password of the MongoDB.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <bae-cb-secret.manifest.yaml >bae-cb-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+Create a Secret manifest `bae-cb-cert-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bae-cb-cert-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  cert.pem: <BASE64_CERT> 
+  key.pem: <BASE64_KEY>
+```
+where the cert chain and key were issued to the marketplace.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <bae-cb-cert-secret.manifest.yaml >bae-cb-cert-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* Logic Proxy
+Make sure, that in the BAE [values.yaml](./bae/values.yaml) the client ID is entered which was generated in the local Keyrock IDP application before.
+
+Create a Secret manifest `bae-lp-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bae-lp-secret
+  namespace: i4trust-dev
+data:
+  # MongoDB charing user password
+  dbPassword: <BASE64_PASSWORD>
+  # OAuth2 client secret of local Keyrock IDP Application
+  oauthClientSecret: <BASE64_CLIENT_SECRET>
+```
+where `oauthClientSecret` is the client secret which was generated in the local Keyrock IDP application before.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <bae-lp-secret.manifest.yaml >bae-lp-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+Create a Secret manifest `bae-lp-cert-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bae-lp-cert-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  cert.pem: <BASE64_CERT> 
+  key.pem: <BASE64_KEY>
+```
+where the cert chain and key were issued to the marketplace.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <bae-lp-cert-secret.manifest.yaml >bae-lp-cert-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
 
 
 
