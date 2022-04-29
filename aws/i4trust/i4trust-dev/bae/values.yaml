@@ -146,7 +146,7 @@ business-api-ecosystem:
     ## database configuration for Charging backend (MongoDB)
     db:
       ## host of the database to be used
-      host: i4trust-dev-mongo
+      host: i4trust-dev-mongodb.i4trust-dev.svc.cluster.local
       ## Database name for connecting the database
       database: charging_db
       ## username for connecting the database
