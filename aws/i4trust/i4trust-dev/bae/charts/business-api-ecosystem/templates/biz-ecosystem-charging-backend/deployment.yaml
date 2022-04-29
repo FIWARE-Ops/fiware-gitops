@@ -177,7 +177,7 @@ spec:
             - name: BAE_CB_LOCAL_SITE
               value: http://{{ include "bizEcosystemChargingBackend.fullhostname" . }}
             - name: BAE_CB_MAX_UPLOAD_SIZE
-              value: {{ .Values.bizEcosystemChargingBackend.maxUploadSize | quote }}
+              value: {{ .Values.bizEcosystemChargingBackend.maxUploadSize }}
             - name: BAE_CB_CATALOG
               value: http://{{ include "bizEcosystemApis.fullhostname" . }}/DSProductCatalog
             - name: BAE_CB_INVENTORY
