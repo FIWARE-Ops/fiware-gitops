@@ -5,15 +5,20 @@ metadata:
   namespace: i4trust-dev
 data:
   init-db.sh: |
-    set -e
     export
-    mongo -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD <<EOF
+    mongo -- "$MONGO_INITDB_DATABASE" <<EOF
 
-    use charging_db
+    var rootUser = '$MONGO_INITDB_ROOT_USERNAME';
+    var rootPassword = '$MONGO_INITDB_ROOT_PASSWORD';
+    var admin = db.getSiblingDB('admin');
+    admin.auth(rootUser, rootPassword);
+
+    use charging_db;
+    var passwd = '$(cat "$MONGO_BAE_CHARGING_PW")';
     db.createUser(
     {
       user: 'charging',
-      pwd: '$MONGO_BAE_CHARGING_PW',
+      pwd: passwd,
       roles: [
         {
           role: 'readWrite',
@@ -22,11 +27,12 @@ data:
       ]
     });
 
-    use belp_db
+    use belp_db;
+    var passwd = '$(cat "$MONGO_BAE_BELP_PW")';
     db.createUser(
     {
       user: 'belp',
-      pwd: '$MONGO_BAE_BELP_PW',
+      pwd: passwd,
       roles: [
         {
           role: 'readWrite',
