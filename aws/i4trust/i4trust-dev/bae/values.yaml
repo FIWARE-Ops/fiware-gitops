@@ -156,7 +156,7 @@ business-api-ecosystem:
     propagateToken: false
 
     # -- Maximum asset upload size (in MB)
-    maxUploadSize: 52428800
+    maxUploadSize: 428800
 
     ## -- Configuration of local key and certificate for validation and generation of tokens
     token:
