@@ -12,7 +12,7 @@ spec:
         - name: pdc-orion-init-data-hp001
           image: alpine/curl
           command: ['sh', '-c',
-            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/json" -d @/data/deliveryorder_happypets001.json']
+            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_happypets001.json']
           volumeMounts:
             - name: pdc-orion-init-data-volume
               mountPath: "/data"
@@ -20,7 +20,7 @@ spec:
         - name: pdc-orion-init-data-hp002
           image: alpine/curl
           command: ['sh', '-c',
-            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/json" -d @/data/deliveryorder_happypets002.json']
+            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_happypets002.json']
           volumeMounts:
             - name: pdc-orion-init-data-volume
               mountPath: "/data"
@@ -28,7 +28,7 @@ spec:
         - name: pdc-orion-init-data-nc001
           image: alpine/curl
           command: ['sh', '-c',
-            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/json" -d @/data/deliveryorder_nocheaper001.json']
+            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_nocheaper001.json']
           volumeMounts:
             - name: pdc-orion-init-data-volume
               mountPath: "/data"
@@ -36,7 +36,7 @@ spec:
         - name: pdc-orion-init-data-nc002
           image: alpine/curl
           command: ['sh', '-c',
-            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/json" -d @/data/deliveryorder_nocheaper002.json']
+            'curl -X POST i4trust-dev-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_nocheaper002.json']
           volumeMounts:
             - name: pdc-orion-init-data-volume
               mountPath: "/data"
