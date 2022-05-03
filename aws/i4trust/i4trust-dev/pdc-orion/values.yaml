@@ -3,7 +3,8 @@ orion:
     db:
       hosts:
         - i4trust-dev-mongodb.i4trust-dev.svc.cluster.local
-      user: root
+      auth:
+        user: root
       existingSecret: pdc-orion-secret
 
   mongo:
