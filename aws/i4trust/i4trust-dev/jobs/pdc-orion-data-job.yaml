@@ -1,11 +1,13 @@
-apiVersion: v1
+apiVersion: batch/v1
 kind: Job
 metadata:
   name: pdc-orion-data-job
   namespace: i4trust-dev
 spec:
+  backoffLimit: 1
   template:
     spec:
+      restartPolicy: Never
       containers:
         - name: pdc-orion-init-data
           image: alpine/curl
