@@ -373,6 +373,30 @@ kubeseal <pdc-orion-secret.manifest.yaml >pdc-orion-sealed-secret.yaml -o yaml -
 ```
 
 
+### Kong
+
+* Setup of key/certs secret
+Create a Secret manifest `pdc-kong-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pdc-kong-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  FIWARE_JWS_X5C: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  FIWARE_JWS_PRIVATE_KEY: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <pdc-kong-secret.manifest.yaml >pdc-kong-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
 ## Happy Pets
 
 
