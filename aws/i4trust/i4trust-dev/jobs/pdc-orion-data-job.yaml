@@ -11,7 +11,7 @@ spec:
       containers:
         - name: pdc-orion-init-data
           image: alpine/curl
-          command: "ls -la /data && cat /data/deliveryorder_happypets001.json"
+          command: ["ls -la /data && cat /data/deliveryorder_happypets001.json"]
           volumeMounts:
             - name: pdc-orion-init-data-volume
               mountPath: "/data"
