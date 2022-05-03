@@ -25,6 +25,7 @@ kong:
 
   ingressController:
     enabled: false
+    installCRDs: false
 
   dblessConfig:
     configMap: pdc-kong-configmap
