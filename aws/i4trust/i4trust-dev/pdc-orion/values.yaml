@@ -1,0 +1,14 @@
+orion:
+  broker:
+    db:
+      hosts:
+        - i4trust-dev-mongodb.i4trust-dev.svc.cluster.local
+      user: root
+      existingSecret: pdc-orion-secret
+
+  mongo:
+    # we want to use the individually deployed mongodb
+    enabled: false
+
+  deployment:
+    replicaCount: 1

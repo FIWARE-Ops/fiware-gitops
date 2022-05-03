@@ -351,6 +351,27 @@ kubeseal <pdc-keyrock-cert-secret.manifest.yaml >pdc-keyrock-cert-sealed-secret.
 ```
 
 
+### Orion
+
+* Create secret for DB access
+Create a Secret manifest `pdc-orion-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pdc-orion-secret
+  namespace: i4trust-dev
+data:
+  # MongoDB root user password
+  dbPassword: <BASE64_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MongoDB.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <pdc-orion-secret.manifest.yaml >pdc-orion-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
 
 ## Happy Pets
 
