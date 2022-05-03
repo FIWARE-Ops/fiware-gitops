@@ -4,7 +4,7 @@ metadata:
   name: pdc-kong-configmap
   namespace: i4trust-dev
 data:
-  kong.yml:
+  kong.yml: |
     _format_version: "2.1"
     _transform: true
     services:
@@ -13,14 +13,12 @@ data:
         port: 1026
         protocol: http
 
-        # Routes
         routes:
           - name: pdc
             paths:
               - /packetdelivery
             strip_path: true
 
-        # Plugins
         plugins:
           - name: ngsi-ishare-policies
             config:
