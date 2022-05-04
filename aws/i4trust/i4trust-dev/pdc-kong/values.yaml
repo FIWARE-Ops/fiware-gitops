@@ -34,6 +34,8 @@ kong:
       enabled: false
     ingress:
       enabled: true
+      annotations:
+        route.openshift.io/termination: edge
       hostname: i4trust-dev-pdc-kong.apps.fiware-dev-aws.fiware.dev
       path: /
   
