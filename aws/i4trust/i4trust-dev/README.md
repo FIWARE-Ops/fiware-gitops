@@ -481,10 +481,214 @@ kubeseal <pdc-portal-secret.manifest.yaml >pdc-portal-sealed-secret.yaml -o yaml
 
 ## Happy Pets
 
+The environment of Happy Pets consists of two instance of the Keyrock IDP. One is dedicated to company employees, the other instances is used 
+for the users of the shop.
+
+
+### Keyrock
+
+
+#### Keyrock (Company)
+
+* Setup of database and admin credentials Secret
+Create a Secret manifest `happypets-keyrock-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: happypets-keyrock-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  adminPassword: <BASE64_ADMIN_PASSWORD>
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <happypets-keyrock-secret.manifest.yaml >happypets-keyrock-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* Setup of key/certs secret
+Create a Secret manifest `happypets-keyrock-cert-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: happypets-keyrock-cert-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  cert: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  key: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <happypets-keyrock-cert-secret.manifest.yaml >happypets-keyrock-cert-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
+#### Keyrock (Shop)
+
+* Setup of database and admin credentials Secret
+Create a Secret manifest `happypets-keyrock-shop-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: happypets-keyrock-shop-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  adminPassword: <BASE64_ADMIN_PASSWORD>
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <happypets-keyrock-shop-secret.manifest.yaml >happypets-keyrock-shop-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* Setup of key/certs secret
+Create a Secret manifest `happypets-keyrock-shop-cert-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: happypets-keyrock-shop-cert-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  cert: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  key: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <happypets-keyrock-shop-cert-secret.manifest.yaml >happypets-keyrock-shop-cert-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
+#### Add as external IDP to BAE
+
+The Keyrock company instance should be added as external IDP to the marketplace.
+
+Login as admin on the BAE and open the administrative UI.
+
+Add an external IDP with the EORI of Happy Pets and the hostname of the company Keyrock 
+IDP ([https://i4trust-dev-happypets-keyrock.apps.fiware-dev-aws.fiware.dev](https://i4trust-dev-happypets-keyrock.apps.fiware-dev-aws.fiware.dev)).
 
 
 
 ## No Cheaper
 
+The environment of No CHeaper consists of two instance of the Keyrock IDP. One is dedicated to company employees, the other instances is used 
+for the users of the shop.
 
 
+### Keyrock
+
+
+#### Keyrock (Company)
+
+* Setup of database and admin credentials Secret
+Create a Secret manifest `nocheaper-keyrock-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nocheaper-keyrock-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  adminPassword: <BASE64_ADMIN_PASSWORD>
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <nocheaper-keyrock-secret.manifest.yaml >nocheaper-keyrock-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* Setup of key/certs secret
+Create a Secret manifest `nocheaper-keyrock-cert-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nocheaper-keyrock-cert-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  cert: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  key: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <nocheaper-keyrock-cert-secret.manifest.yaml >nocheaper-keyrock-cert-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
+#### Keyrock (Shop)
+
+* Setup of database and admin credentials Secret
+Create a Secret manifest `nocheaper-keyrock-shop-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nocheaper-keyrock-shop-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded
+  adminPassword: <BASE64_ADMIN_PASSWORD>
+  dbPassword: <BASE64_DB_PASSWORD>
+```
+where `dbPassword` must match to the root password of the MySQL.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <nocheaper-keyrock-shop-secret.manifest.yaml >nocheaper-keyrock-shop-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+* Setup of key/certs secret
+Create a Secret manifest `nocheaper-keyrock-shop-cert-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nocheaper-keyrock-shop-cert-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  cert: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  key: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <nocheaper-keyrock-shop-cert-secret.manifest.yaml >nocheaper-keyrock-shop-cert-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
+#### Add as external IDP to BAE
+
+The Keyrock company instance should be added as external IDP to the marketplace.
+
+Login as admin on the BAE and open the administrative UI.
+
+Add an external IDP with the EORI of No CHeaper and the hostname of the company Keyrock 
+IDP ([https://i4trust-dev-nocheaper-keyrock.apps.fiware-dev-aws.fiware.dev](https://i4trust-dev-nocheaper-keyrock.apps.fiware-dev-aws.fiware.dev)).
