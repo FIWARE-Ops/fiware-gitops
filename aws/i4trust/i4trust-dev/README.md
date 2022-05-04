@@ -397,6 +397,33 @@ kubeseal <pdc-kong-secret.manifest.yaml >pdc-kong-sealed-secret.yaml -o yaml --c
 ```
 
 
+### Activation Service
+
+The activation service is required, so that the marketplace is able to create policies at the AR of Packet Delivery.
+
+* Setup of key/certs secret
+Create a Secret manifest `pdc-as-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pdc-as-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  AS_CLIENT_CRT: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  AS_CLIENT_KEY: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <pdc-as-secret.manifest.yaml >pdc-as-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
+
 ## Happy Pets
 
 
