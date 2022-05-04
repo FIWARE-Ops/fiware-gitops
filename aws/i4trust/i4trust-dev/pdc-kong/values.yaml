@@ -31,7 +31,7 @@ kong:
   proxy:
     enabled: true
     tls:
-      enabled: false
+      enabled: true
     ingress:
       enabled: true
       hostname: i4trust-dev-pdc-kong.apps.fiware-dev-aws.fiware.dev
