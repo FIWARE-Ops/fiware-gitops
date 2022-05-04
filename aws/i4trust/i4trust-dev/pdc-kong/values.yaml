@@ -30,11 +30,12 @@ kong:
   
   proxy:
     enabled: true
-    type: ClusterIP
     tls:
       enabled: false
     ingress:
-      enabled: false
+      enabled: true
+      hostname: i4trust-dev-pdc-kong.apps.fiware-dev-aws.fiware.dev
+      path: /
   
   dblessConfig:
     configMap: pdc-kong-configmap
