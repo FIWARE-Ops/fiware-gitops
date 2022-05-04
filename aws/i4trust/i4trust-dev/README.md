@@ -284,6 +284,34 @@ kubeseal <bae-lp-cert-secret.manifest.yaml >bae-lp-cert-sealed-secret.yaml -o ya
 ```
 
 
+#### Plugins
+Plugins need to be installed on the charging backend.
+
+In order to install a plugin, perform the following steps:
+
+Create zip file from plugin directory
+```shell
+zip -r my-plugin.zip my-plugin/
+```
+
+Copy to plugin directory of charging backend pod
+```shell
+kubectl cp ./my-plugin.zip my-charging-backend-pod:/opt/business-ecosystem-charging-backend/src/plugins/.
+```
+
+Open shell in Pod and load plugin
+```shell
+kubectl exec --stdin --tty my-charging-backend-pod -- /bin/bash
+
+# Shell within pod:
+root@my-charging-backend-pod:/business-ecosystem-charging-backend/src# ./manage.py loadplugin plugins/my-plugin.zip
+```
+
+In order to enable the creation of assets for data services in i4Trust, 
+the [bae-i4trust-service plugin](https://github.com/i4Trust/bae-i4trust-service) needs to be installed.
+
+
+
 ### Usage
 
 The marketplace is accessible via the URL [https://i4trust-dev-bae.apps.fiware-dev-aws.fiware.dev/](https://i4trust-dev-bae.apps.fiware-dev-aws.fiware.dev/). 
@@ -420,6 +448,33 @@ where the cert chain and key were issued to the Packet Delivery Company.
 Create a sealed secret with `kubeseal`:
 ```shell
 kubeseal <pdc-as-secret.manifest.yaml >pdc-as-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+
+### Packet Delivery Service Portal
+
+The portal is a simple demo application, which showcases, how a login is performed via an external IDP in i4Trust, 
+and how requests are sent to a data service with an access token JWT.
+
+* Setup of key/certs secret
+Create a Secret manifest `pdc-portal-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pdc-portal-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  PORTAL_CLIENT_CRT: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  PORTAL_CLIENT_KEY: <BASE64_KEY>
+```
+where the cert chain and key were issued to the Packet Delivery Company.
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <pdc-portal-secret.manifest.yaml >pdc-portal-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
 ```
 
 
