@@ -14,6 +14,8 @@ activation-service:
   debug:
     enabled: true
 
+  existingSecretEnvs: pdc-as-secret
+
   config:
     client:
       id: "EU.EORI.NLPACKETDEL"
