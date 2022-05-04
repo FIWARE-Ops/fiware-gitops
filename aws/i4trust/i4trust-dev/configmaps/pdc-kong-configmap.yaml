@@ -8,8 +8,8 @@ data:
     _format_version: "2.1"
     _transform: true
     services:
-      - url: "http://i4trust-dev-pdc-orion"
-        name: "ngsi-ishare-policies-auth"
+      - host: "i4trust-dev-pdc-orion"
+        name: "pdc-orion-packetdelivery"
         port: 1026
         protocol: http
 
