@@ -22,7 +22,7 @@ kong:
     portal_api_error_log: /dev/stderr
     prefix: /kong_prefix/
     log_level: debug
-    nginx_main_env: "FIWARE_JWS_PRIVATE_KEY; env FIWARE_JWS_X5C}"
+    nginx_main_env: "FIWARE_JWS_PRIVATE_KEY; env FIWARE_JWS_X5C"
 
   ingressController:
     enabled: false
