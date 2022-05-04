@@ -2,7 +2,7 @@ activation-service:
   deployment:
     image:
       repository: i4trust/activation-service
-      tag: v0.2.1
+      tag: v0.2.0
       pullPolicy: Always
 
   route:
