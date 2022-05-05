@@ -50,6 +50,11 @@ pushing them to GitHub.
 For deployment of all sealed secrets, create the ArgoCD 
 app [i4trust-dev-secrets](../../apps/i4trust/i4trust-dev/i4trust-dev-secrets.yaml).
 
+Note, that the sealed-secrets within this repository can only be decrypted by the sealed-secrets 
+controller deployed at the FIWARE OpenShift cluster. When deploying on your own infrastructure, 
+you need to create your own sealed-secrets first, as described below for the different 
+components.
+
 
 
 ## ConfigMaps
