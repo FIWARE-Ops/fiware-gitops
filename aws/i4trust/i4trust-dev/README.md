@@ -5,7 +5,7 @@ Components for the development stage in namespace `i4trust-dev`.
 For deployment and configuration of all components, follow the order below.
 
 The corresponding ArgoCD apps can be 
-found [here](https://github.com/FIWARE-Ops/fiware-gitops/tree/master/aws/apps/i4trust/i4trust-dev). 
+found [here](../../apps/i4trust/i4trust-dev). 
 Apps can be created with the argocd CLI:
 ```shell
 argocd app create -f <APPLICATION_YAML>
@@ -19,7 +19,7 @@ argocd app create -f <APPLICATION_YAML>
 Some applications need root priviliges. They have to use the ServiceAccount created with the manifest 
 [./serviceaccounts/i4trust-dev-root-runner.yaml](./serviceaccounts/i4trust-dev-root-runner.yaml).
 For this, first create the app 
-[i4trust-dev-serviceaccounts](https://github.com/FIWARE-Ops/fiware-gitops/blob/master/aws/apps/i4trust/i4trust-dev/i4trust-dev-serviceaccounts.yaml).
+[i4trust-dev-serviceaccounts](../../apps/i4trust/i4trust-dev/i4trust-dev-serviceaccounts.yaml).
 
 When the ServiceAccount was created within the namespace, add it to the privileged users:
 ```shell
@@ -38,6 +38,38 @@ In case of an error when patching, there was a `yaml` file created under `/tmp`.
 ```shell
 oc replace -f /tmp/oc-edit-pzvsn.yaml
 ```
+
+
+## Secrets
+
+In the following, several secrets are created using the 
+[sealed-secrets project](https://github.com/FIWARE-Ops/fiware-gitops#7-deploy-bitnamisealed-secrets). 
+In general, [created secrets](https://github.com/FIWARE-Ops/fiware-gitops#8-create-secrets) get encrypted before 
+pushing them to GitHub.
+
+For deployment of all sealed secrets, create the ArgoCD 
+app [i4trust-dev-secrets](../../apps/i4trust/i4trust-dev/i4trust-dev-secrets.yaml).
+
+
+
+## ConfigMaps
+
+ConfigMaps are used to store additional configuration data used by the components, or initial data 
+for databases and the Context Broker.
+
+For deployment of all ConfigMaps, create the ArgoCD 
+app [i4trust-dev-configmaps](../../apps/i4trust/i4trust-dev/i4trust-dev-configmaps.yaml).
+
+
+
+## Jobs
+
+Jobs are used to perform initialisation tasks, like creating initial entities at the Context Broker.
+
+For deployment of all jobs, create the ArgoCD 
+app [i4trust-dev-jobs](../../apps/i4trust/i4trust-dev/i4trust-dev-jobs.yaml).
+
+
 
 
 ## Databases
@@ -332,7 +364,7 @@ kubeseal <bae-lp-cert-secret.manifest.yaml >bae-lp-cert-sealed-secret.yaml -o ya
 
 #### ArgoCD App
 
-Create the ArgoCD app [i4trust-dev-bae](https://github.com/FIWARE-Ops/fiware-gitops/blob/master/aws/apps/i4trust/i4trust-dev/i4trust-dev-bae.yaml).
+Create the ArgoCD app [i4trust-dev-bae](../../apps/i4trust/i4trust-dev/i4trust-dev-bae.yaml).
 
 
 
@@ -436,7 +468,7 @@ kubeseal <pdc-keyrock-cert-secret.manifest.yaml >pdc-keyrock-cert-sealed-secret.
 
 #### ArgoCD app
 
-Create the ArgoCD app [i4trust-dev-pdc-keyrock](https://github.com/FIWARE-Ops/fiware-gitops/blob/master/aws/apps/i4trust/i4trust-dev/i4trust-dev-pdc-keyrock.yaml).
+Create the ArgoCD app [i4trust-dev-pdc-keyrock](../../apps/i4trust/i4trust-dev/i4trust-dev-pdc-keyrock.yaml).
 
 
 
