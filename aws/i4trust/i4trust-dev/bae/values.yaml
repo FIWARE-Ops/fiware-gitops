@@ -133,6 +133,9 @@ business-api-ecosystem:
     ## port that the charging backend container uses
     port: 8006
 
+    # -- Loglevel
+    loglevel: debug
+
     ## payment configuration
     payment:
       ## method: paypal or None (testing mode payment disconected)

@@ -3,10 +3,11 @@ name: bae
 description: Chart holder for argo-cd
 
 type: application
-version: 0.3.0
+version: 0.3.1
 appVersion: "8.0.0"
 
 dependencies:
   - name: business-api-ecosystem
-    version: 0.3.0
-    repository: https://fiware.github.io/helm-charts
+    version: 0.3.1
+    #repository: https://fiware.github.io/helm-charts
+    repository: file://./charts/business-api-ecosystem
