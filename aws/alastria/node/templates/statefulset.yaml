@@ -97,10 +97,10 @@ spec:
       name: work-dir
       {{- with .Values.statefulset.additionalAnnotations }}
       annotations:
-          {{ toYaml . | indent 4 }}
+        {{ toYaml . | indent 8 }}
       {{- end }}
       labels:
-          {{- include "alastria.labels" . | nindent 4 }}
+        {{- include "alastria.labels" . | nindent 8 }}
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
