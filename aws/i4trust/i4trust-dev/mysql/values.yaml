@@ -1,0 +1,8 @@
+mysql:
+  image: "mysql"
+  imageTag: "5.7"
+
+  existingSecret: mysql-secret
+
+  securityContext:
+    enabled: false

@@ -25,8 +25,8 @@ node:
   # name of the node
   name: FIWARE
   # type of the node
-  type: general
-  # company name running the instance
+  type: validator
+  # branch to request nodes from
   branch: main
   # external ip
   externalIp: 18.184.180.100

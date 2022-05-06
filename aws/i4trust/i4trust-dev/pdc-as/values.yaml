@@ -1,0 +1,39 @@
+activation-service:
+  deployment:
+    image:
+      repository: i4trust/activation-service
+      tag: v0.2.0
+      pullPolicy: Always
+
+  route:
+    enabled: true
+    host: i4trust-dev-pdc-as.apps.fiware-dev-aws.fiware.dev
+    tls:
+      termination: edge
+    
+  debug:
+    enabled: true
+
+  existingSecretEnvs: pdc-as-secret
+
+  config:
+    client:
+      id: "EU.EORI.NLPACKETDEL"
+
+    express:
+      port: 7000
+
+    db:
+      source: ":memory:"
+
+    ar:
+      # Endpoint for token request
+      token: "https://ar.isharetest.net/connect/token"
+      # Endpoint for create policy requests
+      policy: "https://ar.isharetest.net/policy"
+      # Endpoint for delegation requests
+      delegation: "https://ar.isharetest.net/delegation"
+      # EORI of AR
+      id: "EU.EORI.NL000000004"
+      # Disable SSL verification
+      rejectUnauthorized: false

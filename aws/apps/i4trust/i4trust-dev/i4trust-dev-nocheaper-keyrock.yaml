@@ -1,0 +1,14 @@
+metadata:
+  name: i4trust-dev-nocheaper-keyrock
+  namespace: argocd
+spec:
+  destination:
+    namespace: i4trust-dev
+    server: https://api.fiware-dev-aws.fiware.dev:6443
+  project: default
+  source:
+    path: aws/i4trust/i4trust-dev/nocheaper-keyrock
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

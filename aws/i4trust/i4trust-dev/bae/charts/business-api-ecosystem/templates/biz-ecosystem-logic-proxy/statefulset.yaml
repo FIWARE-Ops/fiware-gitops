@@ -1,0 +1,256 @@
+{{- if .Values.bizEcosystemLogicProxy.enabled -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "bizEcosystemLogicProxy.fullname" . }}
+  labels:
+    {{- include "bizEcosystemLogicProxy.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "bizEcosystemLogicProxy.fullname" . }}
+  replicas: {{ .Values.bizEcosystemLogicProxy.statefulset.replicaCount }}
+  revisionHistoryLimit: {{ .Values.bizEcosystemLogicProxy.statefulset.revisionHistoryLimit }}
+  updateStrategy:
+  {{- with .Values.bizEcosystemLogicProxy.statefulset.updateStrategy }}
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "bizEcosystemLogicProxy.fullname" . }}
+      {{- include "bizEcosystemLogicProxy.matchLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "bizEcosystemLogicProxy.fullname" . }}
+        {{ include "bizEcosystemLogicProxy.labels" . | nindent 8 }}
+        {{- with .Values.bizEcosystemLogicProxy.statefulset.additionalLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- if .Values.bizEcosystemLogicProxy.statefulset.additionalAnnotations -}}
+      annotations:
+        {{- with .Values.bizEcosystemLogicProxy.statefulset.additionalAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- end }}
+    spec:
+      serviceAccountName: {{ include "bizEcosystemLogicProxy.serviceAccountName" . }}
+      initContainers:
+        {{- include "business-api-ecosystem.initContainer.mongodb" ( dict "ctx" . "name" .Values.bizEcosystemLogicProxy.name "host" .Values.bizEcosystemLogicProxy.db.host ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.apis" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-inventory" "path" "DSProductInventory" ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.apis" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-catalog" "path" "DSProductCatalog" ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.apis" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-ordering" "path" "DSProductOrdering" ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.apis" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-party" "path" "DSPartyManagement" ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.apis" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-billing" "path" "DSBillingManagement" ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.apis" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-customer" "path" "DSCustomerManagement" ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.apis" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-usage" "path" "DSUsageManagement" ) | nindent 8 }}
+        {{- include "business-api-ecosystem.initContainer.charging" ( dict "ctx" . "name" "{{ include \"bizEcosystemLogicProxy.apiInitContainer\" . }}-charging" "path" "charging/api/assetManagement/currencyCodes" ) | nindent 8 }}
+        {{- if .Values.bizEcosystemLogicProxy.theme.enabled }}
+        - name: {{ .Values.bizEcosystemLogicProxy.name }}-theme-init
+          image: {{ .Values.bizEcosystemLogicProxy.theme.image }}
+          imagePullPolicy: {{ .Values.bizEcosystemLogicProxy.theme.imagePullPolicy }}
+          command: ['sh', '-c', 'mkdir -p /themes/{{ .Values.bizEcosystemLogicProxy.theme.name }} && cp -r {{ .Values.bizEcosystemLogicProxy.theme.sourcePath }}/* /themes/{{ .Values.bizEcosystemLogicProxy.theme.name }}/.']
+          volumeMounts:
+            - name: themes
+              mountPath: /themes
+        {{- end }}
+      containers:
+        - name: {{ template "business-api-ecosystem.name" . }}-{{ .Values.bizEcosystemLogicProxy.name }}
+          imagePullPolicy: {{ .Values.bizEcosystemLogicProxy.statefulset.image.pullPolicy }}
+          image: "{{ .Values.bizEcosystemLogicProxy.statefulset.image.repository }}:{{ .Values.bizEcosystemLogicProxy.statefulset.image.tag }}"
+          ports:
+            - name: http
+              containerPort: {{ .Values.bizEcosystemLogicProxy.port}}
+              protocol: TCP
+          {{- with .Values.bizEcosystemLogicProxy.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /version
+              port: {{ .Values.bizEcosystemLogicProxy.port}}
+            initialDelaySeconds: {{ .Values.bizEcosystemLogicProxy.statefulset.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.bizEcosystemLogicProxy.statefulset.livenessProbe.periodSeconds }}
+            successThreshold: {{ .Values.bizEcosystemLogicProxy.statefulset.livenessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.bizEcosystemLogicProxy.statefulset.livenessProbe.timeoutSeconds }}
+          readinessProbe:
+            httpGet:
+              path: /version
+              port: {{ .Values.bizEcosystemLogicProxy.port}}
+            initialDelaySeconds: {{ .Values.bizEcosystemLogicProxy.statefulset.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.bizEcosystemLogicProxy.statefulset.readinessProbe.periodSeconds }}
+            successThreshold: {{ .Values.bizEcosystemLogicProxy.statefulset.readinessProbe.successThreshold }}
+            timeoutSeconds: {{ .Values.bizEcosystemLogicProxy.statefulset.readinessProbe.timeoutSeconds }}
+          {{- if or .Values.bizEcosystemLogicProxy.theme.enabled .Values.bizEcosystemLogicProxy.token.enabled }}
+          volumeMounts:
+          {{- if .Values.bizEcosystemLogicProxy.theme.enabled }}
+            - name: themes
+              mountPath: /business-ecosystem-logic-proxy/themes
+          {{- end }}
+          {{- if .Values.bizEcosystemLogicProxy.token.enabled }}
+            - name: key-volume
+              mountPath: /business-ecosystem-logic-proxy/key.pem
+              subPath: key.pem
+            - name: cert-volume
+              mountPath: /business-ecosystem-logic-proxy/cert.pem
+              subPath: cert.pem
+          {{- end }}
+          {{- end }}
+          env:
+            - name: NODE_ENV
+              value: {{ .Values.bizEcosystemLogicProxy.nodeEnvironment | quote }}
+            - name: COLLECT
+              value: {{ .Values.bizEcosystemLogicProxy.collectStaticCommand | quote }}
+            - name: BAE_LP_PORT
+              value: {{ .Values.bizEcosystemLogicProxy.port | quote }}
+            - name: BAE_LP_HOST
+              value: {{ include "bizEcosystemLogicProxy.hostnameonly" . }}
+            {{- if .Values.bizEcosystemLogicProxy.proxyHost }}
+            - name: BAE_SERVICE_HOST
+              value: {{ .Values.bizEcosystemLogicProxy.proxyHost | quote }}
+            {{- end }}
+            - name: BAE_LP_MONGO_SERVER
+              value: {{ .Values.bizEcosystemLogicProxy.db.host | quote }}
+            - name: BAE_LP_MONGO_PORT
+              value: {{ .Values.bizEcosystemLogicProxy.db.port | quote }}
+            - name: BAE_LP_MONGO_DB
+              value: {{ .Values.bizEcosystemLogicProxy.db.database | quote }}
+            - name: BAE_LP_MONGO_USER
+              value: {{ .Values.bizEcosystemLogicProxy.db.user | quote }}
+            - name: BAE_LP_MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "bizEcosystemLogicProxy.secretName" . }}
+                  key: dbPassword
+            - name: BAE_LP_OAUTH2_SERVER
+              value: {{ .Values.oauth.server | quote }}
+            - name: BAE_LP_OAUTH2_CLIENT_ID
+              value: {{ .Values.oauth.clientId | quote }}
+            - name: BAE_LP_OAUTH2_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "bizEcosystemLogicProxy.secretName" . }}
+                  key: oauthClientSecret
+            - name: BAE_LP_OAUTH2_CALLBACK
+              value: {{ .Values.externalUrl }}{{ .Values.oauth.callbackPath }}
+            - name: BAE_LP_OAUTH2_ADMIN_ROLE
+              value: {{ .Values.oauth.adminrole | quote }}
+            - name: BAE_LP_OAUTH2_SELLER_ROLE
+              value: {{ .Values.oauth.sellerrole | quote }}
+            - name: BAE_LP_OAUTH2_CUSTOMER_ROLE
+              value: {{ .Values.oauth.customerrole | quote }}
+            - name: BAE_LP_OAUTH2_ORG_ADMIN_ROLE
+              value: {{ .Values.oauth.orgadminrole | quote }}
+            {{- if .Values.oauth.defaultRole }}
+            - name: BAE_LP_OAUTH2_DEFAULT_ROLE
+              value: {{ .Values.oauth.defaultRole | quote }}
+            {{- end }}
+            - name: BAE_LP_OAUTH2_PROVIDER
+              value: {{ .Values.oauth.provider | quote }}
+            - name: BAE_LP_OAUTH2_IS_LEGACY
+              value: {{ .Values.oauth.isLegacy | quote }}
+            {{- if .Values.bizEcosystemLogicProxy.theme.enabled }}
+            - name: BAE_LP_THEME
+              value: {{ .Values.bizEcosystemLogicProxy.theme.name | quote }}
+            {{- end }}
+            - name: BAE_LP_REVENUE_MODEL
+              value: {{ .Values.bizEcosystemLogicProxy.revenueModel | quote }}
+            - name: BAE_LP_ENDPOINT_CATALOG_HOST
+              value: {{ include "bizEcosystemApis.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_CATALOG_PORT
+              value: {{ .Values.bizEcosystemApis.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_INVENTORY_HOST
+              value: {{ include "bizEcosystemApis.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_INVENTORY_PORT
+              value: {{ .Values.bizEcosystemApis.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_ORDERING_HOST
+              value: {{ include "bizEcosystemApis.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_ORDERING_PORT
+              value: {{ .Values.bizEcosystemApis.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_BILLING_HOST
+              value: {{ include "bizEcosystemApis.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_BILLING_PORT
+              value: {{ .Values.bizEcosystemApis.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_RSS_HOST
+              value: {{ include "bizEcosystemRss.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_RSS_PORT
+              value: {{ .Values.bizEcosystemRss.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_USAGE_HOST
+              value: {{ include "bizEcosystemApis.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_USAGE_PORT
+              value: {{ .Values.bizEcosystemApis.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_PARTY_HOST
+              value: {{ include "bizEcosystemApis.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_PARTY_PORT
+              value: {{ .Values.bizEcosystemApis.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_CUSTOMER_HOST
+              value: {{ include "bizEcosystemApis.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_CUSTOMER_PORT
+              value: {{ .Values.bizEcosystemApis.service.port | quote }}
+            - name: BAE_LP_ENDPOINT_CHARGING_HOST
+              value: {{ include "bizEcosystemChargingBackend.hostnameonly" . }}
+            - name: BAE_LP_ENDPOINT_CHARGING_PORT
+              value: {{ .Values.bizEcosystemChargingBackend.service.port | quote }}
+            - name: BAE_LP_INDEX_ENGINE
+              value: {{ .Values.bizEcosystemLogicProxy.elastic.engine | quote }}
+            - name: BAE_LP_INDEX_API_VERSION
+              value: {{ .Values.bizEcosystemLogicProxy.elastic.version | quote }}
+            - name: BAE_LP_INDEX_URL
+              value: {{ .Values.bizEcosystemLogicProxy.elastic.url | quote }}
+            - name: BAE_SERVICE_HOST
+              value: {{ .Values.externalUrl | quote }}
+            - name: BAE_LP_OIDC_ENABLED
+              value: {{ .Values.oauth.oidc | quote }}
+            - name: BAE_LP_EXT_LOGIN
+              value: {{ .Values.bizEcosystemLogicProxy.externalIdp.enabled | quote }}
+            - name: BAE_LP_SHOW_LOCAL_LOGIN
+              value: {{ .Values.bizEcosystemLogicProxy.externalIdp.showLocalLogin | quote }}
+            - name: BAE_LP_ALLOW_LOCAL_EORI
+              value: {{ .Values.bizEcosystemLogicProxy.allowLocalEORI | quote }}
+            - name: BAE_LP_PROPAGATE_TOKEN
+              value: {{ .Values.bizEcosystemLogicProxy.propagateToken | quote }}
+            {{- if .Values.bizEcosystemLogicProxy.token.enabled }}
+            - name: BAE_TOKEN_KEY
+              value: /business-ecosystem-logic-proxy/key.pem
+            - name: BAE_TOKEN_CRT
+              value: /business-ecosystem-logic-proxy/cert.pem
+            - name: BAE_EORI
+              value: {{ .Values.bizEcosystemLogicProxy.token.identifier | quote }}
+            {{- end }}
+      {{- with .Values.bizEcosystemLogicProxy.statefulset.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.bizEcosystemLogicProxy.statefulset.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.bizEcosystemLogicProxy.statefulset.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.bizEcosystemLogicProxy.token.enabled }}
+      volumes:
+        - name: key-volume
+          secret:
+            secretName: {{ include "bizEcosystemLogicProxy.certSecretName" . }}
+            items:
+              - key: key.pem
+                path: key.pem
+        - name: cert-volume
+          secret:
+            secretName: {{ include "bizEcosystemLogicProxy.certSecretName" . }}
+            items:
+              - key: cert.pem
+                path: cert.pem
+      {{- end }}
+  {{- if .Values.bizEcosystemLogicProxy.theme.enabled }}
+  volumeClaimTemplates:
+  - metadata:
+      name: themes
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.bizEcosystemLogicProxy.theme.size | quote }}
+  {{- end }}
+{{- end }}
