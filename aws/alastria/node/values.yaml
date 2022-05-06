@@ -29,7 +29,7 @@ node:
   # branch to request nodes from
   branch: main
   # external ip
-  externalIp: 18.184.180.100
+  externalIp: 3.126.172.69
   # cpus to be used for the node
   cpu: 2
   # ram to be assigned to the node
