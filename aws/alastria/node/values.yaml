@@ -25,9 +25,9 @@ node:
   # name of the node
   name: FIWARE
   # type of the node
-  type: general
+  type: validator
   # company name running the instance
-  branch: main
+  branch: FIWARE Foundation e.V.
   # external ip
   externalIp: 18.184.180.100
   # cpus to be used for the node
