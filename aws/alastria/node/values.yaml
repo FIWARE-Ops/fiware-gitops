@@ -37,8 +37,8 @@ node:
   # storage to be reservede
   storageSize: 256Gi
 
-## deployment specific configuration
-deployment:
+## statefulset specific configuration
+statefulset:
   # -- number of old replicas to be retained
   revisionHistoryLimit: 3
   ## configuration of the image to be used
@@ -51,9 +51,9 @@ deployment:
     # -- specification of the image pull policy
     pullPolicy: IfNotPresent
 
-  # -- additional labels for the deployment, if required
+  # -- additional labels for the statefulset, if required
   additionalLabels: {}
-  # -- additional annotations for the deployment, if required
+  # -- additional annotations for the statefulset, if required
   additionalAnnotations: {}
   # -- selector template
   # ref: https://kubernetes.io/docs/user-guide/node-selection/

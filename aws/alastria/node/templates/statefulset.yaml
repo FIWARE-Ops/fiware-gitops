@@ -1,12 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "alastria.fullname" . }}
   labels:
     {{ include "alastria.labels" . | nindent 4 }}
 spec:
   replicas: 1
-  revisionHistoryLimit: {{ .Values.deployment.revisionHistoryLimit }}
+  revisionHistoryLimit: {{ .Values.statefulset.revisionHistoryLimit }}
+  serviceName: {{ include "alastria.fullname" . }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "alastria.name" . }}
@@ -15,15 +16,15 @@ spec:
     metadata:
       labels:
         {{ include "alastria.labels" . | nindent 8 }}
-          {{- with .Values.deployment.additionalLabels }}
+          {{- with .Values.statefulset.additionalLabels }}
           {{- toYaml . | nindent 8 }}
           {{- end }}
-      {{- if .Values.deployment.additionalAnnotations -}}
+      {{- if .Values.statefulset.additionalAnnotations -}}
       annotations:
         prometheus.io/scrape: {{ .Values.prometheus.enabled | quote }}
         prometheus.io/path: {{ .Values.prometheus.path }}
         prometheus.io/port: 6060
-        {{- with .Values.deployment.additionalAnnotations }}
+        {{- with .Values.statefulset.additionalAnnotations }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
       {{- end }}
@@ -31,8 +32,8 @@ spec:
       serviceAccountName: {{ include "alastria.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
-          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
-          image: "{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}"
+          imagePullPolicy: {{ .Values.statefulset.image.pullPolicy }}
+          image: "{{ .Values.statefulset.image.repository }}:{{ .Values.statefulset.image.tag }}"
           ports:
             - name: geth
               containerPort: 21000
@@ -41,7 +42,7 @@ spec:
               containerPort: 22000
               protocol: TCP
             - name: constellation
-              containerPort: 9000
+              containerPort: 9000 
               protocol: TCP
             - name: websocket
               containerPort: 80
@@ -55,22 +56,6 @@ spec:
             - name: prometheus
               containerPort: 6060
               protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /health
-#              port: http-health
-#            initialDelaySeconds: {{ .Values.deployment.livenessProbe.initialDelaySeconds }}
-#            periodSeconds: {{ .Values.deployment.livenessProbe.periodSeconds }}
-#            successThreshold: {{ .Values.deployment.livenessProbe.successThreshold }}
-#            timeoutSeconds: {{ .Values.deployment.livenessProbe.timeoutSeconds }}
-#          readinessProbe:
-#            httpGet:
-#              path: /health
-#              port: http-health
-#            initialDelaySeconds: {{ .Values.deployment.readinessProbe.initialDelaySeconds }}
-#            periodSeconds: {{ .Values.deployment.readinessProbe.periodSeconds }}
-#            successThreshold: {{ .Values.deployment.readinessProbe.successThreshold }}
-#            timeoutSeconds: {{ .Values.deployment.readinessProbe.timeoutSeconds }}
           env:
             - name: NODE_NAME
               value: {{ .Values.node.name | quote }}
@@ -83,7 +68,7 @@ spec:
             {{- with .Values.additionalEnvVars }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
-          {{- with .Values.deployment.resources }}
+          {{- with .Values.statefulset.resources }}
           resources:
             limits:
               cpu: {{ .Values.node.cpu }}
@@ -95,19 +80,29 @@ spec:
           volumeMounts:
             - name: work-dir
               mountPath: /opt/alastria/data
-      volumes:
-        - name: work-dir
-          persistentVolumeClaim:
-            claimName: {{ include "alastria.fullname" . }}
-      {{- with .Values.deployment.nodeSelector }}
+      {{- with .Values.statefulset.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.deployment.affinity }}
+      {{- with .Values.statefulset.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.deployment.tolerations }}
+      {{- with .Values.statefulset.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
+  volumeClaimTemplates:
+  - metadata:
+      name: work-dir
+      {{- with .Values.statefulset.additionalAnnotations }}
+      annotations:
+          {{ toYaml . | indent 4 }}
+      {{- end }}
+      labels:
+          {{- include "alastria.labels" . | nindent 4 }}
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+          requests:
+              storage: {{ .Values.node.storageSize | quote }}
