@@ -9,5 +9,4 @@ appVersion: "8.0.0"
 dependencies:
   - name: business-api-ecosystem
     version: 0.3.1
-    #repository: https://fiware.github.io/helm-charts
-    repository: file://./charts/business-api-ecosystem
+    repository: https://fiware.github.io/helm-charts
