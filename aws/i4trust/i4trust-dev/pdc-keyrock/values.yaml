@@ -2,7 +2,7 @@ keyrock:
   statefulset:
     image:
       repository: fiware/idm
-      tag: i4trust-rc7
+      tag: i4trust-rc7-header-size
 
   db:
     user: root
