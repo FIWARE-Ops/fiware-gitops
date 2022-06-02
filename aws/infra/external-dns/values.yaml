@@ -1,9 +1,7 @@
 external-dns: 
-  env: 
-    - name: ACCESS_KEY_ID
-      value: test_id
-    - name: ACCESS_SECRET_KEY
-      value: test_sec
+  serviceAccount: 
+    annotations:
+      - iam.amazonaws.com/role: arn:aws:iam::755566042294:role/external-dns
   sources:
     - openshift-route
   domainFilters:
