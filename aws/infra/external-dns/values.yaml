@@ -1,6 +1,11 @@
 external-dns: 
   sources:
     - openshift-route
+  domainFilters:
+    - fiware.dev 
+  extraArgs:
+    - --policy=upsert-only
+    - --aws-zone-type=public
   rbac:
     additionalPermissions:
       - apiGroups:
