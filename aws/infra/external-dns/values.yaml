@@ -1,1 +1,13 @@
-external-dns: {}
+external-dns: 
+  sources:
+    - openshift-route
+  rbac:
+    additionalPermissions:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use
