@@ -1,6 +1,5 @@
 external-dns: 
   deploymentAnnotations:
-    iam.amazonaws.com/role: arn:aws:iam::755566042294:role/external-dns
     eks.amazonaws.com/role-arn: arn:aws:iam::755566042294:role/external-dns
   sources:
     - openshift-route
