@@ -3,8 +3,8 @@ external-dns:
     - openshift-route
   domainFilters:
     - fiware.dev 
+  policy: upsert-only
   extraArgs:
-    - --policy=upsert-only
     - --aws-zone-type=public
   rbac:
     additionalPermissions:
