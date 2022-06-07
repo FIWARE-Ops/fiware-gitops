@@ -92,6 +92,6 @@ keyrock:
     - name: IDM_DB_SEED
       value: "true"
     - name: IDM_SERVER_MAX_HEADER_SIZE
-      value: "32767"
+      value: "32766"
 
     
