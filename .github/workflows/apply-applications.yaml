@@ -50,13 +50,13 @@ jobs:
           # check if the condition is met
           while [ $healthy == 0 ] && [ $try -lt $tries ]
           do
-            apps=$(oc get applications.argoproj.io --no-headers -n argocd -l deployed-by=fiware-gitops-ci)
+            apps=$(oc get applications.argoproj.io --no-headers -n argocd -l deployed-by=fiware-gitops-ci | awk '{ print $3 }')
             healthyapps=0
             for app in $apps
             do
-              if [ $(awk '{ print $app }') != "Healthy" ]
+              if [ $app != "Healthy" ]
               then
-                echo "$(awk '{ print $app }') is unhealthy. Trying again in 10 seconds"
+                echo "Something is unhealthy. Trying again in 10 seconds"
                 sleep 10
                 try=$(( try + 1 ))
                 break
@@ -66,5 +66,7 @@ jobs:
           if [ $try -eq $tries ]
           then
             echo "ERROR: Tried too many times"
+            echo "Current applications state: "
+            oc get applications.argoproj.io --no-headers -n argocd -l deployed-by=fiware-gitops-ci
             exit 1
           fi
