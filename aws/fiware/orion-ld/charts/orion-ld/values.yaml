@@ -118,7 +118,7 @@ autoscaling:
 ## openshift specific route definition. Will not work on plain k8s
 route:
   ## -- should the deployment create openshift routes
-  enabled: true
+  enabled: false
   # -- annotations to be added to the route
   annotations: 
     cert-utils-operator.redhat-cop.io/certs-from-secret: "fiware-dev-wildcard-tls-secret"
