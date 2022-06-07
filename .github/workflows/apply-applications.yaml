@@ -54,14 +54,9 @@ jobs:
             healthyapps=0
             for app in $apps
             do
-              echo Current $app
-              state=$(echo $app | awk '{ print $3 }') 
-              name=$(echo $app | awk '{ print $1 }') 
-              echo Name $name
-              echo State $state
-              if [ $state != "Healthy" ]
+              if [ $(echo $app | awk '{ print $3 }') != "Healthy" ]
               then
-                echo "$name is unhealthy. Trying again in 10 seconds"
+                echo "$(echo $app | awk '{ print $1 }') is unhealthy. Trying again in 10 seconds"
                 sleep 10
                 try=$(( try + 1 ))
                 break
