@@ -56,7 +56,7 @@ jobs:
             do
               state=$(echo $app | awk '{ print $3 }') 
               name=$(echo $app | awk '{ print $3 }') 
-              if [ $app != "Healthy" ]
+              if [ $state != "Healthy" ]
               then
                 echo "$name is unhealthy. Trying again in 10 seconds"
                 sleep 10
