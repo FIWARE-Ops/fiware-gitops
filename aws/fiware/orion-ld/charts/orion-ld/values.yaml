@@ -118,13 +118,15 @@ autoscaling:
 ## openshift specific route definition. Will not work on plain k8s
 route:
   ## -- should the deployment create openshift routes
-  enabled: false
+  enabled: true
   # -- annotations to be added to the route
-  annotations: {}
+  annotations: 
+    cert-utils-operator.redhat-cop.io/certs-from-secret: "fiware-dev-wildcard-tls-secret"
   # -- host to be used
-  # host: localhost
+  host: orion.fiware.dev
   # -- tls configuration for the route
-  tls: {}
+  tls: 
+    termination: edge
   # termination: edge
 
 ## ingress configuration
