@@ -22,6 +22,8 @@ The operator is installed via OperatorHub:
 
 4. Create a user for the operator. For AWS, follow the [official documentation](https://github.com/openshift/external-dns-operator/blob/main/docs/usage.md#aws)
 
+5. Prepare required secrets. For AWS, an access-key with enough permissions to CRUD [route53](https://aws.amazon.com/route53/) is required. If no additional requirements exists, the group "Openshift"(as created in the Openshift installation) can be reused. See [external-dns-operator/secrets/aws-sealed-secret.yaml](../aws/external-dns-operator/secrets/aws-sealed-secret.yaml) for an example.
+
 5. Create an external-dns resource, handling route-objects. See [external-dns/dns-resources/aws-routes-fiware-dev.yaml](../aws/external-dns/dns-resources/aws-routes-fiware-dev.yaml) as an example.
 
 ## Cert-Manager
