@@ -1,4 +1,4 @@
-apiVersion: externaldns.olm.openshift.io/v1beta1
+apiVersion: externaldns.olm.openshift.io/v1alpha1
 kind: ExternalDNS
 metadata:
   name: aws-routes-fiware-dev
