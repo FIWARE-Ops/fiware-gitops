@@ -1,0 +1,16 @@
+apiVersion: externaldns.olm.openshift.io/v1alpha1
+kind: ExternalDNS
+metadata:
+  name: aws-routes-fiware-dev
+spec:
+  provider:
+    type: AWS
+    aws:
+      credentials:
+        name: aws-access-key
+  zones: # Replace with the desired hosted zone IDs
+    - "Z02568683CNDQF6QB3KR2"
+  source:
+    type: OpenShiftRoute
+    openshiftRouteOptions:
+      routerName: default

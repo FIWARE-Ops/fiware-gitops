@@ -414,3 +414,9 @@ Check the MongoDB values file to see it referencing the created secret - [mongo-
    Helm:
    You can provide specific overrides, everything else will be taken from the values-file inside the repository(and thus automatically updated together with the repo).
 ```
+
+## Advanced topics
+
+In order to further customize deployments more tooling can be added to the cluster:
+
+* [Automatic creation of subdomains and ssl-certificates](./doc/ROUTES.md)

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns-resources
+  namespace: argocd
+spec:
+  destination:
+    namespace: external-dns
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/external-dns/dns-resources
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -120,11 +120,13 @@ route:
   ## -- should the deployment create openshift routes
   enabled: false
   # -- annotations to be added to the route
-  annotations: {}
+  annotations: 
+    cert-utils-operator.redhat-cop.io/certs-from-secret: "fiware-dev-wildcard-tls-secret"
   # -- host to be used
-  # host: localhost
+  host: orion.fiware.dev
   # -- tls configuration for the route
-  tls: {}
+  tls: 
+    termination: edge
   # termination: edge
 
 ## ingress configuration
