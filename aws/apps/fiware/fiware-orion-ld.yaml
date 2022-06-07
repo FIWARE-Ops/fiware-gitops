@@ -1,13 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: digitanimal-secrets
+  name: fiware-orion-ld
   namespace: argocd
 spec:
   destination:
-    namespace: digitanimal
+    namespace: fiware
     server: https://api.fiware-dev-aws.fiware.dev:6443
   project: default
   source:
-    path: aws/digitanimal/secrets
+    helm:
+      valueFiles:
+      - values.yaml
+    path: aws/fiware/orion-ld
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

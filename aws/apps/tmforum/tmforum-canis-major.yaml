@@ -1,13 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: bae-test-secrets
+  name: tmforum-canis-major
   namespace: argocd
 spec:
   destination:
-    namespace: bae-test
+    namespace: tmforum
     server: https://api.fiware-dev-aws.fiware.dev:6443
   project: default
   source:
-    path: aws/bae-test/secrets
+    path: aws/tmforum/canis-major
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

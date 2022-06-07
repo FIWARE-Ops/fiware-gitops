@@ -1,13 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: fiware-mongo-db
+  name: tmforum-poc
   namespace: argocd
 spec:
   destination:
-    namespace: fiware
+    namespace: tmforum
     server: https://api.fiware-dev-aws.fiware.dev:6443
   project: default
   source:
-    path: aws/fiware/mongodb
+    path: aws/tmforum/tmforum-poc
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

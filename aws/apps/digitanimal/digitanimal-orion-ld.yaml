@@ -1,5 +1,7 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: digitanimal-canis-major
+  name: digitanimal-orion-ld
   namespace: argocd
 spec:
   destination:
@@ -7,7 +9,10 @@ spec:
     server: https://api.fiware-dev-aws.fiware.dev:6443
   project: default
   source:
-    path: aws/digitanimal/canis-major
+    helm:
+      valueFiles:
+      - values.yaml
+    path: aws/digitanimal/orion-ld
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

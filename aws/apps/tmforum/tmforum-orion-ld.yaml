@@ -1,13 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: bae-test-bae
+  name: tmforum-orion-ld
   namespace: argocd
 spec:
   destination:
-    namespace: bae-test
+    namespace: tmforum
     server: https://api.fiware-dev-aws.fiware.dev:6443
   project: default
   source:
-    path: aws/bae-test/bae
+    helm:
+      valueFiles:
+      - values.yaml
+    path: aws/tmforum/orion-ld
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

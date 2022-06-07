@@ -1,16 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: digitanimal-orion-ld
+  name: bae-test-bae
   namespace: argocd
 spec:
   destination:
-    namespace: digitanimal
+    namespace: bae-test
     server: https://api.fiware-dev-aws.fiware.dev:6443
   project: default
   source:
-    helm:
-      valueFiles:
-      - values.yaml
-    path: aws/digitanimal/orion-ld
+    path: aws/bae-test/bae
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
