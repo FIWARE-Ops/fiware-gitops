@@ -6,7 +6,3 @@ spec:
   host: test.fiware.dev
   tls: 
     termination: edge
-  to: 
-    kind: Service
-    name: fiware-orion-ld
-    namespace: fiware
