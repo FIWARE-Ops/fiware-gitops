@@ -3,10 +3,10 @@ name: sealed-secrets
 description: Chart holder for argo-cd
 
 type: application
-version: 0.2.0
-appVersion: "v0.17.3"
+version: 0.3.0
+appVersion: "v0.18.0"
 
 dependencies:
 - name: sealed-secrets
-  version: 2.1.1
+  version: 2.2.0
   repository: https://bitnami-labs.github.io/sealed-secrets
