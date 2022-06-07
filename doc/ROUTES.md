@@ -33,3 +33,16 @@ The operator is installed via OperatorHub:
 
 2. Install: 
 ![OperatorHub](./certmanager-install.png)
+
+3. Install a cluster issuer. For AWS, the example [cert-manager/issuer/lets-encrypt-prod.yaml](../aws/cert-manager/issuer/lets-encrypt-prod.yaml) can be used. For everything else, see the [offical documentation](https://cert-manager.io/v0.12-docs/configuration/).
+
+## Cert-Utils
+
+The operator is installed via OperatorHub:
+
+1. Search for the operator:
+![OperatorHub](./cert-utils-search.png)
+
+2. Install: 
+![OperatorHub](./cert-utils-install.png)
+
