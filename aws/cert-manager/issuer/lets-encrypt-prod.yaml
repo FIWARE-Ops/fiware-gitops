@@ -20,4 +20,4 @@ spec:
           accessKeyID: AKIA272Z63S3KZJVYTRZ
           secretAccessKeySecretRef:
             name: aws-access-key
-            key: key
+            key: aws_secret_access_key
