@@ -12,6 +12,22 @@ Due to openshift using its own [route-object](https://docs.openshift.com/contain
 
 ![Diagramm](./route-and-cert.svg)
 
+In order to get a proper endpoint, 2 resources have to be provided:
+- the route, defining the domain and the connected service
+- the certificate, defining the https-certificate content and its issuer method. 
+For there concrete creation see [secured route creation](#create-a-secured-route)
+
+All 3 components will work together on those resources, in order to get the endpoint. 
+- Cert-Manager is watching the certificate and does:
+    - request a certificate at Lets encrypt
+    - create a txt-record in route53 for fulfilling the acme-challenge 
+    - Lets encrypt verifies and replies the certificate
+    - Cert-Manager stores the certificate in a secret, defined in the Certificate-Resource
+- Cert-Utils is watching the route and does:
+    - read the secret(created by cert-manager and referenced by the route)
+    - insert its contents into the route, so that the OpenShift router can use them
+- External-DNS is watching the route and does:
+    - create a CNAME-record to its configured zone(s), depending on the host inside the route
 
 ## External-DNS
 
