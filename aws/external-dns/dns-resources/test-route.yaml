@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: test-route
+spec:
+  host: test.fiware.dev
+  tls: 
+    termination: edge
+  to: 
+    kind: Service
+    name: fiware-orion-ld
+    namespace: fiware
