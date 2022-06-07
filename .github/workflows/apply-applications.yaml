@@ -34,7 +34,7 @@ jobs:
           # apply all apps in the apps folder
           find . -name '*.yaml'  -exec oc apply -f {} \;
           # label them for better filter machanism      
-          find . -name '*.yaml'  -exec oc label deployed-by=fiware-gitops-ci -f {} \;
+          find . -name '*.yaml'  -exec oc label deployed-by=fiware-gitops-ci --overwrite -f {} \;
 
 
       - name: Check if all apps are healthy
@@ -50,13 +50,15 @@ jobs:
           # check if the condition is met
           while [ $healthy == 0 ] && [ $try -lt $tries ]
           do
-            apps=$(oc get applications.argoproj.io --no-headers -n argocd -l deployed-by=fiware-gitops-ci | awk '{ print $3 }')
+            apps=$(oc get applications.argoproj.io --no-headers -n argocd -l deployed-by=fiware-gitops-ci)
             healthyapps=0
             for app in $apps
             do
+              state=$(echo $app | awk '{ print $3 }') 
+              name=$(echo $app | awk '{ print $3 }') 
               if [ $app != "Healthy" ]
               then
-                echo "$app is unhealthy. Trying again in 10 seconds"
+                echo "$name is unhealthy. Trying again in 10 seconds"
                 sleep 10
                 try=$(( try + 1 ))
                 break
