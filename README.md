@@ -225,7 +225,7 @@ If you want to use the in-cluster api via 'https://kubernetes.default.svc', the 
       startingCSV: argocd-operator.v0.2.0
 ```
 
-With this configuration, the operator considers the namespace ```argocd```as a argoCD's cluster-wide installation namespace and (within a couple of seconds) upgrades the ```in-cluster```-cluster to handle all namespaces:
+With this configuration, the operator considers the namespace ```argocd```as one of argoCD's cluster-wide installation namespaces and (within a couple of seconds) upgrades the ```in-cluster```-cluster to handle all namespaces:
 
 ![In-Cluster](./doc/in-cluster.png)
 
