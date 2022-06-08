@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-certs
+  namespace: argocd
+spec:
+  destination:
+    namespace: demo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/demo/certs
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
