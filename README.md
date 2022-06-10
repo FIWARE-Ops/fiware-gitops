@@ -189,6 +189,46 @@ Due to permission restrictions, we need to setup ArgoCD with enough permissions 
       https://kubernetes.default.svc (1 namespaces)  in-cluster                                                            Unknown    
 ```
 
+---
+**Alternative:**
+
+
+If you want to use the in-cluster api via 'https://kubernetes.default.svc', the operator-subscription can be configured to allow namespaced-installations cluster-wide permissions:
+
+```shell
+   kubectl edit subscriptions -n argocd
+```
+> :warning: in case you have multiple subscriptions inside the ```argocd``` namespace, make sure to edit the correct one.
+
+```yaml
+   apiVersion: v1
+   items:
+   - apiVersion: operators.coreos.com/v1alpha1
+   kind: Subscription
+   metadata:
+      ...
+      name: argocd-operator
+      namespace: argocd
+      ...
+   spec:
+      channel: alpha
+      ## add this config
+      config:
+         env:
+         - name: ARGOCD_CLUSTER_CONFIG_NAMESPACES
+         value: argocd
+      ##
+      installPlanApproval: Automatic
+      name: argocd-operator
+      source: community-operators
+      sourceNamespace: openshift-marketplace
+      startingCSV: argocd-operator.v0.2.0
+```
+
+With this configuration, the operator considers the namespace ```argocd```as one of argoCD's cluster-wide installation namespaces and (within a couple of seconds) upgrades the ```in-cluster```-cluster to handle all namespaces:
+
+![In-Cluster](./doc/in-cluster.png)
+
 ### 6. Deploy namespaces
 
 Since we want to properly separate the workloads in our cluster, we need to manage [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). Following git-ops,

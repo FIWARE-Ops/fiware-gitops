@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     namespace: alastria
-    server: https://api.fiware-dev-aws.fiware.dev:6443
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: aws/alastria/node

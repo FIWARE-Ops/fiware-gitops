@@ -1,16 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: i4trust-dev-pdc-orion
+  name: demo-certs
   namespace: argocd
 spec:
   destination:
-    namespace: i4trust-dev
+    namespace: demo
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/i4trust/i4trust-dev/pdc-orion
+    path: aws/demo/certs
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true

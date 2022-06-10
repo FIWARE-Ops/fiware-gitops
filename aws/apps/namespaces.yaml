@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    server: https://api.fiware-dev-aws.fiware.dev:6443
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: aws/namespaces
