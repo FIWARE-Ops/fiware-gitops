@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: i4trust-demo-mongodb
+  namespace: argocd
+spec:
+  destination:
+    namespace: i4trust-demo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/i4trust/i4trust-demo/mongodb
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
