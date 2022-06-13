@@ -1,4 +1,6 @@
 business-api-ecosystem:
+  openshift: true
+  
   ## Marketplace OAuth and IdM configuration
   ##
   oauth:
