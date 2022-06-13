@@ -3,7 +3,7 @@ mongodb:
     tag: 3.6.21
 
   auth:
-    enabled: false
+    enabled: true
     existingSecret: mongodb-secret
 
   architecture: standalone
