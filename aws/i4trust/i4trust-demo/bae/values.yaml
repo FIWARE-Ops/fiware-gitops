@@ -151,7 +151,7 @@ business-api-ecosystem:
     ## database configuration for Charging backend (MongoDB)
     db:
       ## host of the database to be used
-      host: i4trust-demo-mongodb.i4trust-dev.svc.cluster.local
+      host: i4trust-demo-mongodb.i4trust-demo.svc.cluster.local
       ## Database name for connecting the database
       database: charging_db
       ## username for connecting the database
@@ -223,7 +223,7 @@ business-api-ecosystem:
     ## database configuration for Logic Proxy (MongoDB)
     db:
       # host of the database to be used
-      host: i4trust-demo-mongodb.i4trust-dev.svc.cluster.local
+      host: i4trust-demo-mongodb.i4trust-demo.svc.cluster.local
       # Database name for connecting the database
       database: belp_db
       # username for connecting the database
