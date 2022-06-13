@@ -14,6 +14,8 @@ keyrock:
 
   existingSecret: bae-keyrock-secret
 
+  host: https://bae-keyrock.i4trust-demo.fiware.dev
+  
   route:
     enabled: true
     #host: i4trust-demo-bae-keyrock.apps.fiware-dev-aws.fiware.dev
