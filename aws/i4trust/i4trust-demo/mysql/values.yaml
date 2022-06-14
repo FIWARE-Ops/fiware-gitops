@@ -3090,7 +3090,7 @@ mysql:
 
       LOCK TABLES `user` WRITE;
       /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-      INSERT INTO `user` VALUES ('admin','admin',NULL,NULL,'default',0,'dennis.wendland@fiware.org','3b79448800d2559adf8ed5f16c403732305bf463','2022-06-14 10:08:40',1,1,'{\"visible_attributes\": [\"username\", \"description\"]}',NULL,0,NULL,'da596dc32c8b5f12');
+      INSERT INTO `user` VALUES ('8fe398ee-40c1-4007-96d4-13f22dc5de2c','jane','Employee user of NoCheaper company IDP','','default',0,'jane.employee@nocheaper.com','dcd9b2e303cacc6dc7bd1eb7198218037f8ea6c0','2022-06-14 11:47:58',1,0,'{\"visible_attributes\": [\"username\", \"description\", \"website\", \"identity_attributes\", \"image\", \"gravatar\"]}',NULL,0,NULL,'5e841a24447dd6c0'),('admin','admin',NULL,NULL,'default',0,'dennis.wendland@fiware.org','3b79448800d2559adf8ed5f16c403732305bf463','2022-06-14 10:08:40',1,1,'{\"visible_attributes\": [\"username\", \"description\"]}',NULL,0,NULL,'da596dc32c8b5f12');
       /*!40000 ALTER TABLE `user` ENABLE KEYS */;
       UNLOCK TABLES;
 
