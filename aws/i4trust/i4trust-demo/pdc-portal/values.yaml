@@ -25,7 +25,7 @@ pdc-portal:
 
     external:
       # Should be: https://pdc-portal.i4trust-demo.fiware.dev
-      host: https://i4trust-dev-pdc-portal.apps.fiware-dev-aws.fiware.dev
+      host: https://i4trust-demo-pdc-portal.apps.fiware-dev-aws.fiware.dev
 
     oidc:
       redirect_path: "/openid_connect1.0/return"
