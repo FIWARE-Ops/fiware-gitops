@@ -27,7 +27,7 @@ spec:
         - name: pdc-orion-init-data-nc001
           image: alpine/curl
           command: ['sh', '-c',
-            'curl -X POST i4trust-demo-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_nocheaper001.json']
+            'curl -X POST i4trust-demo-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_happypets002.json']
           volumeMounts:
             - name: pdc-orion-init-data-volume
               mountPath: "/data"
