@@ -19,7 +19,7 @@ keyrock:
   
   route:
     enabled: true
-    host: https://nocheaper-keyrock.i4trust-demo.fiware.dev
+    host: nocheaper-keyrock.i4trust-demo.fiware.dev
     tls:
       termination: edge
       insecureEdgeTerminationPolicy: Redirect
