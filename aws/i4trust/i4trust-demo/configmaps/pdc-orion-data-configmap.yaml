@@ -52,8 +52,7 @@ data:
         "value": "14:00:00"
       },
       "@context": [
-        "https://schema.lab.fiware.org/ld/context",
-        "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+        "https://schema.lab.fiware.org/ld/context"
       ]
     }
   deliveryorder_happypets002.json: |
@@ -105,8 +104,7 @@ data:
         "value": "11:00:00"
       },
       "@context": [
-        "https://schema.lab.fiware.org/ld/context",
-        "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+        "https://schema.lab.fiware.org/ld/context"
       ]
     }
   deliveryorder_nocheaper001.json: |
@@ -158,8 +156,7 @@ data:
         "value": "14:00:00"
       },
       "@context": [
-        "https://schema.lab.fiware.org/ld/context",
-        "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+        "https://schema.lab.fiware.org/ld/context"
       ]
     }
   deliveryorder_nocheaper002.json: |
@@ -211,7 +208,6 @@ data:
         "value": "14:00:00"
       },
       "@context": [
-        "https://schema.lab.fiware.org/ld/context",
-        "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+        "https://schema.lab.fiware.org/ld/context"
       ]
     }
