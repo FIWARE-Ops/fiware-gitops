@@ -2,7 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: pdc-orion-data-job
-  namespace: i4trust-demo
 spec:
   backoffLimit: 1
   template:
