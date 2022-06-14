@@ -39,4 +39,40 @@ data:
         }
       ]
     });
+    db.idps.insertOne(
+    {
+      "name" : "Packet Delivery Co.",
+      "idpId" : "EU.EORI.NLPACKETDEL",
+      "server" : "https://pdc-keyrock.i4trust-demo.fiware.dev",
+      "description" : "Employee IDP of PDC",
+      "provider" : "i4trust",
+      "clientID" : "EU.EORI.NLMARKETPLA",
+      "tokenKey" : "/business-ecosystem-logic-proxy/key.pem",
+      "tokenCrt" : "/business-ecosystem-logic-proxy/cert.pem",
+      "callbackURL" : "https://marketplace.i4trust-demo.fiware.dev/auth/EU.EORI.NLPACKETDEL/callback"
+    });
+    db.idps.insertOne(
+    {
+      "name" : "Happy Pets Inc.",
+      "idpId" : "EU.EORI.NLHAPPYPETS",
+      "server" : "https://happypets-keyrock.i4trust-demo.fiware.dev",
+      "description" : "Company IDP of happy Pets",
+      "provider" : "i4trust",
+      "clientID" : "EU.EORI.NLMARKETPLA",
+      "tokenKey" : "/business-ecosystem-logic-proxy/key.pem",
+      "tokenCrt" : "/business-ecosystem-logic-proxy/cert.pem",
+      "callbackURL" : "https://marketplace.i4trust-demo.fiware.dev/auth/EU.EORI.NLHAPPYPETS/callback"
+    });
+    db.idps.insertOne(
+    {
+      "name" : "No Cheaper Inc.",
+      "idpId" : "EU.EORI.NLNOCHEAPER",
+      "server" : "https://nocheaper-keyrock.i4trust-demo.fiware.dev",
+      "description" : "Company IDP of No Cheaper",
+      "provider" : "i4trust",
+      "clientID" : "EU.EORI.NLMARKETPLA",
+      "tokenKey" : "/business-ecosystem-logic-proxy/key.pem",
+      "tokenCrt" : "/business-ecosystem-logic-proxy/cert.pem",
+      "callbackURL" : "https://marketplace.i4trust-demo.fiware.dev/auth/EU.EORI.NLNOCHEAPER/callback"
+    });
     EOF
