@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pdc-orion-data-job
+  namespace: i4trust-demo
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: pdc-orion-init-data-hp001
+          image: alpine/curl
+          command: ['sh', '-c',
+            'curl -X POST i4trust-demo-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_happypets001.json']
+          volumeMounts:
+            - name: pdc-orion-init-data-volume
+              mountPath: "/data"
+              readOnly: true
+        - name: pdc-orion-init-data-hp002
+          image: alpine/curl
+          command: ['sh', '-c',
+            'curl -X POST i4trust-demo-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_happypets002.json']
+          volumeMounts:
+            - name: pdc-orion-init-data-volume
+              mountPath: "/data"
+              readOnly: true
+        - name: pdc-orion-init-data-nc001
+          image: alpine/curl
+          command: ['sh', '-c',
+            'curl -X POST i4trust-demo-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_nocheaper001.json']
+          volumeMounts:
+            - name: pdc-orion-init-data-volume
+              mountPath: "/data"
+              readOnly: true
+        - name: pdc-orion-init-data-nc002
+          image: alpine/curl
+          command: ['sh', '-c',
+            'curl -X POST i4trust-demo-pdc-orion:1026/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_nocheaper002.json']
+          volumeMounts:
+            - name: pdc-orion-init-data-volume
+              mountPath: "/data"
+              readOnly: true
+      volumes:
+        - name: pdc-orion-init-data-volume
+          projected:
+            sources:
+              - configMap:
+                  name: pdc-orion-data-configmap
+
+              
