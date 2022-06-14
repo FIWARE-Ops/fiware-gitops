@@ -1,0 +1,51 @@
+pdc-portal:
+  deployment:
+    image:
+      repository: i4trust/pdc-portal
+      tag: v0.2.0
+      pullPolicy: Always
+
+  route:
+    enabled: true
+    # Should be: pdc-portal.i4trust-demo.fiware.dev
+    host: i4trust-demo-pdc-portal.apps.fiware-dev-aws.fiware.dev
+    tls:
+      termination: edge
+
+  debug:
+    enabled: true
+
+  existingSecretEnvs: pdc-portal-secret
+
+  config:
+    title: "Packet Delivery Portal"
+  
+    client:
+      id: "EU.EORI.NLPACKETDEL"
+
+    external:
+      # Should be: https://pdc-portal.i4trust-demo.fiware.dev
+      host: https://i4trust-dev-pdc-portal.apps.fiware-dev-aws.fiware.dev
+
+    oidc:
+      redirect_path: "/openid_connect1.0/return"
+      acr: "urn:http://eidas.europa.eu/LoA/NotNotified/high"
+
+    cb:
+      # Should be: https://pdc-kong.i4trust-demo.fiware.dev/packetdelivery/ngsi-ld/v1
+      endpoint: "https://i4trust-dev-pdc-kong.apps.fiware-dev-aws.fiware.dev/packetdelivery/ngsi-ld/v1"
+    
+    express:
+      port: 7000
+
+    idp:
+      "EU.EORI.NLHAPPYPETS":
+        id: "EU.EORI.NLHAPPYPETS"
+        url: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev"
+        authorize_endpoint: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev/oauth2/authorize"
+        token_endpoint: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev/oauth2/token"
+      "EU.EORI.NLNOCHEAPER":
+        id: "EU.EORI.NLNOCHEAPER"
+        url: "https://nocheaper-keyrock-shop.i4trust-demo.fiware.dev"
+        authorize_endpoint: "https://nocheaper-keyrock-shop.i4trust-demo.fiware.dev/oauth2/authorize"
+        token_endpoint: "https://nocheaper-keyrock-shop.i4trust-demo.fiware.dev/oauth2/token"
