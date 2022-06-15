@@ -7,10 +7,15 @@ pdc-portal:
 
   route:
     enabled: true
-    # Should be: pdc-portal.i4trust-demo.fiware.dev
-    host: i4trust-demo-pdc-portal.apps.fiware-dev-aws.fiware.dev
+    host: pdc-portal.i4trust-demo.fiware.dev
     tls:
       termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+    # should a certificate for the address automatically be generated
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
 
   debug:
     enabled: true
@@ -24,16 +29,14 @@ pdc-portal:
       id: "EU.EORI.NLPACKETDEL"
 
     external:
-      # Should be: https://pdc-portal.i4trust-demo.fiware.dev
-      host: https://i4trust-demo-pdc-portal.apps.fiware-dev-aws.fiware.dev
+      host: https://pdc-portal.i4trust-demo.fiware.dev
 
     oidc:
       redirect_path: "/openid_connect1.0/return"
       acr: "urn:http://eidas.europa.eu/LoA/NotNotified/high"
 
     cb:
-      # Should be: https://pdc-kong.i4trust-demo.fiware.dev/packetdelivery/ngsi-ld/v1
-      endpoint: "https://i4trust-dev-pdc-kong.apps.fiware-dev-aws.fiware.dev/packetdelivery/ngsi-ld/v1"
+      endpoint: "https://pdc-kong.i4trust-demo.fiware.dev/packetdelivery/ngsi-ld/v1"
     
     express:
       port: 7000

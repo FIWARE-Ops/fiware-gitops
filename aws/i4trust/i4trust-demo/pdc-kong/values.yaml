@@ -36,12 +36,17 @@ kong:
     tls:
       enabled: false
     ingress:
+      enabled: false
+    route:
       enabled: true
-      annotations:
-        route.openshift.io/termination: edge
-      # Should be: pdc-kong.i4trust-demo.fiware.dev
-      hostname: i4trust-demo-pdc-kong.apps.fiware-dev-aws.fiware.dev
-      path: /
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+      certificate:
+        issuer:
+          kind: ClusterIssuer
+          name: letsencrypt-aws-prod
+      host: pdc-kong.i4trust-demo.fiware.dev
   
   dblessConfig:
     configMap: pdc-kong-configmap

@@ -7,11 +7,15 @@ activation-service:
 
   route:
     enabled: true
-    # Should be: pdc-as.i4trust-demo.fiware.dev
-    host: i4trust-demo-pdc-as.apps.fiware-dev-aws.fiware.dev
+    host: pdc-portal.i4trust-demo.fiware.dev
     tls:
       termination: edge
-    
+      insecureEdgeTerminationPolicy: Redirect
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+        
   debug:
     enabled: true
 
