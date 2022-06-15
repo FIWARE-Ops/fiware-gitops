@@ -20,7 +20,8 @@ spec:
   host: {{ .Values.kong.proxy.route.host }}
   {{- end }}
   port:
-    targetPort: {{ .Values.kong.ingress.servicePort }}
+    # be aware: this does only work if http is enabled for the proxy
+    targetPort: {{ .Values.kong.proxy.http.servicePort }}
   to:
     kind: Service
     name: {{ include "kong.fullname" . }}-proxy
