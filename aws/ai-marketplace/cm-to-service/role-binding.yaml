@@ -5,6 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: cm-to-service-sa
+    namespace: ai-marketplace
 roleRef:
   kind: ClusterRole
   name: cm-to-service
