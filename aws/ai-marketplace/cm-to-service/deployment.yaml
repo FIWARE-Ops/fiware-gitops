@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-cm-to-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-cm-to-service
+      component: test-cm-to-service
+  containers:
+    - image: wistefan/cm-to-service:latest
+      imagePullPolicy: Always
+      name: cm-to-service
