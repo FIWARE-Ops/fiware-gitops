@@ -7,7 +7,7 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - configmap
+  - ConfigMap
   verbs:
   - get
   - watch
