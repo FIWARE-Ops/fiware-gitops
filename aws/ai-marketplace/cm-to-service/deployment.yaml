@@ -12,6 +12,7 @@ spec:
       labels:
         app: test-cm-to-service
     spec:
+      serviceAccountName: cm-to-service-sa
       containers:
       - image: wistefan/cm-to-service:latest
         imagePullPolicy: Always
