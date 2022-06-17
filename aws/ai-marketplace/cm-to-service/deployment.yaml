@@ -11,7 +11,8 @@ spec:
     metadata:
       labels:
         app: test-cm-to-service
-    containers:
+    spec:
+      containers:
       - image: wistefan/cm-to-service:latest
         imagePullPolicy: Always
         name: cm-to-service
