@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ack-rds-user-config
+data:
+  ACK_ENABLE_DEVELOPMENT_LOGGING: "true"
+  ACK_LOG_LEVEL: debug
+  ACK_RESOURCE_TAGS: ocp-controller-controlled
+  ACK_WATCH_NAMESPACE: ""
+  AWS_ENDPOINT_URL: ""
+  AWS_REGION: eu-central-1
