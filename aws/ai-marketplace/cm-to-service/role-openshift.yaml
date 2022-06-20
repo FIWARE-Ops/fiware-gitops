@@ -7,10 +7,11 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - ConfigMap
-  - configmap
+  - services
   - configmaps
   verbs:
   - get
   - watch
   - list
+  - create
+  - update
