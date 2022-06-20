@@ -9,6 +9,7 @@ rules:
   resources:
   - ConfigMap
   - configmap
+  - configmaps
   verbs:
   - get
   - watch
