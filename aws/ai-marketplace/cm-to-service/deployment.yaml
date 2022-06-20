@@ -14,6 +14,9 @@ spec:
     spec:
       serviceAccountName: cm-to-service-sa
       containers:
-      - image: wistefan/cm-to-service:latest
+      - image: quay.io/fiware/k8s-cm-to-service:0.0.1
         imagePullPolicy: Always
         name: cm-to-service
+        env:
+          - name: CREATED_LABEL_VALUE
+            value: test-cm-to-service
