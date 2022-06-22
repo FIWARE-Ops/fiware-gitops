@@ -1,0 +1,17 @@
+apiVersion: rds.services.k8s.aws/v1alpha1
+kind: DBSubnetGroup
+metadata:
+name: rds-subnet-group
+spec:
+  name: rds-subnet-group
+  description: RDS for apps in OpenShift
+  subnetIDs:
+    - subnet-0193df097fc320310
+    - subnet-0e188bf817ef5e0a4
+    - subnet-06eec55a9892c8969
+    - subnet-0e433abb526b36aa6
+    - subnet-07593bac6203f2b2d
+    - subnet-02e7bf9b677f255fd
+  tags:
+    - key: owner
+      value: ack-system-fiware-dev-aws
