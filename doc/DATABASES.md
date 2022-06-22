@@ -19,10 +19,6 @@ In general, follow the steps described in the [aws-documentation](https://aws-co
     aws iam create-access-key --user-name ack-service-controller
 ```
 
-4. Create the user-config(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/user-config/)
-
-5. Create the user-secrets, using the access-key created in the previous step(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/secrets/) 
-
 ## Install RDS Controller
 
 The [RDS-Controller](https://github.com/aws-controllers-k8s/rds-controller) is responsible for providing different (SQL)-Databases to the cluster.
@@ -34,15 +30,19 @@ The [RDS-Controller](https://github.com/aws-controllers-k8s/rds-controller) is r
         --policy-arn 'arn:aws:iam::aws:policy/AmazonRDSFullAccess'
 ```
 
-2. Select the controller:
+2. Create the user-config(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/user-config/)
+
+3. Create the user-secrets, using the access-key created in the previous step(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/secrets/) 
+
+4. Select the controller:
 
 ![Search](./aws-services/rds-controller-search.png)
 
-3. Install with defaults:
+5. Install with defaults:
 
 ![Install](./aws-services/rds-controller-install.png)
 
-4. Setup Subnet-Group:
+6. Setup Subnet-Group:
 The ack-controllers are not (yet) able to manage subnet and security groups, so that we have to prepare them. If this step is skipped, the services won't be allowed to access the created DB-instances.
 
 
@@ -73,9 +73,9 @@ The ack-controllers are not (yet) able to manage subnet and security groups, so 
   ```shell
     aws ec2 authorize-security-group-ingress --group-id <CREATED_SECURITY_GROUP> --port 0-10000 --protocol tcp --cidr "<CIDR_RANGE>" --region <CLUSTER-REGION>
   ```
->:warning: Each DBInstance created has to use the security-group ID as created in step 4.4, else no pod can access it.
+>:warning: Each DBInstance created has to use the security-group ID as created in step 6.4, else no pod can access it.
 
-5. Insert the security group id and deploy an rds-resource - Example: 
+7. Insert the security group id and deploy an rds-resource - Example: 
 ```yaml
 apiVersion: rds.services.k8s.aws/v1alpha1
 kind: DBInstance
@@ -94,3 +94,25 @@ spec:
     name: password-secret
     key: password
 ```
+
+## Install Opensearch-Controller(elastic)
+
+1. Add policy to AWS user:
+```shell
+    aws iam attach-user-policy \
+        --user-name ack-service-controller \
+        --policy-arn 'arn:aws:iam::aws:policy/AmazonOpenSearchServiceFullAccess'
+```
+
+2. Create the user-config(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/user-config/)
+
+3. Create the user-secrets, using the access-key created in the previous step(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/secrets/) 
+
+
+2. Select the controller:
+
+![Search](./aws-services/rds-controller-search.png)
+
+3. Install with defaults:
+
+![Install](./aws-services/rds-controller-install.png)
