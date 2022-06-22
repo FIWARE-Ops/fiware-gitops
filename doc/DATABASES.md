@@ -34,17 +34,48 @@ The [RDS-Controller](https://github.com/aws-controllers-k8s/rds-controller) is r
         --policy-arn 'arn:aws:iam::aws:policy/AmazonRDSFullAccess'
 ```
 
-2. Create configmap for service
-
-1. Select the controller:
+2. Select the controller:
 
 ![Search](./aws-services/rds-controller-search.png)
 
-2. Install with defaults:
+3. Install with defaults:
 
 ![Install](./aws-services/rds-controller-install.png)
 
-3. Deploy an rds-resource - Example:
+4. Setup Subnet-Group:
+The ack-controllers are not (yet) able to manage subnet and security groups, so that we have to prepare them. If this step is skipped, the services won't be allowed to access the created DB-instances.
+
+
+  1. Get VPC of the OpenShift cluster - replace <CLUSTER-NAME>(f.e. fiware-dev-aws) with the name of your cluster and <CLUSTER-REGION> with your clusters region(f.e. eu-central-1).
+
+  ```shell
+    aws ec2 describe-vpcs --filters Name=tag:Name,Values="<CLUSTER_NAME>-*" --query 'Vpcs[*].VpcId' --region <CLUSTER-REGION>
+  ```
+
+  2. Get the subnets for this vpc:
+  ```shell
+    aws ec2 describe-subnets --filters "Name=vpc-id,Values=<VPC_ID>" --query 'Subnets[*].SubnetId' --region <CLUSTER-REGION>
+  ``` 
+
+  3. Set subnet-ids and apply the [rds-subnet.yaml](../aws/ack-system/controllers/rds-subnet.yaml) to the cluster.
+
+  4. Create security group:
+  ```shell
+    aws ec2 create-security-group --group-name rds-sg --description "SG to allow traffic from pod to RDS" --vpc-id <VPC_ID> --region <CLUSTER-REGION>
+  ```
+
+  5. Get CIDR range from VPC
+  ```shell
+    aws ec2 describe-vpcs --vpc-ids <VPC_ID> --query 'Vpcs[].CidrBlock' --output text --region <CLUSTER-REGION>
+  ```
+
+  6. Create the inbound rule to allow the traffic:
+  ```shell
+    aws ec2 authorize-security-group-ingress --group-id <CREATED_SECURITY_GROUP> --port 0-10000 --protocol tcp --cidr "<CIDR_RANGE>" --region <CLUSTER-REGION>
+  ```
+>:warning: Each DBInstance created has to use the security-group ID as created in step 4.4, else no pod can access it.
+
+5. Insert the security group id and deploy an rds-resource - Example: 
 ```yaml
 apiVersion: rds.services.k8s.aws/v1alpha1
 kind: DBInstance
@@ -56,6 +87,7 @@ spec:
   dbInstanceIdentifier: "mysql"
   engine: mysql
   engineVersion: 5.7.31
+  vpcSecurityGroupIDs: ["<SG_ID"]
   masterUsername: admin
   masterUserPassword:
     namespace: default
