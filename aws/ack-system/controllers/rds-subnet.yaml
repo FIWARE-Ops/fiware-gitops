@@ -1,7 +1,8 @@
 apiVersion: rds.services.k8s.aws/v1alpha1
 kind: DBSubnetGroup
 metadata:
-name: rds-subnet-group
+  name: rds-subnet-group
+  namespace: ack-system
 spec:
   name: rds-subnet-group
   description: RDS for apps in OpenShift
