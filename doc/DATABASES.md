@@ -94,25 +94,3 @@ spec:
     name: password-secret
     key: password
 ```
-
-## Install Opensearch-Controller(elastic)
-
-1. Add policy to AWS user:
-```shell
-    aws iam attach-user-policy \
-        --user-name ack-service-controller \
-        --policy-arn 'arn:aws:iam::aws:policy/AmazonOpenSearchServiceFullAccess'
-```
-
-2. Create the user-config(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/user-config/)
-
-3. Create the user-secrets, using the access-key created in the previous step(see [aws-doc for more](https://aws-controllers-k8s.github.io/community/docs/user-docs/openshift/)) - [ack-systems/user-config](../aws/ack-system/secrets/) 
-
-
-2. Select the controller:
-
-![Search](./aws-services/rds-controller-search.png)
-
-3. Install with defaults:
-
-![Install](./aws-services/rds-controller-install.png)
