@@ -75,3 +75,5 @@ keyrock:
       value: "/?new_user=1"
     - name: IDM_CSP_FORM_ACTION
       value: "'self',*"
+    - name: IDM_HOST
+      value: "keyrock.fiware.dev"
