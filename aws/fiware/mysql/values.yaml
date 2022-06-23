@@ -1,0 +1,12 @@
+mysql: 
+  enabled: true
+  masterUser: root
+  existingSecret: mysql-secret
+  version: 5.7.37
+  identifier: fiware-keyrock-mysql
+  storage: 20
+  securityGroupId: sg-0887dbbf5562e5a7a
+  dbSubnetGroupName: rds-subnet-group
+  machineType: db.t3.micro
+  # 0 disables backups
+  backupRetentionPeriod: 0

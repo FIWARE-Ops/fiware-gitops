@@ -1,0 +1,15 @@
+apiVersion: services.k8s.aws/v1alpha1
+kind: FieldExport
+metadata:
+  name: {{ .Release.Name }}-mysql-host
+spec:
+  to:
+    name: {{ .Release.Name }}-mysql-cm
+    namespace: {{ .Release.Namespace }} 
+    kind: configmap
+  from:
+    path: ".status.endpoint.address"
+    resource:
+      group: rds.services.k8s.aws
+      kind: DBInstance
+      name: {{ .Release.Name }}-mysql

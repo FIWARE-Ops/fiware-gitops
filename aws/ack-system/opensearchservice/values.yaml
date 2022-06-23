@@ -1,3 +1,0 @@
-opensearchservice-chart:
-  aws:
-    region: eu-central-1
