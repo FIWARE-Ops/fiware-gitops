@@ -12,7 +12,7 @@ keyrock:
       ## tag of the image to be used
       #tag: 7.8.2
       #tag: 8.0.0
-      tag: kim-dev-rc7
+      tag: 8.0.0
       ## specification of the image pull policy
       pullPolicy: Always
       #IfNotPresent
