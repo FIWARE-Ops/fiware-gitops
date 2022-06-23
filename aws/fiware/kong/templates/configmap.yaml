@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pdc-kong-configmap
+  namespace: i4trust-demo
+data:
+  kong.yml: |
+    _format_version: "2.1"
+    _transform: true
+    services:
+      - host: "fiware-orion-ld"
+        name: "orion-oidc"
+        port: 1026
+        protocol: http
+
+        routes:
+          - name: orion-oidc
+            paths:
+              - /orion
+            strip_path: true
+
+        plugins:
+          - name: kong-oidc-auth
+            config:
+              authorize_url: "https://keyrock.fiware.dev/oauth2/authorize"
+              scope: "openid"
+              token_url: "https://keyrock.fiware.dev/oauth2/token"
+              client_id: "c7327508-d077-406e-84a1-3221f3fff558"         
+              client_secret: "b511287cd6ae1aad"
+              user_url: "https://keyrock.fiware.dev/user"
+
+          - name: request-transformer
+            config:
+              remove:
+                headers:
+                  - Authorization
+                  - authorization
