@@ -19,6 +19,7 @@ keyrock:
 
   ## openshift specific route definition. Will not work on plain k8s
   route:
+    host: keyrock.fiware.dev
     ## -- should the deployment create openshift routes
     enabled: true
     # -- tls configuration for the route
