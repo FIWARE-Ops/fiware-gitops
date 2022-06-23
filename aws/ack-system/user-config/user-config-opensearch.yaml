@@ -8,4 +8,4 @@ data:
   ACK_RESOURCE_TAGS: ocp-controller-controlled
   ACK_WATCH_NAMESPACE: ""
   AWS_ENDPOINT_URL: ""
-  AWS_REGION: eu-central-1
+  AWS_REGION: "eu-central-1"
