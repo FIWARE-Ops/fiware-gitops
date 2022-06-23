@@ -1,0 +1,13 @@
+apiVersion: v2
+name: opensearchservice
+description: Chart holder for argo-cd
+
+type: application
+version: 0.1.0
+appVersion: "4.4.12"
+
+dependencies:
+- name: opensearchservice-chart
+  version: v0.0.13
+  repository: https://gallery.ecr.aws/aws-controllers-k8s
+
