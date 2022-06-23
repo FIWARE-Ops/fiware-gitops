@@ -30,6 +30,7 @@ data:
           - name: jwt
             config:
               run_on_preflight: false
+              key_claim_name: username
 
           - name: request-transformer
             config:
