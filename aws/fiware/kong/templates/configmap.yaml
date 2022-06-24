@@ -27,10 +27,11 @@ data:
             strip_path: true
 
         plugins:
-          - name: jwt
+          - name: pep-plugin
             config:
-              run_on_preflight: false
-              key_claim_name: app_id
+              authorization_endpoint_type: Keyrock
+              authorization_endpoint_address: https://keyrock.fiware.dev/users
+              keyrock_app_id: 7c902139-d4d0-461a-bb14-7fa29aa143fe
 
           - name: request-transformer
             config:
