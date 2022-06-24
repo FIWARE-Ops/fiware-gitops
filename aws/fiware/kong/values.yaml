@@ -28,7 +28,7 @@ kong:
     plugins: pep-plugin
     pluginserver_names: pep-plugin
     pluginserver_pep-plugin_start_cmd: "/kong/go-plugins/pep-plugin"
-    pluginserver_pep-plugin_query_cmd: "/kong/go-plugins/pep-plugin -dump"
+    pluginserver_pep-plugin_query_cmd: "/kong/go-plugins/pep-plugin -dump-all-plugins -plugins-directory /kong/go-plugins/"
 
   ingressController:
     enabled: false
