@@ -1,8 +1,8 @@
 keyrock:
   statefulset:
     image:
-      repository: fiware/idm
-      tag: i4trust-rc7-header-size
+      repository: wistefan/fiware-idm
+      tag: fix
 
   db:
     user: root
