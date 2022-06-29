@@ -3,6 +3,7 @@ keyrock:
     image:
       repository: wistefan/fiware-idm
       tag: fix
+      pullPolicy: Always
 
   db:
     user: root
