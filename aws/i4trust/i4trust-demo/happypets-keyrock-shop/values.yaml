@@ -3,6 +3,7 @@ keyrock:
     image:
       repository: fiware/idm
       tag: i4trust-rc7-header-size
+      pullPolicy: Always
 
   db:
     user: root

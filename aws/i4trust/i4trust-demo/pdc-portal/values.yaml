@@ -1,8 +1,8 @@
 pdc-portal:
   deployment:
     image:
-      repository: i4trust/pdc-portal
-      tag: v0.2.0
+      repository: quay.io/wi_stefan/pdc-portal
+      tag: v0.3.0
       pullPolicy: Always
 
   route:
