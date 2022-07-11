@@ -4,6 +4,7 @@ postgresql:
   auth:
     username: ngb
     password: ngb
+    database: ngb
     
 
   architecture: standalone
