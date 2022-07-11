@@ -1,13 +1,25 @@
-
-postgresql:
+timescale:
   fullnameOverride: postgres
   auth:
     username: ngb
     password: ngb
     database: ngb
     
+  image:
+    repository: timescale/timescaledb-ha
+    tag: pg12.5-ts1.7.4-p3
 
-  architecture: standalone
+  secrets:
+    credentials: 
+      PATRONI_SUPERUSER_PASSWORD: ngb
+  patroni:
+    postgresql:
+      authentication:
+        superuser:
+          username: ngb
+
+
+
   podSecurityContext:
     enabled: false
   containerSecurityContext:

@@ -6,6 +6,6 @@ version: 0.1.0
 appVersion: "14.4.0"
 
 dependencies:
-- name: postgresql
-  version: 11.6.15
-  repository: https://charts.bitnami.com/bitnami
+- name: timescale
+  version: 0.13.1
+  repository: https://charts.timescale.com
