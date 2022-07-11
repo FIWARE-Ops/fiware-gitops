@@ -10,3 +10,13 @@ postgresql:
     enabled: false
   containerSecurityContext:
     enabled: false
+  primary:
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
+      enabled: false
+  readReplicas:
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
+      enabled: false
