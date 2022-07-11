@@ -94,5 +94,5 @@ spec:
       volumes:
         - name: webhook-certs
           secret:
-            secretName: {{ include "sidecarInjector.name" . }}-certificate
+            secretName: {{ include "sidecarInjector.name" . }}-secret
   {{- end }}
