@@ -361,55 +361,56 @@ sidecarInjector:
   # -- certificate to be used by the injector service in pem format
   cert: |
     -----BEGIN CERTIFICATE-----
-    MIIDNzCCAh+gAwIBAgIUcgxaqxSp2JMLLkFicAC9IAP8R8IwDQYJKoZIhvcNAQEL
+    MIIDNTCCAh2gAwIBAgIUIgb34EsQm4uQS0JiQjwid6CRXd4wDQYJKoZIhvcNAQEL
     BQAwKzEpMCcGA1UEAwwgZWFzLXNpZGVjYXItaW5qZWN0b3Iuc2NvcnBpby5zdmMw
-    HhcNMjIwNzExMTQwNjUxWhcNMzIwNzA4MTQwNjUxWjArMSkwJwYDVQQDDCBlYXMt
+    HhcNMjIwNzExMTQyNTE0WhcNMjcwNzEwMTQyNTE0WjArMSkwJwYDVQQDDCBlYXMt
     c2lkZWNhci1pbmplY3Rvci5zY29ycGlvLnN2YzCCASIwDQYJKoZIhvcNAQEBBQAD
-    ggEPADCCAQoCggEBAMzfyKenKsUpAurkS0lteDfMR2eSeRyyWb0GzToYYpTIJi6F
-    fXo3YSaVly3LgmX84qfOQBNne0IliE+w0lxHZVP5CloEZjzwMohlfKpl1gih2OHz
-    vyC/FC9aCG8QoNuT35fN9pfTqhgjEeLs6ZCisTEkR5/JFtiIOtqKkfUuGZq+i12L
-    HaTobqmL12yDGmgjmGp+Sm7VH2AgZ5L822x1+f0hJTibHS1rCj3u2ECgpkj/e5ss
-    d33uzbKtM0EHxje6j0qq3b1BVJcXC5sejhPdgocImzh7uFpCT5OMxKOVZN08lnuH
-    dcSCEwpi4tZ+lyPQwyvVCm4Yprn8jCLY1R8ySLkCAwEAAaNTMFEwHQYDVR0OBBYE
-    FAubyWSBYq9p61vJVEZL8Xfff6BQMB8GA1UdIwQYMBaAFAubyWSBYq9p61vJVEZL
-    8Xfff6BQMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAFmBrCX4
-    +b7V7mRLjCM5QV+n3+ZzYXRUUWrcoOyvheIlNr6w8RHfQFUxO4A+6JJe9WISGviQ
-    z+GefeLmjVFsetkddi+HuBHOZKkVQDgZEO2pO3JpbdfJ6Ysngpe/Bo2Md04BB2G7
-    DIEwtbYFVk49Pm1EetTYDjm5CjJ5TdBi0QEiI/oiWWQqbaNv0kJmk1Nsc0lHgEv9
-    kokm5lYSxo71PEnM9y7kWojHGCNm1rrm4n3bcW4rivO4Wqmkv83Rxz1RBxcuqkpL
-    UDIEvc5V/jUlpKVrxC9+RkOvyfJL7OEnQ4G9mbBOcE1xcwNzLToWViDkewrbfvKe
-    tXYa2DIPhIE9FTk=
+    ggEPADCCAQoCggEBAOYa2hXH0SYNra4jSyKYveekRNTi6caZkqKoBRfpQGjHCncn
+    57IGQm0kS1PatB2M6mif2Nvy+7XGdP0iqnaKg6Axcq0YhEQe9sA1UuwqTG0EPiYZ
+    WO26aUB9srMKfAqdW2vvMPNra9tGtnW+unc5GJuwZickZitpQF9Ys5gJTwMAEMPN
+    XacJTpVJD0elZN4siWOxpnrMrbbEDm6d1ogR1q7LS+kTGtrop5TdlRc09ccVwzW3
+    jF+/y9jJ7GxlLSHyMNIRpC53BnSKswVLRvoLQWTBHtcGJ9gPr3GRhKx/eVhlUvcl
+    XirU87yh9vaKcPlVm0pD/b30dCwTeebfQRcVT6MCAwEAAaNRME8wKwYDVR0RBCQw
+    IoIgZWFzLXNpZGVjYXItaW5qZWN0b3Iuc2NvcnBpby5zdmMwCwYDVR0PBAQDAgeA
+    MBMGA1UdJQQMMAoGCCsGAQUFBwMBMA0GCSqGSIb3DQEBCwUAA4IBAQCVzmTo3xYc
+    e5c4ENf6NJK3DIIzcvCJ6hoobqXVEAq5tG0A4x+ObjJ89zl0mAjRMCDjuRV7kS8k
+    AdOFrkERfgSZqo33JVe5J0mgug3aaINl3R2L5Y2XhZN6A3vLS7Yqf8neeXUk9Dww
+    98jC+pNPOtf73yxVBjtZGyqIOqPpdheDlPwN29hiePUad14GUgY+Lw5gZoXThF1V
+    dvLfZJNHZd6jI8+DKFosGuQIYrgLH7pDpHhrbZDuF352BfLcRaVIO399PoCG/82/
+    u4XSHsuW68FTNF+76tBQnFqOnsuFrHZEg03x9is1fsqoQ5lm3KX7xyPUmvFRqmpy
+    50J2b+9jfCx/
     -----END CERTIFICATE-----
 
   # -- key to be used by the injector service
   key: |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIEpQIBAAKCAQEAzN/Ip6cqxSkC6uRLSW14N8xHZ5J5HLJZvQbNOhhilMgmLoV9
-    ejdhJpWXLcuCZfzip85AE2d7QiWIT7DSXEdlU/kKWgRmPPAyiGV8qmXWCKHY4fO/
-    IL8UL1oIbxCg25Pfl832l9OqGCMR4uzpkKKxMSRHn8kW2Ig62oqR9S4Zmr6LXYsd
-    pOhuqYvXbIMaaCOYan5KbtUfYCBnkvzbbHX5/SElOJsdLWsKPe7YQKCmSP97myx3
-    fe7Nsq0zQQfGN7qPSqrdvUFUlxcLmx6OE92ChwibOHu4WkJPk4zEo5Vk3TyWe4d1
-    xIITCmLi1n6XI9DDK9UKbhimufyMItjVHzJIuQIDAQABAoIBAQCMFgiR+pAYOC6y
-    hl+kWaH2JUw92b3OjXUm91uk+b+OlDznWoet5egcBfVVbu4+5mfk7faKThvN4vQN
-    6Y4tYvQ6MvONEa0GxgcHlL1lljR/uoseFRj/PyiCKEHUD76t5bLhjgerUSPhVTmJ
-    vQ0HxPb77x66dzmT3bLAdDfROjBvydk3eWLQAjWLKbNlv4yBeGWYrCbVEfrZDjyG
-    aOC1pVxGoV9LiTvYlHQ58jbhyUZqJiCaKltrtA+jQv04w0qSDpwp1GvRoO8jI1HY
-    9L+UHwOtDACN0ohiMoKkaRXjIh7ZCXOTcQxo77p9zlXV/fA2p6TKOw+jR+yrBJzD
-    9Kf0CpbBAoGBAOZrt48TAMqc2qA0DWNz9i9DUGwD0MvdSOm/4QTDY1AAqhp7KnxI
-    tPnU74SD9Af5rA1cLZ2AOwyM+SprhdAAVrBIPoyYzWHZ/5kGhWi5UgVMzLhmMmZA
-    5X1xu0EowsnuvTkCgp6Kz6BgiPA0jXzAEP1KZNqBwPKn9rP79urae9DlAoGBAOOe
-    EAH1qqR/rtMXLAHaiIvEJ9yg8M/ZWXtgOohQDmzzf3xfeTlYVezc884yFPpVj6Z1
-    Ohhcz6LxLTXxf0rB6AGDEi7ggzVTe6TIV0lFQXnSg9WxzCcuQTZFfYu6TYJwrZbY
-    tyXpt7rReGYY0Gncs0yrB+JsCV7RvE+dIN7FNl9FAoGBAOWGMyi/4y/wow6mCxgg
-    MQDPatLN0jTgznqZegoGn2zX3JnYSm/W9P9QDu7PikxPdgUw5vdW/nr4ClMpG/gf
-    /jpHHJdstllcj/DcwBObVoqU//BHTLjyuCcHHWJAuhfwSmj5iSdoWn4E6yNrFe1I
-    XSQR8Ph/+7U7ftG2kTVMQb3JAoGAHvWW081oYmuDie6y66WfwPLzQQ0a9ApqI1/Z
-    VkUdUTBlfLM3t9cOCOOcvcUOGWad3VRAjKPDEjSfo6CvYamyNtJvHLUo443xWV5u
-    kOa8mydJCz3duM6PzCPziZfThxRwZ/4eGygI934aVDi30E5WjO0Oa3uqYp1Accu7
-    dtF4LckCgYEAjs+qCAI2xclrB+3b3RpsVTgxPEviRqQ4Q5XX14+LDCiNDY7dIKlK
-    6+83Hn+d690yq7oZ4KCFmcqJNvTOukBMOXqhqSc4ELb6paZzd6LXbwG3i3BHqIQH
-    ndBTa0OKdtxly8oRwZ+jUqR9rb7Sz0Oo4VnblrxWvZC6sU+YnRSPXRM=
-    -----END RSA PRIVATE KEY-----
+   -----BEGIN PRIVATE KEY-----
+    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDmGtoVx9EmDa2u
+    I0simL3npETU4unGmZKiqAUX6UBoxwp3J+eyBkJtJEtT2rQdjOpon9jb8vu1xnT9
+    Iqp2ioOgMXKtGIREHvbANVLsKkxtBD4mGVjtumlAfbKzCnwKnVtr7zDza2vbRrZ1
+    vrp3ORibsGYnJGYraUBfWLOYCU8DABDDzV2nCU6VSQ9HpWTeLIljsaZ6zK22xA5u
+    ndaIEdauy0vpExra6KeU3ZUXNPXHFcM1t4xfv8vYyexsZS0h8jDSEaQudwZ0irMF
+    S0b6C0FkwR7XBifYD69xkYSsf3lYZVL3JV4q1PO8ofb2inD5VZtKQ/299HQsE3nm
+    30EXFU+jAgMBAAECggEAUg+JbvMPt45xPgUAKppmP1Hp6jHyRQ1HqhJZnqlkevlg
+    1hW5H1f0IJAs/P6l9VPn1OAMqoQBGFZqKkxOlm/XeS2pQ+nWYaTZQrrBk8+R6d71
+    ewjXGhC8sG8jZ455ph9wFxH6VxUcJdsV/u/B9/q4t+00wQjOFvU2K8qqYbIQJ3UV
+    YHqCrWzR7OB4k98PNFel1mnOBa8HgMQpB18iF/kephtNuII622m/8Omx9/Tn65QD
+    XroaTxxDGOPHySTDIe+o4h/5i+YNfXgUJiYOYFWCPU8RxJflrpIqC4UsFE/4OVm0
+    hMi4+BLgq34NhvyrX2kyNhUPIoB03Otb0rCkPDz4gQKBgQD3aeu2+YOPws6f/ERu
+    i2Cl88wP1ucZAjHaJe8ilIXKlAjUZtfqn1bf5P7LhC8KpXEnW6EFEFxsqUJfQ77e
+    kQZOj4F5fJgroPQZvsJNO8JThSaYmfRnztQX/1zhzhVuTxE/mP+8fId3/cKigwRD
+    qJ0OXkNWvQ9u2bdlrjUpYRfBEwKBgQDuFyfC5OhgNgoJxpXPmWRVjDQ6a1KTLJQz
+    MZdVoatB3ycFEihmR7L0IM1zHOpRTFyMOXP4d1FL8Gg3to3mZI1N46eRCyqBO+Pe
+    CaeNJfKtQxa+oTU2vhhQtptAOq8haRUu8VhvgZI3zy9SSwRKAxPtRlppfqSI69Wm
+    +QrubeeZMQKBgG30rwNkpKmRhE7pyGfwnYVjcj9f3NjqdsliroKJy2QaoknzYuYs
+    5mke1nYQSu/KUx2QxWEAwnKwToUUEJHNliX39SzOyLorEBEZDDVS56xCssKDOXGh
+    I/V+UgMwmamqjhnbn1xfY71aE9QxsgV3vEUUc4zq/R7gt3cDEzFOq0XtAoGBAOCm
+    DolRTYVCV/RjYQWRuV8SvFEG5NIjNO6c8ysEMUAlG38oY+Al9M9uiAv+k4UEJSrW
+    JvuhMZ8ShnNTF870v3Nnw7sSqxdneBkQSPzgentLGxHhsAEoGm9F7XUMKiS/LxKs
+    /IGx41IvdnoSeEiRYOL4B+UUbpEW3PAAenUAVI9xAoGBAOQbwM2F7Iew/qGI5SXx
+    HzPFiCXHMev+53JKtnnIF3Jt8xOqyC4zbD/YIjw79fyxFr6FtoQnCHemvmZj2j0w
+    bGlFpB8Ijn9TQtNyVgKBYZAtFKCnUmNn5y2aPrqUPB9Rj58eK7HnUwt50pgWIPoy
+    y85inzajncickmdqzs/99MQW
+    -----END PRIVATE KEY-----
 
   ## liveness and readiness probes of the endpoint-configuration-service, they will be evaluated against the health endpoint
   # ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
