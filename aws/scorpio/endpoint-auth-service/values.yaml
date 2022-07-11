@@ -285,12 +285,12 @@ sidecarInjector:
   nameOverride: ""
   # -- option to override the fullname config in the _helpers.tpl
   fullnameOverride: eas-sidecar-injector
-  
+
   # -- if a sidecarInjector specific service account should be used, it can be configured here
   # ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
   serviceAccount:
     # -- specifies if the account should be created
-    create: false
+    create: true
 
   # -- initial number of target replications, can be different if autoscaling is enabled
   replicaCount: 1
