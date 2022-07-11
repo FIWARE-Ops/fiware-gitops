@@ -25,4 +25,6 @@ webhooks:
         apiVersions: ["v1"]
         operations: ["CREATE"]
         resources: ["pods"]
+    admissionReviewVersions: ["v1"]
+    sideEffects: None
 {{- end }}
