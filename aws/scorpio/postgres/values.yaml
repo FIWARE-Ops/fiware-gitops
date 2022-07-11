@@ -1,4 +1,4 @@
-timescale:
+timescaledb-single:
   fullnameOverride: postgres
   auth:
     username: ngb
