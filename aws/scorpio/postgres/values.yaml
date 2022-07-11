@@ -18,5 +18,8 @@ timescaledb-single:
         superuser:
           username: ngb
 
-  rbac:
+  serviceAccount:
     create: false
+    name: postgres-sa
+  rbac:
+    create: true
