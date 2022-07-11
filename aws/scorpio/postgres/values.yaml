@@ -1,5 +1,6 @@
 
 postgresql:
+  fullnameOverride: postgres
   auth:
     username: admin
     password: admin
