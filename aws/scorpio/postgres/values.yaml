@@ -1,0 +1,12 @@
+
+postgresql:
+  auth:
+    username: admin
+    password: admin
+    
+
+  architecture: standalone
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
