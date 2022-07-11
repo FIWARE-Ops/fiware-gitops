@@ -5,34 +5,34 @@ metadata:
   labels:
     {{- include "scorpioBroker-aaio.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  {{- if not .Values.scorpio-broker-aaio.autoscaling.enabled }}
+  replicas: {{ .Values.scorpio-broker-aaio.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
       {{- include "scorpioBroker-aaio.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.scorpio-broker-aaio.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
         {{- include "scorpioBroker-aaio.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.scorpio-broker-aaio.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "scorpioBroker-aaio.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.scorpio-broker-aaio.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml .Values.scorpio-broker-aaio.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.scorpio-broker-aaio.image.pullPolicy }}
           ports:
             - containerPort: 9090
               protocol: TCP
@@ -40,24 +40,24 @@ spec:
             httpGet:
               path: /actuator/health
               port: 9090
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+            initialDelaySeconds: {{ .Values.scorpio-broker-aaio.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.scorpio-broker-aaio.livenessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.scorpio-broker-aaio.livenessProbe.failureThreshold }}
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 9090
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+            initialDelaySeconds: {{ .Values.scorpio-broker-aaio.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.scorpio-broker-aaio.readinessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.scorpio-broker-aaio.readinessProbe.failureThreshold }}
     
           env:
             - name: MYSETTINGS_POSTGRES_DB
-              value: {{ .Values.db.dbhost }}
+              value: {{ .Values.scorpio-broker-aaio.db.dbhost }}
             - name: MYSETTINGS_POSTGRES_PASSWORD
-              value: {{ .Values.db.password }}
+              value: {{ .Values.scorpio-broker-aaio.db.password }}
             - name: MYSETTINGS_POSTGRES_USER
-              value: {{ .Values.db.user }}  
+              value: {{ .Values.scorpio-broker-aaio.db.user }}  
             - name: KAFKA_ADVERTISED_HOST_NAME
               value: kafka
             - name: KAFKA_ZOOKEEPER_CONNECT
@@ -66,16 +66,16 @@ spec:
               value: "9092"
             
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
+            {{- toYaml .Values.scorpio-broker-aaio.resources | nindent 12 }}
+      {{- with .Values.scorpio-broker-aaio.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.scorpio-broker-aaio.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.scorpio-broker-aaio.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
