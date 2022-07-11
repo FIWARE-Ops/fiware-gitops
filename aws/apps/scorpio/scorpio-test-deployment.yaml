@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scorpio-test-deployment
+  namespace: argocd
+spec:
+  destination:
+    namespace: scorpio
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/scorpio/test-deployment
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
