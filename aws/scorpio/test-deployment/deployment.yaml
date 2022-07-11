@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: injection
 spec:  
-  serviceAccountName: test-deployment
   selector:
     matchLabels:
       app: injection
@@ -16,6 +15,7 @@ spec:
       labels:
         app: injection
     spec:
+      serviceAccountName: test-deployment
       containers:
       # the service to be intercepted
       - image: k8s.gcr.io/echoserver:1.4
