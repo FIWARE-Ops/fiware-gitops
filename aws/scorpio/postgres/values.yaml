@@ -2,8 +2,8 @@
 postgresql:
   fullnameOverride: postgres
   auth:
-    username: admin
-    password: admin
+    username: ngb
+    password: ngb
     
 
   architecture: standalone
