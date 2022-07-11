@@ -1,0 +1,57 @@
+endpoint-auth-service:
+  configService:
+    route:
+      enabled: true
+  sidecarInjector:
+    fullnameOverride: eas-sidecar-injector
+    cert: |
+      -----BEGIN CERTIFICATE-----
+      MIIDHzCCAgegAwIBAgIUdIhj9oqQaFhH//uQL45VX7Du4BIwDQYJKoZIhvcNAQEL
+      BQAwHzEdMBsGA1UEAwwUZWFzLXNpZGVjYXItaW5qZWN0b3IwHhcNMjIwNzExMTI1
+      ODU5WhcNMzIwNzA4MTI1ODU5WjAfMR0wGwYDVQQDDBRlYXMtc2lkZWNhci1pbmpl
+      Y3RvcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMzfyKenKsUpAurk
+      S0lteDfMR2eSeRyyWb0GzToYYpTIJi6FfXo3YSaVly3LgmX84qfOQBNne0IliE+w
+      0lxHZVP5CloEZjzwMohlfKpl1gih2OHzvyC/FC9aCG8QoNuT35fN9pfTqhgjEeLs
+      6ZCisTEkR5/JFtiIOtqKkfUuGZq+i12LHaTobqmL12yDGmgjmGp+Sm7VH2AgZ5L8
+      22x1+f0hJTibHS1rCj3u2ECgpkj/e5ssd33uzbKtM0EHxje6j0qq3b1BVJcXC5se
+      jhPdgocImzh7uFpCT5OMxKOVZN08lnuHdcSCEwpi4tZ+lyPQwyvVCm4Yprn8jCLY
+      1R8ySLkCAwEAAaNTMFEwHQYDVR0OBBYEFAubyWSBYq9p61vJVEZL8Xfff6BQMB8G
+      A1UdIwQYMBaAFAubyWSBYq9p61vJVEZL8Xfff6BQMA8GA1UdEwEB/wQFMAMBAf8w
+      DQYJKoZIhvcNAQELBQADggEBAF81lnLAiAIjfQQmgIUfBCIZiWgop4NaqR2atL3L
+      qZFOEUs3ge1XkmFB2Y0B8s2rZpPkYCkVE1UsEP4NZmP/6frQkmCEB1UDuQv4J3Yr
+      M3Dk50VoYyiQp7r3mXdPp9heoVCFlv7FNx91cfyb8EWUQsvxnaqZFmWUvmxi0PSn
+      TmY8C8iWNcVM60gGOSkB9xhsulsoF3dZFgyzmql65j3Yi4yOJdT849tfvUjT/ZQX
+      98a+wJxIR7XgXfKDzHqfQ8oEbCmptDwsP5OU7OwLj90HairAXA7uoYjBAdQmCzmA
+      rY042VZ2rQt4gk3M/k7Gn6K4I0Re5T/gKGklYfnhNgCvMTA=
+      -----END CERTIFICATE-----
+    key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEpQIBAAKCAQEAzN/Ip6cqxSkC6uRLSW14N8xHZ5J5HLJZvQbNOhhilMgmLoV9
+      ejdhJpWXLcuCZfzip85AE2d7QiWIT7DSXEdlU/kKWgRmPPAyiGV8qmXWCKHY4fO/
+      IL8UL1oIbxCg25Pfl832l9OqGCMR4uzpkKKxMSRHn8kW2Ig62oqR9S4Zmr6LXYsd
+      pOhuqYvXbIMaaCOYan5KbtUfYCBnkvzbbHX5/SElOJsdLWsKPe7YQKCmSP97myx3
+      fe7Nsq0zQQfGN7qPSqrdvUFUlxcLmx6OE92ChwibOHu4WkJPk4zEo5Vk3TyWe4d1
+      xIITCmLi1n6XI9DDK9UKbhimufyMItjVHzJIuQIDAQABAoIBAQCMFgiR+pAYOC6y
+      hl+kWaH2JUw92b3OjXUm91uk+b+OlDznWoet5egcBfVVbu4+5mfk7faKThvN4vQN
+      6Y4tYvQ6MvONEa0GxgcHlL1lljR/uoseFRj/PyiCKEHUD76t5bLhjgerUSPhVTmJ
+      vQ0HxPb77x66dzmT3bLAdDfROjBvydk3eWLQAjWLKbNlv4yBeGWYrCbVEfrZDjyG
+      aOC1pVxGoV9LiTvYlHQ58jbhyUZqJiCaKltrtA+jQv04w0qSDpwp1GvRoO8jI1HY
+      9L+UHwOtDACN0ohiMoKkaRXjIh7ZCXOTcQxo77p9zlXV/fA2p6TKOw+jR+yrBJzD
+      9Kf0CpbBAoGBAOZrt48TAMqc2qA0DWNz9i9DUGwD0MvdSOm/4QTDY1AAqhp7KnxI
+      tPnU74SD9Af5rA1cLZ2AOwyM+SprhdAAVrBIPoyYzWHZ/5kGhWi5UgVMzLhmMmZA
+      5X1xu0EowsnuvTkCgp6Kz6BgiPA0jXzAEP1KZNqBwPKn9rP79urae9DlAoGBAOOe
+      EAH1qqR/rtMXLAHaiIvEJ9yg8M/ZWXtgOohQDmzzf3xfeTlYVezc884yFPpVj6Z1
+      Ohhcz6LxLTXxf0rB6AGDEi7ggzVTe6TIV0lFQXnSg9WxzCcuQTZFfYu6TYJwrZbY
+      tyXpt7rReGYY0Gncs0yrB+JsCV7RvE+dIN7FNl9FAoGBAOWGMyi/4y/wow6mCxgg
+      MQDPatLN0jTgznqZegoGn2zX3JnYSm/W9P9QDu7PikxPdgUw5vdW/nr4ClMpG/gf
+      /jpHHJdstllcj/DcwBObVoqU//BHTLjyuCcHHWJAuhfwSmj5iSdoWn4E6yNrFe1I
+      XSQR8Ph/+7U7ftG2kTVMQb3JAoGAHvWW081oYmuDie6y66WfwPLzQQ0a9ApqI1/Z
+      VkUdUTBlfLM3t9cOCOOcvcUOGWad3VRAjKPDEjSfo6CvYamyNtJvHLUo443xWV5u
+      kOa8mydJCz3duM6PzCPziZfThxRwZ/4eGygI934aVDi30E5WjO0Oa3uqYp1Accu7
+      dtF4LckCgYEAjs+qCAI2xclrB+3b3RpsVTgxPEviRqQ4Q5XX14+LDCiNDY7dIKlK
+      6+83Hn+d690yq7oZ4KCFmcqJNvTOukBMOXqhqSc4ELb6paZzd6LXbwG3i3BHqIQH
+      ndBTa0OKdtxly8oRwZ+jUqR9rb7Sz0Oo4VnblrxWvZC6sU+YnRSPXRM=
+      -----END RSA PRIVATE KEY-----
+  ishare:
+    route:
+      enabled: true
