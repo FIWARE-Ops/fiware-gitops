@@ -5,6 +5,10 @@ metadata:
   name: {{ include "sidecarInjector.fullname" . }}
   labels:
     {{ include "sidecarInjector.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook-weight": "1"
 webhooks:
   - name: {{ include "sidecarInjector.name" . }}.sfdc.internal
     {{- if .Values.sidecarInjector.restrictNamespace.enabled }}
