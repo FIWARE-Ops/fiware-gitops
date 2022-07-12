@@ -117,7 +117,7 @@ business-api-ecosystem:
         ## ref: https://hub.docker.com/r/fiware/biz-ecosystem-charging-backend
         repository: fiware/biz-ecosystem-charging-backend
         ## -- tag of the image to be used
-        tag: v8.1.0-dev
+        tag: v8.1.0-rc4-x86
         ## -- specification of the image pull policy
         #pullPolicy: IfNotPresent
         pullPolicy: Always
