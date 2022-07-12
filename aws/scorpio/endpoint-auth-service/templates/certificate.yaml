@@ -1,0 +1,15 @@
+{{- if .Values.sidecarInjector.enabled -}}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "sidecarInjector.name" . }}-cert
+  labels:
+    {{ include "sidecarInjector.labels" . | nindent 4 }}
+spec:
+  secretName: {{ include "sidecarInjector.name" . }}-secret
+  issuerRef:
+    name: self-signed
+  dnsNames:
+    - {{ include "sidecarInjector.fullname" . }}
+    - {{ include "sidecarInjector.fullname" . }}.{{ .Release.Namespace }}.svc
+{{- end }}
