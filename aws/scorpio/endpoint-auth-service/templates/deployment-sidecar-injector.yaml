@@ -57,7 +57,7 @@ spec:
             timeoutSeconds: {{ .Values.sidecarInjector.livenessProbe.timeoutSeconds }}
           readinessProbe:
             httpGet:
-              path: /heahealthzlth
+              path: /healthz
               port: https
               scheme: HTTPS
             initialDelaySeconds: {{ .Values.sidecarInjector.readinessProbe.initialDelaySeconds }}
