@@ -50,14 +50,16 @@ spec:
             httpGet:
               path: /healthz
               port: https
+              scheme: HTTPS
             initialDelaySeconds: {{ .Values.sidecarInjector.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.sidecarInjector.livenessProbe.periodSeconds }}
             successThreshold: {{ .Values.sidecarInjector.livenessProbe.successThreshold }}
             timeoutSeconds: {{ .Values.sidecarInjector.livenessProbe.timeoutSeconds }}
           readinessProbe:
             httpGet:
-              path: /heahealthzlth
+              path: /healthz
               port: https
+              scheme: HTTPS
             initialDelaySeconds: {{ .Values.sidecarInjector.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.sidecarInjector.readinessProbe.periodSeconds }}
             successThreshold: {{ .Values.sidecarInjector.readinessProbe.successThreshold }}
