@@ -13,5 +13,4 @@ spec:
     group: cert-manager.io
   dnsNames:
     - {{ include "sidecarInjector.fullname" . }}
-    - {{ include "sidecarInjector.fullname" . }}.{{ .Release.Namespace }}.svc
 {{- end }}
