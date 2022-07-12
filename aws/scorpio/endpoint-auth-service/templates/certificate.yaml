@@ -9,6 +9,8 @@ spec:
   secretName: {{ include "sidecarInjector.name" . }}-secret
   issuerRef:
     name: self-signed
+    kind: ClusterIssuer
+    group: cert-manager.io
   dnsNames:
     - {{ include "sidecarInjector.fullname" . }}
     - {{ include "sidecarInjector.fullname" . }}.{{ .Release.Namespace }}.svc
