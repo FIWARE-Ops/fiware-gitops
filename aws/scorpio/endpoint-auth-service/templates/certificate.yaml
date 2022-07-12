@@ -12,5 +12,6 @@ spec:
     kind: ClusterIssuer
     group: cert-manager.io
   dnsNames:
+    - {{ include "sidecarInjector.fullname" . }}.{{ .Release.Namespace }}.svc
     - {{ include "sidecarInjector.fullname" . }}
 {{- end }}
