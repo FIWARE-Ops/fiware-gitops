@@ -9,7 +9,7 @@ metadata:
     "helm.sh/hook": post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation
     "helm.sh/hook-weight": "1"
-    cert-manager.io/inject-ca-from: {{ include "sidecarInjector.name" . }}-secret
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ include "sidecarInjector.name" . }}-cert
 webhooks:
   - name: {{ include "sidecarInjector.name" . }}.sfdc.internal
     {{- if .Values.sidecarInjector.restrictNamespace.enabled }}
