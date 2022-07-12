@@ -35,7 +35,7 @@ spec:
             - --port={{ .Values.sidecarInjector.port }}
             - --certFile=/webhook/certs/tls.crt
             - --keyFile=/webhook/certs/tls.key
-            - --injectPrefix={{ .Values.sidecarinjector.annotationNamespace }}
+            - --injectPrefix={{ .Values.sidecarInjector.annotationNamespace }}
             - --injectName=request
             - --sidecarDataKey=envoy-sidecar
           ports:
