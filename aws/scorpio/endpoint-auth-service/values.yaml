@@ -307,6 +307,32 @@ sidecarInjector:
     # -- specification of the image pull policy
     pullPolicy: IfNotPresent
 
+  # -- configuration for the sidecar injection certificate
+  certificate:
+    # -- type of certificate to use, currently supported: cert-manager and inline
+    type: cert-manager
+    # -- issuer config, in case cert-manager is used
+    issuer:
+      # -- name of the issuer
+      name: self-signed
+      # -- kind of the issuer
+      kind: ClusterIssuer
+      # -- group of the issuer
+      group: cert-manager.io
+
+    # ONLY REQUIRED IN CASE OF certificate.type=inline 
+    # -- certificate to be used by the injector service in pem format, be aware that it has to provide SAN
+    cert: |
+      -----BEGIN CERTIFICATE-----
+        ---
+      -----END CERTIFICATE-----
+
+    # -- key to be used by the injector service
+    key: |
+      -----BEGIN PRIVATE KEY-----
+        ---
+      -----END PRIVATE KEY-----
+ 
   # -- additional labels for the deployment, if required
   additionalLabels: {}
   # -- additional annotations for the deployment, if required
@@ -357,61 +383,6 @@ sidecarInjector:
     port: 443
     # -- addtional annotations, if required
     annotations: {}
-
-  # -- certificate to be used by the injector service in pem format
-  cert: |
-    -----BEGIN CERTIFICATE-----
-    MIIDfDCCAmSgAwIBAgIRAMXy/bGcFf4WmQ7G3yP0AcgwDQYJKoZIhvcNAQELBQAw
-    JjEkMCIGA1UEAwwba3ViZS1jc3Itc2lnbmVyX0AxNjU3Mjk2ODEwMB4XDTIyMDcx
-    MTE0MzYzNVoXDTIyMDcxMjE0MzYzNVowgYQxCzAJBgNVBAYTAkRFMQ8wDQYDVQQI
-    EwZTYXhvbnkxEDAOBgNVBAcTB0RyZXNkZW4xGjAYBgNVBAoTEUZJV0FSRSBGb3Vu
-    ZGF0aW9uMQswCQYDVQQLEwJpdDEpMCcGA1UEAxMgZWFzLXNpZGVjYXItaW5qZWN0
-    b3Iuc2NvcnBpby5zdmMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDm
-    GtoVx9EmDa2uI0simL3npETU4unGmZKiqAUX6UBoxwp3J+eyBkJtJEtT2rQdjOpo
-    n9jb8vu1xnT9Iqp2ioOgMXKtGIREHvbANVLsKkxtBD4mGVjtumlAfbKzCnwKnVtr
-    7zDza2vbRrZ1vrp3ORibsGYnJGYraUBfWLOYCU8DABDDzV2nCU6VSQ9HpWTeLIlj
-    saZ6zK22xA5undaIEdauy0vpExra6KeU3ZUXNPXHFcM1t4xfv8vYyexsZS0h8jDS
-    EaQudwZ0irMFS0b6C0FkwR7XBifYD69xkYSsf3lYZVL3JV4q1PO8ofb2inD5VZtK
-    Q/299HQsE3nm30EXFU+jAgMBAAGjRjBEMBMGA1UdJQQMMAoGCCsGAQUFBwMCMAwG
-    A1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUUC0jWmt5mbQU2t6Ga1LrgmiWt9cwDQYJ
-    KoZIhvcNAQELBQADggEBACEO9DeHpyaQ551m3bH9VYb4nsQkviHU7XlWOfHVyRrP
-    B076ZehdeogDIgqzCYVr7vqP5HaIf1yXn6ntBC6V8V3a+tZSFjcGjLAvMh5S8oj+
-    YbL4HebliD9Nnx2xAcfT0JrgrzTE3P9HixoA8OE0wBZ7J6QGP2ecLmZbDzHyrp+M
-    82eUbECWF9nVwqdIwf0ApWaE/4eTuCZFE7A2blE9sRIJ5DkTZok/yplZJyx0MEkn
-    FRIz1BaGmjza7mhZ+eklx3xYayEYfnDcZoen033iB1Rq92My5eYVMq3pLS1oFzzz
-    lF0eQ8xe3ajm8wMdiRsosEN8bKOGquM8Zh0i+ryCqXU=
-    -----END CERTIFICATE-----
-
-  # -- key to be used by the injector service
-  key: |
-   -----BEGIN PRIVATE KEY-----
-    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDmGtoVx9EmDa2u
-    I0simL3npETU4unGmZKiqAUX6UBoxwp3J+eyBkJtJEtT2rQdjOpon9jb8vu1xnT9
-    Iqp2ioOgMXKtGIREHvbANVLsKkxtBD4mGVjtumlAfbKzCnwKnVtr7zDza2vbRrZ1
-    vrp3ORibsGYnJGYraUBfWLOYCU8DABDDzV2nCU6VSQ9HpWTeLIljsaZ6zK22xA5u
-    ndaIEdauy0vpExra6KeU3ZUXNPXHFcM1t4xfv8vYyexsZS0h8jDSEaQudwZ0irMF
-    S0b6C0FkwR7XBifYD69xkYSsf3lYZVL3JV4q1PO8ofb2inD5VZtKQ/299HQsE3nm
-    30EXFU+jAgMBAAECggEAUg+JbvMPt45xPgUAKppmP1Hp6jHyRQ1HqhJZnqlkevlg
-    1hW5H1f0IJAs/P6l9VPn1OAMqoQBGFZqKkxOlm/XeS2pQ+nWYaTZQrrBk8+R6d71
-    ewjXGhC8sG8jZ455ph9wFxH6VxUcJdsV/u/B9/q4t+00wQjOFvU2K8qqYbIQJ3UV
-    YHqCrWzR7OB4k98PNFel1mnOBa8HgMQpB18iF/kephtNuII622m/8Omx9/Tn65QD
-    XroaTxxDGOPHySTDIe+o4h/5i+YNfXgUJiYOYFWCPU8RxJflrpIqC4UsFE/4OVm0
-    hMi4+BLgq34NhvyrX2kyNhUPIoB03Otb0rCkPDz4gQKBgQD3aeu2+YOPws6f/ERu
-    i2Cl88wP1ucZAjHaJe8ilIXKlAjUZtfqn1bf5P7LhC8KpXEnW6EFEFxsqUJfQ77e
-    kQZOj4F5fJgroPQZvsJNO8JThSaYmfRnztQX/1zhzhVuTxE/mP+8fId3/cKigwRD
-    qJ0OXkNWvQ9u2bdlrjUpYRfBEwKBgQDuFyfC5OhgNgoJxpXPmWRVjDQ6a1KTLJQz
-    MZdVoatB3ycFEihmR7L0IM1zHOpRTFyMOXP4d1FL8Gg3to3mZI1N46eRCyqBO+Pe
-    CaeNJfKtQxa+oTU2vhhQtptAOq8haRUu8VhvgZI3zy9SSwRKAxPtRlppfqSI69Wm
-    +QrubeeZMQKBgG30rwNkpKmRhE7pyGfwnYVjcj9f3NjqdsliroKJy2QaoknzYuYs
-    5mke1nYQSu/KUx2QxWEAwnKwToUUEJHNliX39SzOyLorEBEZDDVS56xCssKDOXGh
-    I/V+UgMwmamqjhnbn1xfY71aE9QxsgV3vEUUc4zq/R7gt3cDEzFOq0XtAoGBAOCm
-    DolRTYVCV/RjYQWRuV8SvFEG5NIjNO6c8ysEMUAlG38oY+Al9M9uiAv+k4UEJSrW
-    JvuhMZ8ShnNTF870v3Nnw7sSqxdneBkQSPzgentLGxHhsAEoGm9F7XUMKiS/LxKs
-    /IGx41IvdnoSeEiRYOL4B+UUbpEW3PAAenUAVI9xAoGBAOQbwM2F7Iew/qGI5SXx
-    HzPFiCXHMev+53JKtnnIF3Jt8xOqyC4zbD/YIjw79fyxFr6FtoQnCHemvmZj2j0w
-    bGlFpB8Ijn9TQtNyVgKBYZAtFKCnUmNn5y2aPrqUPB9Rj58eK7HnUwt50pgWIPoy
-    y85inzajncickmdqzs/99MQW
-    -----END PRIVATE KEY-----
 
   ## liveness and readiness probes of the endpoint-configuration-service, they will be evaluated against the health endpoint
   # ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes

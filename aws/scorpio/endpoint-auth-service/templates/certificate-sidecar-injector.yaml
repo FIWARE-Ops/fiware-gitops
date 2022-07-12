@@ -1,4 +1,4 @@
-{{- if .Values.sidecarInjector.enabled -}}
+{{- if and (.Values.sidecarInjector.enabled) (eq .Values.sidecarInjector.certificate.type "cert-manager") -}}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -8,9 +8,9 @@ metadata:
 spec:
   secretName: {{ include "sidecarInjector.name" . }}-secret
   issuerRef:
-    name: self-signed
-    kind: ClusterIssuer
-    group: cert-manager.io
+    name: {{ .Values.sidecarInjector.certificate.issuer.name }}
+    kind: {{ .Values.sidecarInjector.certificate.issuer.kind }}
+    group: {{ .Values.sidecarInjector.certificate.issuer.group }}
   dnsNames:
     - {{ include "sidecarInjector.fullname" . }}.{{ .Release.Namespace }}.svc
     - {{ include "sidecarInjector.fullname" . }}
