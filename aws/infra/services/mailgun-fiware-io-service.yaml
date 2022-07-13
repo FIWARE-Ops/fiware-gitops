@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailgun-fiware-io
+  labels:
+    app.kubernetes.io/instance: mailgun-fiware-io
+    app.kubernetes.io/name: mailgun
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: mailgun-fiware-io
+    app.kubernetes.io/name: mailgun
+  ports:
+    - port: 25
+      targetPort: 25
+      protocol: TCP
+      name: http
