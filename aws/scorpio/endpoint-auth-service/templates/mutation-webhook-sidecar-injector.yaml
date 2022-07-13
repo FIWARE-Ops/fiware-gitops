@@ -24,7 +24,12 @@ webhooks:
         name: {{ include "sidecarInjector.fullname" . }}
         namespace: {{ .Release.Namespace }}
         path: /mutate
+      {{- if (eq .Values.sidecarInjector.certificate.type "inline") -}}
+      caBundle: {{ .Values.sidecarInjector.cert | b64enc | replace "\n" "" }}
+      {{- end }}
+      {{- if (eq .Values.sidecarInjector.certificate.type "cert-manager") }}
       caBundle:
+      {{- end }}
     rules:
       - apiGroups: [""]
         apiVersions: ["v1"]
