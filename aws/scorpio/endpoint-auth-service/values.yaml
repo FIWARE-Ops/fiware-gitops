@@ -1,131 +1,131 @@
+endpoint-auth-service:
+  configService:
 
-configService:
-
-  ## configuration of the image to be used
-  image:
-    # -- endpoint-configuration-service image name
-    # ref: https://quay.io/repository/fiware/endpoint-configuration-service
-    repository: quay.io/fiware/endpoint-configuration-service
-    # -- tag of the image to be used
-    tag: 0.1.18
-    # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
+    ## configuration of the image to be used
+    image:
+      # -- endpoint-configuration-service image name
+      # ref: https://quay.io/repository/fiware/endpoint-configuration-service
+      repository: quay.io/fiware/endpoint-configuration-service
+      # -- tag of the image to be used
+      tag: 0.1.18
+      # -- specification of the image pull policy
+      pullPolicy: IfNotPresent
 
 
-  ## openshift specific route definition. Will not work on plain k8s
-  route:
-    ## -- should the deployment create openshift routes
+    ## openshift specific route definition. Will not work on plain k8s
+    route:
+      ## -- should the deployment create openshift routes
+      enabled: true
+      tls:
+        termination: edge
+
+  ## configuration for the sidecar, will be applied by the injector if not configured otherwise
+  sidecar:
+
+    ## configuration of the image to be used
+    image:
+      # -- envoy image name
+      # ref: https://quay.io/repository/fiware/envoy
+      repository: quay.io/fiware/envoy
+      # -- tag of the image to be used
+      tag: 0.1.18
+      # -- specification of the image pull policy
+      pullPolicy: IfNotPresent
+
+    ## image to be used for iptable init.
+    initIptables:
+      # -- image name
+      # ref: https://quay.io/repository/fiware/init-iptables
+      repository: quay.io/fiware/init-iptables
+      # -- tag of the image to be used
+      tag: 0.1.18
+      # -- specification of the image pull policy
+      pullPolicy: IfNotPresent
+
+    ## image to be used for applying initial config
+    initConfig:
+      # -- image name
+      # ref: https://quay.io/repository/fiware/envoy-resource-updater
+      repository: quay.io/fiware/envoy-resource-updater
+      # -- tag of the image to be used
+      tag: 0.1.18
+      # -- specification of the image pull policy
+      pullPolicy: IfNotPresent
+
+    ## image to be used for applying config updates
+    updateConfig:
+      # -- image name
+      # ref: https://quay.io/repository/fiware/envoy-resource-updater
+      repository: quay.io/fiware/envoy-resource-updater
+      # -- tag of the image to be used
+      tag: 0.1.18
+      # -- specification of the image pull policy
+      pullPolicy: IfNotPresent
+
+
+  ## configuration for the automatic sidecar injection
+  sidecarInjector:
+    ## -- should the envoy sidecar be injected into annotated pods
     enabled: true
-    tls:
-      termination: edge
 
-## configuration for the sidecar, will be applied by the injector if not configured otherwise
-sidecar:
+    # -- option to override the fullname config in the _helpers.tpl
+    fullnameOverride: eas-sidecar-injector
 
-  ## configuration of the image to be used
-  image:
-    # -- envoy image name
-    # ref: https://quay.io/repository/fiware/envoy
-    repository: quay.io/fiware/envoy
-    # -- tag of the image to be used
-    tag: 0.1.18
-    # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
+    # -- if a sidecarInjector specific service account should be used, it can be configured here
+    # ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    serviceAccount:
+      # -- specifies if the account should be created
+      create: true
 
-  ## image to be used for iptable init.
-  initIptables:
-    # -- image name
-    # ref: https://quay.io/repository/fiware/init-iptables
-    repository: quay.io/fiware/init-iptables
-    # -- tag of the image to be used
-    tag: 0.1.18
-    # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
+    ## configuration of the image to be used
+    image:
+      # -- sidecar-injector image name
+      # ref: https://hub.docker.com/r/mayankkr/sidecarinjector
+      repository: expediagroup/kubernetes-sidecar-injector
+      # -- tag of the image to be used
+      tag: 1.0.1
+      # -- specification of the image pull policy
+      pullPolicy: IfNotPresent
 
-  ## image to be used for applying initial config
-  initConfig:
-    # -- image name
-    # ref: https://quay.io/repository/fiware/envoy-resource-updater
-    repository: quay.io/fiware/envoy-resource-updater
-    # -- tag of the image to be used
-    tag: 0.1.18
-    # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
+    # -- configuration for the sidecar injection certificate
+    certificate:
+      # -- type of certificate to use, currently supported: cert-manager and inline
+      type: cert-manager
+      # -- issuer config, in case cert-manager is used
+      issuer:
+        # -- name of the issuer
+        name: self-signed
+        # -- kind of the issuer
+        kind: ClusterIssuer
+        # -- group of the issuer
+        group: cert-manager.io
 
-  ## image to be used for applying config updates
-  updateConfig:
-    # -- image name
-    # ref: https://quay.io/repository/fiware/envoy-resource-updater
-    repository: quay.io/fiware/envoy-resource-updater
-    # -- tag of the image to be used
-    tag: 0.1.18
-    # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
+  ## configuration to be used fo the ishare-auth-provider
+  ishare:
 
-
-## configuration for the automatic sidecar injection
-sidecarInjector:
-  ## -- should the envoy sidecar be injected into annotated pods
-  enabled: true
-
-  # -- option to override the fullname config in the _helpers.tpl
-  fullnameOverride: eas-sidecar-injector
-
-  # -- if a sidecarInjector specific service account should be used, it can be configured here
-  # ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
-  serviceAccount:
-    # -- specifies if the account should be created
-    create: true
-
-  ## configuration of the image to be used
-  image:
-    # -- sidecar-injector image name
-    # ref: https://hub.docker.com/r/mayankkr/sidecarinjector
-    repository: expediagroup/kubernetes-sidecar-injector
-    # -- tag of the image to be used
-    tag: 1.0.1
-    # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
-
-  # -- configuration for the sidecar injection certificate
-  certificate:
-    # -- type of certificate to use, currently supported: cert-manager and inline
-    type: cert-manager
-    # -- issuer config, in case cert-manager is used
-    issuer:
-      # -- name of the issuer
-      name: self-signed
-      # -- kind of the issuer
-      kind: ClusterIssuer
-      # -- group of the issuer
-      group: cert-manager.io
-
-## configuration to be used fo the ishare-auth-provider
-ishare:
-
-  # -- should the ishare-auth-provider be enabled?
-  enabled: true
-
-  ## configuration of the image to be used
-  image:
-    # -- endpoint-configuration-service image name
-    # ref: https://quay.io/repository/fiware/ishare-auth-provider
-    repository: quay.io/fiware/ishare-auth-provider
-    # -- tag of the image to be used
-    tag: 0.1.18
-    # -- specification of the image pull policy
-    pullPolicy: IfNotPresent
-
-  ## openshift specific route definition. Will not work on plain k8s
-  route:
-    ## -- should the deployment create openshift routes
+    # -- should the ishare-auth-provider be enabled?
     enabled: true
-    tls:
-      termination: edge
 
-## address of the auth-provider. For now, this will be ishare. If multiple are used, this should point to a path-based router to distribute the requests.
-authProvider:
-  # -- address to the auth-service
-  address: ishare-auth
-  # -- port of the auth-service
-  port: 8080
+    ## configuration of the image to be used
+    image:
+      # -- endpoint-configuration-service image name
+      # ref: https://quay.io/repository/fiware/ishare-auth-provider
+      repository: quay.io/fiware/ishare-auth-provider
+      # -- tag of the image to be used
+      tag: 0.1.18
+      # -- specification of the image pull policy
+      pullPolicy: IfNotPresent
+
+    ## openshift specific route definition. Will not work on plain k8s
+    route:
+      ## -- should the deployment create openshift routes
+      enabled: true
+      tls:
+        termination: edge
+
+  ## address of the auth-provider. For now, this will be ishare. If multiple are used, this should point to a path-based router to distribute the requests.
+  authProvider:
+    # -- address to the auth-service
+    address: ishare-auth
+    # -- port of the auth-service
+    port: 8080
