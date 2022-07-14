@@ -101,3 +101,9 @@ keyrock:
       value: "true"
     - name: IDM_SERVER_MAX_HEADER_SIZE
       value: "32768"
+    - name: IDM_EMAIL_HOST
+      value: "mailgun-fiware-io.infra.svc.cluster.local"
+    - name: IDM_EMAIL_PORT
+      value: "25"
+    - name: IDM_EMAIL_ADDRESS
+      value: "nocheaper-keyrock@fiware.io"

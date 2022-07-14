@@ -41,4 +41,10 @@ keyrock:
       value: i4trust_demo_bae_idm
     - name: IDM_DB_SEED
       value: "true"
+    - name: IDM_EMAIL_HOST
+      value: "mailgun-fiware-io.infra.svc.cluster.local"
+    - name: IDM_EMAIL_PORT
+      value: "25"
+    - name: IDM_EMAIL_ADDRESS
+      value: "bae-keyrock@fiware.io"
     
