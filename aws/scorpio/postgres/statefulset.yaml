@@ -42,5 +42,3 @@ spec:
         resources:
           requests:
             storage: 2Gi
-        emptyDir:
-          medium: Memory
