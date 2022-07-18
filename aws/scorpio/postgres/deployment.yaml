@@ -13,8 +13,6 @@ spec:
     metadata:
       labels:
         app: postgres
-      annotations:
-        sidecar.k8s.fiware.org/request: "envoy-sidecar"
     spec:
       serviceAccount: postgres
       serviceAccountName: postgres
