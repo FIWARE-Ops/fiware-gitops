@@ -28,7 +28,7 @@ endpoint-auth-service:
       # ref: https://quay.io/repository/fiware/envoy
       repository: quay.io/fiware/envoy
       # -- tag of the image to be used
-      tag: 0-2-0-PRE-34
+      tag: 0.2.0-pre-34
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
