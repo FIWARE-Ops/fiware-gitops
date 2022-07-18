@@ -16,6 +16,7 @@ spec:
       annotations:
         sidecar.k8s.fiware.org/request: "envoy-sidecar"
     spec:
+      serviceAccount: scorpio
       serviceAccountName: scorpio
       containers:
         - imagePullPolicy: IfNotPresent
