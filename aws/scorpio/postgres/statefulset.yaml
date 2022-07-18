@@ -15,6 +15,7 @@ spec:
       labels:
         app: postgres
     spec:
+      serviceAccountName: postgres
       containers:
       - env:
         - name: POSTGRES_USER

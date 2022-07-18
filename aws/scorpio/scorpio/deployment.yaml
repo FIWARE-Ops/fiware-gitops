@@ -16,6 +16,7 @@ spec:
       annotations:
         sidecar.k8s.fiware.org/request: "envoy-sidecar"
     spec:
+      serviceAccountName: scorpio
       containers:
         - imagePullPolicy: IfNotPresent
           image: scorpiobroker/scorpio:scorpio-aaio-no-eureka_2.1.14
