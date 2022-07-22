@@ -24,6 +24,8 @@ keyrock:
   route:
     ## -- should the deployment create openshift routes
     enabled: true   
+    tls: 
+      termination: edge
   ## ingress configuration
   ingress:
     ## should there be an ingress to connect keyrock with the public internet
