@@ -10,6 +10,8 @@ api-umbrella:
 
   route:
     enabled: true
+    tls: 
+      termination: edge
 
   ## Service account (might be necessary on OpenShift)
   #serviceAccount:
