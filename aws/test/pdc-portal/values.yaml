@@ -1,5 +1,7 @@
 pdc-portal:
 
+  route: 
+    enabled: true
   config:
 
     # Title of application
