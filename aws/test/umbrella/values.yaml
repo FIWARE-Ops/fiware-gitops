@@ -36,7 +36,7 @@ api-umbrella:
       # -- password to authenticate with, if not set, we will create it
       password: api-umbrella-password
       # -- host of the mongodb
-      host: mongodb-0.mongodb-headless.provider.svc.cluster.local
+      host: test-mongo-mongodb
       # -- port of the mongodb
       port: 27017
       # -- name of the database, needs to exist on startup
