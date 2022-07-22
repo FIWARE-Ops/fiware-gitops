@@ -123,9 +123,9 @@ pdc-portal:
     idp:
       "EU.EORI.NLHAPPYPETS":
         id: "EU.EORI.ITPRIMOPRINCIPIO"
-        url: "http://keyrock:8080"
-        authorize_endpoint: "http://keyrock:8080/oauth2/authorize"
-        token_endpoint: "http://keyrock:8080/oauth2/token"
+        url: "https://test-keyrock-test.apps.fiware-dev-aws.fiware.dev"
+        authorize_endpoint: "https://test-keyrock-test.apps.fiware-dev-aws.fiware.dev/oauth2/authorize"
+        token_endpoint: "https://test-keyrock-test.apps.fiware-dev-aws.fiware.dev/oauth2/token"
       "EU.EORI.ITOPENIMPACT":
         id: "EU.EORI.ITOPENIMPACT"
         url: "https://keyrock.openimpact.it"

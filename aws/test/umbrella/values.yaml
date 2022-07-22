@@ -1,4 +1,7 @@
 api-umbrella:
+  service-account:
+    create: false
+    name: umbrella
   # Values for fiware/api-umbrella Helm Chart
   #
   # Chart values file:
