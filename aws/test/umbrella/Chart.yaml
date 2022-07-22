@@ -1,0 +1,12 @@
+apiVersion: v2
+name: umbrella
+description: Chart holder for argo-cd
+
+type: application
+version: 1.0.3
+appVersion: "1.0.1"
+
+dependencies:
+- name: api-umbrella
+  version: 0.0.14
+  repository: https://fiware.github.io/helm-charts

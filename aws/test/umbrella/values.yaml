@@ -1,0 +1,146 @@
+api-umbrella:
+  # Values for fiware/api-umbrella Helm Chart
+  #
+  # Chart values file:
+  # ref: https://github.com/FIWARE/helm-charts/blob/main/charts/api-umbrella/values.yaml
+  #
+
+  ## ingress configuration for making API Umbrella externally available
+  ingress:
+    # -- should there be an ingress to connect API Umbrella with the public internet
+    enabled: false
+    # -- annotations to be added to the ingress
+    annotations: {}
+    # -- all hosts to be provided
+    hosts:
+      - host: i4trust.shotpixengine.com
+        paths:
+          - /
+    ## configure the ingress' tls
+    tls:
+      - secretName: umbrella-prod-tls
+        hosts: 
+          - i4trust.shotpixengine.com
+
+  ## Service account (might be necessary on OpenShift)
+  #serviceAccount:
+  #  create: false
+  #  name: <account-name>
+
+  # configuration of api umbrella
+  umbrella:
+    # -- list services that should be run by api-umbrella. See https://github.com/Profirator/api-umbrella/tree/master/config and
+    # https://api-umbrella.readthedocs.io/en/latest/ for more
+    services:
+      - router
+      - web
+
+    # -- configure the host of the frontend here
+    webHost: umbrella-api-umbrella
+    router: 
+      web_app_host: "umbrella-api-umbrella"
+
+    # database connection
+    mongodb:
+      # -- username to authenticate with. If the user does not exist, admin config is required and a user will be created
+      username: api_umbrella
+      # -- password to authenticate with, if not set, we will create it
+      password: api-umbrella-password
+      # -- host of the mongodb
+      host: mongodb-0.mongodb-headless.provider.svc.cluster.local
+      # -- port of the mongodb
+      port: 27017
+      # -- name of the database, needs to exist on startup
+      name: api_umbrella
+
+    authorisation_registry:
+      host: https://ar.isharetest.net
+      token_endpoint: https://ar.isharetest.net/connect/token
+      delegation_endpoint: https://ar.isharetest.net/delegation
+      identifier: EU.EORI.NL000000004
+
+    # -- iSHARE Satellite
+    # Config for satellite - required if no root CA is provided in jws config
+    satellite:
+      # Host
+      host: https://scheme.isharetest.net
+      # Endpoint for /token requests (full URL)
+      token_endpoint: https://scheme.isharetest.net/connect/token
+      # Endpoint for /trusted_list requests to fetch trusted root CAs (full URL)
+      trusted_list_endpoint: https://scheme.isharetest.net/trusted_list
+      # EORI of satellite
+      identifier: EU.EORI.NL000000000
+
+
+    # -- JWS configuration
+    # Provide information for signing and validating JWT when iSHARE-compliant authorization modes are used
+    jws:
+      identifier: EU.EORI.ITPRIMOPRINCIPIO
+      x5c:
+        - LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQ2akNDQXRLZ0F3SUJBZ0lJRXgxdWIvWno4NGN3RFFZSktvWklodmNOQVFFTEJRQXdQREU2TURnR0ExVUUKQXd3eFZFVlRWQ0JwVTBoQlVrVWdSVlVnU1hOemRXbHVaeUJEWlhKMGFXWnBZMkYwYVc5dUlFRjFkR2h2Y21sMAplU0JITlRBZUZ3MHlNakF6TXpBd09UVTNNVEZhRncweU5UQXpNamt3T1RVM01UQmFNSFl4SVRBZkJnTlZCQU1NCkdGQnlhVzF2VUhKcGJtTnBjR2x2VXk1akxtRXVjaTVzTGpFaE1COEdBMVVFQlJNWVJWVXVSVTlTU1M1SlZGQlMKU1UxUFVGSkpUa05KVUVsUE1TRXdId1lEVlFRS0RCaFFjbWx0YjFCeWFXNWphWEJwYjFNdVl5NWhMbkl1YkM0eApDekFKQmdOVkJBWVRBa2xVTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFsM01rCmwrUjJIcVl6dVQ1bjYzNk1GZk5PSGtKeFJYWUorYXkzcUJPSTRqOFc3ZlV6NHozczBRT3FNNjhMbThzL2t4VnkKZVMvdGlqNitvejVCdDhyRXo0YzdxWGwxdWZ1MEhuKzdUOFYwWWVVdi90WVF1MHQwK1dvWjVtSGtCK21NQXB5cgo4S1FHbGJTclE0MnBMMHhJNnh1amNmSmxOcGRaQzdmemNHeXAzOXI2eWlMeTViVnJsRlh6dHdiT0JkekJYcjVECjE3cUNDbFVvUGRKUzlkZFY5U1c0c2Q4b3VKNkt1eDltbFVJbFg2MDdLTzU2YVljS2wrOVBIMnpaL2FrREdGMUsKRUJDTTRpbmwyQzJuN29qUFhCLzFtdlVKNGorOEw1VXlTSG9GTUtRREU3TXBqT0R6cUZFQVZ4MFhsWDliZnRWMAo1ODJDZ1NnN2oya3FFbVd1UHdJREFRQUJvNEcxTUlHeU1COEdBMVVkSXdRWU1CYUFGRzNGWlluTDM1RlUwV3M4CnR3S2xMczJLYUpBZE1DY0dBMVVkSlFRZ01CNEdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RCQVlJS3dZQkJRVUgKQXdFd053WUlLd1lCQlFVSEFRTUVLekFwTUFnR0JnUUFqa1lCQVRBSUJnWUVBSTVHQVFRd0V3WUdCQUNPUmdFRwpNQWtHQndRQWprWUJCZ0l3SFFZRFZSME9CQllFRkZBaUR3cG1GbHY5U2kydkZvNnpNRjdtRlNDOU1BNEdBMVVkCkR3RUIvd1FFQXdJR3dEQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFKSWt4Y28vUWxyalNMTlJqNFp3NjNvRWcKdmNyTGRVcUdhUnFUTUZ4eC9aWXh6anpNZUxFOEQybExCTERUTmd6YVg3TDBrajQ5WFRTT2xJbVBHcmFJeFI1SgpPMDBSMno0b242c3lMMi9LWXBsSmQ5RXpmSlVrZnY5aEUyeDFsWDBGVThhWXlOYkExYm54RVh6Yy9nNndQeFJFClBMbTBNZk1FM2Rxem5uSVlYT015cDJCVjFPcWtmWnY4eDBtOHF2ZnZNLzNqYUd4QWhXbndITENnS3VkWnF1REoKNmZ3SzRUUytQVW5BOVEwTFV5Zk8rZU00OXBRencvNjE1RWpQN1ZtOEdsNENobUhPTUQxVmdnL2pSNERtcDd6UwpWbjlHMGpmaXllRkdsZGFDR05JZ0xIRGtIUGxGaDJwVXoyQ2ZFNm9GUFBDcE5TcHNjUmlHdUdNUjZOOGh3UT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=
+        - LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURTRENDQWpDZ0F3SUJBZ0lJU3hSM0ltekcxQmN3RFFZSktvWklodmNOQVFFTEJRQXdKekVsTUNNR0ExVUUKQXd3Y1ZFVlRWQ0JwVTBoQlVrVWdSbTkxYm1SaGRHbHZiaUJsU1VSQlV6QWVGdzB4T1RBeU1qSXhNREEwTXpGYQpGdzB6T1RBeU1UY3hNREF5TkRsYU1Ed3hPakE0QmdOVkJBTU1NVlJGVTFRZ2FWTklRVkpGSUVWVklFbHpjM1ZwCmJtY2dRMlZ5ZEdsbWFXTmhkR2x2YmlCQmRYUm9iM0pwZEhrZ1J6VXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUEKQTRJQkR3QXdnZ0VLQW9JQkFRREhCMkFCUUw3endtaTF4SWtPMGEycTZqSUpkbjNRQW0wczFsU2VRZXY5RjJGMwpNNVo4cWlxUUphdXJNWnl3WmZkTnZnOStJcUdIT2pEZTZoSWh1Unp6b0FvMEFiTzROOU9kZjJSRERVOTVON3RvCkptQXlDaVlHZ1pmWnQ3QnNLRkllUTZwNkNzZ0tjUlhQaTBmZFhkVlNIcDRiWmZRT1FkY2xNYnRJVGlybkZ0VTAKNk5QQWhvWTY3Nll6OTZ4RkFFMHpvbTZlTVZQUE9JbTBHOGdkNDRYbG5iTDB3MG1jY0NpMlZVWmp2Q0lMNTlPNgoxTzh2bFZ5THNCcU5OVEN2ZjlDMkNNWWFFYXRYWnl6L2x3Z0g2SllIdEQwdXNYdC8rTTBxS1llMW9lb0xrMFppCmNGWlhjazFpUzA5a0ZkZ2dLNUJsTm9kb1dKYURCUnJvNTFXaFkyV25BZ01CQUFHall6QmhNQThHQTFVZEV3RUIKL3dRRk1BTUJBZjh3SHdZRFZSMGpCQmd3Rm9BVWxaTWt5YnloQ3pLNUhPQkZIS1JPK01MU1IvNHdIUVlEVlIwTwpCQllFRkczRlpZbkwzNUZVMFdzOHR3S2xMczJLYUpBZE1BNEdBMVVkRHdFQi93UUVBd0lCaGpBTkJna3Foa2lHCjl3MEJBUXNGQUFPQ0FRRUFaSDVRanVxK085RnB2NjM3ZzBjRjZuMUlMWUJMejFlTlpqRUIzZG9BZXh2aTVDelMKdzNvc3dKQ1NlZEdXM2hoMHFIT1RLMmdJODNqaDBXMkVBbjJpc0Znd2hNb0cyamQyWVNGU2ttOFEvMmVPZmM2TQpnR1NDNXNPVEw3NUo3YnlMQ29yZHFkL040ZWFqM0VxS0xhV3E3cjd1c3RQODFQOEVJbHowRDhhN2xmZjFGU28yCjNIV1hUV1gyK20ydm9MQUU1bDk3YUdUR1JTMVVieGhQMmpGS1lKOVh6aUtlOU1RSlNaRWxUUThqcWcya1BGa0UKeC9YcUFXcWxHMWRsMXl3TEpxNWllUHZLMVI0QVlOSS9ZYlpRazlzbGo4ditQLzZNN0V0RXJzZjJ1SVNnZXdMVApjV2wyNHgzbkc1eGJRWnhyUDhsMmpTR1ltT1RJbmdLT1FTbmJmZz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=
+        - LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNekNDQWh1Z0F3SUJBZ0lJQkxVMmNaQVpxTEV3RFFZSktvWklodmNOQVFFTEJRQXdKekVsTUNNR0ExVUUKQXd3Y1ZFVlRWQ0JwVTBoQlVrVWdSbTkxYm1SaGRHbHZiaUJsU1VSQlV6QWVGdzB4T1RBeU1qSXhNREF5TkRsYQpGdzB6T1RBeU1UY3hNREF5TkRsYU1DY3hKVEFqQmdOVkJBTU1IRlJGVTFRZ2FWTklRVkpGSUVadmRXNWtZWFJwCmIyNGdaVWxFUVZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUNyRFAyRFdYMy8KYjh1TWFwekVCQVRTYTZpWmZ2Z2d6SUJVRXhrV0ViRzllMW5WeS9qUWsyMG5mU0ZNVW1SVDZOaFljZGtTWU8vVwpya2k5WTRFcEN5MXh2WkhxTCs0WTZTOUpMWndKNzYwTHBZbGUrTmFWdTdtaW5NVVFjdW9qNW5LekNsdmF6YjAwCkF4NWdrSlVmUjN2M1g1R1hxUXJrV2F6TXQrazVUTk02VFd1SjMwcU9md3JIeDV2VExtVFVVaWgrQnNHTDNmNUcKT3MxVlRZSUNOaGlUak43NG4yV3FwMmtVTFdJZSsvWDZSWi9oS3NwYUhHWm5LRFZUd0krOFptV0ZlanV4QTZETwpYN1JzWUxLdlFPMjFGbWJJQm9TczlBenY1OS9SeFdVSlZNTzBXaERoS3BRZ0NHandnVjMyb2ZOZGtGZ21kVnVsCnpOUElEMlJOYlRUTEFnTUJBQUdqWXpCaE1BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0h3WURWUjBqQkJnd0ZvQVUKbFpNa3lieWhDeks1SE9CRkhLUk8rTUxTUi80d0hRWURWUjBPQkJZRUZKV1RKTW04b1FzeXVSemdSUnlrVHZqQwowa2YrTUE0R0ExVWREd0VCL3dRRUF3SUJoakFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBbHphQlZhRmhabUg5CnV4c0xTdjNGa2t4V1Z3QlIxR2hBeHdjSmxWNHgra3FYOHRjaEo0U0RMRXVXUnJGNEROdHZTUjNyNjlLejhlWUkKNVh1VzFlRzEyWWpHR1ZsWWlqZHhyRzFBTnpHbjJ2ZG85dkw3ZEVGVUVNSzFBS3hSc3RiVGRFN3l3eklWL0M2MQp3OEpyeHdMdHQ5T2pkVUVVUEh1R1RqdXY1bkZCUGRGek9jdnUrRFRNbDczQ0pQMnplWlVGZ3VqNTVNc1hZNDVNCnJYcmJndCtMSnFVdTRwa0IyYkx1OUZiZVJMV1pKdWtuWVNyVzRmeVFCWjJpK01zR2RpQktRY2YzZkxYanBjaDQKOC9wN1NpVGs0dWZsb0JhcVRDbHQvRXRXWERTbUZjdjRRakJrMW1VUHU5dnhpa2NIRGtBdkpyT1hHZzBiKzNlSQo0YTdPVGZBYjFnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==
+      private_key: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCXcySX5HYepjO5
+        PmfrfowV804eQnFFdgn5rLeoE4jiPxbt9TPjPezRA6ozrwubyz+TFXJ5L+2KPr6j
+        PkG3ysTPhzupeXW5+7Qef7tPxXRh5S/+1hC7S3T5ahnmYeQH6YwCnKvwpAaVtKtD
+        jakvTEjrG6Nx8mU2l1kLt/NwbKnf2vrKIvLltWuUVfO3Bs4F3MFevkPXuoIKVSg9
+        0lL111X1Jbix3yi4noq7H2aVQiVfrTso7npphwqX708fbNn9qQMYXUoQEIziKeXY
+        LafuiM9cH/Wa9QniP7wvlTJIegUwpAMTsymM4POoUQBXHReVf1t+1XTnzYKBKDuP
+        aSoSZa4/AgMBAAECggEAQ2Mb1qv0dNm97QBcC/gwS7oJOcSVkvMdKCdWRqZ+gzDQ
+        OowejM+qdiv7yOhrsWQDwyXJXCvbtWYKvCcA5c8GuFJzVQqyu9DHycRK64kvqjlo
+        nCrSogvGng28PXq0FGMyBZ2Bkd7iAS21AKdhLqbyUQ5osNRKfbplCCZO3uiyw2QE
+        IK3QJDOzBwlPFhs+HRXgmfdSz5L3R8dhPo4+Uc7gSyZOoyG+yCY43D7CdrlaNnQU
+        3uFC1wW50i0kHBpriTdw8WOVNwWmn9Fqa/TtVH2LV4rSFNH1gLSN48hsOgvUe5VR
+        MGqKfflecxcw68SvzEI+MaJXk+c9/iCt0FIxlrAJKQKBgQDRbnt5V28fMWXLj28m
+        ixiDOAHRlGndjZ/CitIdv6g3NAiFmsve3CwEBAGqsyrXwTjE60A50Edw/b29q6hd
+        3Q3cGK8Mc4TT5ALE8xW0g1hpu3wx2cACyx1F3tXrxUk0bGOHVHaYwZOjA4Y5r1Yi
+        bC1GVWADVKdjE8TvZL8csJJ5dwKBgQC5ICaR6bfSblJPMzMh+7Qs8iMs/j+JtYQd
+        u+PAd9PKk6Ixypf/PHV3lKGVeIZyJUw6sX34Zcxs4OnGgGZ15//QuYFmqUNq4cUe
+        HhISH70yL6ptRYT75myA36PjpwWMRgv4K3LqzPrioUrcirIf4EiMkPH+bEOQZYd3
+        ryTIkakjeQKBgGsAk71vWqsJRgU3B4cd0ixY1TULKvuzfEidPLVOUtfBkgkRCdCX
+        lTWIBoH8gIszgZm6yFnBfH7SZbselSs/4fDt+6HU86x+9ptBx3kvEmETFWUy59OF
+        izNDovCPH9PU/RULpnxtiszi5BVc7BkyQ/+HZ0LMYalRVHErfClgXbYJAoGAEA5N
+        yhHvM30F/oB+StA9zDgj/N8AO71WfA2zrxm1cLhlNNRRYn2n4nstmH0fi/7YIa8L
+        MeQCWt8W53Rzbn50nXG5W2IKytZR9k69Wn0ON7ASo++HnSFa/8JlwHTX8laQ6zE5
+        gkvM5qL+jyooUMNvB2H62wogwgFMQoEaO5sGhGECgYEAvzcE728az8LZfW9yfnI2
+        3p/XqKiJB8jegeUqOFTvvagwZaqTqJt9wTOJQARX5rroUUNzbpPx5G4Bb6G7O0ip
+        LJ5/lgOHxpRNd8xHQQ+vq7dmlKpkj5xfUNxDQKUpz7JxcNKjA+2+nRC9xmBv5LTW
+        DH3iqMQxO8JmK5e0ex19DCg=
+        -----END PRIVATE KEY-----
+
+    # -- configuration of the umbrella. See https://github.com/Profirator/api-umbrella/tree/master/config and
+    # https://api-umbrella.readthedocs.io/en/latest/ for more or use the out-commented part as a sane default
+    config:
+      elasticsearch:
+        hosts:
+          - http://elasticsearch-master.provider.svc.cluster.local:9200
+      hosts:
+        - hostname: umbrella-api-umbrella
+          default: true
+      nginx:
+        large_client_header_buffers: 8 64k
+      gatekeeper:
+        # API Key methods
+        # Add entry for fiware-oauth2 in case that Keyrock should be used
+        api_key_methods:
+          - fiware-oauth2
+          - header
+          - getParam
+        api_key_cache: true
+        # Default IDP (optionally in case that Keyrock is used)
+        #default_idp:
+        #  backend_name: fiware-oauth2
+        #  host: https://keyrock.domain.org
+
+      # Optional configuration in case that an SMTP server has been setup
+      #web:
+      #  mailer:
+      #    smtp_settings:
+      #        address: <smtp-hostname>
+      #        port: 587
+      #        authentication: login
+      #        user_name: SMTP-USER
+      #        password: SMTP-PASS
+

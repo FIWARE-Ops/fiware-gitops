@@ -1,0 +1,12 @@
+apiVersion: v2
+name: orion
+description: Chart holder for argo-cd
+
+type: application
+version: 1.0.3
+appVersion: "1.0.1"
+
+dependencies:
+- name: pdc-portal
+  version: 0.2.0
+  repository: https://i4trust.github.io/helm-charts
