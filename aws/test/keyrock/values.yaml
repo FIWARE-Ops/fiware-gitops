@@ -32,7 +32,7 @@ keyrock:
   ## database configuration for keyrock
   db:
     ## host of the database to be used (K8s internal service hostname)
-    host: mysql
+    host: test-mysql
     ## user for connecting the database
     user: root
     ## password for connecting the database (MySQL root password)
