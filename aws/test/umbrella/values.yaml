@@ -8,22 +8,8 @@ api-umbrella:
   # ref: https://github.com/FIWARE/helm-charts/blob/main/charts/api-umbrella/values.yaml
   #
 
-  ## ingress configuration for making API Umbrella externally available
-  ingress:
-    # -- should there be an ingress to connect API Umbrella with the public internet
-    enabled: false
-    # -- annotations to be added to the ingress
-    annotations: {}
-    # -- all hosts to be provided
-    hosts:
-      - host: i4trust.shotpixengine.com
-        paths:
-          - /
-    ## configure the ingress' tls
-    tls:
-      - secretName: umbrella-prod-tls
-        hosts: 
-          - i4trust.shotpixengine.com
+  route:
+    enabled: true
 
   ## Service account (might be necessary on OpenShift)
   #serviceAccount:
