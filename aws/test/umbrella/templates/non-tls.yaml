@@ -1,0 +1,7 @@
+kind: Route
+metadata:
+  name: test-umbrella-api-umbrella-non-tls
+spec:
+  to:
+    kind: Service
+    name: test-umbrella-api-umbrella
