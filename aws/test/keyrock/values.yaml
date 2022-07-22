@@ -26,6 +26,7 @@ keyrock:
     enabled: true   
     tls: 
       termination: edge
+      
   ## ingress configuration
   ingress:
     ## should there be an ingress to connect keyrock with the public internet
