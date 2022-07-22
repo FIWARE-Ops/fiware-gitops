@@ -25,9 +25,9 @@ api-umbrella:
       - web
 
     # -- configure the host of the frontend here
-    webHost: umbrella-api-umbrella
+    webHost: test-umbrella-api-umbrella-test.apps.fiware-dev-aws.fiware.dev
     router: 
-      web_app_host: "umbrella-api-umbrella"
+      web_app_host: "test-umbrella-api-umbrella-test.apps.fiware-dev-aws.fiware.dev"
 
     # database connection
     mongodb:
@@ -106,7 +106,7 @@ api-umbrella:
         hosts:
           - http://elasticsearch-master.provider.svc.cluster.local:9200
       hosts:
-        - hostname: umbrella-api-umbrella
+        - hostname: test-umbrella-api-umbrella-test.apps.fiware-dev-aws.fiware.dev
           default: true
       nginx:
         large_client_header_buffers: 8 64k

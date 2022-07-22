@@ -103,7 +103,7 @@ pdc-portal:
         -----END CERTIFICATE-----
 
     external:
-      host: http://pdc-portal:7000
+      host: http://test-portal-pdc-portal-test.apps.fiware-dev-aws.fiware.dev
 
     oidc:
       # Path for OIDC redirect callback
@@ -114,7 +114,7 @@ pdc-portal:
     # Context Broker configuration
     cb:
       # Endpoint of (API-Umbrella protected) NGSI-LD API
-      endpoint: "http://umbrella-api-umbrella:9080/cb2/ngsi-ld/v1"
+      endpoint: "https://test-umbrella-api-umbrella-test.apps.fiware-dev-aws.fiware.dev/cb2/ngsi-ld/v1"
 
     # Configuration of express web server
     express:
