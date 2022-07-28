@@ -30,7 +30,7 @@ keyrock:
     ## -- Size of PVCs to be created
     size: 1Gi
     ## Image which holds the theme files
-    image: i4trust/keyrock-theme-nocheaper:0.0.1
+    image: i4trust/keyrock-theme-nocheaper:1.0.0
     ## -- specification of the image pull policy
     imagePullPolicy: Always
     ## Path to the source theme files inside the container
