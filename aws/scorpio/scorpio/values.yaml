@@ -1,7 +1,0 @@
-scorpio-broker-aaio:
-  service:
-    type: ClusterIP
-  db:
-    dbhost: scorpio-postgres-postgresql
-    user: admin
-    password: admin

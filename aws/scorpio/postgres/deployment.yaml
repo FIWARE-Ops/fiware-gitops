@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: postgres
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      serviceAccount: postgres
+      serviceAccountName: postgres
+      containers:
+      - name: postgres
+        image: postgis/postgis:10-2.5
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: POSTGRES_USER
+          value: "ngb"
+        - name: POSTGRES_PASSWORD
+          value: "ngb"
+        - name: POSTGRES_DB
+          value: "ngb"

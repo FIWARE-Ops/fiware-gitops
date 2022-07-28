@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: scorpio
+  name: scorpio
+spec:
+  selector:
+    matchLabels:
+      app: scorpio
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: scorpio
+      annotations:
+        sidecar.k8s.fiware.org/request: "envoy-sidecar"
+    spec:
+      serviceAccount: scorpio
+      serviceAccountName: scorpio
+      containers:
+        - imagePullPolicy: IfNotPresent
+          image: scorpiobroker/scorpio:scorpio-aaio-no-eureka_2.1.14
+          name: scorpio

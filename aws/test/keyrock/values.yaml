@@ -1,0 +1,203 @@
+keyrock:
+  # Values for fiware/keyrock Helm Chart
+  #
+  # Chart values file:
+  # ref: https://github.com/FIWARE/helm-charts/blob/main/charts/keyrock/values.yaml
+  #
+
+  ## deployment specific configuration
+  statefulset:
+    ## configuration of the image to be used
+    image:
+      ## keyrock image name
+      ## ref: https://hub.docker.com/r/fiware/idm
+      repository: fiware/idm
+      ## tag of the image to be used
+      tag: i4trust-rc7
+      ## specification of the image pull policy
+      pullPolicy: IfNotPresent
+
+
+  ## Set either an ingress or openshift route for making Keyrock externally available
+  ##
+  ## openshift specific route definition. Will not work on plain k8s
+  route:
+    ## -- should the deployment create openshift routes
+    enabled: true   
+    tls: 
+      termination: edge
+      
+  ## ingress configuration
+  ingress:
+    ## should there be an ingress to connect keyrock with the public internet
+    enabled: false
+
+  ## database configuration for keyrock
+  db:
+    ## host of the database to be used (K8s internal service hostname)
+    host: test-mysql
+    ## user for connecting the database
+    user: root
+    ## password for connecting the database (MySQL root password)
+    password: password
+
+  ## admin configuration for accessing keyrock
+  admin:
+    ## username of the initial keyrock admin
+    user: admin
+    ## password of the initial admin
+    password: Test@12345
+    ## email address of the admin user
+    email: massimogessa@gmail.com
+
+  ## Theme configuration for Keyrock
+  # This is optional and showcases how to add a theme for the Keyrock UI. This setup is
+  # using the Packet Delivery Co. theme of the demo setup.
+  theme:
+    ## -- Enable theme
+      enabled: false
+
+  ## Configuration of Authorisation Registry (AR)
+  authorisationRegistry:
+    # -- Enable usage of authorisation registry
+    enabled: true
+    # -- Identifier (EORI) of AR
+    identifier: "EU.EORI.NL000000004"
+    # -- URL of AR
+    url: "https://ar.isharetest.net"
+    # url: "internal"
+    # -- Token endpoint of AR
+    tokenEndpoint: "https://ar.isharetest.net/connect/token"
+    # -- Delegation endpoint of AR
+    delegationEndpoint: "https://ar.isharetest.net/delegation"
+  ## Configuration of iSHARE Satellite
+  satellite:
+    # -- Enable usage of satellite
+    enabled: true
+    # -- Identifier (EORI) of satellite
+    identifier: "EU.EORI.NL000000000"
+    # -- URL of satellite
+    url: "https://scheme.isharetest.net"
+    # -- Token endpoint of satellite
+    tokenEndpoint: "https://scheme.isharetest.net/connect/token"
+    # -- Parties endpoint of satellite
+    partiesEndpoint: "https://scheme.isharetest.net/parties"
+
+      ## -- Configuration of local key and certificate for validation and gen
+  token:
+    # -- Enable storage of local key and certificate
+    enabled: true
+    # -- Identifier (EORI) of local organisation
+    identifier: "EU.EORI.ITPRIMOPRINCIPIO"
+    # -- String with certificate (chain) in PEM format
+    cert: |
+      -----BEGIN CERTIFICATE-----
+      MIID6jCCAtKgAwIBAgIIEx1ub/Zz84cwDQYJKoZIhvcNAQELBQAwPDE6MDgGA1UE
+      AwwxVEVTVCBpU0hBUkUgRVUgSXNzdWluZyBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0
+      eSBHNTAeFw0yMjAzMzAwOTU3MTFaFw0yNTAzMjkwOTU3MTBaMHYxITAfBgNVBAMM
+      GFByaW1vUHJpbmNpcGlvUy5jLmEuci5sLjEhMB8GA1UEBRMYRVUuRU9SSS5JVFBS
+      SU1PUFJJTkNJUElPMSEwHwYDVQQKDBhQcmltb1ByaW5jaXBpb1MuYy5hLnIubC4x
+      CzAJBgNVBAYTAklUMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl3Mk
+      l+R2HqYzuT5n636MFfNOHkJxRXYJ+ay3qBOI4j8W7fUz4z3s0QOqM68Lm8s/kxVy
+      eS/tij6+oz5Bt8rEz4c7qXl1ufu0Hn+7T8V0YeUv/tYQu0t0+WoZ5mHkB+mMApyr
+      8KQGlbSrQ42pL0xI6xujcfJlNpdZC7fzcGyp39r6yiLy5bVrlFXztwbOBdzBXr5D
+      17qCClUoPdJS9ddV9SW4sd8ouJ6Kux9mlUIlX607KO56aYcKl+9PH2zZ/akDGF1K
+      EBCM4inl2C2n7ojPXB/1mvUJ4j+8L5UySHoFMKQDE7MpjODzqFEAVx0XlX9bftV0
+      582CgSg7j2kqEmWuPwIDAQABo4G1MIGyMB8GA1UdIwQYMBaAFG3FZYnL35FU0Ws8
+      twKlLs2KaJAdMCcGA1UdJQQgMB4GCCsGAQUFBwMCBggrBgEFBQcDBAYIKwYBBQUH
+      AwEwNwYIKwYBBQUHAQMEKzApMAgGBgQAjkYBATAIBgYEAI5GAQQwEwYGBACORgEG
+      MAkGBwQAjkYBBgIwHQYDVR0OBBYEFFAiDwpmFlv9Si2vFo6zMF7mFSC9MA4GA1Ud
+      DwEB/wQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAQEAJIkxco/QlrjSLNRj4Zw63oEg
+      vcrLdUqGaRqTMFxx/ZYxzjzMeLE8D2lLBLDTNgzaX7L0kj49XTSOlImPGraIxR5J
+      O00R2z4on6syL2/KYplJd9EzfJUkfv9hE2x1lX0FU8aYyNbA1bnxEXzc/g6wPxRE
+      PLm0MfME3dqznnIYXOMyp2BV1OqkfZv8x0m8qvfvM/3jaGxAhWnwHLCgKudZquDJ
+      6fwK4TS+PUnA9Q0LUyfO+eM49pQzw/615EjP7Vm8Gl4ChmHOMD1Vgg/jR4Dmp7zS
+      Vn9G0jfiyeFGldaCGNIgLHDkHPlFh2pUz2CfE6oFPPCpNSpscRiGuGMR6N8hwQ==
+      -----END CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
+      MIIDSDCCAjCgAwIBAgIISxR3ImzG1BcwDQYJKoZIhvcNAQELBQAwJzElMCMGA1UE
+      AwwcVEVTVCBpU0hBUkUgRm91bmRhdGlvbiBlSURBUzAeFw0xOTAyMjIxMDA0MzFa
+      Fw0zOTAyMTcxMDAyNDlaMDwxOjA4BgNVBAMMMVRFU1QgaVNIQVJFIEVVIElzc3Vp
+      bmcgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkgRzUwggEiMA0GCSqGSIb3DQEBAQUA
+      A4IBDwAwggEKAoIBAQDHB2ABQL7zwmi1xIkO0a2q6jIJdn3QAm0s1lSeQev9F2F3
+      M5Z8qiqQJaurMZywZfdNvg9+IqGHOjDe6hIhuRzzoAo0AbO4N9Odf2RDDU95N7to
+      JmAyCiYGgZfZt7BsKFIeQ6p6CsgKcRXPi0fdXdVSHp4bZfQOQdclMbtITirnFtU0
+      6NPAhoY676Yz96xFAE0zom6eMVPPOIm0G8gd44XlnbL0w0mccCi2VUZjvCIL59O6
+      1O8vlVyLsBqNNTCvf9C2CMYaEatXZyz/lwgH6JYHtD0usXt/+M0qKYe1oeoLk0Zi
+      cFZXck1iS09kFdggK5BlNodoWJaDBRro51WhY2WnAgMBAAGjYzBhMA8GA1UdEwEB
+      /wQFMAMBAf8wHwYDVR0jBBgwFoAUlZMkybyhCzK5HOBFHKRO+MLSR/4wHQYDVR0O
+      BBYEFG3FZYnL35FU0Ws8twKlLs2KaJAdMA4GA1UdDwEB/wQEAwIBhjANBgkqhkiG
+      9w0BAQsFAAOCAQEAZH5Qjuq+O9Fpv637g0cF6n1ILYBLz1eNZjEB3doAexvi5CzS
+      w3oswJCSedGW3hh0qHOTK2gI83jh0W2EAn2isFgwhMoG2jd2YSFSkm8Q/2eOfc6M
+      gGSC5sOTL75J7byLCordqd/N4eaj3EqKLaWq7r7ustP81P8EIlz0D8a7lff1FSo2
+      3HWXTWX2+m2voLAE5l97aGTGRS1UbxhP2jFKYJ9XziKe9MQJSZElTQ8jqg2kPFkE
+      x/XqAWqlG1dl1ywLJq5iePvK1R4AYNI/YbZQk9slj8v+P/6M7EtErsf2uISgewLT
+      cWl24x3nG5xbQZxrP8l2jSGYmOTIngKOQSnbfg==
+      -----END CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
+      MIIDMzCCAhugAwIBAgIIBLU2cZAZqLEwDQYJKoZIhvcNAQELBQAwJzElMCMGA1UE
+      AwwcVEVTVCBpU0hBUkUgRm91bmRhdGlvbiBlSURBUzAeFw0xOTAyMjIxMDAyNDla
+      Fw0zOTAyMTcxMDAyNDlaMCcxJTAjBgNVBAMMHFRFU1QgaVNIQVJFIEZvdW5kYXRp
+      b24gZUlEQVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCrDP2DWX3/
+      b8uMapzEBATSa6iZfvggzIBUExkWEbG9e1nVy/jQk20nfSFMUmRT6NhYcdkSYO/W
+      rki9Y4EpCy1xvZHqL+4Y6S9JLZwJ760LpYle+NaVu7minMUQcuoj5nKzClvazb00
+      Ax5gkJUfR3v3X5GXqQrkWazMt+k5TNM6TWuJ30qOfwrHx5vTLmTUUih+BsGL3f5G
+      Os1VTYICNhiTjN74n2Wqp2kULWIe+/X6RZ/hKspaHGZnKDVTwI+8ZmWFejuxA6DO
+      X7RsYLKvQO21FmbIBoSs9Azv59/RxWUJVMO0WhDhKpQgCGjwgV32ofNdkFgmdVul
+      zNPID2RNbTTLAgMBAAGjYzBhMA8GA1UdEwEB/wQFMAMBAf8wHwYDVR0jBBgwFoAU
+      lZMkybyhCzK5HOBFHKRO+MLSR/4wHQYDVR0OBBYEFJWTJMm8oQsyuRzgRRykTvjC
+      0kf+MA4GA1UdDwEB/wQEAwIBhjANBgkqhkiG9w0BAQsFAAOCAQEAlzaBVaFhZmH9
+      uxsLSv3FkkxWVwBR1GhAxwcJlV4x+kqX8tchJ4SDLEuWRrF4DNtvSR3r69Kz8eYI
+      5XuW1eG12YjGGVlYijdxrG1ANzGn2vdo9vL7dEFUEMK1AKxRstbTdE7ywzIV/C61
+      w8JrxwLtt9OjdUEUPHuGTjuv5nFBPdFzOcvu+DTMl73CJP2zeZUFguj55MsXY45M
+      rXrbgt+LJqUu4pkB2bLu9FbeRLWZJuknYSrW4fyQBZ2i+MsGdiBKQcf3fLXjpch4
+      8/p7SiTk4ufloBaqTClt/EtWXDSmFcv4QjBk1mUPu9vxikcHDkAvJrOXGg0b+3eI
+      4a7OTfAb1g==
+      -----END CERTIFICATE-----
+    # -- Identifier (EORI) of local organisation
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCXcySX5HYepjO5
+      PmfrfowV804eQnFFdgn5rLeoE4jiPxbt9TPjPezRA6ozrwubyz+TFXJ5L+2KPr6j
+      PkG3ysTPhzupeXW5+7Qef7tPxXRh5S/+1hC7S3T5ahnmYeQH6YwCnKvwpAaVtKtD
+      jakvTEjrG6Nx8mU2l1kLt/NwbKnf2vrKIvLltWuUVfO3Bs4F3MFevkPXuoIKVSg9
+      0lL111X1Jbix3yi4noq7H2aVQiVfrTso7npphwqX708fbNn9qQMYXUoQEIziKeXY
+      LafuiM9cH/Wa9QniP7wvlTJIegUwpAMTsymM4POoUQBXHReVf1t+1XTnzYKBKDuP
+      aSoSZa4/AgMBAAECggEAQ2Mb1qv0dNm97QBcC/gwS7oJOcSVkvMdKCdWRqZ+gzDQ
+      OowejM+qdiv7yOhrsWQDwyXJXCvbtWYKvCcA5c8GuFJzVQqyu9DHycRK64kvqjlo
+      nCrSogvGng28PXq0FGMyBZ2Bkd7iAS21AKdhLqbyUQ5osNRKfbplCCZO3uiyw2QE
+      IK3QJDOzBwlPFhs+HRXgmfdSz5L3R8dhPo4+Uc7gSyZOoyG+yCY43D7CdrlaNnQU
+      3uFC1wW50i0kHBpriTdw8WOVNwWmn9Fqa/TtVH2LV4rSFNH1gLSN48hsOgvUe5VR
+      MGqKfflecxcw68SvzEI+MaJXk+c9/iCt0FIxlrAJKQKBgQDRbnt5V28fMWXLj28m
+      ixiDOAHRlGndjZ/CitIdv6g3NAiFmsve3CwEBAGqsyrXwTjE60A50Edw/b29q6hd
+      3Q3cGK8Mc4TT5ALE8xW0g1hpu3wx2cACyx1F3tXrxUk0bGOHVHaYwZOjA4Y5r1Yi
+      bC1GVWADVKdjE8TvZL8csJJ5dwKBgQC5ICaR6bfSblJPMzMh+7Qs8iMs/j+JtYQd
+      u+PAd9PKk6Ixypf/PHV3lKGVeIZyJUw6sX34Zcxs4OnGgGZ15//QuYFmqUNq4cUe
+      HhISH70yL6ptRYT75myA36PjpwWMRgv4K3LqzPrioUrcirIf4EiMkPH+bEOQZYd3
+      ryTIkakjeQKBgGsAk71vWqsJRgU3B4cd0ixY1TULKvuzfEidPLVOUtfBkgkRCdCX
+      lTWIBoH8gIszgZm6yFnBfH7SZbselSs/4fDt+6HU86x+9ptBx3kvEmETFWUy59OF
+      izNDovCPH9PU/RULpnxtiszi5BVc7BkyQ/+HZ0LMYalRVHErfClgXbYJAoGAEA5N
+      yhHvM30F/oB+StA9zDgj/N8AO71WfA2zrxm1cLhlNNRRYn2n4nstmH0fi/7YIa8L
+      MeQCWt8W53Rzbn50nXG5W2IKytZR9k69Wn0ON7ASo++HnSFa/8JlwHTX8laQ6zE5
+      gkvM5qL+jyooUMNvB2H62wogwgFMQoEaO5sGhGECgYEAvzcE728az8LZfW9yfnI2
+      3p/XqKiJB8jegeUqOFTvvagwZaqTqJt9wTOJQARX5rroUUNzbpPx5G4Bb6G7O0ip
+      LJ5/lgOHxpRNd8xHQQ+vq7dmlKpkj5xfUNxDQKUpz7JxcNKjA+2+nRC9xmBv5LTW
+      DH3iqMQxO8JmK5e0ex19DCg=
+      -----END PRIVATE KEY-----
+
+  ## a list of additional env vars to be set, check the keyrock docu for all available options
+  ## ref: https://fiware-idm.readthedocs.io/en/latest/installation_and_administration_guide/environment_variables/index.html
+  additionalEnvVars:
+    - name: IDM_DEBUG
+      value: "true"
+    - name: DEBUG
+      value: "*"
+    # Title to be displayed on default theme UI
+    - name: IDM_TITLE
+      value: Primo Principio IDP
+    # Name of the database to be created within the MySQL
+    - name: IDM_DB_NAME
+      value: idm
+    # Initialize and seed database on startup
+    - name: IDM_DB_SEED
+      value: "true"
