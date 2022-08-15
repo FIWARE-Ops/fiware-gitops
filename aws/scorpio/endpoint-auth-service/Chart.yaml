@@ -8,5 +8,5 @@ appVersion: "0.1.0"
 
 dependencies:
   - name: endpoint-auth-service
-    version: 0.0.6
+    version: 0.0.7
     repository: https://fiware.github.io/helm-charts

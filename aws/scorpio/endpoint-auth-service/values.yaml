@@ -22,7 +22,7 @@ endpoint-auth-service:
   ## configuration for the sidecar, will be applied by the injector if not configured otherwise
   sidecar:
 
-    portsToIgnore: 5432
+    #portsToIgnore: 5432
 
     ## configuration of the image to be used
     image:
