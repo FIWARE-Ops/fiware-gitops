@@ -5,3 +5,6 @@ kafka:
     name: postgres
   persistence:
     enabled: false
+  zookeeper:
+    persistence:
+      enabled: false
