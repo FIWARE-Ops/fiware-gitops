@@ -6,8 +6,6 @@ endpoint-auth-service:
       # -- endpoint-configuration-service image name
       # ref: https://quay.io/repository/fiware/endpoint-configuration-service
       repository: quay.io/fiware/endpoint-configuration-service
-      # -- tag of the image to be used
-      tag: 0.3.0-PRE-34
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
@@ -29,8 +27,6 @@ endpoint-auth-service:
       # -- envoy image name
       # ref: https://quay.io/repository/fiware/envoy
       repository: quay.io/fiware/envoy
-      # -- tag of the image to be used
-      tag: 0.3.0-pre-34
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
@@ -39,8 +35,6 @@ endpoint-auth-service:
       # -- image name
       # ref: https://quay.io/repository/fiware/init-iptables
       repository: quay.io/fiware/init-iptables
-      # -- tag of the image to be used
-      tag: 0.3.0-pre-34
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
@@ -49,8 +43,6 @@ endpoint-auth-service:
       # -- image name
       # ref: https://quay.io/repository/fiware/envoy-resource-updater
       repository: quay.io/fiware/envoy-resource-updater
-      # -- tag of the image to be used
-      tag: 0.1.18
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
@@ -59,8 +51,6 @@ endpoint-auth-service:
       # -- image name
       # ref: https://quay.io/repository/fiware/envoy-resource-updater
       repository: quay.io/fiware/envoy-resource-updater
-      # -- tag of the image to be used
-      tag: 0.1.18
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
@@ -84,8 +74,6 @@ endpoint-auth-service:
       # -- sidecar-injector image name
       # ref: https://hub.docker.com/r/mayankkr/sidecarinjector
       repository: expediagroup/kubernetes-sidecar-injector
-      # -- tag of the image to be used
-      tag: 1.0.1
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
@@ -113,8 +101,6 @@ endpoint-auth-service:
       # -- endpoint-configuration-service image name
       # ref: https://quay.io/repository/fiware/ishare-auth-provider
       repository: quay.io/fiware/ishare-auth-provider
-      # -- tag of the image to be used
-      tag: 0.1.18
       # -- specification of the image pull policy
       pullPolicy: IfNotPresent
 
