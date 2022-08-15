@@ -8,3 +8,6 @@ kafka:
   zookeeper:
     persistence:
       enabled: false
+    serviceAccount:
+      create: false
+      name: postgres
