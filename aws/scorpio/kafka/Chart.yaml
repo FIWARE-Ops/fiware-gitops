@@ -1,0 +1,12 @@
+apiVersion: v2
+name: kafka
+description: Chart holder for argo-cd
+
+type: application
+version: 0.1.0
+appVersion: "3.2.1"
+
+dependencies:
+- name: kafka
+  version: 18.0.8
+  repository: https://charts.bitnami.com/bitnami

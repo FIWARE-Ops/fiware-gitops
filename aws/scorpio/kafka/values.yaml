@@ -1,0 +1,7 @@
+kafka:
+  fullnameOverride: kafka
+  serviceAccount:
+    create: false
+    name: postgres
+  persistence:
+    enabled: false
