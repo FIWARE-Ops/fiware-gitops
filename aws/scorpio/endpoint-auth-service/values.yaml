@@ -20,6 +20,7 @@ endpoint-auth-service:
     configmapUpdater:
       image:
         tag: 0.3.2-pre-38
+        pullPolicy: Always
 
   ## configuration for the sidecar, will be applied by the injector if not configured otherwise
   sidecar:
