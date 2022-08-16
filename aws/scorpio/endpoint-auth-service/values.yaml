@@ -107,7 +107,7 @@ endpoint-auth-service:
       # ref: https://quay.io/repository/fiware/ishare-auth-provider
       repository: quay.io/fiware/ishare-auth-provider
       # -- specification of the image pull policy
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
       tag: 0.3.3-PRE-38
 
     ## openshift specific route definition. Will not work on plain k8s
