@@ -16,6 +16,10 @@ endpoint-auth-service:
       enabled: true
       tls:
         termination: edge
+    
+    configmapUpdater:
+      image:
+        tag: 0.3.1
 
   ## configuration for the sidecar, will be applied by the injector if not configured otherwise
   sidecar:
