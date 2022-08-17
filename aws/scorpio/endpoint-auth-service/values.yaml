@@ -19,7 +19,6 @@ endpoint-auth-service:
     
     configmapUpdater:
       image:
-        tag: 0.3.2-pre-38
         pullPolicy: Always
 
   ## configuration for the sidecar, will be applied by the injector if not configured otherwise
@@ -108,7 +107,6 @@ endpoint-auth-service:
       repository: quay.io/fiware/ishare-auth-provider
       # -- specification of the image pull policy
       pullPolicy: Always
-      tag: 0.3.4-PRE-38
 
     ## openshift specific route definition. Will not work on plain k8s
     route:
