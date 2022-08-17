@@ -20,5 +20,5 @@ spec:
       serviceAccountName: scorpio
       containers:
         - imagePullPolicy: IfNotPresent
-          image: scorpiobroker/scorpio:scorpio-aaio-no-eureka_2.1.14
+          image: scorpiobroker/scorpio:scorpio-aaio-no-eureka_2.1.21
           name: scorpio

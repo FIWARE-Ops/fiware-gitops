@@ -7,7 +7,7 @@ endpoint-auth-service:
       # ref: https://quay.io/repository/fiware/endpoint-configuration-service
       repository: quay.io/fiware/endpoint-configuration-service
       # -- specification of the image pull policy
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
       tag: 0.4.3-PRE-41
 
     ## openshift specific route definition. Will not work on plain k8s
