@@ -12,7 +12,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.config.express.port }}
+      targetPort: {{ .Values.satellite.port }}
       protocol: TCP
       name: http
   selector:
