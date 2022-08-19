@@ -165,6 +165,37 @@ No further configuration required. Just create the corresponding ArgoCD app.
 
 
 
+## Satellite
+
+The trust anchor satellite is based on the iSHARE Satellite, and is required to ensure trust among all 
+participants of the data space.
+
+
+### Secret
+
+Create a Secret manifest `satellite-secret.manifest.yaml` in the secrets/ folder:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: satellite-secret
+  namespace: i4trust-dev
+data:
+  # Base64 encoded cert chain PEM
+  SATELLITE_CERTS: <BASE64_CERT> 
+  # Base64 encoded private key PEM
+  SATELLITE_KEY: <BASE64_KEY>
+```
+where the cert chain and key were created and issued for the satellite
+
+Create a sealed secret with `kubeseal`:
+```shell
+kubeseal <satellite-secret.manifest.yaml >satellite-sealed-secret.yaml -o yaml --controller-namespace sealed-secrets --controller-name sealed-secrets
+```
+
+### ArgoCD app
+
+Create the corresponding ArgoCD app
 
 
 
