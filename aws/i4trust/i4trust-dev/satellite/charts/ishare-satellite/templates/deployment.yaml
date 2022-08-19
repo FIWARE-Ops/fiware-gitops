@@ -93,8 +93,8 @@ spec:
           configMap:
             name: {{ include "ishare-satellite.fullname" . }}
             items:
-              - key: as.yml
-                path: as.yml
+              - key: satellite.yml
+                path: satellite.yml
       {{- with .Values.deployment.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
