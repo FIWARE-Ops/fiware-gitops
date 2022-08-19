@@ -1,15 +1,15 @@
 {{- if .Values.route.enabled -}}
-{{- $fullName := include "activation-service.fullname" . -}}
+{{- $fullName := include "ishare-satellite.fullname" . -}}
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: {{ include "activation-service.fullname" . }}
+  name: {{ include "ishare-satellite.fullname" . }}
   labels:
-    {{ include "activation-service.labels" . | nindent 4 }}
+    {{ include "ishare-satellite.labels" . | nindent 4 }}
   {{- if or .Values.route.annotations .Values.route.certificate }}
   annotations:
     {{- if .Values.route.certificate }}
-    cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "activation-service.fullname" . }}-tls-sec
+    cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "ishare-satellite.fullname" . }}-tls-sec
     {{- end }}
     {{- with .Values.route.annotations }}
       {{- toYaml . | nindent 4 }}
