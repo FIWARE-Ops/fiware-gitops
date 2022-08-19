@@ -40,17 +40,17 @@ spec:
               protocol: TCP
           env:
             - name: SATELLITE_PORT
-              value: {{ .Values.satellite.port }}
+              value: {{ .Values.satellite.port | quote }}
             - name: SATELLITE_GUNICORN_WORKERS
-              value: {{ .Values.satellite.workers }}
+              value: {{ .Values.satellite.workers | quote }}
             - name: SATELLITE_MAX_HEADER_SIZE
-              value: {{ .Values.satellite.maxHeaderSize }}
+              value: {{ .Values.satellite.maxHeaderSize | quote }}
             - name: SATELLITE_RESPONSE_TOKEN_DURATION
-              value: {{ .Values.satellite.responseTokenDuration }}
+              value: {{ .Values.satellite.responseTokenDuration | quote }}
             - name: SATELLITE_ACCESS_TOKEN_DURATION
-              value: {{ .Values.satellite.accessTokenDuration }}
+              value: {{ .Values.satellite.accessTokenDuration | quote }}
             - name: SATELLITE_MAX_PARTIES_PER_PAGE
-              value: {{ .Values.satellite.maxPartiesPerPage }}
+              value: {{ .Values.satellite.maxPartiesPerPage | quote }}
             - name: SATELLITE_FINGERPRINT_ENCODING
               value: {{ .Values.satellite.fingerprintEncoding | quote }}
             - name: SATELLITE_SUBJECT_ENCODING
