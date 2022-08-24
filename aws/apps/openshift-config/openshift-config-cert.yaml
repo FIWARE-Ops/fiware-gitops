@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-ingress-cert
+  name: openshift-config-cert
   namespace: argocd
 spec:
   destination:
-    namespace: openshift-ingress
+    namespace: openshift-config
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/openshift-ingress/certificates
+    path: aws/openshift-config/certificates
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
