@@ -20,7 +20,7 @@ ishare-satellite:
 
   config:
     id: EU.EORI.DEFFSATELLITE
-    key: "test"
+    key: ""
     crt: ""
 
     trusted_list:
