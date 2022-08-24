@@ -32,10 +32,14 @@ data:
                 token_endpoint: "https://ar.isharetest.net/connect/token"
                 delegation_endpoint: "https://ar.isharetest.net/delegation"
               satellite:
-                identifier: "EU.EORI.NL000000000"
-                host: "https://scheme.isharetest.net"
-                token_endpoint: "https://scheme.isharetest.net/connect/token"
-                trusted_list_endpoint: "https://scheme.isharetest.net/trusted_list"
+                #identifier: "EU.EORI.NL000000000"
+                #host: "https://scheme.isharetest.net"
+                #token_endpoint: "https://scheme.isharetest.net/connect/token"
+                #trusted_list_endpoint: "https://scheme.isharetest.net/trusted_list"
+                identifier: "EU.EORI.DEFFSATELLITE"
+                host: "https://i4trust-dev-satellite.apps.fiware-dev-aws.fiware.dev"
+                token_endpoint: "https://i4trust-dev-satellite.apps.fiware-dev-aws.fiware.dev/token"
+                trusted_list_endpoint: "https://i4trust-dev-satellite.apps.fiware-dev-aws.fiware.dev/trusted_list"
               jws:
                 identifier: "EU.EORI.NLPACKETDEL"
               
