@@ -3,7 +3,7 @@ ishare-satellite:
   deployment:
     image:
       repository: fiware/ishare-satellite
-      tag: 1.1.0-PRE-8
+      tag: 1.1.0
       pullPolicy: Always #IfNotPresent
 
   route:
