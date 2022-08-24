@@ -69,7 +69,8 @@ keyrock:
     #identifier: "EU.EORI.NL000000000"
     identifier: "EU.EORI.DEFFSATELLITE"
     # -- URL of satellite
-    url: "https://scheme.isharetest.net"
+    #url: "https://scheme.isharetest.net"
+    url: "https://i4trust-dev-satellite.apps.fiware-dev-aws.fiware.dev"
     # -- Token endpoint of satellite
     #tokenEndpoint: "https://scheme.isharetest.net/connect/token"
     tokenEndpoint: "https://i4trust-dev-satellite.apps.fiware-dev-aws.fiware.dev/token"
