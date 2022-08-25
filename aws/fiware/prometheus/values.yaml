@@ -5,9 +5,9 @@ prometheus:
     enabled: false
   nodeExporter:
     enabled: false
-  namespaces:
-    - fiware
   pushgateway:
     enabled: false
   server:
+    namespaces:
+      - fiware
     securityContext: {}
