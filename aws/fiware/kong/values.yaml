@@ -51,5 +51,15 @@ kong:
           name: letsencrypt-aws-prod
       host: kong.fiware.dev
   
+  status:
+    enabled: true
+    http: 
+      enabled: true
+      containerPort: 9102
+
+  podAnnotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9102'
+
   dblessConfig:
     configMap: kong-configmap
