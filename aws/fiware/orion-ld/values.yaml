@@ -1,4 +1,10 @@
 orion-ld:
+  deployment:
+    image:
+      tag: 1.1.0
+    additionalAnnotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port: '1026'
   broker:
     db:
       hosts:
