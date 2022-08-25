@@ -7,5 +7,5 @@ subjects:
     name: prometheus-fiware
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: prometheus-fiware
