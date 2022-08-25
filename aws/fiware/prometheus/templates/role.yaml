@@ -28,10 +28,6 @@ rules:
       - get
       - list
       - watch
-  - nonResourceURLs:
-      - "/metrics"
-    verbs:
-      - get
   - apiGroups:
     - security.openshift.io
     resourceNames:
