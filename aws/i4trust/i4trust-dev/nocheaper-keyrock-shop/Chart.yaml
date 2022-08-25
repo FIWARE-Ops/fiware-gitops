@@ -4,7 +4,7 @@ description: Chart holder for argo-cd
 
 type: application
 version: 0.3.0
-appVersion: "i4trust-rc7"
+appVersion: "i4trust-rc8-aud"
 
 dependencies:
   - name: keyrock
