@@ -1,4 +1,10 @@
 prometheus:
+  rbac:
+    create: false
+  serviceAccounts:
+    server:
+      create: false
+      name: fiware-prometheus-server
   alertManager:
     enabled: false
   kubeStateMetrics: 
@@ -10,4 +16,3 @@ prometheus:
   server:
     namespaces:
       - fiware
-    securityContext: {}
