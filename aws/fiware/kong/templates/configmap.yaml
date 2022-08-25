@@ -27,6 +27,12 @@ data:
             strip_path: true
 
         plugins:
+          - name: prometheus
+
+          - name: rate-limiting
+            config: 
+              minute: 3
+
           - name: pep-plugin
             config:
               authorizationendpointtype: Keyrock

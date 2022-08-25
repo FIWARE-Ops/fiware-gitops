@@ -1,0 +1,13 @@
+prometheus:
+  alertManager:
+    enabled: false
+  kubeStateMetrics: 
+    enabled: false
+  nodeExporter:
+    enabled: false
+  namespaces:
+    - fiware
+  pushgateway:
+    enabled: false
+  server:
+    securityContext: {}
