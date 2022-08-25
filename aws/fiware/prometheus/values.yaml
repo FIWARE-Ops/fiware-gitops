@@ -5,7 +5,7 @@ prometheus:
     server:
       create: false
       name: prometheus-fiware
-  alertManager:
+  alertmanager:
     enabled: false
   kubeStateMetrics: 
     enabled: false
