@@ -5,6 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: prometheus-fiware
+    namespace: fiware
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
