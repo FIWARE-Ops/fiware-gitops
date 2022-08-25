@@ -4,7 +4,7 @@ orion-ld:
       tag: 1.1.0
     additionalAnnotations:
       prometheus.io/scrape: 'true'
-      prometheus.io/port: '1026'
+      prometheus.io/port: '8000'
   broker:
     db:
       hosts:
