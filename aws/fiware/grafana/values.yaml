@@ -1,10 +1,6 @@
 grafana:
-  admin:
-    secured: false
-    # -- Admin username
-    username: fiwareAdmin
-    # -- Admin password
-    password: fiwareAdmin
+  adminUser: fiwareAdmin
+  adminPassword: fiwareAdmin
   serviceAccount:
     create: false
     name: fiware-grafana
