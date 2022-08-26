@@ -20,3 +20,5 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/default
+route:
+  enabled: true
