@@ -35,7 +35,7 @@ grafana:
 route:
   enabled: true
   annotations:
-    cert-utils-operator.redhat-cop.io/certs-from-secret: fiware-grafana-tls-sec
+    cert-utils-operator.redhat-cop.io/certs-from-secret: fiware-dev-wildcard-tls-secret
   host: grafana.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
