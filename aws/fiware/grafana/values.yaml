@@ -1,7 +1,7 @@
 grafana:
   serviceAccount:
     create: false
-    name: grafana-fiware
+    name: fiware-grafana
   rbac:
     create: false
   dashboards:
