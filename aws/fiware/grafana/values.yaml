@@ -1,0 +1,9 @@
+grafana:
+  serviceAccount:
+    create: false
+    name: grafana-fiware
+  rbac:
+    create: false
+  dashboards:
+    kong:
+      url: https://grafana.com/dashboards/7424 
