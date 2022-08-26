@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "orion.fullname" . }}
+  name: {{ include "orion.fullname" . }}-metrics
   {{- if .Values.service.annotations }}
   annotations:
     {{ toYaml .Values.service.annotations | nindent 4 }}
@@ -11,10 +11,10 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.broker.port }}
+    - port: 8000
+      targetPort: 8000
       protocol: TCP
-      name: http
+      name: metrics
   selector:
     app.kubernetes.io/name: {{ include "orion.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
