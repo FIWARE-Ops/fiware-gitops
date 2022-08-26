@@ -22,3 +22,9 @@ grafana:
           path: /var/lib/grafana/dashboards/default
 route:
   enabled: true
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: fiware-grafana-tls-sec
+  host: grafana.fiware.dev
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge

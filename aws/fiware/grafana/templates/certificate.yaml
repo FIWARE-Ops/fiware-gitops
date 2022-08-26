@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: fiware-certificate
+spec:
+  commonName: {{ .Values.route.host }}
+  dnsNames:
+    - {{ .Values.route.host }}
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-aws-prod
+  secretName: fiware-grafana-tls-sec
