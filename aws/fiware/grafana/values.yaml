@@ -14,6 +14,7 @@ grafana:
     default:
       kong:
         url: https://grafana.com/dashboards/7424
+        datasource: Prometheus
   dashboardProviders:
     dashboardproviders.yaml:
       apiVersion: 1
@@ -26,6 +27,15 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/default
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://fiware-prometheus-server
+          access: proxy
+          isDefault: true
 route:
   enabled: true
   annotations:
