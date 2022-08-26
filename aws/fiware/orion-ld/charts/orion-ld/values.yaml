@@ -25,7 +25,7 @@ serviceAccount:
 ## deployment specific configuration
 deployment:
   # -- initial number of target replications, can be different if autoscaling is enabled
-  replicaCount: 2
+  replicaCount: 1
   # -- number of old replicas to be retained
   revisionHistoryLimit: 3
   ## configuration of the orion update strategy
