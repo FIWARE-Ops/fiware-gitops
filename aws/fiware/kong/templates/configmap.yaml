@@ -28,6 +28,8 @@ data:
 
         plugins:
           - name: prometheus
+            config:
+              per_consumer: true
 
           - name: rate-limiting
             config: 
