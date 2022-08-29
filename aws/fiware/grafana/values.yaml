@@ -9,7 +9,7 @@ grafana:
   dashboards:
     default:
       kong:
-        url: https://grafana.com/dashboards/7424
+        url: https://grafana.com/dashboards/11870
         datasource: Prometheus
   dashboardProviders:
     dashboardproviders.yaml:
