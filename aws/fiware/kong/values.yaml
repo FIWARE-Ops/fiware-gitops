@@ -62,6 +62,9 @@ kong:
     prometheus.io/scrape: 'true'
     prometheus.io/port: '9102'
 
+  dblessConfig:
+    configMap: kong-configmap
+    
   customEnv:
     FIWARE_JWS_PRIVATE_KEY:
       valueFrom:
