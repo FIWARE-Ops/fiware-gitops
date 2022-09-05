@@ -1,7 +1,7 @@
 kong:
   image:
-    repository: quay.io/wi_stefan/kong-oidc
-    tag: "2.8.1"
+    repository: quay.io/fiware/kong
+    tag: "0.3.2"
     pullPolicy: Always
 
   replicaCount: 1
