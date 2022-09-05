@@ -28,8 +28,8 @@ kong:
     nginx_proxy_http2_max_header_size: "32k"
     plugins: bundled,pep-plugin,ngsi-ishare-policies 
     pluginserver_names: pep-plugin
-    pluginserver_pep_plugin_start_cmd: "/kong/go-plugins/pep-plugin"
-    pluginserver_pep_plugin_query_cmd: "/kong/go-plugins/pep-plugin -dump"
+    pluginserver_pep_plugin_start_cmd: "/go-plugins/pep-plugin"
+    pluginserver_pep_plugin_query_cmd: "/go-plugins/pep-plugin -dump"
 
   ingressController:
     enabled: false
