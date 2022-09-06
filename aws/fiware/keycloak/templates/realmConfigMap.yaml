@@ -34,21 +34,6 @@ data:
               "clientRole": true
             },
             {
-              "name": "uma_protection",
-              "composite": false,
-              "clientRole": true
-            },
-            {
-              "name": "producer",
-              "composite": false,
-              "clientRole": true
-            },
-            {
-              "name": "subscriptor",
-              "composite": false,
-              "clientRole": true
-            },
-            {
               "name": "consumer",
               "composite": false,
               "clientRole": true
@@ -69,13 +54,25 @@ data:
               "admin"
             ]
           }
+        },
+        {
+          "name": "consumer",
+          "path": "/consumer",
+          "realmRoles": [
+            "user"
+          ],
+          "clientRoles": {
+            "orion-pep": [
+              "consumer"
+            ]
+          }
         }
       ],
       "users": [
         {
           "username": "admin-user",
           "enabled": true,
-          "email": "admin-user@hopu.eu",
+          "email": "admin-user@fiware.org",
           "credentials": [
             {
               "type": "password",
@@ -89,7 +86,28 @@ data:
             ]
           },
           "groups": [
-            "/admin"
+            "/admin",
+            "/consumer"
+          ]
+        },
+        {
+          "username": "consumer-user",
+          "enabled": true,
+          "email": "consumer-user@fiware.org",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "consumer-user"
+            }
+          ],
+          "clientRoles": {
+            "account": [
+              "view-profile",
+              "manage-account"
+            ]
+          },
+          "groups": [
+            "/consumer"
           ]
         }
       ],
