@@ -37,24 +37,8 @@ data:
               "name": "uma_protection",
               "composite": false,
               "clientRole": true
-            },
-            {
-              "name": "producer",
-              "composite": false,
-              "clientRole": true
-            },
-            {
-              "name": "subscriptor",
-              "composite": false,
-              "clientRole": true
-            },
-            {
-              "name": "consumer",
-              "composite": false,
-              "clientRole": true
             }
-          ],
-          "fiware-login": [],
+          ]
         }
       },
       "groups": [
@@ -71,108 +55,7 @@ data:
           }
         }
       ],
-      "users": [
-        {
-          "username": "admin-user",
-          "enabled": true,
-          "email": "admin-user@hopu.eu",
-          "credentials": [
-            {
-              "type": "password",
-              "value": "admin-user"
-            }
-          ],
-          "clientRoles": {
-            "account": [
-              "view-profile",
-              "manage-account"
-            ]
-          },
-          "groups": [
-            "/admin"
-          ]
-        },
-        {
-          "username": "consumer-user",
-          "enabled": true,
-          "credentials": [
-            {
-              "type": "password",
-              "value": "consumer-user"
-            }
-          ],
-          "disableableCredentialTypes": [
-            "password"
-          ],
-          "requiredActions": [],
-          "clientRoles": {
-            "account": [
-              "view-profile",
-              "manage-account"
-            ]
-          },
-          "notBefore": 0,
-          "groups": [ ]
-        },
-        {
-          "username": "producer-user",
-          "enabled": true,
-          "credentials": [
-            {
-              "type": "password",
-              "value": "producer-user"
-            }
-          ],
-          "clientRoles": {
-            "account": [
-              "view-profile",
-              "manage-account"
-            ]
-          },
-          "groups": []
-        },
-        {
-          "username": "subscriptor-user",
-          "enabled": true,
-          "credentials": [
-            {
-              "type": "password",
-              "value": "subscriptor-user"
-            }
-          ],
-          "clientRoles": {
-            "account": [
-              "view-profile",
-              "manage-account"
-            ]
-          },
-          "groups": []
-        }
-      ],
       "clients": [
-        {
-          "clientId": "fiware-login",
-          "surrogateAuthRequired": false,
-          "enabled": true,
-          "clientAuthenticatorType": "client-secret",
-          "secret": "da756bc9-b059-4e0e-be39-93f49e4df999",
-          "redirectUris": [],
-          "webOrigins": [],
-          "notBefore": 0,
-          "bearerOnly": false,
-          "consentRequired": false,
-          "standardFlowEnabled": true,
-          "implicitFlowEnabled": false,
-          "directAccessGrantsEnabled": true,
-          "serviceAccountsEnabled": false,
-          "publicClient": true,
-          "frontchannelLogout": false,
-          "protocol": "openid-connect",
-          "attributes": {},
-          "authenticationFlowBindingOverrides": {},
-          "fullScopeAllowed": true,
-          "nodeReRegistrationTimeout": -1
-        },
         {
           "clientId": "orion-pep",
           "adminUrl": "{{ .Values.realm.orionPep.adminUrl }}",
@@ -202,198 +85,16 @@ data:
             "policyEnforcementMode": "ENFORCING",
             "resources": [
               {
-                "name": "v1",
+                "name": "ngsi",
                 "type": "orion:context-management",
                 "ownerManagedAccess": false,
                 "displayName": "Context management v1 API",
                 "uris": [
-                  "/v1/*"
-                ]
-              },
-              {
-                "name": "v2",
-                "type": "orion:context-management",
-                "ownerManagedAccess": false,
-                "displayName": "Context management v2 API",
-                "uris": [
-                  "/v2/*"
-                ]
-              },
-              {
-                "name": "version",
-                "type": "orion:admin",
-                "ownerManagedAccess": false,
-                "displayName": "List version",
-                "uris": [
-                  "/version"
-                ]
-              },
-              {
-                "name": "admin",
-                "type": "orion:admin",
-                "ownerManagedAccess": false,
-                "displayName": "Admin API",
-                "uris": [
-                  "/admin/*"
-                ]
-              },
-              {
-                "name": "subscriptions",
-                "type": "orion:subscriptions",
-                "ownerManagedAccess": false,
-                "uris": [
-                  "/v2/subscriptions",
-                  "/v2/subscriptions/*"
+                  "/ngsi-ld/*"
                 ]
               }
             ],
-            "policies": [
-              {
-                "name": "fiware-headers context management v3",
-                "description": "",
-                "type": "js",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "code": "var context = $evaluation.getContext();\nvar attributes = context.getAttributes();\nvar identity = context.getIdentity();\n \nif (attributes.exists('http.fiware-service') && \n    attributes.exists('http.fiware-servicepath') && \n    attributes.exists('http.method') && \n    identity.getAttributes().exists('fiware-scope-object')) {\n\n    var request_service = attributes.getValue('http.fiware-service').asString(0);\n    var request_servicepath = attributes.getValue('http.fiware-servicepath').asString(0);\n    var request_method = attributes.getValue('http.method').asString(0);\n    \n    var fiware_scopes = identity.getAttributes().getValue('fiware-scope-object');\n    var fiware_scope;\n\n    var index;\n    for (index = 0; index < fiware_scopes.size(); index++) {\n        fiware_scope = JSON.parse(fiware_scopes.asString(index));\n\n        if (fiware_scope.hasOwnProperty(\"fiware-service\") &&\n            fiware_scope[\"fiware-service\"] === request_service && \n            fiware_scope.hasOwnProperty(\"fiware-servicepath\") &&\n            fiware_scope[\"fiware-servicepath\"].equals(request_servicepath) && \n            fiware_scope.hasOwnProperty(\"orion-roles\") &&\n            ((fiware_scope[\"orion-roles\"].equals('consumer') && request_method === 'GET') ||\n             (fiware_scope[\"orion-roles\"].equals('producer') && ['POST', 'PUT', 'PATCH', 'DELETE'].indexOf(request_method) != -1))\n            ) {\n                $evaluation.grant();\n        }            \n    }\n}"
-                }
-              },
-              {
-                "name": "consumer method",
-                "description": "Comprueba que el método de la petición es el permitido para un consumer (GET)",
-                "type": "js",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "code": "var context = $evaluation.getContext();\nvar attributes = context.getAttributes();\nvar identity = context.getIdentity();\n \nvar method = attributes.getValue('http.method').asString(0);\n\nif (method === 'GET') {\n    $evaluation.grant();\n}\n"
-                }
-              },
-              {
-                "name": "consumer user",
-                "description": "Comprueba que el usuario tiene rol consumer",
-                "type": "role",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "roles": "[{\"id\":\"orion-pep/consumer\",\"required\":true}]"
-                }
-              },
-
-              {
-                "name": "consumer policy v3",
-                "type": "aggregate",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "applyPolicies": "[\"fiware-headers context management v3\",\"consumer method\",\"consumer user\"]"
-                }
-              },
-
-              {
-                "name": "producer user",
-                "description": "Comprueba que el usuario tiene rol producer",
-                "type": "role",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "roles": "[{\"id\":\"orion-pep/producer\",\"required\":true}]"
-                }
-              },
-              {
-                "name": "producer method",
-                "description": "Comprueba que el método de la petición es el permitido para un producer (POST, PUT, PATCH o DELETE)",
-                "type": "js",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "code": "var context = $evaluation.getContext();\nvar attributes = context.getAttributes();\nvar identity = context.getIdentity();\n \nvar method = attributes.getValue('http.method').asString(0);\n\nif (method === 'POST' || method === 'PUT' || method === 'PATCH' || method === 'DELETE') {\n    $evaluation.grant();\n}\n"
-                }
-              },
-              {
-                "name": "producer policy v3",
-                "type": "aggregate",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "applyPolicies": "[\"producer user\",\"fiware-headers context management v3\",\"producer method\"]"
-                }
-              },
-
-              {
-                "name": "admin user",
-                "description": "Comprueba que el usuario tiene rol admin",
-                "type": "role",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "roles": "[{\"id\":\"orion-pep/admin\",\"required\":true}]"
-                }
-              },
-
-              {
-                "name": "fiware-headers subscriptions v3",
-                "type": "js",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "code": "var context = $evaluation.getContext();\nvar attributes = context.getAttributes();\nvar identity = context.getIdentity();\n \nif (attributes.exists('http.fiware-service') && \n    attributes.exists('http.fiware-servicepath') && \n    attributes.exists('http.method') && \n    identity.getAttributes().exists('fiware-scope-object')) {\n\n    var request_service = attributes.getValue('http.fiware-service').asString(0);\n    var request_servicepath = attributes.getValue('http.fiware-servicepath').asString(0);\n    var request_method = attributes.getValue('http.method').asString(0);\n    \n    var fiware_scopes = identity.getAttributes().getValue('fiware-scope-object');\n    var fiware_scope;\n\n    var index;\n    for (index = 0; index < fiware_scopes.size(); index++) {\n        fiware_scope = JSON.parse(fiware_scopes.asString(index));\n\n        if (fiware_scope.hasOwnProperty(\"fiware-service\") &&\n            fiware_scope[\"fiware-service\"] === request_service && \n            fiware_scope.hasOwnProperty(\"fiware-servicepath\") &&\n            fiware_scope[\"fiware-servicepath\"].contains(request_servicepath) && \n            fiware_scope.hasOwnProperty(\"orion-roles\") &&\n            (fiware_scope[\"orion-roles\"].contains('subscriptor') && ['GET','POST', 'PUT', 'PATCH', 'DELETE'].indexOf(request_method) != -1)) {\n            $evaluation.grant();\n        }            \n    }\n}"
-                }
-              },
-
-              {
-                "name": "subscriptor user",
-                "description": "Comprueba que el usuario tiene el rol subscriptor",
-                "type": "role",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "roles": "[{\"id\":\"orion-pep/subscriptor\",\"required\":true}]"
-                }
-              },
-              {
-                "name": "subscriptor policy v3",
-                "type": "aggregate",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "applyPolicies": "[\"fiware-headers subscriptions v3\",\"subscriptor user\"]"
-                }
-              },
-
-              {
-                "name": "context management resources",
-                "description": "Para acceder a la api de context management (/v1 o /v2) el usuario debe ser admin o consumer o producer",
-                "type": "resource",
-                "logic": "POSITIVE",
-                "decisionStrategy": "AFFIRMATIVE",
-                "config": {
-                  "defaultResourceType": "orion:context-management",
-                  "applyPolicies": "[\"producer policy v3\",\"consumer policy v3\",\"admin user\"]"
-                }
-              },
-              {
-                "name": "admin resources",
-                "description": "Sólo los usuarios admin pueden acceder a los recursos orion:admin (/version y /admin)",
-                "type": "resource",
-                "logic": "POSITIVE",
-                "decisionStrategy": "UNANIMOUS",
-                "config": {
-                  "defaultResourceType": "orion:admin",
-                  "applyPolicies": "[\"admin user\"]"
-                }
-              },
-              {
-                "name": "subscriptions",
-                "description": "Para acceder a la api de subscription el usuario debe ser subscriptor",
-                "type": "resource",
-                "logic": "POSITIVE",
-                "decisionStrategy": "AFFIRMATIVE",
-                "config": {
-                  "resources": "[\"subscriptions\"]",
-                  "applyPolicies": "[\"subscriptor policy v3\",\"admin user\"]"
-                }
-              }
-            ],
+            "policies": [],
             "scopes": []
           },
           "defaultClientScopes": [
