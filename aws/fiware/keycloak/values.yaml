@@ -61,3 +61,25 @@ keycloak:
     - name: profiles
       configMap:
         name: keycloak-profile
+  
+  postgresql:
+    auth:
+      username: bn_keycloak
+      password: secretpassword
+      replicationPassword: secretreplicationpassword
+    primary:
+      podSecurityContext:
+        enabled: false
+      containerSecurityContext:
+        enabled: false
+    architecture: replication
+    readReplicas:
+      replicaCount: 1
+      podSecurityContext:
+        enabled: false
+      containerSecurityContext:
+        enabled: false
+    audit:
+      clientMinMessages: warning
+    metrics:
+      enabled: false
