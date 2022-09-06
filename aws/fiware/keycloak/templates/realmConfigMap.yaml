@@ -167,7 +167,7 @@ data:
                 "logic": "POSITIVE",
                 "decisionStrategy": "UNANIMOUS",
                 "config": {
-                  "roles": "[{\"id\":\"orion-pep/consumer\",\"required\":false},{\"id\":\"orion-pep/admin\",\"required\":false}]"
+                  "roles": "[{\"id\":\"orion-pep/consumer\",\"required\":true}]"
                 }
               },
               {
