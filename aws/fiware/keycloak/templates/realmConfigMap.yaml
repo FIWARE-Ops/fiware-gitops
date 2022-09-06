@@ -43,6 +43,16 @@ data:
               "composite": false,
               "clientRole": true
             },
+            {
+              "name": "subscriptor",
+              "composite": false,
+              "clientRole": true
+            },
+            {
+              "name": "consumer",
+              "composite": false,
+              "clientRole": true
+            }
           ],
           "fiware-login": [],
         }
@@ -122,7 +132,8 @@ data:
                 ]
               }
             ],
-            "policies": [],
+            "policies": [
+                         ],
             "scopes": []
           },
           "defaultClientScopes": [
