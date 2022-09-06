@@ -141,17 +141,66 @@ data:
             "policyEnforcementMode": "ENFORCING",
             "resources": [
               {
-                "name": "ngsi",
+                "name": "ngsi-ld",
                 "type": "orion:context-management",
                 "ownerManagedAccess": false,
                 "displayName": "Context management v1 API",
                 "uris": [
-                  "/ngsi-ld/*"
+                  "/keycloak/ngsi-ld/v1/*"
+                ]
+              },
+              {
+                "name": "root",
+                "type": "orion:context-management",
+                "ownerManagedAccess": false,
+                "displayName": "Context management v1 API",
+                "uris": [
+                  "/keycloak/*"
                 ]
               }
             ],
             "policies": [
-                         ],
+              {
+                "name": "consumer-policy",
+                "description": "",
+                "type": "role",
+                "logic": "POSITIVE",
+                "decisionStrategy": "UNANIMOUS",
+                "config": {
+                  "roles": "[{\"id\":\"orion-pep/consumer\",\"required\":false},{\"id\":\"orion-pep/admin\",\"required\":false}]"
+                }
+              },
+              {
+                "name": "admin-policy",
+                "description": "",
+                "type": "role",
+                "logic": "POSITIVE",
+                "decisionStrategy": "UNANIMOUS",
+                "config": {
+                  "roles": "[{\"id\":\"orion-pep/admin\",\"required\":true}]"
+                }
+              },
+              {
+                "name": "admin-permission",
+                "type": "resource",
+                "logic": "POSITIVE",
+                "decisionStrategy": "UNANIMOUS",
+                "config": {
+                  "resources": "[\"root\"]",
+                  "applyPolicies": "[\"admin-policy\"]"
+                }
+              },
+              {
+                "name": "consumer-permission",
+                "type": "resource",
+                "logic": "POSITIVE",
+                "decisionStrategy": "UNANIMOUS",
+                "config": {
+                  "resources": "[\"ngsi-ld\"]",
+                  "applyPolicies": "[\"consumer-policy\"]"
+                }
+              }
+            ],
             "scopes": []
           },
           "defaultClientScopes": [
