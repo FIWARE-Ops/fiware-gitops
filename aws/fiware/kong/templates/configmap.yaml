@@ -8,6 +8,22 @@ data:
     _transform: true
 
     services:
+      # orion rate-limited
+      - host: "fiware-orion-ld"
+        name: "orion-limited"
+        port: 1026
+        protocol: http
+
+        routes:
+          - name: orion-limited
+            paths:
+              - /limited
+            strip_path: true
+
+        plugins:
+          - name: rate-limiting
+            config: 
+              minute: 3
 
       # keyrock example
       - host: "fiware-orion-ld"
