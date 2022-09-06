@@ -47,6 +47,9 @@ spec:
             - name: http
               containerPort: {{ .Values.broker.port}}
               protocol: TCP
+            - name: metrics
+              containerPort: 8000
+              protocol: TCP
           {{ if eq .Values.deployment.image.repository "fiware/orion-ld" }}
           readinessProbe:
             tcpSocket:

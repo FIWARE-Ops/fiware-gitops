@@ -6,27 +6,30 @@ data:
   kong.yml: |
     _format_version: "2.1"
     _transform: true
-    consumers:
-      - username: 7c902139-d4d0-461a-bb14-7fa29aa143fe
-    jwt_secrets:
-      - consumer: 7c902139-d4d0-461a-bb14-7fa29aa143fe
-        key: 7c902139-d4d0-461a-bb14-7fa29aa143fe
-        secret: "f7b15672d6414a63"
-
 
     services:
+
+      # keyrock example
       - host: "fiware-orion-ld"
-        name: "orion-oidc"
+        name: "orion-keyrock"
         port: 1026
         protocol: http
 
         routes:
-          - name: orion-oidc
+          - name: orion-keyrock
             paths:
-              - /orion
+              - /keyrock
             strip_path: true
 
         plugins:
+          - name: prometheus
+            config:
+              per_consumer: true
+
+          - name: rate-limiting
+            config: 
+              minute: 30
+
           - name: pep-plugin
             config:
               authorizationendpointtype: Keyrock
@@ -39,3 +42,81 @@ data:
                 headers:
                   - Authorization
                   - authorization
+
+      # i4Trust example
+      - host: "fiware-orion-ld"
+        name: "orion-i4trust"
+        port: 1026
+        protocol: http
+
+        routes:
+          - name: orion-i4trust
+            paths:
+              - /i4trust
+            strip_path: true
+
+        plugins:
+          - name: prometheus
+
+          - name: rate-limiting
+            config: 
+              minute: 30
+
+          - name: ngsi-ishare-policies
+            config:
+              access_token:
+                header_names:
+                  - "authorization"
+                  - "Authorization"
+              ar:
+                identifier: "EU.EORI.NL000000004"
+                host: "https://ar.isharetest.net"
+                token_endpoint: "https://ar.isharetest.net/connect/token"
+                delegation_endpoint: "https://ar.isharetest.net/delegation"
+              satellite:
+                identifier: "EU.EORI.NL000000000"
+                host: "https://scheme.isharetest.net"
+                token_endpoint: "https://scheme.isharetest.net/connect/token"
+                trusted_list_endpoint: "https://scheme.isharetest.net/trusted_list"
+              jws:
+                identifier: "EU.EORI.NLPACKETDEL"
+
+          - name: request-transformer
+            config:
+              remove:
+                headers:
+                  - Authorization
+                  - authorization
+
+      # keycloak example
+      - host: "fiware-orion-ld"
+        name: "orion-keycloak"
+        port: 1026
+        protocol: http
+
+        routes:
+          - name: orion-keycloak
+            paths:
+              - /keycloak
+            strip_path: true
+
+        plugins:
+          - name: prometheus
+
+          - name: rate-limiting
+            config: 
+              minute: 30
+
+          - name: pep-plugin
+            config:
+              authorizationendpointtype: Keycloak
+              authorizationendpointaddress: https://keyrock.fiware.dev/user
+              keyrockappid: 7c902139-d4d0-461a-bb14-7fa29aa143fe
+
+          - name: request-transformer
+            config:
+              remove:
+                headers:
+                  - Authorization
+                  - authorization
+

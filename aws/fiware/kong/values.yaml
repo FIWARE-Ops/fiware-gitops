@@ -1,7 +1,7 @@
 kong:
   image:
-    repository: quay.io/wi_stefan/kong-oidc
-    tag: "2.8.1"
+    repository: quay.io/fiware/kong
+    tag: "0.3.2"
     pullPolicy: Always
 
   replicaCount: 1
@@ -22,13 +22,14 @@ kong:
     portal_api_error_log: /dev/stderr
     prefix: /kong_prefix/
     log_level: debug
+    nginx_main_env: "FIWARE_JWS_PRIVATE_KEY; env FIWARE_JWS_X5C"
     nginx_proxy_large_client_header_buffers: "16 128k"
     nginx_proxy_http2_max_field_size: "32k"
     nginx_proxy_http2_max_header_size: "32k"
-    plugins: bundled,pep-plugin
+    plugins: bundled,pep-plugin,ngsi-ishare-policies
     pluginserver_names: pep-plugin
-    pluginserver_pep_plugin_start_cmd: "/kong/go-plugins/pep-plugin"
-    pluginserver_pep_plugin_query_cmd: "/kong/go-plugins/pep-plugin -dump"
+    pluginserver_pep_plugin_start_cmd: "/go-plugins/pep-plugin"
+    pluginserver_pep_plugin_query_cmd: "/go-plugins/pep-plugin -dump"
 
   ingressController:
     enabled: false
@@ -51,5 +52,27 @@ kong:
           name: letsencrypt-aws-prod
       host: kong.fiware.dev
   
+  status:
+    enabled: true
+    http: 
+      enabled: true
+      containerPort: 9102
+
+  podAnnotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9102'
+
   dblessConfig:
     configMap: kong-configmap
+
+  customEnv:
+    FIWARE_JWS_PRIVATE_KEY:
+      valueFrom:
+        secretKeyRef:
+          key: FIWARE_JWS_PRIVATE_KEY
+          name: i4trust-secret
+    FIWARE_JWS_X5C:
+      valueFrom:
+        secretKeyRef:
+          key: FIWARE_JWS_X5C
+          name: i4trust-secret

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: fiware-secrets
+  name: fiware-grafana
   namespace: argocd
 spec:
   destination:
@@ -9,7 +9,10 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/fiware/secrets
+    helm:
+      valueFiles:
+      - values.yaml
+    path: aws/fiware/grafana
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

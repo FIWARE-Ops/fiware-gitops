@@ -1,4 +1,8 @@
 orion-ld:
+  deployment:
+    additionalAnnotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port: '8000'
   broker:
     db:
       hosts:
