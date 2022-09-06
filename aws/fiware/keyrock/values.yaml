@@ -102,15 +102,7 @@ keyrock:
       value: idm
     - name: IDM_DB_SEED
       value: "true"
-    - name: IDM_EMAIL_SECURE
-      value: "false"
-    - name: IDM_EMAIL_AUTH_ENABLE
-      value: "true"
-    - name: IDM_EMAIL_AUTH_TYPE
-      value: login
-    - name: IDM_REGISTRATION_EXTENSION
-      value: "/?new_user=1"
-    - name: IDM_CSP_FORM_ACTION
-      value: "'self',*"
+    - name: IDM_SERVER_MAX_HEADER_SIZE
+      value: "32768"
     - name: IDM_HOST
       value: "keyrock.fiware.dev"
