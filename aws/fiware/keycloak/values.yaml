@@ -21,6 +21,8 @@ keycloak:
   auth:
     adminUser: fiwareAdmin
     adminPassword: fiwareAdmin
+  image: 
+    debug: true
   serviceAccount:
     create: true
   rbac:
@@ -50,7 +52,7 @@ keycloak:
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
     value: "true"
   - name: KEYCLOAK_LOG_LEVEL
-    value: WARN
+    value: DEBUG
   
   extraVolumeMounts:
     - name: profiles
