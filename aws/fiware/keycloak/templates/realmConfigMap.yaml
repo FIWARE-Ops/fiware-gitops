@@ -37,8 +37,14 @@ data:
               "name": "uma_protection",
               "composite": false,
               "clientRole": true
-            }
-          ]
+            },
+            {
+              "name": "producer",
+              "composite": false,
+              "clientRole": true
+            },
+          ],
+          "fiware-login": [],
         }
       },
       "groups": [
@@ -53,6 +59,28 @@ data:
               "admin"
             ]
           }
+        }
+      ],
+      "users": [
+        {
+          "username": "admin-user",
+          "enabled": true,
+          "email": "admin-user@hopu.eu",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "admin-user"
+            }
+          ],
+          "clientRoles": {
+            "account": [
+              "view-profile",
+              "manage-account"
+            ]
+          },
+          "groups": [
+            "/admin"
+          ]
         }
       ],
       "clients": [
