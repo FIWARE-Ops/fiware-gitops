@@ -1,0 +1,63 @@
+route:
+  enabled: true
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: fiware-dev-wildcard-tls-secret
+  host: keycloak.fiware.dev
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+
+realm:
+  orionPep:
+    baseUrl: https://orion-ld
+    adminUrl: https://orion-ld
+    redirectUris:
+      - https://orion-ld/
+    webOrigins:
+      - https://orion-ld/
+
+keycloak:
+  replicaCount: 1
+  auth:
+    adminUser: fiwareAdmin
+    adminPassword: fiwareAdmin
+  serviceAccount:
+    create: true
+  rbac:
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use
+  
+  keycloakConfigCli:
+    enabled: true
+    extraEnvVars:
+      - name: IMPORT_FILES_LOCATIONS
+        value: "/config/*"
+    containerSecurityContext:
+      enabled: false
+    podSecurityContext:
+      enabled: false
+    existingConfigmap: keycloak-realm
+  
+  extraEnvVars:
+  - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
+    value: "true"
+  - name: KEYCLOAK_LOG_LEVEL
+    value: WARN
+  
+  extraVolumeMounts:
+    - name: profiles
+      mountPath: /opt/bitnami/keycloak/conf/profile.properties
+      subPath: profile.properties
+
+  extraVolumes:
+    - name: profiles
+      configMap:
+        name: keycloak-profile

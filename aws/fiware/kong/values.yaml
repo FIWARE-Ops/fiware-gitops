@@ -26,7 +26,7 @@ kong:
     nginx_proxy_large_client_header_buffers: "16 128k"
     nginx_proxy_http2_max_field_size: "32k"
     nginx_proxy_http2_max_header_size: "32k"
-    plugins: bundled,pep-plugin,ngsi-ishare-policies 
+    plugins: bundled,pep-plugin,ngsi-ishare-policies
     pluginserver_names: pep-plugin
     pluginserver_pep_plugin_start_cmd: "/go-plugins/pep-plugin"
     pluginserver_pep_plugin_query_cmd: "/go-plugins/pep-plugin -dump"
