@@ -44,7 +44,7 @@ data:
                   - authorization
 
       # i4Trust example
-      - host: "fiware-orion-i4trust"
+      - host: "fiware-orion-ld"
         name: "orion-i4trust"
         port: 1026
         protocol: http
@@ -89,7 +89,7 @@ data:
                   - authorization
 
       # keycloak example
-      - host: "fiware-orion-keycloak"
+      - host: "fiware-orion-ld"
         name: "orion-keycloak"
         port: 1026
         protocol: http
