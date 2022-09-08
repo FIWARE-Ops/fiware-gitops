@@ -16,3 +16,6 @@ prometheus:
   server:
     namespaces:
       - fiware
+    persistentVolume:
+      size: 30Gi
+    retention: "2d"
