@@ -1,6 +1,0 @@
-apiVersion: v2
-name: tmforum-poc
-description: Helm chart for running the tmforum-poc
-type: application
-version: 0.0.1
-appVersion: "0.0.1"
