@@ -1,7 +1,7 @@
 apiVersion: externaldns.olm.openshift.io/v1alpha1
 kind: ExternalDNS
 metadata:
-  name: aws-routes-fiware-dev
+  name: aws-routes-api
 spec:
   provider:
     type: AWS
