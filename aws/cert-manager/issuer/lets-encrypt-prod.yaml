@@ -17,7 +17,7 @@ spec:
         route53:
           region: eu-central-1
           hostedZoneID: Z02568683CNDQF6QB3KR2
-          accessKeyID: AKIA272Z63S3KZJVYTRZ
+          accessKeyID: AKIA272Z63S3IRFKHOPY
           secretAccessKeySecretRef:
             name: aws-access-key
             key: aws_secret_access_key
