@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-aws-prod
+  name: letsencrypt-aws-prod-z2
 spec:
   acme:
     email: stefan.wiedemann@fiware.org
