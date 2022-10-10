@@ -8,7 +8,7 @@ spec:
     group: cert-manager.io
     kind: ClusterIssuer
     name: letsencrypt-aws-prod
-  commonName: api.fiware-dev-aws.fiware.dev
+  commonName: api.fiware.fiware.dev
   dnsNames:
-    - "api.fiware-dev-aws.fiware.dev"
-    - "*.apps.fiware-dev-aws.fiware.dev"
+    - "api.fiware.fiware.dev"
+    - "*.apps.fiware.fiware.dev"
