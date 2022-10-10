@@ -5,7 +5,7 @@ mysql:
   version: 5.7.37
   identifier: fiware-keyrock-mysql
   storage: 20
-  securityGroupId: sg-0887dbbf5562e5a7a
+  securityGroupId: sg-0b2e6ea76523c6e69
   dbSubnetGroupName: rds-subnet-group
   machineType: db.t3.micro
   # 0 disables backups

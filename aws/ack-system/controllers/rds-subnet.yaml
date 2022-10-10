@@ -7,12 +7,12 @@ spec:
   name: rds-subnet-group
   description: RDS for apps in OpenShift
   subnetIDs:
-    - subnet-0193df097fc320310
-    - subnet-0e188bf817ef5e0a4
-    - subnet-06eec55a9892c8969
-    - subnet-0e433abb526b36aa6
-    - subnet-07593bac6203f2b2d
-    - subnet-02e7bf9b677f255fd
+    - subnet-08904f8594075c861
+    - subnet-0287bdcaceb7cb0db
+    - subnet-06df2c52f2780ee0c
+    - subnet-0d253e1b16bab98e4
+    - subnet-0dfc2c177936f1299
+    - subnet-0e64141c8518771c7
   tags:
     - key: owner
       value: ack-system-fiware-dev-aws
