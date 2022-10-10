@@ -12,7 +12,7 @@ spec:
     solvers:
     - selector:
         dnsZones:
-          - "fiware.dev" 
+          - "fiware.fiware.dev" 
       dns01:
         route53:
           region: eu-central-1
