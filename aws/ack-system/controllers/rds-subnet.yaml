@@ -1,7 +1,7 @@
 apiVersion: rds.services.k8s.aws/v1alpha1
 kind: DBSubnetGroup
 metadata:
-  name: rds-subnet-group
+  name: rds-subnet-group-2
   namespace: ack-system
 spec:
   name: rds-subnet-group
