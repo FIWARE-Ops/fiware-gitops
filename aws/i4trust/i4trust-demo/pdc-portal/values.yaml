@@ -3,7 +3,8 @@ pdc-portal:
     image:
       repository: quay.io/wi_stefan/pdc-portal
       tag: v0.3.0
-      pullPolicy: Always
+      #pullPolicy: Always
+      pullPolicy: IfNotPresent
 
   route:
     enabled: true
