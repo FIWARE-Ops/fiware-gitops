@@ -4,7 +4,7 @@ metadata:
   name: rds-subnet-group
   namespace: ack-system
 spec:
-  name: rds-subnet-group
+  name: rds-subnet-group-2
   description: RDS for apps in OpenShift
   subnetIDs:
     - subnet-08904f8594075c861
