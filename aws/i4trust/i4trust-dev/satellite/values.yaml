@@ -2,7 +2,7 @@ ishare-satellite:
 
   deployment:
     image:
-      repository: fiware/ishare-satellite
+      repository: quay.io/fiware/ishare-satellite
       tag: 1.1.0
       #pullPolicy: Always
       pullPolicy: IfNotPresent
