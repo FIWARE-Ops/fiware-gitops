@@ -43,12 +43,12 @@ pdc-portal:
       port: 7000
 
     idp:
-      "EU.EORI.NLHAPPYPETS":
+      - name: "Happy Pets Inc."
         id: "EU.EORI.NLHAPPYPETS"
         url: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev"
         authorize_endpoint: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev/oauth2/authorize"
         token_endpoint: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev/oauth2/token"
-      "EU.EORI.NLNOCHEAPER":
+      - name: "No Cheaper Inc."
         id: "EU.EORI.NLNOCHEAPER"
         url: "https://nocheaper-keyrock-shop.i4trust-demo.fiware.dev"
         authorize_endpoint: "https://nocheaper-keyrock-shop.i4trust-demo.fiware.dev/oauth2/authorize"
