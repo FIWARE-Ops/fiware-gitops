@@ -1,0 +1,7 @@
+apiVersion: services.k8s.aws/v1alpha1
+kind: AdoptedResource
+metadata:
+  name: {{ .Release.Name }}-adopted-mysql
+spec:
+  aws:
+    nameOrID: {{ .Release.Name }}-mysql  
