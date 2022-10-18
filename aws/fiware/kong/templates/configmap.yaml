@@ -95,7 +95,7 @@ data:
                 token_endpoint: "https://scheme.isharetest.net/connect/token"
                 trusted_list_endpoint: "https://scheme.isharetest.net/trusted_list"
               jws:
-                identifier: "EU.EORI.NLPACKETDEL"
+                identifier: "EU.EORI.NLINNOTRACTOR"
 
           - name: request-transformer
             config:
