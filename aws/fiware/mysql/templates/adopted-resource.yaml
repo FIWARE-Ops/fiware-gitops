@@ -4,4 +4,7 @@ metadata:
   name: {{ .Release.Name }}-adopted-mysql
 spec:
   aws:
-    nameOrID: {{ .Release.Name }}-mysql  
+    nameOrID: {{ .Release.Name }}-mysql
+  kubernetes:
+    group: rds.services.k8s.aws/v1alpha1
+    kind: DBInstance  
