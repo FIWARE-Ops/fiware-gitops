@@ -1,9 +1,10 @@
 pdc-portal:
   deployment:
     image:
-      repository: i4trust/pdc-portal
+      repository: quay.io/i4trust/pdc-portal
       tag: 2.0.0
-      pullPolicy: Always
+      #pullPolicy: Always
+      pullPolicy: IfNotPresent
 
   route:
     enabled: true

@@ -1,8 +1,9 @@
 keyrock:
   statefulset:
     image:
-      repository: fiware/idm
-      tag: i4trust-rc8-aud
+      repository: quay.io/fiware/idm
+      tag: i4trust-rc8
+      pullPolicy: IfNotPresent
 
   db:
     user: root

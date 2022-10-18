@@ -1,10 +1,11 @@
 activation-service:
   deployment:
     image:
-      repository: i4trust/activation-service
-      tag: v0.2.0
-      pullPolicy: Always
-
+      repository: quay.io/i4trust/activation-service
+      tag: 1.1.1
+      #pullPolicy: Always
+      pullPolicy: IfNotPresent
+      
   route:
     enabled: true
     host: pdc-as.i4trust-demo.fiware.dev

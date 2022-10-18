@@ -1,9 +1,10 @@
 activation-service:
   deployment:
     image:
-      repository: i4trust/activation-service
+      repository: quay.io/i4trust/activation-service
       tag: 1.1.1
-      pullPolicy: Always
+      #pullPolicy: Always
+      pullPolicy: IfNotPresent
 
   route:
     enabled: true

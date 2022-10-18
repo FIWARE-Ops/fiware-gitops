@@ -1,9 +1,10 @@
 pdc-portal:
   deployment:
     image:
-      repository: quay.io/wi_stefan/pdc-portal
-      tag: v0.3.0
-      pullPolicy: Always
+      repository: quay.io/i4trust/pdc-portal
+      tag: 2.0.0
+      #pullPolicy: Always
+      pullPolicy: IfNotPresent
 
   route:
     enabled: true
@@ -42,12 +43,12 @@ pdc-portal:
       port: 7000
 
     idp:
-      "EU.EORI.NLHAPPYPETS":
+      - name: "Happy Pets Inc."
         id: "EU.EORI.NLHAPPYPETS"
         url: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev"
         authorize_endpoint: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev/oauth2/authorize"
         token_endpoint: "https://happypets-keyrock-shop.i4trust-demo.fiware.dev/oauth2/token"
-      "EU.EORI.NLNOCHEAPER":
+      - name: "No Cheaper Inc."
         id: "EU.EORI.NLNOCHEAPER"
         url: "https://nocheaper-keyrock-shop.i4trust-demo.fiware.dev"
         authorize_endpoint: "https://nocheaper-keyrock-shop.i4trust-demo.fiware.dev/oauth2/authorize"
