@@ -4,5 +4,5 @@ metadata:
   name: {{ .Release.Name }}-mysql-cm-2
   labels:
     fiware.cm-to-service: mysql
-    fiware.rds-instance: {{ .Release.Name }}-mysql
+    fiware.rds-instance: {{ .Release.Name }}-mysql-2
 data: {}
