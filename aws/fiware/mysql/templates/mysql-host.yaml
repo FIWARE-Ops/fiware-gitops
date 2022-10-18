@@ -1,7 +1,7 @@
 apiVersion: services.k8s.aws/v1alpha1
 kind: FieldExport
 metadata:
-  name: {{ .Release.Name }}-mysql-host-2
+  name: {{ .Release.Name }}-mysql-2-host
 spec:
   to:
     name: {{ .Release.Name }}-mysql-cm-2
