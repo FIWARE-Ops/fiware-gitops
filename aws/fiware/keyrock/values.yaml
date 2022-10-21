@@ -87,7 +87,7 @@ keyrock:
     # -- Enable storage of local key and certificate
     enabled: true
     # -- Identifier (EORI) of local organisation
-    identifier: "EU.EORI.NLPACKETDEL"
+    identifier: "EU.EORI.Logislinktest"
 
   ## a list of additional env vars to be set, check the keyrock docu for all available options
   ## ref: https://fiware-idm.readthedocs.io/en/latest/installation_and_administration_guide/environment_variables/index.html
