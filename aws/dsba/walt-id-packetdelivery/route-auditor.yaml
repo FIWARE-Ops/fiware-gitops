@@ -2,7 +2,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: waltid-auditor
+  name: packetdelivery-auditor
 spec:
   port:
     targetPort: 7003
@@ -10,5 +10,5 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: waltid-happypets
+    name: waltid-packetdelivery
   
