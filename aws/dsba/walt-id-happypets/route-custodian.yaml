@@ -4,8 +4,11 @@ kind: Route
 metadata:
   name: waltid-custodian
 spec:
+  port:
+    targetPort: 7002
   tls:
     termination: edge
   to:
     kind: Service
-    name: waltid-happypets-custodian
+    name: waltid-happypets
+  
