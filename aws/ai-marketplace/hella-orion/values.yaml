@@ -1,0 +1,16 @@
+orion:
+  broker:
+    db:
+      hosts:
+        - mongodb
+      name: hella_ngsi
+      auth:
+        user: root
+      existingSecret: hella-orion-secret
+
+  mongo:
+    # we want to use the individually deployed mongodb
+    enabled: false
+
+  deployment:
+    replicaCount: 1

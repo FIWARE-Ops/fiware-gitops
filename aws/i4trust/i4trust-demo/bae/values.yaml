@@ -146,7 +146,7 @@ business-api-ecosystem:
     ## Paypal Oauth2 configuration
     paypal:
       ## Paypal Client-ID
-      clientId: AcpWBNZUGQ3fUgG3nG54xMonW7E5gwXUANpyrap1g-E6KzvwEpy-X_8TPJXvM68HgMm_jW2kjkiRvb_x
+      clientId: ASvDFneqaHm0rLuQwilCgZiBw9PGpXVX4r34X7rLBorqYpGjNR3yQL2RJ9kWDVbIiHm3nuPprN1CVjP7
 
     ## database configuration for Charging backend (MongoDB)
     db:
