@@ -4,8 +4,9 @@ kind: Route
 metadata:
   name: waltid-custodian
 spec:
+  path: "/custodian"
   port:
-    targetPort: 7002
+    targetPort: http-custodian
   tls:
     termination: edge
   to:
