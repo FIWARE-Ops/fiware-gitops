@@ -1,0 +1,14 @@
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: waltid-essif
+spec:
+  port:
+    targetPort: 7004
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: waltid-happypets
+  
