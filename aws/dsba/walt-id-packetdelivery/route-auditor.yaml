@@ -1,0 +1,14 @@
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: waltid-auditor
+spec:
+  port:
+    targetPort: 7003
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: waltid-happypets
+  
