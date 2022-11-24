@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: waltid-happypets-custodian
+spec:
+  type: ClusterIP
+  ports:
+    - name: http-custodian
+      port: 8080
+      targetPort: custodian-api
+      protocol: TCP
+  selector:
+    app: waltid-happypets
