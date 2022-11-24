@@ -33,9 +33,9 @@ spec:
               name: auditor-api
             - containerPort: 7004
               name: essif-api
-      volumeMounts:
-        - mountPath: /app/data
-          name: data-volume
+          volumeMounts:
+            - mountPath: /app/data
+              name: data-volume
       volumes:
       - name: data-volume
         emptyDir:
