@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: waltid-happypets
-          image: wistefan/waltid-ssikit:0.0.1
+          image: wistefan/waltid-ssikit:0.0.2
           imagePullPolicy: Always
           args:
             - serve
