@@ -4,7 +4,6 @@ kind: Route
 metadata:
   name: waltid-custodian
 spec:
-  path: "/custodian"
   port:
     targetPort: http-custodian
   tls:
@@ -12,4 +11,3 @@ spec:
   to:
     kind: Service
     name: waltid-happypets
-  
