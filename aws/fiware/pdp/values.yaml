@@ -4,4 +4,6 @@ dsba-pdp:
     existingSecret: pdp-ishare-secret
   db: 
     enabled: false
+    migrate:
+      enabled: false
   
