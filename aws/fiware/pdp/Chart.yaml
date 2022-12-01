@@ -8,5 +8,5 @@ appVersion: "0.0.9"
 
 dependencies:
   - name: dsba-pdp
-    version: 0.0.9
+    version: 0.0.1
     repository: https://fiware.github.io/helm-charts
