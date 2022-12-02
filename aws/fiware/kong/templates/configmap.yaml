@@ -280,3 +280,12 @@ data:
                   - Authorization
                   - authorization
 
+
+      - host: "fiware-pdp-dsba-pdp"    
+        name: "trusted-list"
+        port: 8080
+        protocol: http
+
+        routes: 
+          - name: trusted-list
+            paths: /issuer
