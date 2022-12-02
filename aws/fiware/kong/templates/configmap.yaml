@@ -255,3 +255,28 @@ data:
                   - Authorization
                   - authorization
 
+      - host: "orion-ld"
+        name: "orion-vc"
+        port: 1026
+        protocol: http
+    
+        routes:
+          - name: orion-vc
+            paths:
+              - /orion-vc
+            strip_path: true
+    
+        plugins:
+          - name: pep-plugin
+            config:
+              pathprefix: "/orion-vc"
+              authorizationendpointtype: ExtAuthz
+              authorizationendpointaddress: http://fiware-pdp-dsba-pdp:8080/authz
+                
+          - name: request-transformer
+            config:
+              remove:
+                headers:
+                  - Authorization
+                  - authorization
+
