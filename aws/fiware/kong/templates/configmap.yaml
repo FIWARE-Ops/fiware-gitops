@@ -255,7 +255,7 @@ data:
                   - Authorization
                   - authorization
 
-      - host: "orion-ld"
+      - host: "fiware-orion-ld"
         name: "orion-vc"
         port: 1026
         protocol: http
