@@ -288,4 +288,5 @@ data:
 
         routes: 
           - name: trusted-list
-            paths: /issuer
+            paths: 
+              - /issuer
