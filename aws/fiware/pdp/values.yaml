@@ -10,4 +10,4 @@ dsba-pdp:
     ishare:
       clientId: EU.EORI.NLHAPPYPETS
       existingSecret: pdp-ishare-secret
-  
+    providerId: "did:ebsi:packetdelivery"
