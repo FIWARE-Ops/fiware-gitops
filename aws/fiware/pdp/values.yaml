@@ -1,11 +1,11 @@
 dsba-pdp:
-  ishare:
-    clientId: EU.EORI.NLHAPPYPETS
-    existingSecret: pdp-ishare-secret
   db: 
     enabled: false
     migrate:
       enabled: false
   deployment:
     logLevel: DEBUG
+    ishare:
+      clientId: EU.EORI.NLHAPPYPETS
+      existingSecret: pdp-ishare-secret
   
