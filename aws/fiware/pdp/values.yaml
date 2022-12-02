@@ -6,6 +6,7 @@ dsba-pdp:
   deployment:
     image:
       tag: 0.0.11-PRE-13
+      pullPolicy: Always
     logLevel: DEBUG
     ishare:
       clientId: EU.EORI.NLHAPPYPETS
