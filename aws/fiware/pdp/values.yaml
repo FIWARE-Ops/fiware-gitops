@@ -6,4 +6,6 @@ dsba-pdp:
     enabled: false
     migrate:
       enabled: false
+  deployment:
+    logLevel: DEBUG
   
