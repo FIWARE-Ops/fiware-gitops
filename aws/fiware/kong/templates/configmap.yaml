@@ -289,4 +289,5 @@ data:
         routes: 
           - name: trusted-list
             paths: 
-              - /issuer
+              - /pdp     
+            strip_path: true
