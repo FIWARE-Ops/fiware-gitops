@@ -1,0 +1,44 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mvf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mvf
+  template:
+    metadata:
+      labels:
+        app: mvf
+      annotations:
+        deployment/id: "_DEFAULT_DEPLOYMENT_"
+    spec:
+      containers:
+        - name: mvf
+          image: wistefan/waltid-ssikit:0.0.2
+          imagePullPolicy: Always
+          args:
+            - serve
+            - -b
+            - 0.0.0.0
+          ports:
+            - containerPort: 7000
+              name: core-api
+            - containerPort: 7001
+              name: signatory-api
+            - containerPort: 7002
+              name: custodian-api
+            - containerPort: 7003
+              name: auditor-api
+            - containerPort: 7004
+              name: essif-api
+            - containerPort: 7010
+              name: mvf
+          volumeMounts:
+            - mountPath: /app/data
+              name: data-volume
+      volumes:
+      - name: data-volume
+        emptyDir:
+          sizeLimit: 500Mi

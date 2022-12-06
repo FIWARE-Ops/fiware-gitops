@@ -1,0 +1,14 @@
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: mvf-custodian
+spec:
+  port:
+    targetPort: 7002
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: mvf
+  

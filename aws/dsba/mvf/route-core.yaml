@@ -1,0 +1,14 @@
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: mvf-core
+spec:
+  port:
+    targetPort: 7000
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: mvf
+  
