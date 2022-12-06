@@ -1,0 +1,26 @@
+mvf:
+  api:
+    core: 
+      enabled: true
+      route: 
+        enabled: true
+    auditor: 
+      enabled: true
+      route: 
+        enabled: true
+    signatory: 
+      enabled: true
+      route: 
+        enabled: true
+    custodian: 
+      enabled: true
+      route: 
+        enabled: true
+    essif: 
+      enabled: true
+      route: 
+        enabled: true
+    oidc: 
+      enabled: true
+      route: 
+        enabled: true
