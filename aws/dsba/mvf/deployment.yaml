@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mvf
-          image: wistefan/waltid-ssikit:0.0.2
+          image: wistefan/mvf
           imagePullPolicy: Always
           args:
             - serve
