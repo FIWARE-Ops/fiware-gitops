@@ -3,10 +3,10 @@ name: mvf
 description: Chart holder for argo-cd
 
 type: application
-version: 1.1.0
+version: 1.1.1
 appVersion: "1.1.1"
 
 dependencies:
   - name: mvf
-    version: 1.1.0
+    version: 1.1.1
     repository: https://i4Trust.github.io/helm-charts
