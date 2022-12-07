@@ -2,3 +2,15 @@ mysql:
   fullnameOverride: mysql-pdp
   auth:
     existingSecret: mysql-pdp-secret
+  rbac: 
+    create: true
+    rules:
+      rules:
+        - apiGroups:
+          - security.openshift.io
+          resourceNames:
+          - anyuid
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - use    
