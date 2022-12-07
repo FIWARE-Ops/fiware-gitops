@@ -1,0 +1,4 @@
+mysql:
+  fullnameOverride: mysql-pdp
+  auth:
+    existingSecret: mysql-pdp-secret
