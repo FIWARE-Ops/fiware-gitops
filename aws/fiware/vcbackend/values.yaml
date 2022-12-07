@@ -1,5 +1,7 @@
 vcbackend:
   deployment:
+    image: 
+      pullPolicy: Always
     protectedResource: https://kong.fiware.dev/orion-vc
     walt:
       coreUrl: http://fiware-vcwaltid:7000
