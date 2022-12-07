@@ -20,5 +20,3 @@ vcwaltid:
       enabled: true
       route: 
         enabled: true
-    oidc: 
-      enabled: false

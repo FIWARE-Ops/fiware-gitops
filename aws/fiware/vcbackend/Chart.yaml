@@ -1,12 +1,12 @@
 apiVersion: v2
-name: mvf
+name: vcbackend
 description: Chart holder for argo-cd
 
 type: application
-version: 1.1.2
-appVersion: "1.1.1"
+version: 0.0.2
+appVersion: "0.0.1"
 
 dependencies:
-  - name: mvf
-    version: 1.1.2
+  - name: vcbackend
+    version: 0.0.2
     repository: https://i4Trust.github.io/helm-charts

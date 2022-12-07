@@ -1,0 +1,11 @@
+vcbackend:
+  deployment:
+    protectedResource: https://kong.fiware.dev/orion-vc
+    walt:
+      coreUrl: http://fiware-vcwaltid:7000
+      signatoryUrl: http://fiware-vcwaltid:7001
+      auditorUrl: http://fiware-vcwaltid:7003
+      custodianUrl: http://fiware-vcwaltid:7002
+      essifUrl: http://fiware-vcwaltid:7004
+  route:
+    enabled: true
