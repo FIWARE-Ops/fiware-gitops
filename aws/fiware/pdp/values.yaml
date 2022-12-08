@@ -5,6 +5,7 @@ dsba-pdp:
     existingSecret: mysql-pdp-secret
   deployment:
     image:  
+      pullPolicy: Always
       tag: 0.0.14-PRE-16
     logLevel: DEBUG
     ishare:
