@@ -1,6 +1,7 @@
 vcbackend:
   deployment:
     image: 
+      tag: 0.0.2
       pullPolicy: Always
     protectedResource: https://kong.fiware.dev/orion-vc
     walt:
