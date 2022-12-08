@@ -9,5 +9,9 @@ vcbackend:
       auditorUrl: http://fiware-vcwaltid:7003
       custodianUrl: http://fiware-vcwaltid:7002
       essifUrl: http://fiware-vcwaltid:7004
+    additionalEnvVars:
+      - name: CONFIG_FILE
+        value: /configs/server.yaml
+    
   route:
     enabled: true
