@@ -4,6 +4,8 @@ dsba-pdp:
     host: mysql-pdp
     existingSecret: mysql-pdp-secret
   deployment:
+    image:  
+      tag: 0.0.13
     logLevel: DEBUG
     ishare:
       clientId: EU.EORI.NLHAPPYPETS

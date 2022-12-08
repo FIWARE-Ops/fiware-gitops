@@ -3,7 +3,7 @@ vcbackend:
     image: 
       tag: 0.0.2
       pullPolicy: Always
-    protectedResource: https://kong.fiware.dev/orion-vc
+    protectedResource: https://kong.fiware.dev/orion-vc/ngsi-ld/v1/entities?type=DELIVERYORDER
     walt:
       coreUrl: http://fiware-vcwaltid:7000
       signatoryUrl: http://fiware-vcwaltid:7001
