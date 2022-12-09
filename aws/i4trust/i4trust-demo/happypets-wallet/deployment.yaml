@@ -8,6 +8,9 @@ spec:
       app.kubernetes.io/instance: happypets-wallet
       app.kubernetes.io/name: happypets-wallet
   template:
+    labels:
+      app.kubernetes.io/instance: happypets-wallet
+      app.kubernetes.io/name: happypets-wallet
     spec:
       containers:
       - name: vcbackend
