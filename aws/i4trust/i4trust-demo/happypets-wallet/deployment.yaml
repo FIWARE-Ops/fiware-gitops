@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: happypets-wallet
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: happypets-wallet
+      app.kubernetes.io/name: happypets-wallet
+  template:
+    spec:
+      containers:
+      - name: vcbackend
+        image: 'wistefan/vcwallet'
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
+            name: static
+            protocol: TCP

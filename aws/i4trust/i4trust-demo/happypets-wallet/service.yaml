@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: happypets-wallet
+spec:
+  type: ClusterIP
+  ports: 
+    - name: static
+      port: 3000
+      protocol: TCP
+      targetPort: static
+  selector:
+    app.kubernetes.io/instance: happypets-wallet
+    app.kubernetes.io/name: happypets-wallet
