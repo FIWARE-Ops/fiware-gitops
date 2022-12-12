@@ -1,0 +1,14 @@
+vcbackend:
+  deployment:
+    image: 
+      tag: 0.0.2
+      pullPolicy: Always
+    protectedResource: https://kong.fiware.dev/orion-vc/ngsi-ld/v1/entities?type=DELIVERYORDER
+    walt:
+      coreUrl: http://i4trust-demo-pdc-waltid-vcwaltid:7000
+      signatoryUrl: http://i4trust-demo-pdc-waltid-vcwaltid:7001
+      auditorUrl: http://i4trust-demo-pdc-waltid-vcwaltid:7002
+      custodianUrl: http://i4trust-demo-pdc-waltid-vcwaltid:7003
+      essifUrl: http://i4trust-demo-pdc-waltid-vcwaltid:7010
+  route:
+    enabled: true
