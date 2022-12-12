@@ -1,7 +1,7 @@
 mysql:
   fullnameOverride: mysql-pdp
   auth:
-    existingSecret: mysql-pdp-secret
+    existingSecret: mysql-vc-secret
     createDatabase: true
     database: dsba
   rbac: 
