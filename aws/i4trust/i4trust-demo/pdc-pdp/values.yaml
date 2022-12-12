@@ -2,7 +2,7 @@ dsba-pdp:
   db: 
     enabled: true
     host: mysql-pdp
-    existingSecret: mysql-pdp-secret
+    existingSecret: mysql-vc-secret
   deployment:
     image:  
       pullPolicy: Always
