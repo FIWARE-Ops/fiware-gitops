@@ -7,7 +7,7 @@ dsba-pdp:
     image:  
       pullPolicy: Always
       repository: quay.io/fiware/dsba-pdp 
-      tag: 0.1.0
+      tag: 0.2.0
     logLevel: DEBUG
     ishare:
       clientId: EU.EORI.NLPACKETDEL
