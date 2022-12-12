@@ -62,7 +62,7 @@ data:
             config:
               pathprefix: "/orion-vc"
               authorizationendpointtype: ExtAuthz
-              authorizationendpointaddress: http://fiware-pdp-dsba-pdp:8080/authz
+              authorizationendpointaddress: http://i4trust-demo-pdc-pdp-dsba-pdp:8080/authz
                 
           - name: request-transformer
             config:
