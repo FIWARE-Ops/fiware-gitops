@@ -1,10 +1,10 @@
 activation-service:
   deployment:
     image:
-      repository: quay.io/i4trust/activation-service
-      tag: 1.1.1
-      #pullPolicy: Always
-      pullPolicy: IfNotPresent
+      repository: wistefan/as
+      tag: latest
+      pullPolicy: Always
+      #pullPolicy: IfNotPresent
       
   route:
     enabled: true
