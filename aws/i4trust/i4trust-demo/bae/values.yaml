@@ -193,11 +193,11 @@ business-api-ecosystem:
       image:
         ## -- BAE Logic Proxy image name
         ## ref: https://hub.docker.com/r/fiware/biz-ecosystem-logic-proxy
-        repository: wistefan/lp
+        repository: quay.io/fiware/biz-ecosystem-logic-proxy
         ## -- tag of the image to be used
-        tag: latest
+        tag: 8.1.0-dev
         ## -- specification of the image pull policy
-        pullPolicy: Always
+        pullPolicy: IfNotPresent
         #pullPolicy: Always
 
     ## openshift specific route definition. Will not work on plain k8s
