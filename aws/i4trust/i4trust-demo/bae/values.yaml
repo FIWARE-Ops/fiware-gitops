@@ -197,7 +197,7 @@ business-api-ecosystem:
         ## -- tag of the image to be used
         tag: latest
         ## -- specification of the image pull policy
-        pullPolicy: IfNotPresent
+        pullPolicy: Always
         #pullPolicy: Always
 
     ## openshift specific route definition. Will not work on plain k8s
