@@ -117,11 +117,11 @@ business-api-ecosystem:
       image:
         ## -- BAE Charging backend image name
         ## ref: https://hub.docker.com/r/fiware/biz-ecosystem-charging-backend
-        repository: quay.io/fiware/biz-ecosystem-charging-backend
+        repository: wistefan/cb
         ## -- tag of the image to be used
-        tag: v8.0.0
+        tag: latest
         ## -- specification of the image pull policy
-        pullPolicy: IfNotPresent
+        pullPolicy: Always
         #pullPolicy: Always
 
     ## -- PVC configuration for charging backend plugins
