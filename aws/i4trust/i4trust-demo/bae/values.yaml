@@ -193,9 +193,9 @@ business-api-ecosystem:
       image:
         ## -- BAE Logic Proxy image name
         ## ref: https://hub.docker.com/r/fiware/biz-ecosystem-logic-proxy
-        repository: quay.io/fiware/biz-ecosystem-logic-proxy
+        repository: wistefan/lp
         ## -- tag of the image to be used
-        tag: v8.1.0-rc7
+        tag: latest
         ## -- specification of the image pull policy
         pullPolicy: Always
         #pullPolicy: Always
