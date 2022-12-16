@@ -50,7 +50,7 @@ data:
             config:
               authorizationendpointtype: Keyrock
               authorizationendpointaddress: https://keyrock.fiware.dev/user
-              keyrockappid: 7c902139-d4d0-461a-bb14-7fa29aa143fe
+              keyrockappid: 0c47148c-50e7-4866-ac0d-941ef638efd7
 
           - name: request-transformer
             config:
