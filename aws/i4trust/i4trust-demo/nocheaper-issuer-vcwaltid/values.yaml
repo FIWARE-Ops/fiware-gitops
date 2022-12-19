@@ -1,0 +1,37 @@
+vcwaltid:
+  api:
+    core: 
+      enabled: true
+      route: 
+        enabled: true
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+    auditor: 
+      enabled: true
+      route: 
+        enabled: true
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+    signatory: 
+      enabled: true
+      route: 
+        enabled: true
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+    custodian: 
+      enabled: true
+      route: 
+        enabled: true
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+    essif: 
+      enabled: true
+      route: 
+        enabled: true
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
