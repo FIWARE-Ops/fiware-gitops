@@ -12,3 +12,6 @@ vcbackend:
       essifUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7010
   route:
     enabled: true
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
