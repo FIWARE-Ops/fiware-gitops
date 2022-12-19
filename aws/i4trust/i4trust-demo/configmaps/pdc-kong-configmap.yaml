@@ -46,7 +46,7 @@ data:
                   - Authorization
                   - authorization
       
-      - host: "pdc-orion-packetdelivery"
+      - host: "i4trust-demo-pdc-orion"
         name: "orion-vc"
         port: 1026
         protocol: http
