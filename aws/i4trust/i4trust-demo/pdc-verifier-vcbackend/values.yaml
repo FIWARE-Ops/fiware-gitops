@@ -1,7 +1,8 @@
 vcbackend:
   deployment:
     image: 
-      tag: 0.0.2
+      repository: wistefan/verifier
+      tag: latest
       pullPolicy: Always
     protectedResource: https://pdc-kong.i4trust-demo.fiware.dev/orion-vc/ngsi-ld/v1/entities?type=DELIVERYORDER
     walt:
