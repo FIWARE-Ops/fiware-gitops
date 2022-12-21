@@ -38,6 +38,7 @@ pdc-portal:
 
     cb:
       endpoint: "https://pdc-kong.i4trust-demo.fiware.dev/packetdelivery/ngsi-ld/v1"
+      endpoint_siop: "https://pdc-kong.i4trust-demo.fiware.dev/orion-vc/ngsi-ld/v1"
     
     express:
       port: 7000
