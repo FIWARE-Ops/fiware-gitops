@@ -118,7 +118,7 @@ business-api-ecosystem:
         ## -- BAE Charging backend image name
         repository: quay.io/fiware/biz-ecosystem-charging-backend
         ## -- tag of the image to be used
-        tag: 8.1.0-pre-2
+        tag: 8.1.0-pre-3
         ## -- specification of the image pull policy
         pullPolicy: Always
         #pullPolicy: Always
