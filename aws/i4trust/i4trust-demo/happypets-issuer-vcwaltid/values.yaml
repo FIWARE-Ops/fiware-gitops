@@ -32,7 +32,7 @@ vcwaltid:
 
       id.walt.services.context.ContextManager=id.walt.services.context.WaltIdContextManager
 
-      id.walt.signatory.Signatory=id.walt.signatory.WaltIdSignatory:config/signatory.conf
+      id.walt.signatory.Signatory=id.walt.signatory.WaltIdSignatory:/config/signatory.conf
 
       id.walt.custodian.Custodian=id.walt.custodian.WaltIdCustodian
 
