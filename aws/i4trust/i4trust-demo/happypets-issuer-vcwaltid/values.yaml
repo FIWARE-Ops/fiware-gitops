@@ -1,4 +1,8 @@
 vcwaltid:
+  deployment:
+    repository: wistefan/waltid
+    tag: latest
+    pullPolicy: Always
   api:
     core: 
       enabled: true
