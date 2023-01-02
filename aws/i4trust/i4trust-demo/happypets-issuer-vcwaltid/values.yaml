@@ -4,6 +4,10 @@ vcwaltid:
       repository: wistefan/waltid
       tag: latest
       pullPolicy: Always
+  config:
+    serviceConf:
+      signatory.conf: |
+        templatesFolder: "/templates"
   api:
     core: 
       enabled: true
