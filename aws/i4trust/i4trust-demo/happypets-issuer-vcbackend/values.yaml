@@ -8,8 +8,8 @@ vcbackend:
     walt:
       coreUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7000
       signatoryUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7001
-      auditorUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7002
-      custodianUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7003
+      auditorUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7003
+      custodianUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7002
       essifUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7010
   route:
     enabled: true
