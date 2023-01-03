@@ -5,12 +5,6 @@ vcwaltid:
       tag: latest
       pullPolicy: Always
   config:
-    # -- database configuaration, see hikari docu for options
-    datasource:
-      jdbcUrl: jdbc:mysql://mysql-waltid:3306/waltid
-      username: mysql
-      password: password
-      driverClassName: com.mysql.jdbc.Driver
 
     serviceConf:
       signatory.conf: |
