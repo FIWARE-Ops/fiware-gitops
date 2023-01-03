@@ -1,0 +1,19 @@
+mysql:
+  fullnameOverride: mysql-waltid
+  auth:
+    username: mysql
+    password: password
+    rootPassword: password
+    createDatabase: true
+    database: waltid
+  rbac: 
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use    
