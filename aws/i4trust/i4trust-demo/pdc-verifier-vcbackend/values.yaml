@@ -2,7 +2,7 @@ vcbackend:
   deployment:
     image: 
       repository: wistefan/verifier
-      tag: latest
+      tag: 0.0.1-SNAPSHOT
       pullPolicy: Always
     protectedResource: https://pdc-kong.i4trust-demo.fiware.dev/orion-vc/ngsi-ld/v1/entities?type=DELIVERYORDER
     walt:
