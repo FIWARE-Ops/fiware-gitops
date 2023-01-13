@@ -116,7 +116,7 @@ business-api-ecosystem:
       ## -- configuration of the image to be used
       image:
         ## -- BAE Charging backend image name
-        repository: wistefan/biz-ecosystem-charging-backend
+        repository: quay.io/fiware/biz-ecosystem-charging-backend
         ## -- tag of the image to be used
         tag: 8.1.0-pre-5
         ## -- specification of the image pull policy
