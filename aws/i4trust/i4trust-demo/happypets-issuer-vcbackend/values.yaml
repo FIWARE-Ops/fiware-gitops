@@ -12,7 +12,7 @@ vcbackend:
       custodianUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7002
       essifUrl: http://i4trust-demo-happypets-waltid-vcwaltid:7010
   route:
-    enabled: true
+    enabled: false
     tls:
       termination: edge
       insecureEdgeTerminationPolicy: Redirect
