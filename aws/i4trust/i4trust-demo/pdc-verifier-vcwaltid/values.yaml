@@ -24,7 +24,7 @@ vcwaltid:
     custodian: 
       enabled: true
       route: 
-        enabled: trfalseue
+        enabled: false
         tls:
           termination: edge
           insecureEdgeTerminationPolicy: Redirect
