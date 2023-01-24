@@ -52,7 +52,7 @@ vcwaltid:
     core: 
       enabled: true
       route: 
-        enabled: true
+        enabled: false
         tls:
           termination: edge
           insecureEdgeTerminationPolicy: Redirect
@@ -60,14 +60,14 @@ vcwaltid:
       enabled: true
       port: 7003
       route: 
-        enabled: true
+        enabled: false
         tls:
           termination: edge
           insecureEdgeTerminationPolicy: Redirect
     signatory: 
       enabled: true
       route: 
-        enabled: true
+        enabled: false
         tls:
           termination: edge
           insecureEdgeTerminationPolicy: Redirect
@@ -75,14 +75,14 @@ vcwaltid:
       enabled: true
       port: 7002
       route: 
-        enabled: true
+        enabled: false
         tls:
           termination: edge
           insecureEdgeTerminationPolicy: Redirect
     essif: 
       enabled: true
       route: 
-        enabled: true
+        enabled: false
         tls:
           termination: edge
           insecureEdgeTerminationPolicy: Redirect
