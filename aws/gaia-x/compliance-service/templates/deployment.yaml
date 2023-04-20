@@ -38,13 +38,8 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            {{- if .Values.urls.registry }}
             - name: REGISTRY_URL
               value: {{ .Values.urls.registry}}
-            {{- else }}
-            - name: REGISTRY_URL
-              value: http://{{ include "gx-compliance.fullname" . | replace "compliance" "registry"}}:3000{{ (first (first .Values.ingress.hosts).paths).path }}
-            {{- end }}
             - name: BASE_URL
               value: "https://{{ .Values.route.host }}"
             - name: SD_STORAGE_BASE_URL
