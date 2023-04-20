@@ -58,9 +58,7 @@ spec:
                   key: tls.crt
                   name: {{ include "gx-compliance.fullname" . }}-tls-sec
             - name: APP_PATH
-              value: "{{ .Values.route.host }}"
-            - name: TLS
-              value: "true"
+              value: "/"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           #volumeMounts:
