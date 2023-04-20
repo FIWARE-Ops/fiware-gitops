@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "gx-compliance.fullname" . }}
+  name: {{ include "gx-registry.fullname" . }}
   labels:
-    {{- include "gx-compliance.labels" . | nindent 4 }}
+    {{- include "gx-registry.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "gx-compliance.selectorLabels" . | nindent 6 }}
+      {{- include "gx-registry.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
@@ -19,9 +19,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "gx-compliance.selectorLabels" . | nindent 8 }}
+        {{- include "gx-registry.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: cs-sa
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -29,42 +28,43 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ include "gx-registry.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: {{ include "gx-compliance.fullname" . | trunc 10 | trimSuffix "-"}}-http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
           env:
-            - name: REGISTRY_URL
-              value: {{ .Values.urls.registry | quote }}
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: {{ include "gx-registry.fullname" . }}-mongo-creds
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: {{ include "gx-registry.fullname" . }}-mongo-creds
+            - name: PORT
+              value: "3000"
+            - name: MONGO_DATABASE
+              value: trust-anchor-registry
+            - name: MONGO_HOST
+              value: {{ include "gx-registry.fullname" . | trunc 40  | trimSuffix "-"}}-db.{{- .Release.Namespace -}}.svc.cluster.local
+            - name: MONGO_PORT
+              value: "27017"
+            - name: BASE_URI
+              value: "https://{{ .Values.route.host  }}"
             - name: BASE_URL
               value: "https://{{ .Values.route.host }}"
-            - name: SD_STORAGE_BASE_URL
-              value: {{ .Values.urls.storage}}
-            - name: SD_STORAGE_API_KEY
-              value: {{ .Values.storageApiKey }}
-            - name: privateKey
-              valueFrom:
-                secretKeyRef:
-                  key: tls.key
-                  name: {{ include "gx-compliance.fullname" . }}-tls-sec
-            - name: X509_CERTIFICATE
-              valueFrom:
-                secretKeyRef:
-                  key: tls.crt
-                  name: {{ include "gx-compliance.fullname" . }}-tls-sec
+              {{- end}}
             - name: APP_PATH
               value: ""
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      volumes:
-        - name: did
-          emptyDir:
-            sizeLimit: 500Mi
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

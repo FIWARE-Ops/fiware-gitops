@@ -1,40 +1,43 @@
-# Default values for gx-compliance.
+# Default values for gx-registry.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: registry.gitlab.com/gaia-x/lab/compliance/gx-compliance
+  repository: registry.gitlab.com/gaia-x/lab/compliance/gx-registry
   pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
+  # Default is latest.
   tag: ""
 
 imagePullSecrets: []
+# Allows to specify source branch and path on which to deploy
 nameOverride: "main"
 fullnameOverride: ""
-
 
 podAnnotations: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: 
+securityContext: {}
   # capabilities:
   #   drop:
   #   - ALL
-  readOnlyRootFilesystem: false
+  # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  runAsUser: 0
+  # runAsUser: 1000
 
 service:
   type: ClusterIP
   port: 3000
 
+ingress:
+  enabled: false
+
 route:
   enabled: true
-  host: compliance.gaia-x.fiware.dev
+  host: registry.gaia-x.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
@@ -43,9 +46,7 @@ route:
       kind: ClusterIssuer
       name: letsencrypt-aws-prod
 
-ingress:
-  enabled: false
-  
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -60,17 +61,13 @@ resources: {}
 
 autoscaling:
   enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
-
-urls:
-  registry: https://registry.gaia-x.fiware.dev
-  storage: https://example-storage.lab.gaia-x.eu
-
-storageApiKey: "Nothing"
-privateKey: ZW1wdHk=
-X509_CERTIFICATE: ZW1wdHk=

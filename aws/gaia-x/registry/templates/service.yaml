@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gx-registry.fullname" . }}
+  labels:
+    {{- include "gx-registry.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "gx-registry.selectorLabels" . | nindent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gx-registry.fullname" . | trunc 40  | trimSuffix "-"}}-db
+spec:
+  ports:
+    - port: 27017
+      targetPort: mongo
+      protocol: TCP
+  selector:
+    {{- include "gx-registry.selectorLabelsMongo" . | nindent 4 }}
