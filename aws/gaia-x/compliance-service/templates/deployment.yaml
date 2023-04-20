@@ -62,9 +62,9 @@ spec:
               value: "true"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-        volumeMounts:
-          - mountPath: /usr/src/app/dist/src/static/
-            name: did
+          volumeMounts:
+            - mountPath: /usr/src/app/dist/src/static/
+              name: did
       volumes:
         - name: did
           emptyDir:
