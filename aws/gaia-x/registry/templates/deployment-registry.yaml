@@ -56,7 +56,6 @@ spec:
               value: "https://{{ .Values.route.host  }}"
             - name: BASE_URL
               value: "https://{{ .Values.route.host }}"
-              {{- end}}
             - name: APP_PATH
               value: ""
           ports:
