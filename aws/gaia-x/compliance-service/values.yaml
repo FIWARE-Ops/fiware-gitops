@@ -20,11 +20,11 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext: 
   # capabilities:
   #   drop:
   #   - ALL
-  # readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   # runAsNonRoot: true
   # runAsUser: 1000
 
