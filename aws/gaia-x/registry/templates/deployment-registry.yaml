@@ -21,6 +21,7 @@ spec:
       labels:
         {{- include "gx-registry.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: reg-sa
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
