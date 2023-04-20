@@ -2,11 +2,11 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "gx-compliance.fullname" . }}
+  name: {{ include "gx-registry.fullname" . }}
   labels:
-    {{ include "gx-compliance.labels" . | nindent 4 }}
+    {{ include "gx-registry.labels" . | nindent 4 }}
 spec:
-  secretName: {{ include "gx-compliance.fullname" . }}-tls-sec
+  secretName: {{ include "gx-registry.fullname" . }}-tls-sec
   issuerRef:
     {{- toYaml .Values.route.certificate.issuer | nindent 4 }}
   commonName: {{ .Values.route.host }}
