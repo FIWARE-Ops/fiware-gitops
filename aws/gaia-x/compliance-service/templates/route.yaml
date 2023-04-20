@@ -1,0 +1,25 @@
+{{- if .Values.route.enabled -}}
+{{- $fullName := include "gx-compliance.fullname" . -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "gx-compliance.fullname" . }}
+  labels:
+    {{ include "gx-compliance.labels" . | nindent 4 }}
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "gx-compliance.fullname" . }}-tls-sec
+    {{- with .Values.route.annotations }}
+      {{- toYaml . | nindent 4 }}
+      {{- end }}
+spec:
+  host: {{ .Values.route.host}}
+  to:
+    kind: Service
+    name: {{ $fullName }}
+  {{- if .Values.route.tls }}
+  tls:
+  {{- with .Values.route.tls }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- end }}
+{{- end }}
