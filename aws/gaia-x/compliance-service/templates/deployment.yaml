@@ -49,13 +49,13 @@ spec:
             - name: privateKey
               valueFrom:
                 secretKeyRef:
-                  key: key
-                  name: {{ include "gx-compliance.fullname" . }}-secrets
+                  key: tls.key
+                  name: {{ include "gx-compliance.fullname" . }}-tls-sec
             - name: X509_CERTIFICATE
               valueFrom:
                 secretKeyRef:
-                  key: x509
-                  name: {{ include "gx-compliance.fullname" . }}-secrets
+                  key: tls.crt
+                  name: {{ include "gx-compliance.fullname" . }}-tls-sec
             - name: APP_PATH
               value: "{{ .Values.route.host }}"
             - name: TLS
