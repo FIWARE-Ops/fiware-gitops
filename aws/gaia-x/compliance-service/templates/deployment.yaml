@@ -37,14 +37,6 @@ spec:
             - name: {{ include "gx-compliance.fullname" . | trunc 10 | trimSuffix "-"}}-http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: {{ (first (first .Values.ingress.hosts).paths).path }}
-              port: {{ .Values.service.port }}
-          readinessProbe:
-            httpGet:
-              path: {{ (first (first .Values.ingress.hosts).paths).path }}
-              port: {{ .Values.service.port }}
           env:
             {{- if .Values.urls.registry }}
             - name: REGISTRY_URL
@@ -54,9 +46,7 @@ spec:
               value: http://{{ include "gx-compliance.fullname" . | replace "compliance" "registry"}}:3000{{ (first (first .Values.ingress.hosts).paths).path }}
             {{- end }}
             - name: BASE_URL
-              {{- with (first .Values.ingress.hosts) }}
-              value: "https://{{ .host }}{{ (first .paths).path}}"
-              {{- end}}
+              value: "https://{{ .Values.route.host }}"
             - name: SD_STORAGE_BASE_URL
               value: {{ .Values.urls.storage}}
             - name: SD_STORAGE_API_KEY
@@ -72,7 +62,7 @@ spec:
                   key: x509
                   name: {{ include "gx-compliance.fullname" . }}-secrets
             - name: APP_PATH
-              value: "{{ (first (first .Values.ingress.hosts).paths).path }}"
+              value: "{{ .Values.route.host }}"
             - name: TLS
               value: "true"
           resources:
