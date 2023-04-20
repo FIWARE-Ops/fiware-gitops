@@ -95,8 +95,8 @@ spec:
       {{- end }}
       volumes:
         - name: {{ include "gx-registry.fullname" . }}-data-dir
-          persistentVolumeClaim:
-            claimName: {{ include "gx-registry.fullname" . }}-mongo-data-pvc
+          emptyDir:
+            sizeLimit: 500Mi
         - name: {{ include "gx-registry.fullname" . }}-mongo-init # Db init script
           configMap:
             name: {{ include "gx-registry.fullname" . }}-mongo-init
