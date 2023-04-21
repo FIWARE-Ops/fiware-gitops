@@ -178,15 +178,15 @@ dsba-pdp:
         id: "EU.EORI.DEONE"
         delegationPath: "/ar/delegation"
         tokenPath: "/oauth2/token"
-        url: "https://idm-one.batterypass.fiware.dev"
+        url: "https://ar.gaia-x.fiware.dev"
 
       trustAnchor:
         id: "EU.EORI.DEBATTERYPASSSAT"
         tokenPath: "/token"
         trustedListPath: "/trusted_list"
-        url: "https://satellite.batterypass.fiware.dev"
+        url: "https://satellite.gaia-x.fiware.dev"
         
     trustedVerifiers:
-      - https://verifier-one.batterypass.fiware.dev/.well-known/jwks
+      - https://verifier.gaia-x.fiware.dev/.well-known/jwks
 
-    providerId: "did:key:z6MkigCEnopwujz8Ten2dzq91nvMjqbKQYcifuZhqBsEkH7g"
+    providerId: "did:web:onboarding.gaia-x.fiware.dev:did"

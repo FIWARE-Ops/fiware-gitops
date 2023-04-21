@@ -37,8 +37,8 @@ pdc-portal:
       acr: "urn:http://eidas.europa.eu/LoA/NotNotified/high"
 
     cb:
-      endpoint: "https://one.batterypass.fiware.dev/vc/ngsi-ld/v1"
-      endpoint_siop: "https://one.batterypass.fiware.dev/vc/ngsi-ld/v1"
+      endpoint: "https://kong.gaia-x.fiware.dev/vc/ngsi-ld/v1"
+      endpoint_siop: "https://kong.gaia-x.batterypass.fiware.dev/vc/ngsi-ld/v1"
     
     express:
       port: 7000
@@ -49,8 +49,8 @@ pdc-portal:
       # SIOP flow enabled
       enabled: true
       # Base uri of the verifier
-      verifier_uri: https://verifier-one.batterypass.fiware.dev
+      verifier_uri: https://verifier.gaia-x.fiware.dev
       # DID of verifier
-      did: "did:key:z6MkufEFkFSCXg1DHUsZbYuWcGf4QHat34YSoVgs67ED9m4S"
+      did: "did:web:onboarding.gaia-x.fiware.dev:did"
 
     idp:
