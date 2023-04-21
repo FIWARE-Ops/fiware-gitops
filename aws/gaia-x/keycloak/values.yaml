@@ -82,12 +82,12 @@ keycloak:
   extraVolumes:
     - name: profiles
       configMap:
-        name: keycloak-profile
+        name: gaia-x-keycloak-profile
     - name: providers
       emptyDir: {}
     - name: issuer-key
       configMap:
-        name: keycloak-key
+        name: gaia-x-keycloak-key
 
 
   initContainers:
