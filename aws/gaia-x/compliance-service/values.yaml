@@ -68,7 +68,7 @@ tolerations: []
 affinity: {}
 
 urls:
-  registry: https://registry.gaia-x.fiware.dev
+  registry: https://registry.gaia-x.fiware.dev/development
   storage: https://example-storage.lab.gaia-x.eu
 
 storageApiKey: "Nothing"
