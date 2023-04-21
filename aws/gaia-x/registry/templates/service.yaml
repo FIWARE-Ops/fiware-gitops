@@ -1,27 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "gx-registry.fullname" . }}
+  name: {{ include "ishare-token-helper.fullname" . }}
+  {{- if .Values.service.annotations }}
+  annotations:
+    {{ toYaml .Values.service.annotations | nindent 4 }}
+  {{- end }}
   labels:
-    {{- include "gx-registry.labels" . | nindent 4 }}
+    {{ include "ishare-token-helper.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.port }}
       protocol: TCP
       name: http
   selector:
-    {{- include "gx-registry.selectorLabels" . | nindent 4 }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "gx-registry.fullname" . | trunc 40  | trimSuffix "-"}}-db
-spec:
-  ports:
-    - port: 27017
-      targetPort: mongo
-      protocol: TCP
-  selector:
-    {{- include "gx-registry.selectorLabelsMongo" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "ishare-token-helper.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
