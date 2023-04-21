@@ -57,7 +57,7 @@ keycloak:
       enabled: false
     podSecurityContext:
       enabled: false
-    existingConfigmap: keycloak-realm
+    existingConfigmap: gaia-x-keycloak-realm
   
   extraEnvVars:
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
