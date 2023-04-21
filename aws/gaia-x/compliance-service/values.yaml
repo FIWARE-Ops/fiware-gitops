@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/wi_stefan/gxc:0.0.1
+  repository: quay.io/wi_stefan/gxc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "0.0.1"
 
 imagePullSecrets: []
 nameOverride: "main"
