@@ -12,4 +12,6 @@ data:
 
     mock:
       complianceIssuers:
-        {{ .Values.complianceIssuers }}
+        {{- with .  Values.complianceIssuers }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
