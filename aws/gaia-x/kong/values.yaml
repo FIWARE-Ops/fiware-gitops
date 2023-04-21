@@ -35,6 +35,7 @@ kong:
     installCRDs: false
   
   proxy:
+    type: ClusterIP
     enabled: true
     tls:
       enabled: false
