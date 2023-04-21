@@ -39,7 +39,7 @@ spec:
               protocol: TCP
           env:
             - name: MICRONAUT_CONFIG_FILES
-              values: "/application.yaml"
+              value: "/application.yaml"
           volumeMounts:
             - name: application-yaml
               mountPath: /application.yaml
