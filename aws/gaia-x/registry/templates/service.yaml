@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "ishare-token-helper.fullname" . }}
+  name: {{ include "gx-registry.fullname" . }}
   {{- if .Values.service.annotations }}
   annotations:
     {{ toYaml .Values.service.annotations | nindent 4 }}
   {{- end }}
   labels:
-    {{ include "ishare-token-helper.labels" . | nindent 4 }}
+    {{ include "gx-registry.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -16,5 +16,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "ishare-token-helper.name" . }}
+    app.kubernetes.io/name: {{ include "gx-registry.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
