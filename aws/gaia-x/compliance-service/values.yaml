@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: registry.gitlab.com/gaia-x/lab/compliance/gx-compliance
+  repository: quay.io/wi_stefan/gxc:0.0.1
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
