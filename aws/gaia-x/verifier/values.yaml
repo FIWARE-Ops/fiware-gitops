@@ -9,7 +9,7 @@ vcverifier:
       pathsToSkip: 
         - "/health"
     ssikit:
-      auditorUrl: http:///gaia-x-walt-id-onboarding-vcwaltid:7003
+      auditorUrl: http://gaia-x-walt-id-onboarding-vcwaltid:7003
     verifier:
       tirAddress: https://satellite.gaia-x.fiware.dev/trusted_issuer/v3/issuers
       did: did:web:onboarding.gaia-x.fiware.dev:did
