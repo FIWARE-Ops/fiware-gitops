@@ -1,8 +1,8 @@
 pdc-portal:
   deployment:
     image:
-      repository: quay.io/i4trust/pdc-portal
-      tag: 2.5.0
+      repository: quay.io/wi_stefan/pdc-portal
+      tag: gaia-x
       pullPolicy: Always
     livenessProbe:
       initialDelaySeconds: 4
