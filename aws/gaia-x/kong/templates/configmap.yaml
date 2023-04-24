@@ -56,7 +56,7 @@ data:
             config:
               pathprefix: "/vc"
               authorizationendpointtype: ExtAuthz
-              authorizationendpointaddress: http://pdp-pdp:8080/authz
+              authorizationendpointaddress: http://gaia-x-pdp-dsba-pdp:8080/authz
                 
           - name: request-transformer
             config:

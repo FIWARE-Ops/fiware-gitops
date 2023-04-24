@@ -1,8 +1,8 @@
 pdc-portal:
   deployment:
     image:
-      repository: quay.io/i4trust/pdc-portal
-      tag: 2.5.0
+      repository: quay.io/wi_stefan/pdc-portal
+      tag: gaia-x
       pullPolicy: Always
     livenessProbe:
       initialDelaySeconds: 4
@@ -38,7 +38,7 @@ pdc-portal:
 
     cb:
       endpoint: "https://kong.gaia-x.fiware.dev/vc/ngsi-ld/v1"
-      endpoint_siop: "https://kong.gaia-x.batterypass.fiware.dev/vc/ngsi-ld/v1"
+      endpoint_siop: "https://kong.gaia-x.fiware.dev/vc/ngsi-ld/v1"
     
     express:
       port: 7000
