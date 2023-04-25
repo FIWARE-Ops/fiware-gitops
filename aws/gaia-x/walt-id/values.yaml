@@ -69,7 +69,7 @@ vcwaltid:
           "type": "FullJsonSchemaValidator2021"
         },
         "credentialSubject": {
-          "type": "gx:LegalParticipant"
+          "type": "gx:NaturalParticipant",
           "familyName": "Happy",
           "firstName": "User",
           "roles": [{

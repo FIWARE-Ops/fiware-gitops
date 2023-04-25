@@ -2,14 +2,14 @@ vcverifier:
   deployment:
     image:
       repository: quay.io/fiware/vcverifier
-      tag: 1.2.0-pre-8
+      tag: 1.3.0-pre-8
       pullPolicy: Always
     logging: 
       level: DEBUG
       pathsToSkip: 
         - "/health"
     ssikit:
-      auditorUrl: http:///gaia-x-walt-id-onboarding-vcwaltid:7003
+      auditorUrl: http://gaia-x-walt-id-onboarding-vcwaltid:7003
     verifier:
       tirAddress: https://satellite.gaia-x.fiware.dev/trusted_issuer/v3/issuers
       did: did:web:onboarding.gaia-x.fiware.dev:did
