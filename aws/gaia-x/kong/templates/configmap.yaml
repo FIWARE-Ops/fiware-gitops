@@ -40,7 +40,7 @@ data:
             config: 
               minute: 30
 
-      - host: "orion-ld"
+      - host: "gaia-x-orion-ld"
         name: "vc"
         port: 1026
         protocol: http
