@@ -27,20 +27,10 @@ data:
           }
         ],
         "client": {
-          "did:key:z6MkigCEnopwujz8Ten2dzq91nvMjqbKQYcifuZhqBsEkH7g": [
+          "did:web:onboarding.gaia-x.fiware.dev:did": [
             {
-              "name": "BATTERY_VIEWER",
-              "description": "Is allowed to view batteries",
-              "clientRole": true
-            },
-            {
-              "name": "BATTERY_VIEWER_SOC",
-              "description": "Is allowed to just view the SoC of batteries",
-              "clientRole": true
-            },
-            {
-              "name": "BATTERY_ADMIN",
-              "description": "Is allowed to manage batteries",
+              "name": "LEGAL_REPRESENTATIVE",
+              "description": "Is allowed to register participants",
               "clientRole": true
             }
           ],
@@ -87,20 +77,18 @@ data:
       ],
       "users": [
         {
-          "username": "admin-user",
+          "username": "legal-representative",
           "enabled": true,
-          "email": "admin-user@fiware.org",
+          "email": "legal-representative@participant.org",
           "credentials": [
             {
               "type": "password",
-              "value": "admin-user"
+              "value": "legal-representative"
             }
           ],
           "clientRoles": {
-            "did:key:z6MkigCEnopwujz8Ten2dzq91nvMjqbKQYcifuZhqBsEkH7g": [
-              "BATTERY_VIEWER",
-              "BATTERY_VIEWER_SOC",
-              "BATTERY_ADMIN"
+            "did:web:onboarding.gaia-x.fiware.dev:did": [
+              "LEGAL_REPRESENTATIVE"
             ],
             "account": [
               "view-profile",
@@ -113,13 +101,13 @@ data:
           ]
         },
         {
-          "username": "consumer-user",
+          "username": "standard-employee",
           "enabled": true,
-          "email": "consumer-user@fiware.org",
+          "email": "standard-employee@participant.org",
           "credentials": [
             {
               "type": "password",
-              "value": "consumer-user"
+              "value": "standard-employee"
             }
           ],
           "clientRoles": {
@@ -135,9 +123,9 @@ data:
       ],
       "clients": [
         {
-          "clientId": "did:key:z6MkigCEnopwujz8Ten2dzq91nvMjqbKQYcifuZhqBsEkH7g",
+          "clientId": "did:web:onboarding.gaia-x.fiware.dev:did",
           "enabled": true,
-          "description": "Client to receive Verifiable Credentials targeted at verifier-one.batterypass.fiware.dev",
+          "description": "Client to connect the onboarding service at portal.gaia-x.fiware.dev",
           "surrogateAuthRequired": false,
           "alwaysDisplayInConsole": false,
           "clientAuthenticatorType": "client-secret",
