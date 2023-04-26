@@ -12,7 +12,7 @@ data:
       "displayNameHtml": "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
       "enabled": true,
       "attributes": {
-        "frontendUrl": "https://participant-kc.gaia-x.fiware.dev"
+        "frontendUrl": "https://animalgoods-kc.gaia-x.fiware.dev"
       },
       "sslRequired": "none",
       "roles": {
@@ -84,7 +84,7 @@ data:
         {
           "username": "legal-representative",
           "enabled": true,
-          "email": "legal-representative@participant.org",
+          "email": "legal-representative@animalgoods.org",
           "credentials": [
             {
               "type": "password",
@@ -108,7 +108,7 @@ data:
         {
           "username": "standard-employee",
           "enabled": true,
-          "email": "standard-employee@participant.org",
+          "email": "standard-employee@animalgoods.org",
           "credentials": [
             {
               "type": "password",
@@ -155,8 +155,8 @@ data:
               "expiryInMin": "3600",
               "vctypes_LegalPersonCredential": "ldp_vc,jwt_vc_json",
               "vctypes_GaiaXParticipantCredential": "ldp_vc,jwt_vc_json",
-              "vc_subjectDid": "did:web:participant.gaia-x.fiware.dev:did",
-              "vc_gx:legalName": "Gaia-X Participant",
+              "vc_subjectDid": "did:web:animalgoods.gaia-x.fiware.dev:did",
+              "vc_gx:legalName": "Animal Goods Org.",
               "GaiaXParticipantCredential_claims": "subjectDid,gx:legalName",
               "LegalPersonCredential_claims": "email,firstName,familyName,roles"
           },

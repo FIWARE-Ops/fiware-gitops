@@ -50,7 +50,32 @@ data:
           - name: tir
             paths:
               - /tir
-            strip_path: false
+            strip_path: true
+
+        plugins:
+          - name: prometheus
+
+          - name: key-auth
+            config: 
+              hide_credentials: true 
+              key_in_header: true 
+              key_names:
+                - X-Api-Key
+               
+          - name: rate-limiting
+            config: 
+              minute: 30
+
+      - host: "gaia-x-walt-id-vcwaltid"
+        name: "walt"
+        port: 7003
+        protocol: http
+
+        routes:
+          - name: walt
+            paths:
+              - /walt
+            strip_path: true
 
         plugins:
           - name: prometheus
