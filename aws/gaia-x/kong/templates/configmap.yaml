@@ -12,6 +12,7 @@ data:
       keyauth_credentials:
       - tags: 
         - token-key
+        - tir-key
 
     services:
       
@@ -24,6 +25,31 @@ data:
           - name: token-helper
             paths:
               - /token
+            strip_path: false
+
+        plugins:
+          - name: prometheus
+
+          - name: key-auth
+            config: 
+              hide_credentials: true 
+              key_in_header: true 
+              key_names:
+                - X-Api-Key
+               
+          - name: rate-limiting
+            config: 
+              minute: 30
+      
+      - host: "gaia-x-orion-ld"
+        name: "tir"
+        port: 1026
+        protocol: http
+
+        routes:
+          - name: tir
+            paths:
+              - /tir
             strip_path: false
 
         plugins:
