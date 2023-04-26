@@ -61,11 +61,11 @@ vcwaltid:
           "gx-terms-and-conditions:gaiaxTermsAndConditions": "70c1d713215f95191a11d38fe2341faed27d19e083917bc8732ca4fea4976700"
         }
       }
-    BatteryPassAuthCredential.json: |
+    LegalPersonCredential.json: |
       {
         "@context": ["https://www.w3.org/2018/credentials/v1"],
         "credentialSchema": {
-          "id": "https://raw.githubusercontent.com/FIWARE-Ops/batterypass-demonstrator/main/docs/schema.json",
+          "id": "https://raw.githubusercontent.com/FIWARE-Ops/tech-x-challenge/main/schema.json",
           "type": "FullJsonSchemaValidator2021"
         },
         "credentialSubject": {
@@ -73,8 +73,8 @@ vcwaltid:
           "familyName": "Happy",
           "firstName": "User",
           "roles": [{
-            "names": ["P.Info.gold"],
-            "target": "did:elsi:target"
+            "names": ["LEGAL_REPRESENTATIVE"],
+            "target": "did:web:onboarding"
           }]
         },
         "id": "urn:uuid:3add94f4-28ec-42a1-8704-4e4aa51006b4",
@@ -82,5 +82,5 @@ vcwaltid:
         "issuer": "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN",
         "validFrom": "2021-08-31T00:00:00Z",
         "issuanceDate": "2021-08-31T00:00:00Z",
-        "type": ["VerifiableCredential", "BatteryPassAuthCredential"]
+        "type": ["VerifiableCredential", "LegalPersonCredential"]
       }
