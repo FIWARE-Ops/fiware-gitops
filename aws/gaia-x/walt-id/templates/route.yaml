@@ -7,7 +7,7 @@ metadata:
   labels:
     {{ include "waltid.labels" . | nindent 4 }}
   annotations:
-    haproxy.router.openshift.io/rewrite-target: /v1/did/did:web:participant.gaia-x.fiware.dev:did
+    haproxy.router.openshift.io/rewrite-target: /v1/did/did:web:animalgoods.gaia-x.fiware.dev:did
     cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "waltid.fullname" . }}-tls-sec
     {{- with .Values.route.annotations }}
       {{- toYaml . | nindent 4 }}

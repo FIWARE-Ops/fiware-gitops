@@ -1,6 +1,6 @@
 route:
   enabled: true
-  host: participant.gaia-x.fiware.dev
+  host: animalgoods.gaia-x.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
