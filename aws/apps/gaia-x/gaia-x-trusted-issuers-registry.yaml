@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gaia-x-trusted-issuers-registry-wrapper
+  namespace: argocd
+spec:
+  destination:
+    namespace: gaia-x
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/gaia-x/trusted-issuers-registry-wrapper
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
