@@ -41,8 +41,21 @@ spec:
           env:
             - name: APP_PATH
               value: ""
+            - name: MICRONAUT_CONFIG_FILES
+              value: "/application.yaml"
+          volumeMounts:
+            - name: application-yaml
+              mountPath: /application.yaml
+              subPath: application.yaml
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: application-yaml
+          configMap:
+            name: {{ include "gx-tir.fullname" . }}
+            items:
+              - key: application.yaml
+                path: application.yaml
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
