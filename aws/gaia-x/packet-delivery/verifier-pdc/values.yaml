@@ -1,0 +1,27 @@
+vcverifier:
+  deployment:
+    image:
+      repository: quay.io/fiware/vcverifier
+      tag: 1.3.0-pre-8
+      pullPolicy: Always
+    logging: 
+      level: DEBUG
+      pathsToSkip: 
+        - "/health"
+    ssikit:
+      auditorUrl: http://gaia-x-walt-id-pdc-vcwaltid:7003
+    verifier:
+      tirAddress: https://tir.gaia-x.fiware.dev/v3/issuers
+      did: did:web:packetdelivery.gaia-x.fiware.dev:did
+   
+  route:
+    enabled: true
+    host: verifier-pdc.gaia-x.fiware.dev
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+  

@@ -1,0 +1,58 @@
+pdc-portal:
+  deployment:
+    image:
+      repository: quay.io/i4trust/pdc-portal
+      tag: 2.5.0
+      pullPolicy: Always
+    livenessProbe:
+      initialDelaySeconds: 4
+    readinessProbe:
+      initialDelaySeconds: 5
+
+  route:
+    enabled: true
+    host: packetdelivery-portal.gaia-x.fiware.dev
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+    # should a certificate for the address automatically be generated
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+
+  debug:
+    enabled: true
+
+  config:
+    title: "PacketDelivery Portal"
+    getLabel: "Get PacketDelivery"
+    inputLabel: "PacketDelivery ID"
+    client:
+      id: "EU.EORI.NLPACKETDEL"
+
+    external:
+      host: https://pdc.gaia-x.fiware.dev
+
+    oidc:
+      redirect_path: "/openid_connect1.0/return"
+      acr: "urn:http://eidas.europa.eu/LoA/NotNotified/high"
+
+    cb:
+      endpoint: "https://kong-pdc.gaia-x.fiware.dev/pdc/ngsi-ld/v1"
+      endpoint_siop: "https://kong-pdc.gaia-x.fiware.dev/pdc/ngsi-ld/v1"
+    
+    express:
+      port: 7000
+
+        
+    # Configuration for SIOP flow
+    siop:
+      # SIOP flow enabled
+      enabled: true
+      # Base uri of the verifier
+      verifier_uri: https://verifier-pdc.gaia-x.fiware.dev
+      # DID of verifier
+      did: "did:web:packetdelivery.gaia-x.fiware.dev:did"
+
+    idp:
