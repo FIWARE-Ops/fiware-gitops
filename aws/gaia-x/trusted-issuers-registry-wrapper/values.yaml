@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/wi_stefan/trusted-issuers-registry-wrapper
+  repository: quay.io/wi_stefan/trusted-issuer-registry-wrapper
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.0.1"
