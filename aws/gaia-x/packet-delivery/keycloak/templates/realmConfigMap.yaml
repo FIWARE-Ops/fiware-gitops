@@ -103,7 +103,7 @@ data:
       ],
       "clients": [
         {
-          "clientId": "did:web:packetdelivery.gaia-x.fiware.dev:did",
+          "clientId": "did:web:onboarding.gaia-x.fiware.dev:did",
           "enabled": true,
           "description": "Client to connect the onboarding service at portal.gaia-x.fiware.dev",
           "surrogateAuthRequired": false,
