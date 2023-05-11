@@ -18,13 +18,13 @@ dsba-pdp:
         - 0B8CB22BF8A243C02A76490AC7A43C80E976E3FC20C2C9C75A7F34BB0E49D2F5
 
       ar:
-        id: "test1"
+        id: "EU.EORI.DEONE"
         delegationPath: "/ar/delegation"
         tokenPath: "/oauth2/token"
         url: "https://ar.gaia-x.fiware.dev"
 
       trustAnchor:
-        id: "test2"
+        id: "did:web:packetdelivery.gaia-x.fiware.dev:did"
         tokenPath: "/token"
         trustedListPath: "/trusted_list"
         url: "https://tir.gaia-x.fiware.dev"
