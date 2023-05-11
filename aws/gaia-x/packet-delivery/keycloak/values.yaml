@@ -102,7 +102,7 @@ keycloak:
     enabled: false
 
   externalDatabase:
-    host: postgresql
+    host: postgresql-pdc
     user: postgres
     database: keycloak_pdc
     existingSecret: postgres-secret
