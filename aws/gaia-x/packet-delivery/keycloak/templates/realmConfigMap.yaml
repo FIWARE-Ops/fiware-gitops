@@ -27,7 +27,7 @@ data:
           }
         ],
         "client": {
-          "did:web:packetdelivery.gaia-x.fiware.dev:did": [
+          "did:web:onboarding.gaia-x.fiware.dev:did": [
             {
               "name": "LEGAL_REPRESENTATIVE",
               "description": "Is allowed to register participants",
@@ -87,7 +87,7 @@ data:
             }
           ],
           "clientRoles": {
-            "did:web:packetdelivery.gaia-x.fiware.dev:did": [
+            "did:web:onboarding.gaia-x.fiware.dev:did": [
               "LEGAL_REPRESENTATIVE"
             ],
             "account": [
