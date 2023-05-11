@@ -15,7 +15,7 @@ dsba-pdp:
 
       clientId: did:web:packetdelivery.gaia-x.fiware.dev:did
       trustedFingerprints:
-        - 0B8CB22BF8A243C02A76490AC7A43C80E976E3FC20C2C9C75A7F34BB0E49D2F5
+        - D2F62092F982CF783D4632BD86FA86C3FBFDB2D8C8A58BC6809163FCF5CD030B
 
       ar:
         id: "EU.EORI.DEONE"
