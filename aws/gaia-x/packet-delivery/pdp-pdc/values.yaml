@@ -13,7 +13,7 @@ dsba-pdp:
       existingSecret: gaia-x-walt-id-pdc-vcwaltid-tls-sec
 
 
-      clientId: EU.EORI.DEONE
+      clientId: did:web:packetdelivery.gaia-x.fiware.dev:did
       trustedFingerprints:
         - 0B8CB22BF8A243C02A76490AC7A43C80E976E3FC20C2C9C75A7F34BB0E49D2F5
 
@@ -24,7 +24,7 @@ dsba-pdp:
         url: "https://ar.gaia-x.fiware.dev"
 
       trustAnchor:
-        id: "did:web:packetdelivery.gaia-x.fiware.dev:did"
+        id: "EU.EORI.FIWARESATELLITE"
         tokenPath: "/token"
         trustedListPath: "/trusted_list"
         url: "https://tir.gaia-x.fiware.dev"
