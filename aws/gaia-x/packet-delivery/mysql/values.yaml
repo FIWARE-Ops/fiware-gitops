@@ -1,0 +1,15 @@
+mysql:
+  fullnameOverride: mysql-ar
+  auth:
+    existingSecret: mysql-secret
+  rbac: 
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use    
