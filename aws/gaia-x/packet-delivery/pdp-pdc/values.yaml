@@ -7,11 +7,10 @@ dsba-pdp:
     image:  
       pullPolicy: Always
       repository: quay.io/fiware/dsba-pdp 
-      tag: 0.5.0
+      tag: 0.6.0-PRE-28
     logLevel: DEBUG
     ishare:
       existingSecret: gaia-x-walt-id-pdc-vcwaltid-tls-sec
-
 
       clientId: did:web:packetdelivery.gaia-x.fiware.dev:did
       trustedFingerprints:
