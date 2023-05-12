@@ -18,10 +18,10 @@ dsba-pdp:
         - D2F62092F982CF783D4632BD86FA86C3FBFDB2D8C8A58BC6809163FCF5CD030B
 
       ar:
-        id: "EU.EORI.DEONE"
+        id: "did:web:packetdelivery.gaia-x.fiware.dev:did"
         delegationPath: "/ar/delegation"
         tokenPath: "/oauth2/token"
-        url: "https://ar.gaia-x.fiware.dev"
+        url: "https://ar-pdc.gaia-x.fiware.dev"
 
       trustAnchor:
         id: "EU.EORI.FIWARESATELLITE"
