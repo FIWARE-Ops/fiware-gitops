@@ -2,9 +2,9 @@ keyrock:
   fullnameOverride: keyrock-ar
   statefulset:
     image:
-      repository: quay.io/fiware/idm
-      tag: i4trust-rc8
-      pullPolicy: IfNotPresent
+      repository: quay.io/wi_stefan/keyrock
+      tag: sn-fix
+      pullPolicy: Always
 
   db:
     user: root
