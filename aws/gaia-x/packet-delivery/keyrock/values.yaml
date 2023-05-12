@@ -2,8 +2,8 @@ keyrock:
   fullnameOverride: keyrock-ar
   statefulset:
     image:
-      repository: quay.io/fiware/idm
-      tag: 8.3.3
+      repository: quay.io/wi_stefan/keyrock
+      tag: sn-fix
       pullPolicy: IfNotPresent
 
   db:
