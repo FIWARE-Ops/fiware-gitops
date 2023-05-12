@@ -4,7 +4,7 @@ keyrock:
     image:
       repository: quay.io/wi_stefan/keyrock
       tag: sn-fix
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
 
   db:
     user: root
