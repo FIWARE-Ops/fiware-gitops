@@ -32,6 +32,11 @@ data:
               "name": "LEGAL_REPRESENTATIVE",
               "description": "Is allowed to register participants",
               "clientRole": true
+            },
+            {
+              "name": "EMPLOYEE",
+              "description": "Is allowed to see participants",
+              "clientRole": true
             }
           ],
           "orion-pep": [
@@ -88,7 +93,8 @@ data:
           ],
           "clientRoles": {
             "did:web:onboarding.gaia-x.fiware.dev:did": [
-              "LEGAL_REPRESENTATIVE"
+              "LEGAL_REPRESENTATIVE",
+              "EMPLOYEE"
             ],
             "account": [
               "view-profile",
