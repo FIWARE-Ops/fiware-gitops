@@ -32,7 +32,7 @@ pdc-portal:
       id: "EU.EORI.NLPACKETDEL"
 
     external:
-      host: https://pdc.gaia-x.fiware.dev
+      host: https://packetdelivery-portal.gaia-x.fiware.dev
 
     oidc:
       redirect_path: "/openid_connect1.0/return"

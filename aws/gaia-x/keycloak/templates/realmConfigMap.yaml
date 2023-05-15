@@ -39,6 +39,13 @@ data:
               "clientRole": true
             }
           ],
+          "did:web:packetdelivery.gaia-x.fiware.dev:did": [
+            {
+              "name": "EMPLOYEE",
+              "description": "Employee to access packetdelivery",
+              "clientRole": true
+            }
+          ],
           "orion-pep": [
             {
               "name": "admin",
@@ -106,6 +113,29 @@ data:
           ]
         },
         {
+          "username": "pdc-employee",
+          "enabled": true,
+          "email": "pdc-employee@animalgoods.org",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "pdc-employee"
+            }
+          ],
+          "clientRoles": {
+            "did:web:packetdelivery.gaia-x.fiware.dev:did": [
+              "EMPLOYEE"
+            ],
+            "account": [
+              "view-profile",
+              "manage-account"
+            ]
+          },
+          "groups": [
+            "/consumer"
+          ]
+        },
+        {
           "username": "standard-employee",
           "enabled": true,
           "email": "standard-employee@animalgoods.org",
@@ -158,6 +188,38 @@ data:
               "vc_subjectDid": "did:web:animalgoods.gaia-x.fiware.dev:did",
               "vc_gx:legalName": "Animal Goods Org.",
               "GaiaXParticipantCredential_claims": "subjectDid,gx:legalName",
+              "NaturalPersonCredential_claims": "email,firstName,familyName,roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
+          "clientId": "did:web:packetdelivery.gaia-x.fiware.dev:did",
+          "enabled": true,
+          "description": "Client to connect the pdc service at packetdelivery-portal.gaia-x.fiware.dev",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "3600",
+              "vctypes_NaturalPersonCredential": "ldp_vc,jwt_vc_json",
               "NaturalPersonCredential_claims": "email,firstName,familyName,roles"
           },
           "authenticationFlowBindingOverrides": {},
