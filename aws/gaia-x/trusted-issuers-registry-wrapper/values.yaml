@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/wi_stefan/trusted-issuer-registry-wrapper
+  repository: quay.io/pulledtim/trusted-issuer-registry-wrapper
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.1"
+  tag: "0.1.0-PRE-5"
 
 imagePullSecrets: []
 nameOverride: "main"
