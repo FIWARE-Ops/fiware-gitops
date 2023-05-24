@@ -1,0 +1,31 @@
+trusted-issuers-list:
+  route: 
+    til: 
+      enabled: true 
+      host: til-pdc.gaia-x.fiware.dev
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: edge
+      certificate:
+        issuer:
+          kind: ClusterIssuer
+          name: letsencrypt-aws-prod
+    tir: 
+      enabled: true 
+      host: tir-pdc.gaia-x.fiware.dev
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: edge
+      certificate:
+        issuer:
+          kind: ClusterIssuer
+          name: letsencrypt-aws-prod
+
+  database:
+    persistence: true
+    host: mysql-ar
+    username: root
+    existingSecret:
+      enabled: true
+      name: mysql-secret
+      key: dbPassword
