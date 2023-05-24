@@ -25,6 +25,7 @@ trusted-issuers-list:
     persistence: true
     host: mysql-ar
     username: root
+    name: til
     existingSecret:
       enabled: true
       name: mysql-secret
