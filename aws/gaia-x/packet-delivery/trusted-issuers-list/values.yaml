@@ -20,7 +20,10 @@ trusted-issuers-list:
         issuer:
           kind: ClusterIssuer
           name: letsencrypt-aws-prod
-
+  
+  deployment:
+    image:  
+      tag: 0.0.3
   database:
     persistence: true
     host: mysql-ar
