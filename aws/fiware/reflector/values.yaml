@@ -1,0 +1,13 @@
+reflector:
+  cron:
+    enabled: false
+    schedule: "*/15 * * * *"
+    activeDeadlineSeconds: 600
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+  
+  securityContext:
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 1000

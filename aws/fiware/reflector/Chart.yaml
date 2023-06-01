@@ -1,0 +1,12 @@
+apiVersion: v2
+name: reflector
+description: Chart holder for argo-cd
+
+type: application
+version: 7.0.173
+appVersion: "7.0.173"
+
+dependencies:
+  - name: reflector
+    version: 7.0.173
+    repository: https://emberstack.github.io/helm-charts
