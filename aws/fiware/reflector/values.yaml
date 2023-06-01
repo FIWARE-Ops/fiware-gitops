@@ -10,4 +10,8 @@ reflector:
   securityContext:
     readOnlyRootFilesystem: true
     runAsNonRoot: true
-    runAsUser: 1000870020
+    runAsUser: 1000
+
+  serviceAccount:
+    create: false
+    name: "fiware-reflector-sa"
