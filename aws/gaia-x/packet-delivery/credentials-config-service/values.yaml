@@ -1,0 +1,10 @@
+credentials-config-service:
+  database:
+    persistence: true
+    host: mysql-ar
+    username: root
+    name: ccs
+    existingSecret:
+      enabled: true
+      name: mysql-secret
+      key: dbPassword
