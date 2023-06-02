@@ -114,3 +114,14 @@ spec:
     kind: Service
     name: fiware-orion-ld
 ```
+
+## Reflection of certificate secrets
+
+When certificate secrets (e.g., with wildcard certificates) are created, they can be only used by routes in the corresponding namespace. 
+In order to mirror such secrets in other (or all) namespaces, the Kubernetes addon 
+`[Reflector](https://github.com/emberstack/kubernetes-reflector)` can be used. 
+
+An example deployment of `Reflector` can be found [here](https://github.com/emberstack/kubernetes-reflector). 
+[This](https://github.com/FIWARE-Ops/fiware-gitops/blob/master/aws/fiware/secrets/fiware-dev-cert.yaml) shows the required annotations 
+on a Certificate manifest, to mirror the corresponding secret in all namespaces of the cluster.
+
