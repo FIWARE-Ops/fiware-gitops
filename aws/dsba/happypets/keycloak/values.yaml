@@ -1,6 +1,6 @@
 route:
   enabled: true
-  host: animalgoods-kc.dsba.fiware.dev
+  host: happypets-kc.dsba.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
@@ -65,9 +65,9 @@ keycloak:
   - name: KEYCLOAK_LOG_LEVEL
     value: INFO
   - name: VCISSUER_ISSUER_DID
-    value: "did:web:animalgoods.dsba.fiware.dev:did"
+    value: "did:web:happypets.dsba.fiware.dev:did"
   - name: VCISSUER_WALTID_ADDRESS
-    value: "http://dsba-animal-goods-walt-id-vcwaltid"
+    value: "http://dsba-walt-id-vcwaltid"
 
 
   extraVolumeMounts:
@@ -102,7 +102,7 @@ keycloak:
     enabled: false
 
   externalDatabase:
-    host: postgresql-ag
+    host: postgresql-hp
     user: postgres
     database: keycloak_one
     existingSecret: postgres-secret
