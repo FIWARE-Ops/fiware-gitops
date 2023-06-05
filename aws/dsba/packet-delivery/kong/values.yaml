@@ -43,7 +43,7 @@ kong:
       enabled: false
     route:
       enabled: true
-      host: kong-pdc.gaia-x.fiware.dev
+      host: kong-pdc.dsba.fiware.dev
       certificate:
         issuer:
           kind: ClusterIssuer
