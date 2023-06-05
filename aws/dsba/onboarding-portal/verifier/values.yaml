@@ -15,7 +15,29 @@ vcverifier:
       did: did:web:onboarding.dsba.fiware.dev:did
     configRepo:
       configEndpoint: http://dsba-onboarding-portal-ccs-credentials-config-service:8080/
-   
+    initContainers:
+      - name: load-did
+        image: quay.io/opencloudio/curl:4.2.0-build.8
+        imagePullPolicy: Always
+        command: 
+          - /bin/sh
+          - /opt/did/script/import.sh
+        env:
+          - name: WALTID_CORE_ADDRESS
+            value: "dsba-animal-goods-walt-id-vcwaltid:7000"
+        volumeMounts:
+          - name: did-config
+            mountPath: /opt/did/script
+          - name: did-secret
+            mountPath: /opt/did/secret
+    extraVolumes:
+      - name: did-config
+        configMap:
+          name: dsba-animal-goods-keycloak-did-config
+      - name: did-secret
+        secret: 
+          secretName: dsba-animal-goods-walt-id-vcwaltid-tls-sec
+
   route:
     enabled: true
     host: verifier-onboarding.dsba.fiware.dev
