@@ -1,8 +1,8 @@
 credentials-config-service:
   deployment:
     image: 
-      repository: quay.io/wi_stefan/credentials-config-service
-      tag: 0.0.1-PRE-1  
+      repository: quay.io/fiware/credentials-config-service
+      tag: 0.0.1 
   database:
     persistence: true
     host: mysql-pdc
