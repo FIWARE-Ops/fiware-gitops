@@ -4,7 +4,7 @@ metadata:
   name: dsba-gaia-x-registry
   namespace: argocd
   labels:
-    participant: animal-goods
+    participant: gaia-x
 spec:
   destination:
     namespace: dsba
