@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: dsba-happypets-walt-id
   namespace: argocd
+  labels:
+    participant: happypets
 spec:
   destination:
     namespace: dsba

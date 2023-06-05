@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: dsba-onboarding-portal-verifier
   namespace: argocd
+  labels:
+    participant: onboarding-portal
 spec:
   destination:
     namespace: dsba
