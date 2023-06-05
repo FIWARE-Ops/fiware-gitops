@@ -24,7 +24,7 @@ vcverifier:
           - /opt/did/script/import.sh
         env:
           - name: WALTID_CORE_ADDRESS
-            value: "dsba-animal-goods-walt-id-vcwaltid:7000"
+            value: "dsba-onboarding-walt-id-vcwaltid:7000"
         volumeMounts:
           - name: did-config
             mountPath: /opt/did/script
@@ -33,10 +33,10 @@ vcverifier:
     extraVolumes:
       - name: did-config
         configMap:
-          name: dsba-animal-goods-keycloak-did-config
+          name: dsba-onboarding-did-config
       - name: did-secret
         secret: 
-          secretName: dsba-animal-goods-walt-id-vcwaltid-tls-sec
+          secretName: dsba-onboarding-walt-id-vcwaltid-tls-sec
 
   route:
     enabled: true
