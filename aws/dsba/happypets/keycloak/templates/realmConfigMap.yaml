@@ -12,7 +12,7 @@ data:
       "displayNameHtml": "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
       "enabled": true,
       "attributes": {
-        "frontendUrl": "https://animalgoods-kc.dsba.fiware.dev"
+        "frontendUrl": "https://happypets-kc.dsba.fiware.dev"
       },
       "sslRequired": "none",
       "roles": {
@@ -91,7 +91,7 @@ data:
         {
           "username": "legal-representative",
           "enabled": true,
-          "email": "legal-representative@animalgoods.org",
+          "email": "legal-representative@happypets.org",
           "credentials": [
             {
               "type": "password",
@@ -115,7 +115,7 @@ data:
         {
           "username": "pdc-employee",
           "enabled": true,
-          "email": "pdc-employee@animalgoods.org",
+          "email": "pdc-employee@happypets.org",
           "credentials": [
             {
               "type": "password",
@@ -138,7 +138,7 @@ data:
         {
           "username": "standard-employee",
           "enabled": true,
-          "email": "standard-employee@animalgoods.org",
+          "email": "standard-employee@happypets.org",
           "credentials": [
             {
               "type": "password",
@@ -185,7 +185,7 @@ data:
               "expiryInMin": "3600",
               "vctypes_NaturalPersonCredential": "ldp_vc,jwt_vc_json",
               "vctypes_GaiaXParticipantCredential": "ldp_vc,jwt_vc_json",
-              "vc_subjectDid": "did:web:animalgoods.dsba.fiware.dev:did",
+              "vc_subjectDid": "did:web:happypets.dsba.fiware.dev:did",
               "vc_gx:legalName": "Animal Goods Org.",
               "GaiaXParticipantCredential_claims": "subjectDid,gx:legalName",
               "NaturalPersonCredential_claims": "email,firstName,familyName,roles"
