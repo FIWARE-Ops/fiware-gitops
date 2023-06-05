@@ -12,7 +12,7 @@ data:
       --data "{
           \"method\": \"web\",
           \"keyAlias\":\"${KEY_ID}\",
-          \"domain\": \"animal-goods.dsba.fiware.dev\",
+          \"domain\": \"animalgoods.dsba.fiware.dev\",
           \"path\": \"did\",
-          \"x5u\": \"https://animal-goods.dsba.fiware.dev/certs/tls.crt\"
+          \"x5u\": \"https://animalgoods.dsba.fiware.dev/certs/tls.crt\"
       }"
