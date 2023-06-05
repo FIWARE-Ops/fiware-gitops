@@ -5,8 +5,10 @@ metadata:
 data:
   import.sh: |-
     export KEY=$(cat /opt/did/secret/tls.key)
+    echo ${KEY}
     export KEY_ID=$(curl --location "${WALTID_CORE_ADDRESS}/v1/key/import" --header 'Content-Type: text/plain' --data "${KEY}" | jq -r '.id')
-    curl --location "${WALTID_CORE_ADDRESS}/v1/did/create" \
+    echo ${KEY_ID}
+    curl -o - -I --location "${WALTID_CORE_ADDRESS}/v1/did/create" \
       --header 'Content-Type: application/json' \
       --data "{
           \"method\": \"web\",
