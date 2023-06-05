@@ -76,13 +76,19 @@ keycloak:
       subPath: profile.properties
     - name: providers
       mountPath: /opt/bitnami/keycloak/providers/
+    - name: issuer-key
+      mountPath: /opt/keys
 
   extraVolumes:
     - name: profiles
       configMap:
-        name: dsba-keycloak-profile
+        name: dsba-happypets-keycloak-profile
     - name: providers
       emptyDir: {}
+    - name: issuer-key
+      configMap:
+        name: dsba-happypets-keycloak-key
+
 
   initContainers:
     - name: add-vc-issuer
