@@ -2,7 +2,7 @@ pdc-portal:
   deployment:
     image:
       repository: quay.io/wi_stefan/pdc-portal
-      tag: dsba
+      tag: gaia-x
       pullPolicy: Always
     livenessProbe:
       initialDelaySeconds: 4

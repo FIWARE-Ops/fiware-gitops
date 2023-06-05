@@ -15,3 +15,5 @@ mysql:
         - use    
   initdbScripts:
     create.sh: |
+      CREATE DATABASE til;
+      CREATE DATABASE ccs;
