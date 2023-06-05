@@ -26,12 +26,12 @@ vcverifier:
           - name: WALTID_CORE_ADDRESS
             value: "dsba-onboarding-walt-id-vcwaltid:7000"
         volumeMounts:
-          - name: did-config
+          - name: dsba-onboarding-did-config
             mountPath: /opt/did/script
           - name: did-secret
             mountPath: /opt/did/secret
     extraVolumes:
-      - name: did-config
+      - name: dsba-onboarding-did-config
         configMap:
           name: dsba-onboarding-did-config
       - name: did-secret
