@@ -82,12 +82,12 @@ keycloak:
   extraVolumes:
     - name: profiles
       configMap:
-        name: dsba-keycloak-pdc-profile
+        name: dsba-packet-delivery-keycloak-profile
     - name: providers
       emptyDir: {}
     - name: issuer-key
       configMap:
-        name: dsba-keycloak-pdc-key
+        name: dsba-packet-delivery-keycloak-key
 
 
   initContainers:
