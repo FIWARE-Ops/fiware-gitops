@@ -12,7 +12,7 @@ data:
       "displayNameHtml": "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
       "enabled": true,
       "attributes": {
-        "frontendUrl": "https://packetdelivery-kc.gaia-x.fiware.dev"
+        "frontendUrl": "https://packetdelivery-kc.dsba.fiware.dev"
       },
       "sslRequired": "none",
       "roles": {
@@ -27,7 +27,7 @@ data:
           }
         ],
         "client": {
-          "did:web:onboarding.gaia-x.fiware.dev:did": [
+          "did:web:onboarding.dsba.fiware.dev:did": [
             {
               "name": "LEGAL_REPRESENTATIVE",
               "description": "Is allowed to register participants",
@@ -92,7 +92,7 @@ data:
             }
           ],
           "clientRoles": {
-            "did:web:onboarding.gaia-x.fiware.dev:did": [
+            "did:web:onboarding.dsba.fiware.dev:did": [
               "LEGAL_REPRESENTATIVE",
               "EMPLOYEE"
             ],
@@ -109,9 +109,9 @@ data:
       ],
       "clients": [
         {
-          "clientId": "did:web:onboarding.gaia-x.fiware.dev:did",
+          "clientId": "did:web:onboarding.dsba.fiware.dev:did",
           "enabled": true,
-          "description": "Client to connect the onboarding service at portal.gaia-x.fiware.dev",
+          "description": "Client to connect the onboarding service at portal.dsba.fiware.dev",
           "surrogateAuthRequired": false,
           "alwaysDisplayInConsole": false,
           "clientAuthenticatorType": "client-secret",
@@ -133,7 +133,7 @@ data:
               "expiryInMin": "3600",
               "vctypes_NaturalPersonCredential": "ldp_vc,jwt_vc_json",
               "vctypes_GaiaXParticipantCredential": "ldp_vc,jwt_vc_json",
-              "vc_subjectDid": "did:web:packetdelivery.gaia-x.fiware.dev:did",
+              "vc_subjectDid": "did:web:packetdelivery.dsba.fiware.dev:did",
               "vc_gx:legalName": "Packet Delivery Company Inc.",
               "GaiaXParticipantCredential_claims": "subjectDid,gx:legalName",
               "NaturalPersonCredential_claims": "email,firstName,familyName,roles"

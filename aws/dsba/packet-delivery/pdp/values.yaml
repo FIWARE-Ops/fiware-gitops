@@ -10,28 +10,28 @@ dsba-pdp:
       tag: 0.6.0-PRE-28
     logLevel: DEBUG
     ishare:
-      existingSecret: gaia-x-walt-id-pdc-vcwaltid-tls-sec
+      existingSecret: dsba-walt-id-pdc-vcwaltid-tls-sec
 
-      clientId: did:web:packetdelivery.gaia-x.fiware.dev:did
+      clientId: did:web:packetdelivery.dsba.fiware.dev:did
       trustedFingerprints:
         - D2F62092F982CF783D4632BD86FA86C3FBFDB2D8C8A58BC6809163FCF5CD030B
 
       ar:
-        id: "did:web:packetdelivery.gaia-x.fiware.dev:did"
+        id: "did:web:packetdelivery.dsba.fiware.dev:did"
         delegationPath: "/ar/delegation"
         tokenPath: "/oauth2/token"
-        url: "https://ar-pdc.gaia-x.fiware.dev"
+        url: "https://ar-pdc.dsba.fiware.dev"
 
       trustAnchor:
         id: "EU.EORI.FIWARESATELLITE"
         tokenPath: "/token"
         trustedListPath: "/trusted_list"
-        url: "https://tir.gaia-x.fiware.dev"
+        url: "https://tir.dsba.fiware.dev"
         
     trustedVerifiers:
-      - https://verifier-pdc.gaia-x.fiware.dev/.well-known/jwks
+      - https://verifier-pdc.dsba.fiware.dev/.well-known/jwks
 
-    providerId: "did:web:packetdelivery.gaia-x.fiware.dev:did"
+    providerId: "did:web:packetdelivery.dsba.fiware.dev:did"
 
   additionalEnvVars:
     - name: ISHARE_CERTIFICATE_PATH

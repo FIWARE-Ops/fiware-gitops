@@ -11,7 +11,7 @@ pdc-portal:
 
   route:
     enabled: true
-    host: packetdelivery-portal.gaia-x.fiware.dev
+    host: packetdelivery-portal.dsba.fiware.dev
     tls:
       termination: edge
       insecureEdgeTerminationPolicy: Redirect
@@ -32,15 +32,15 @@ pdc-portal:
       id: "EU.EORI.NLPACKETDEL"
 
     external:
-      host: https://packetdelivery-portal.gaia-x.fiware.dev
+      host: https://packetdelivery-portal.dsba.fiware.dev
 
     oidc:
       redirect_path: "/openid_connect1.0/return"
       acr: "urn:http://eidas.europa.eu/LoA/NotNotified/high"
 
     cb:
-      endpoint: "https://kong-pdc.gaia-x.fiware.dev/pdc/ngsi-ld/v1"
-      endpoint_siop: "https://kong-pdc.gaia-x.fiware.dev/pdc/ngsi-ld/v1"
+      endpoint: "https://kong-pdc.dsba.fiware.dev/pdc/ngsi-ld/v1"
+      endpoint_siop: "https://kong-pdc.dsba.fiware.dev/pdc/ngsi-ld/v1"
     
     express:
       port: 7000
@@ -51,8 +51,8 @@ pdc-portal:
       # SIOP flow enabled
       enabled: true
       # Base uri of the verifier
-      verifier_uri: https://verifier-pdc.gaia-x.fiware.dev
+      verifier_uri: https://verifier-pdc.dsba.fiware.dev
       # DID of verifier
-      did: "did:web:packetdelivery.gaia-x.fiware.dev:did"
+      did: "did:web:packetdelivery.dsba.fiware.dev:did"
 
     idp:

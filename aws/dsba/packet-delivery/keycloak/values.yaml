@@ -1,6 +1,6 @@
 route:
   enabled: true
-  host: packetdelivery-kc.gaia-x.fiware.dev
+  host: packetdelivery-kc.dsba.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
@@ -57,7 +57,7 @@ keycloak:
       enabled: false
     podSecurityContext:
       enabled: false
-    existingConfigmap: gaia-x-keycloak-pdc-realm
+    existingConfigmap: dsba-keycloak-pdc-realm
   
   extraEnvVars:
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
@@ -65,9 +65,9 @@ keycloak:
   - name: KEYCLOAK_LOG_LEVEL
     value: INFO
   - name: VCISSUER_ISSUER_DID
-    value: "did:web:packetdelivery.gaia-x.fiware.dev:did"
+    value: "did:web:packetdelivery.dsba.fiware.dev:did"
   - name: VCISSUER_WALTID_ADDRESS
-    value: "http://gaia-x-walt-id-pdc-vcwaltid"
+    value: "http://dsba-walt-id-pdc-vcwaltid"
 
 
   extraVolumeMounts:
@@ -82,12 +82,12 @@ keycloak:
   extraVolumes:
     - name: profiles
       configMap:
-        name: gaia-x-keycloak-pdc-profile
+        name: dsba-keycloak-pdc-profile
     - name: providers
       emptyDir: {}
     - name: issuer-key
       configMap:
-        name: gaia-x-keycloak-pdc-key
+        name: dsba-keycloak-pdc-key
 
 
   initContainers:

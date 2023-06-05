@@ -1,6 +1,6 @@
 route:
   enabled: true
-  host: animalgoods.gaia-x.fiware.dev
+  host: animalgoods.dsba.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
@@ -37,7 +37,7 @@ vcwaltid:
       {
         "@context": [
           "https://www.w3.org/2018/credentials/v1",
-          "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+          "https://registry.lab.dsba.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
         ],
         "type": [
           "VerifiableCredential"
@@ -48,7 +48,7 @@ vcwaltid:
         "credentialSubject": {
           "id": "did:web:raw.githubusercontent.com:egavard:payload-sign:master",
           "type": "gx:LegalParticipant",
-          "gx:legalName": "Gaia-X compliant participant",
+          "gx:legalName": "dsba compliant participant",
           "gx:legalRegistrationNumber": {
             "gx:vatID": "MYVATID"
           },

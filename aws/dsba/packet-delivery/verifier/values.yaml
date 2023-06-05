@@ -9,16 +9,16 @@ vcverifier:
       pathsToSkip: 
         - "/health"
     ssikit:
-      auditorUrl: http://gaia-x-walt-id-pdc-vcwaltid:7003
+      auditorUrl: http://dsba-walt-id-pdc-vcwaltid:7003
     verifier:
-      tirAddress: https://tir.gaia-x.fiware.dev/v3/issuers
-      did: did:web:packetdelivery.gaia-x.fiware.dev:did
+      tirAddress: https://tir.dsba.fiware.dev/v3/issuers
+      did: did:web:packetdelivery.dsba.fiware.dev:did
     configRepo:
-      configEndpoint: http://gaia-x-ccs-pdc-credentials-config-service:8080/
+      configEndpoint: http://dsba-ccs-pdc-credentials-config-service:8080/
    
   route:
     enabled: true
-    host: verifier-pdc.gaia-x.fiware.dev
+    host: verifier-pdc.dsba.fiware.dev
     tls:
       insecureEdgeTerminationPolicy: Redirect
       termination: edge

@@ -5,7 +5,7 @@ ishare-satellite:
       pullPolicy: IfNotPresent
   route: 
     enabled: true
-    host: satellite.gaia-x.fiware.dev
+    host: satellite.dsba.fiware.dev
     tls:
       termination: edge
       insecureEdgeTerminationPolicy: Redirect
@@ -267,8 +267,8 @@ ishare-satellite:
           -----END CERTIFICATE-----
 
       - id: "EU.EORI.DEONE"
-        did: "did:web:onboarding.gaia-x.fiware.dev:did"
-        name: "Gaia-X Onboarding"
+        did: "did:web:onboarding.dsba.fiware.dev:did"
+        name: "dsba Onboarding"
         status: "Active"
         start_date: "2021-09-27T00:00:00Z"
         end_date: "2051-09-27T00:00:00Z"

@@ -34,7 +34,7 @@ service:
 
 route:
   enabled: true
-  host: tir.gaia-x.fiware.dev
+  host: tir.dsba.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
@@ -43,11 +43,11 @@ route:
       kind: ClusterIssuer
       name: letsencrypt-aws-prod
 
-brokerUrl: http://gaia-x-orion-ld:1026/
+brokerUrl: http://dsba-orion-ld:1026/
 
 tirConfig:
   general:
-    contextUrl: "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+    contextUrl: "https://registry.lab.dsba.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
   satellite:
     id: "EU.EORI.FIWARESATELLITE"
     key: |

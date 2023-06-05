@@ -41,7 +41,7 @@ data:
             config: 
               minute: 30
       
-      - host: "gaia-x-orion-ld"
+      - host: "dsba-orion-ld"
         name: "tir"
         port: 1026
         protocol: http
@@ -66,7 +66,7 @@ data:
             config: 
               minute: 30
 
-      - host: "gaia-x-walt-id-vcwaltid"
+      - host: "dsba-walt-id-vcwaltid"
         name: "walt"
         port: 7003
         protocol: http
@@ -91,7 +91,7 @@ data:
             config: 
               minute: 30
 
-      - host: "gaia-x-orion-ld"
+      - host: "dsba-orion-ld"
         name: "vc"
         port: 1026
         protocol: http
@@ -107,7 +107,7 @@ data:
             config:
               pathprefix: "/vc"
               authorizationendpointtype: ExtAuthz
-              authorizationendpointaddress: http://gaia-x-pdp-dsba-pdp:8080/authz
+              authorizationendpointaddress: http://dsba-pdp-dsba-pdp:8080/authz
                 
           - name: request-transformer
             config:

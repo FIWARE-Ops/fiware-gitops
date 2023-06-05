@@ -34,7 +34,7 @@ service:
 
 route:
   enabled: true
-  host: compliance.gaia-x.fiware.dev
+  host: compliance.dsba.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
@@ -68,8 +68,8 @@ tolerations: []
 affinity: {}
 
 urls:
-  registry: https://registry.gaia-x.fiware.dev/development
-  storage: https://example-storage.lab.gaia-x.eu
+  registry: https://registry.dsba.fiware.dev/development
+  storage: https://example-storage.lab.dsba.eu
 
 storageApiKey: "Nothing"
 privateKey: ZW1wdHk=
