@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dsba-packet-delivery-ccs-pdc
+  name: dsba-packet-delivery-ccs
   namespace: argocd
 spec:
   destination:

@@ -9,7 +9,7 @@ vcverifier:
       pathsToSkip: 
         - "/health"
     ssikit:
-      auditorUrl: http://dsba-walt-id-onboarding-vcwaltid:7003
+      auditorUrl: http://dsba-onboarding-portal-walt-id-vcwaltid:7003
     verifier:
       tirAddress: https://satellite.dsba.fiware.dev/trusted_issuer/v3/issuers
       did: did:web:onboarding.dsba.fiware.dev:did

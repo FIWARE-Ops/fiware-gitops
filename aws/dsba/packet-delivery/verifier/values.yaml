@@ -9,12 +9,12 @@ vcverifier:
       pathsToSkip: 
         - "/health"
     ssikit:
-      auditorUrl: http://dsba-walt-id-pdc-vcwaltid:7003
+      auditorUrl: http://dsba-packet-delivery-walt-id-vcwaltid:7003
     verifier:
       tirAddress: https://tir.dsba.fiware.dev/v3/issuers
       did: did:web:packetdelivery.dsba.fiware.dev:did
     configRepo:
-      configEndpoint: http://dsba-ccs-pdc-credentials-config-service:8080/
+      configEndpoint: http://dsba-packet-delivery-ccs-credentials-config-service:8080/
    
   route:
     enabled: true
