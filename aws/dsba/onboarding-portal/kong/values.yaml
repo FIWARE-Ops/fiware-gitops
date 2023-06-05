@@ -54,7 +54,7 @@ kong:
   
   admin:
     enabled: true
-    type: LoadBalancer  
+    type: ClusterIP  
     http: 
       enabled: true
       servicePort: 8001
