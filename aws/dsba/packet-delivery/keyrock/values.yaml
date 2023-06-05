@@ -1,5 +1,5 @@
 keyrock:
-  fullnameOverride: keyrock-ar
+  fullnameOverride: keyrock-pdc
   statefulset:
     image:
       repository: quay.io/wi_stefan/keyrock
