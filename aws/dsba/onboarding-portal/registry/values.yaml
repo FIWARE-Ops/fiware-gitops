@@ -1,0 +1,87 @@
+## Default values for ishare-gx-registry.
+## This is a YAML-formatted file.
+## Declare variables to be passed into your templates.
+
+# -- option to override the name config in the _helpers.tpl
+nameOverride: ""
+# -- option to override the fullname config in the _helpers.tpl
+fullnameOverride: "gx-registry"
+
+## configuration for the k8s service to access the satellite
+service:
+  # -- service type
+  type: ClusterIP
+  # -- port to be used by the service
+  port: 8080
+  # -- addtional annotations, if required
+  annotations: {}
+
+# -- if a satellite specific service account should be used, it can be configured here
+# ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+serviceAccount:
+  # -- specifies if the account should be created
+  create: false
+  # Name of service account
+  #name: ishare-gx-registry
+
+## deployment specific configuration
+deployment:
+  # -- initial number of target replications, can be different if autoscaling is enabled
+  replicaCount: 1
+  # -- number of old replicas to be retained
+  revisionHistoryLimit: 3
+  ## configuration of the update strategy
+  updateStrategy:
+    # -- type of the update
+    type: RollingUpdate
+    # -- new pods will be added gradually
+    rollingUpdate:
+      # -- number of pods that can be created above the desired amount while updating
+      maxSurge: 1
+      # -- number of pods that can be unavailable while updating
+      maxUnavailable: 0
+  ## configuration of the image to be used
+  image:
+    # -- image name
+    repository: quay.io/wi_stefan/gaiax-registry-mock
+    # -- tag of the image to be used
+    tag: 0.0.1
+    # -- specification of the image pull policy
+    pullPolicy: IfNotPresent
+  # -- additional labels for the deployment, if required
+  additionalLabels: {}
+  # -- additional annotations for the deployment, if required
+  additionalAnnotations: {}
+  ## Satellite resource requests and limits, we leave the default empty to make that a concious choice by the user.
+  ## for the autoscaling to make sense, you should configure this.
+  # resources:
+    # limits:
+      # cpu: 100m
+      # memory: 128Mi
+    # requests:
+      # cpu: 100m
+      # memory: 128Mi
+  # -- selector template
+  # ref: https://kubernetes.io/docs/user-guide/node-selection/
+  nodeSelector: {}
+  # -- tolerations template
+  # ref: ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  tolerations: []
+  # -- affinity template
+  # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  affinity: {}
+
+complianceIssuers:
+  - "did:web:compliance.gaia-x.eu"
+  - "did:web:compliance.dsba.fiware.dev"
+
+route:
+  enabled: true
+  host: registry.dsba.fiware.dev
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  certificate:
+    issuer:
+      kind: ClusterIssuer
+      name: letsencrypt-aws-prod

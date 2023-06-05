@@ -1,0 +1,17 @@
+mysql:
+  fullnameOverride: mysql-pdc
+  auth:
+    existingSecret: mysql-secret
+  rbac: 
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use    
+  initdbScripts:
+    create.sh: |

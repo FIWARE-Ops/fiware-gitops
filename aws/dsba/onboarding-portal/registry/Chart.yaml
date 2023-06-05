@@ -1,0 +1,15 @@
+apiVersion: v2
+name: gaia-x-registry-mock
+version: 0.0.1
+appVersion: 0.0.1
+home: https://github.com/wistefan/gaia-x-registry-mock
+description: A Helm chart for running the registry mock
+icon: https://fiware.github.io/catalogue/img/fiware.png
+keywords:
+- fiware
+- gaia-x
+sources:
+- ttps://github.com/wistefan/gaia-x-registry-mock
+maintainers:
+- name: wistefan
+  email: stefan.wiedemann@fiware.org

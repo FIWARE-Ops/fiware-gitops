@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "gx-registry.fullname" . }}
+  labels:
+    {{- include "gx-registry.labels" . | nindent 4 }}
+data:
+  application.yaml: |-
+    micronaut:
+      server:
+        port: {{ .Values.service.port }}
+
+    mock:
+      complianceIssuers:
+        {{- with .Values.complianceIssuers }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}

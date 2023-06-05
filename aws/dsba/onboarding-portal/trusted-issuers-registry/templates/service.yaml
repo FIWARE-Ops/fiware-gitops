@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gx-tir.fullname" . }}
+  labels:
+    {{- include "gx-tir.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 80
+      targetPort: {{ include "gx-tir.fullname" . | trunc 10 | trimSuffix "-"}}-http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "gx-tir.selectorLabels" . | nindent 4 }}

@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gx-compliance.fullname" . }}
+  labels:
+    {{- include "gx-compliance.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "gx-compliance.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        randstring: {{ randAlphaNum 8 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "gx-compliance.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: cs-sa
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: {{ include "gx-compliance.fullname" . | trunc 10 | trimSuffix "-"}}-http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+            - name: REGISTRY_URL
+              value: {{ .Values.urls.registry | quote }}
+            - name: BASE_URL
+              value: "https://{{ .Values.route.host }}"
+            - name: SD_STORAGE_BASE_URL
+              value: {{ .Values.urls.storage}}
+            - name: SD_STORAGE_API_KEY
+              value: {{ .Values.storageApiKey }}
+            - name: privateKey
+              valueFrom:
+                secretKeyRef:
+                  key: tls.key
+                  name: {{ include "gx-compliance.fullname" . }}-tls-sec
+            - name: X509_CERTIFICATE
+              valueFrom:
+                secretKeyRef:
+                  key: tls.crt
+                  name: {{ include "gx-compliance.fullname" . }}-tls-sec
+            - name: APP_PATH
+              value: ""
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: did
+          emptyDir:
+            sizeLimit: 500Mi
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
