@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: dsba-animal-goods-walt-id
   namespace: argocd
-label:
+labels:
   participant: animal-goods
 spec:
   destination:
