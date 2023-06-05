@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dsba-happypets-walt-id-pdc
+  name: dsba-happypets-walt-id
   namespace: argocd
 spec:
   destination:

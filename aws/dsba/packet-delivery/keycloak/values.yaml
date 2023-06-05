@@ -67,7 +67,7 @@ keycloak:
   - name: VCISSUER_ISSUER_DID
     value: "did:web:packetdelivery.dsba.fiware.dev:did"
   - name: VCISSUER_WALTID_ADDRESS
-    value: "http://dsba-walt-id-pdc-vcwaltid"
+    value: "http://dsba-packet-delivery-walt-id-vcwaltid"
 
 
   extraVolumeMounts:

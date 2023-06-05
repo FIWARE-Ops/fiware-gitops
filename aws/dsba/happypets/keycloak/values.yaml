@@ -67,7 +67,7 @@ keycloak:
   - name: VCISSUER_ISSUER_DID
     value: "did:web:happypets.dsba.fiware.dev:did"
   - name: VCISSUER_WALTID_ADDRESS
-    value: "http://dsba-walt-id-vcwaltid"
+    value: "http://dsba-happypets-walt-id-vcwaltid"
 
 
   extraVolumeMounts:
