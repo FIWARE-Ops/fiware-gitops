@@ -57,7 +57,7 @@ keycloak:
       enabled: false
     podSecurityContext:
       enabled: false
-    existingConfigmap: dsba-keycloak-realm
+    existingConfigmap: dsba-animal-goods-keycloak-realm
   
   extraEnvVars:
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
@@ -82,12 +82,12 @@ keycloak:
   extraVolumes:
     - name: profiles
       configMap:
-        name: dsba-keycloak-profile
+        name: dsba-animal-goods-keycloak-profile
     - name: providers
       emptyDir: {}
     - name: issuer-key
       configMap:
-        name: dsba-keycloak-key
+        name: dsba-animal-goods-keycloak-key
 
 
   initContainers:

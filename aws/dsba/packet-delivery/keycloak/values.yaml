@@ -57,7 +57,7 @@ keycloak:
       enabled: false
     podSecurityContext:
       enabled: false
-    existingConfigmap: dsba-keycloak-pdc-realm
+    existingConfigmap: dsba-packet-delivery-keycloak-realm
   
   extraEnvVars:
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
