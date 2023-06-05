@@ -37,7 +37,7 @@ vcwaltid:
       {
         "@context": [
           "https://www.w3.org/2018/credentials/v1",
-          "https://registry.lab.dsba.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+          "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
         ],
         "type": [
           "VerifiableCredential"
