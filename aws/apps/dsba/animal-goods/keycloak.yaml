@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: dsba-animal-goods-keycloak
   namespace: argocd
+label:
+  participant: animal-goods
 spec:
   destination:
     namespace: dsba
