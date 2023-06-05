@@ -36,7 +36,7 @@ vcverifier:
           name: dsba-onboarding-did-config
       - name: did-secret
         secret: 
-          secretName: dsba-onboarding-walt-id-vcwaltid-tls-sec
+          secretName: dsba-onboarding-portal-verifier-vcverifier-tls-sec
 
   route:
     enabled: true
