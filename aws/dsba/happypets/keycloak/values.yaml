@@ -79,6 +79,7 @@ keycloak:
     - name: issuer-key
       mountPath: /opt/keys
 
+
   extraVolumes:
     - name: profiles
       configMap:
@@ -88,6 +89,12 @@ keycloak:
     - name: issuer-key
       configMap:
         name: dsba-happypets-keycloak-key
+    - name: did-config
+      configMap:
+        name: dsba-happypets-keycloak-did-config
+    - name: did-secret
+      secret: 
+        secretName: dsba-happypets-walt-id-vcwaltid-tls-sec
 
 
   initContainers:
@@ -97,6 +104,20 @@ keycloak:
       volumeMounts:
         - name: providers
           mountPath: /target
+    - name: load-did
+      image: quay.io/opencloudio/curl:4.2.0-build.8
+      imagePullPolicy: Always
+      command: 
+        - /bin/sh
+        - /opt/did/script/import.sh
+      env:
+        - name: WALTID_CORE_ADDRESS
+          value: "dsba-happypets-walt-id-vcwaltid:7000"
+      volumeMounts:
+        - name: did-config
+          mountPath: /opt/did/script
+        - name: did-secret
+          mountPath: /opt/did/secret
   
   postgresql:
     enabled: false
