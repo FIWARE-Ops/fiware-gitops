@@ -24,7 +24,7 @@ vcverifier:
           - /opt/did/script/import.sh
         env:
           - name: WALTID_CORE_ADDRESS
-            value: "dsba-onboarding-walt-id-vcwaltid:7000"
+            value: "dsba-onboarding-portal-verifier-vcverifier:7000"
         volumeMounts:
           - name: dsba-onboarding-did-config
             mountPath: /opt/did/script
