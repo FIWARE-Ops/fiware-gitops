@@ -5,7 +5,7 @@ credentials-config-service:
       tag: 0.0.1 
   database:
     persistence: true
-    host: mysql-pdc
+    host: mysql-onboarding
     username: root
     name: ccs
     existingSecret:

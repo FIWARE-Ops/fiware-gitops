@@ -13,3 +13,7 @@ mysql:
         - securitycontextconstraints
         verbs:
         - use    
+  initdbScripts:
+    create.sql: |
+      CREATE DATABASE til;
+      CREATE DATABASE ccs;

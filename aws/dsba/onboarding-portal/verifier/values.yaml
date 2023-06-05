@@ -11,8 +11,10 @@ vcverifier:
     ssikit:
       auditorUrl: http://dsba-onboarding-portal-walt-id-vcwaltid:7003
     verifier:
-      tirAddress: https://satellite.dsba.fiware.dev/trusted_issuer/v3/issuers
+      tirAddress: https://tir.dsba.fiware.dev/v3/issuers
       did: did:web:onboarding.dsba.fiware.dev:did
+    configRepo:
+      configEndpoint: http://dsba-onboarding-portal-ccs-credentials-config-service:8080/
    
   route:
     enabled: true
