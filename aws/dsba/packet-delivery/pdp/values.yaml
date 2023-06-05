@@ -10,7 +10,7 @@ dsba-pdp:
       tag: 0.6.0
     logLevel: DEBUG
     ishare:
-      existingSecret: dsba-walt-id-pdc-vcwaltid-tls-sec
+      existingSecret: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
 
       clientId: did:web:packetdelivery.dsba.fiware.dev:did
       trustedFingerprints:
