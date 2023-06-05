@@ -57,7 +57,7 @@ keycloak:
       enabled: false
     podSecurityContext:
       enabled: false
-    existingConfigmap: dsba-keycloak-realm
+    existingConfigmap: dsba-happypets-keycloak-realm
   
   extraEnvVars:
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
