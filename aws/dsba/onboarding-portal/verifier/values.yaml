@@ -30,7 +30,7 @@ vcverifier:
             mountPath: /opt/did/script
           - name: did-secret
             mountPath: /opt/did/secret
-    extraVolumes:
+    additionalVolumes:
       - name: dsba-onboarding-did-config
         configMap:
           name: dsba-onboarding-did-config
