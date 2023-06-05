@@ -14,6 +14,6 @@ mysql:
         verbs:
         - use    
   initdbScripts:
-    create.sh: |
+    create.sql: |
       CREATE DATABASE til;
       CREATE DATABASE ccs;
