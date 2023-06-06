@@ -57,4 +57,26 @@ The consumer has the following components:
 
 ### The Provider
 
-"Provider" offer various kinds of Dataservices throught the Marketplace and make them accessible through the IAM-Framework. In our Dataspace, the "Provider" Packet Delivery Co. provides a Portal, where users can follow the delivery of there orders and, depending on the level of service, change delivery details like the planned time of arrival. 
+"Provider" offer various kinds of Dataservices throught the Marketplace and make them accessible through the IAM-Framework. In our Dataspace, the "Provider" Packet Delivery Co. provides a Portal, where users can follow the delivery of there orders and, depending on the level of service, change delivery details like the planned time of arrival. Information about the delivery is stored in the Orion-LD ContextBroker, thus can be secured by a DSBA-compliant IAM-Framework. 
+Since the IAM-Framework is the same as the "Dataspace Operator" uses for the OnBoarding, the architecture looks quite similar:
+
+![provider](docs/provider.png)
+
+The components:
+
+- Keycloak to provide credentials for employees, in the same way as for the [consumer](#the-consumer), to allow self-registration by the provider
+- Walt-Id to create and sign credentials and offer the did.json, as the [consumer](#the-consumer) does, and also verify variuous parts of the credential(f.e. the signature) like the [dataspace operator](#the-dataspace-operator)
+- the Activation Service, providing an interface to the Marketplace to get new "Consumers" registered in the Trusted Issuers List
+- the Portal as GUI for the Users to log-in and see/update their deliveries
+- the Verifier to provide the authentication capabilites for the portal(allowing users to log-in) and the Activation Service(allowing the Marketplace to access via M2M-flow)
+- the Credentials Config Service, providing information about the scope to be requested and its trust-anchors, same as for the [dataspace operator](#the-dataspace-operator)
+- the Trusted Issuers List, used by the Verifier to check the capabilities of an issuer and the Activation Service to add new "Consumer" as trusted issuers
+- Kong, to enforce authorization on requests towards Orion-LD(same as [dataspace operator](#the-dataspace-operator))
+- the PDP to decide on requests towards Orion-LD(same as [dataspace operator](#the-dataspace-operator))
+- the Authorization Registry to provide policies (same as [dataspace operator](#the-dataspace-operator))
+- Orion-LD to store and provide information about the deliveries
+
+Additionally, the Verifier connects to the Trusted Participants API of the [Dataspace Operator](#the-dataspace-operator) to verify users as participants of the dataspace.
+
+
+## The Marketplace
