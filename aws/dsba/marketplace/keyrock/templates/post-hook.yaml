@@ -19,7 +19,10 @@ spec:
           mountPath: /scripts
       env:
         - name: DB_PASSWORD
-          value: dbPassword
+          valueFrom:
+            secretKeyRef:
+              name: keyrock-secret
+              key: dbPassword
         - name: APP_SECRET
           value: {{ .Values.marketplace.secret | quote }}
   volumes:

@@ -19,7 +19,7 @@ keyrock:
     ## -- Enable init script
     initEnabled: true
     ## -- Database name for init script
-    dbName: bp_ar_idm
+    dbName: bae_idm
     
 
   existingSecret: keyrock-secret
@@ -74,13 +74,13 @@ keyrock:
   
   additionalEnvVars:
     - name: IDM_TITLE
-      value: "dsba AR"
+      value: "DSBA Marketplace IDP"
     - name: IDM_DEBUG
       value: "true"
     - name: DEBUG
       value: "*"
     - name: IDM_DB_NAME
-      value: bp_ar_idm
+      value: bae_idm
     - name: IDM_DB_SEED
       value: "true"
     - name: IDM_SERVER_MAX_HEADER_SIZE
