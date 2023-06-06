@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dsba-marketplace-mysql
+  namespace: argocd
+  labels:
+    participant: marketplace
+spec:
+  destination:
+    namespace: dsba
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/dsba/marketplace/mysql
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

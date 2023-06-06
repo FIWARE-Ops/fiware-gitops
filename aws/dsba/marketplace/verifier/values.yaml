@@ -1,0 +1,51 @@
+vcverifier:
+  deployment:
+    image:
+      repository: quay.io/fiware/vcverifier
+      tag: 2.0.1
+      pullPolicy: Always
+    logging: 
+      level: DEBUG
+      pathsToSkip: 
+        - "/health"
+    ssikit:
+      auditorUrl: http://dsba-marketplace-walt-id-vcwaltid:7003
+    verifier:
+      tirAddress: https://tir.dsba.fiware.dev/v3/issuers
+      did: did:web:marketplace.dsba.fiware.dev:did
+    configRepo:
+      configEndpoint: http://dsba-marketplace-ccs-credentials-config-service:8080/
+    initContainers:
+      - name: load-did
+        image: quay.io/opencloudio/curl:4.2.0-build.8
+        imagePullPolicy: Always
+        command: 
+          - /bin/sh
+          - /opt/did/script/import.sh
+        env:
+          - name: WALTID_CORE_ADDRESS
+            value: "dsba-marketplace-walt-id-vcwaltid:7000"
+        volumeMounts:
+          - name: dsba-marketplace-did-config
+            mountPath: /opt/did/script
+          - name: did-secret
+            mountPath: /opt/did/secret
+    additionalVolumes:
+      - name: dsba-marketplace-did-config
+        configMap:
+          name: dsba-marketplace-did-config
+      - name: did-secret
+        secret: 
+          secretName: dsba-marketplace-verifier-vcverifier-tls-sec
+
+  route:
+    enabled: true
+    host: verifier-marketplace.dsba.fiware.dev
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+  
