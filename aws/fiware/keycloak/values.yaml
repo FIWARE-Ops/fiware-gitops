@@ -44,6 +44,10 @@ keycloak:
       enabled: false
     podSecurityContext:
       enabled: false
+    command: 
+      - java
+      - -jar
+      - /opt/bitnami/keycloak-config-cli/keycloak-config-cli-20.0.1.jar
     existingConfigmap: keycloak-realm
   
   extraEnvVars:
