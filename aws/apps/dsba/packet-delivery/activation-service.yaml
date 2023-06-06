@@ -1,18 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: fiware-pdp
+  name: dsba-packet-delivery-activation-service
   namespace: argocd
+  labels:
+    participant: packet-delivery
 spec:
   destination:
-    namespace: fiware
+    namespace: dsba
     server: https://kubernetes.default.svc
   project: default
   source:
-    helm:
-      valueFiles:
-      - values.yaml
-    path: aws/fiware/pdp
+    path: aws/dsba/packet-delivery/activation-service
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

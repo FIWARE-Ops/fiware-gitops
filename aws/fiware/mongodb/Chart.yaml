@@ -1,12 +1,12 @@
 apiVersion: v2
-name: mongo-db
+name: mongo-db-one
 description: Chart holder for argo-cd
 
 type: application
-version: 1.0.0
-appVersion: "4.4.12" # MongoDB version 4.4.12
+version: 0.1.0
+appVersion: "4.4.12"
 
 dependencies:
 - name: mongodb
-  version: 12.1.31
-  repository: https://charts.bitnami.com/bitnami
+  version: 11.0.4
+  repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
