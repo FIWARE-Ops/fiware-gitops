@@ -1,7 +1,7 @@
 mysql:
-  fullnameOverride: mysql-pdc
+  fullnameOverride: mysql-marketplace
   auth:
-    existingSecret: mysql-marketplace
+    existingSecret: mysql-secret
   rbac: 
     create: true
     rules:
