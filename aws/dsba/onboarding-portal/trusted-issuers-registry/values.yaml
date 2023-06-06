@@ -18,7 +18,7 @@ trusted-issuers-registry:
 
   tir:
     ngsiBroker:
-      url: http://dsba-orion-ld:1026/
+      url: http://dsba-onboarding-portal-orion-ld:1026/
     contextUrl: "https://registry.lab.dsba.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
     satellite:
       id: "EU.EORI.FIWARESATELLITE"
