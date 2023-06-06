@@ -63,7 +63,7 @@ business-api-ecosystem:
     ## database configuration for APIs
     db:
       ## host of the database to be used
-      host: mysql-marketplace
+      host: dsba-marketplace-mysql-bae
       ## password for connecting the database
       #password: dbPassword
 
@@ -105,9 +105,9 @@ business-api-ecosystem:
     ## database configuration for RSS
     db:
       ## host of the database to be used
-      host: mysql-marketplace
+      host: dsba-marketplace-mysql-bae
       ## URL connection string of the database to be used
-      url: jdbc:mysql://mysql-marketplace:3306/RSS
+      url: jdbc:mysql://dsba-marketplace-mysql-bae:3306/RSS
       ## password for connecting the database
       #password: dbPassword
 
