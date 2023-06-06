@@ -12,9 +12,6 @@ mongodb:
     limits:
       cpu: 200m
       memory: 512Mi
-    requests:
-      cpu: 200m
-      memory: 512Mi
   persistence:
     enabled: true
     size: 8Gi
