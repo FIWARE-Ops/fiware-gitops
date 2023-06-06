@@ -11,7 +11,7 @@ pdc-portal:
 
   route:
     enabled: true
-    host: portal.dsba.fiware.dev
+    host: onboarding-portal.dsba.fiware.dev
     tls:
       termination: edge
       insecureEdgeTerminationPolicy: Redirect
@@ -30,7 +30,7 @@ pdc-portal:
     inputLabel: "Participant"
 
     external:
-      host: https://portal-onboarding.dsba.fiware.dev
+      host: https://onboarding-portal.dsba.fiware.dev
 
     oidc:
       redirect_path: "/openid_connect1.0/return"
