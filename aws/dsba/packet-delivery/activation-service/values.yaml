@@ -1,0 +1,61 @@
+activation-service:
+  deployment:
+    image:
+      repository: quay.io/i4trust/activation-service
+      tag: 2.1.0
+      #pullPolicy: Always
+      pullPolicy: IfNotPresent
+
+  route:
+    enabled: true
+    host: as-packetdelivery.dsba.fiware.dev
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+    certificate:
+      issuer: 
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+
+  ## Configuration of activation service execution
+  activationService:
+    # -- Listen port
+    port: 8080
+    # -- Number of (gunicorn) workers that should be created
+    workers: 1
+    # -- Maximum header size in bytes
+    maxHeaderSize: 32768
+    # -- Log Level
+    logLevel: "debug"
+
+    db:
+      # -- Use sqlite in-memory database
+      useMemory: true
+      # -- Enable tracking of modifications
+      modTracking: false
+      # -- Enable SQL logging to stderr
+      echo: true
+
+    ar:
+      # Endpoint for token request
+      token: "https://ar.isharetest.net/connect/token"
+      # Endpoint for create policy requests
+      policy: "https://ar.isharetest.net/policy"
+      # Endpoint for delegation requests
+      delegation: "https://ar.isharetest.net/delegation"
+      # EORI of AR
+      id: "EU.EORI.DEPROVIDER"
+
+    issuer: # TODO client-id and TIL
+      clientId: "packet-delivery-service"
+      providerId: "did:web:packetdelivery.dsba.fiware.dev:did"
+      tilUri: "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
+      verifierUri: "https://verifier-pdc.dsba.fiware.dev"
+      samedevicePath: "/api/v1/samedevice"
+      jwksPath: "/.well-known/jwks"
+      algorithms:
+        - "ES256"
+      roles:
+        createRole: "CREATE_ISSUER"
+        updateRole: "UPDATE_ISSUER"
+        deleteRole: "DELETE_ISSUER"
