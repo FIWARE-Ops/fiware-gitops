@@ -1,7 +1,9 @@
 canis-major:
   deployment:
     image:
-      tag: 1.5.15
+      repository: quay.io/wi_stefan/canis-major
+      tag: latest
+      pullPolicy: Always
     ngsi:
       url: http://fiware-orion-ld:1026
   route: 
