@@ -80,3 +80,20 @@ Additionally, the Verifier connects to the Trusted Participants API of the [Data
 
 
 ## The Marketplace
+
+
+## Credentials
+
+Different accounts are created automatically with default passwords.
+
+| Component     | Username               | Password          | Comment |
+|---------------|------------------------|-------------------|---------|
+
+## URLs and endpoints
+
+The following table lists the URLs of publicly available resources that can be owned in the browser.
+It is assumed, that the branch name `demo` was chosen, which would result in a namespace `i4t-demo`.
+For a different namespace, simply replace `i4t-demo` within the given URLs.
+
+| Component                  | URL               |
+|----------------------------|-------------------|
