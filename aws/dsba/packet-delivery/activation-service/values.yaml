@@ -28,6 +28,25 @@ activation-service:
     # -- Log Level
     logLevel: "debug"
 
+  ccs:
+    endpoint: "http://dsba-packet-delivery-ccs-credentials-config-service:8080/"
+    id: "pdc-activation-service"
+    credentials:
+      - type: "VerifiableCredential"
+        trustedParticipantsLists: [
+          "tir.dsba.fiware.dev"
+        ]
+        trustedIssuersLists: [
+          "til-pdc.dsba.fiware.dev"
+        ]
+      - type: "ActivationService"
+        trustedParticipantsLists: [
+          "tir.dsba.fiware.dev"
+        ]
+        trustedIssuersLists: [
+          "til-pdc.dsba.fiware.dev"
+        ]
+    
   config:
     db:
       # -- Use sqlite in-memory database
@@ -47,8 +66,8 @@ activation-service:
       # EORI of AR
       id: "EU.EORI.DEPROVIDER"
 
-    issuer: # TODO client-id and TIL
-      clientId: "packet-delivery-service"
+    issuer:
+      clientId: "pdc-activation-service"
       providerId: "did:web:packetdelivery.dsba.fiware.dev:did"
       tilUri: "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
       verifierUri: "https://verifier-pdc.dsba.fiware.dev"
