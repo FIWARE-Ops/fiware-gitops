@@ -1,0 +1,12 @@
+apiVersion: v2
+name: canis-major
+description: Chart holder for argo-cd
+
+type: application
+version: 0.0.1
+appVersion: "1.5.15"
+
+dependencies:
+  - name: canis-major
+    version: 0.0.1
+    repository: https://fiware.github.io/helm-charts
