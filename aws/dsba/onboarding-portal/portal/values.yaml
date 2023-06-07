@@ -24,6 +24,18 @@ pdc-portal:
   debug:
     enabled: true
 
+  ccs:
+    endpoint: "http://dsba-onboarding-portal-ccs-credentials-config-service:8080/"
+    id: "did:web:onboarding.dsba.fiware.dev:did"
+    credentials:
+      - type: "VerifiableCredential"
+        trustedParticipantsLists: [
+          "tir.dsba.fiware.dev"
+        ]
+        trustedIssuersLists: [
+          "til-onboarding.dsba.fiware.dev"
+        ]
+
   config:
     title: "OnBoarding Portal"
     getLabel: "Get Participants"
