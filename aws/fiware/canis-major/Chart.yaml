@@ -8,5 +8,5 @@ appVersion: "1.5.15"
 
 dependencies:
   - name: canis-major
-    version: 0.0.3
+    version: 0.0.4
     repository: https://fiware.github.io/helm-charts
