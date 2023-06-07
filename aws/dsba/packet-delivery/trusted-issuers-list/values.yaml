@@ -36,7 +36,7 @@ trusted-issuers-list:
 
 
 initData:
-  tilHost: "http://til-pdc.dsba.fiware.dev:8080"
+  tilHost: "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
   marketplaceCreateIssuer:
     initEnabled: true
     did: "did:web:marketplace.dsba.fiware.dev:did"
