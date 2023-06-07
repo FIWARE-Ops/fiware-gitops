@@ -37,14 +37,14 @@ activation-service:
           "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "https://til-pdc.dsba.fiware.dev"
+          "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
         ]
       - type: "ActivationService"
         trustedParticipantsLists: [
           "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "https://til-pdc.dsba.fiware.dev"
+          "https://dsba-packet-delivery-til-trusted-issuers-list:8080"
         ]
     
   config:
