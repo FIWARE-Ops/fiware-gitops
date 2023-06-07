@@ -1,8 +1,8 @@
 pdc-portal:
   deployment:
     image:
-      repository: quay.io/wi_stefan/pdc-portal
-      tag: gaia-x
+      repository: quay.io/i4trust/pdc-portal
+      tag: 2.8.0
       pullPolicy: Always
     livenessProbe:
       initialDelaySeconds: 4
@@ -26,14 +26,14 @@ pdc-portal:
 
   ccs:
     endpoint: "http://dsba-onboarding-portal-ccs-credentials-config-service:8080/"
-    id: "did:web:onboarding.dsba.fiware.dev:did"
+    id: "4972b082-c3db-414c-afb7-bf48f2fc42f6"
     credentials:
       - type: "VerifiableCredential"
         trustedParticipantsLists: [
-          "tir.dsba.fiware.dev"
+          "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "til-onboarding.dsba.fiware.dev"
+          "https://til-onboarding.dsba.fiware.dev"
         ]
 
   config:
@@ -64,5 +64,7 @@ pdc-portal:
       verifier_uri: https://verifier-onboarding.dsba.fiware.dev
       # DID of verifier
       did: "did:web:onboarding.dsba.fiware.dev:did"
+      # Client ID to be used
+      clientId: 4972b082-c3db-414c-afb7-bf48f2fc42f6
 
     idp:
