@@ -12,13 +12,13 @@ business-api-ecosystem:
   ##
   oauth:
     # URL of the FIWARE IDM used for user authentication
-    server: https://idp-marketplace.dsba.fiware.dev
+    server: https://verifier-marketplace.dsba.fiware.dev
     # OAuth2 Client ID of the BAE applicaiton
     clientId: marketplace-id
     # -- Callback URL path of frontend logic proxy for receiving the access tokens
-    callbackPath: /auth/fiware/callback
+    callbackPath: /auth/vc/callback
     # -- IDP provider for passport strategy (fiware, keycloak, github, ...)
-    provider: fiware
+    provider: vc
     # -- Default role: Role to be used if no role is assigned to user (optional)
     defaultRole: seller
 
@@ -224,9 +224,9 @@ business-api-ecosystem:
       image:
         ## -- BAE Logic Proxy image name
         ## ref: https://hub.docker.com/r/fiware/biz-ecosystem-logic-proxy
-        repository: quay.io/fiware/biz-ecosystem-logic-proxy
+        repository: quay.io/beknazar/baelp9
         ## -- tag of the image to be used
-        tag: v8.1.0-dev-rc1
+        tag: latest
         ## -- specification of the image pull policy
         pullPolicy: Always
         #pullPolicy: IfNotPresent
@@ -282,6 +282,25 @@ business-api-ecosystem:
     # -- Base app path of logic proxy (for versions < 8.1.0: /business-ecosystem-logic-proxy, for versions >= 8.1.0: /opt/business-ecosystem-logic-proxy)
     basePath: /opt/business-ecosystem-logic-proxy
     #basePath: /business-ecosystem-logic-proxy
+
+    ccs:
+      endpoint: "http://dsba-marketplace-ccs-credentials-config-service.dsba.svc.cluster.local:8080"
+      id: "marketplace-client"
+      credentials:
+        - type: "VerifiableCredential"
+          trustedParticipantsLists: [
+            "https://tir-marketplace.dsba.fiware.dev"
+          ]
+          trustedIssuersLists: [
+            "https://til-marketplace.dsba.fiware.dev"
+          ]
+        - type: "MarketplaceUserCredential"
+          trustedParticipantsLists: [
+            "https://tir-marketplace.dsba.fiware.dev"
+          ]
+          trustedIssuersLists: [
+            "https://til-marketplace.dsba.fiware.dev"
+          ]
 
     ## -- Custom theme configuration
     theme:
