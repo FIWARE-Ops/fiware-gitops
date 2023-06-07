@@ -28,6 +28,7 @@ activation-service:
     # -- Log Level
     logLevel: "debug"
 
+  config:
     db:
       # -- Use sqlite in-memory database
       useMemory: true
