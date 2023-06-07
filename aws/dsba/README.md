@@ -86,14 +86,30 @@ Additionally, the Verifier connects to the Trusted Participants API of the [Data
 
 Different accounts are created automatically with default passwords.
 
-| Component     | Username               | Password          | Comment |
-|---------------|------------------------|-------------------|---------|
+| Component                 | Username             | Password             | Comment                                            |
+|---------------------------|----------------------|----------------------|----------------------------------------------------|
+| Keycloak Animal Goods Org | legal-representative | legal-representative | Legal representative of the Animal Goods Org       |
+| Keycloak Animal Goods Org | standard-employee    | standard-employee    | User that can read info from the onboarding portal |
+| Keycloak Animal Goods Org | pdc-employee         | pdc-employee         | User that can access the packet delivery service   |
+|                           |                      |                      |                                                    |
+|                           |                      |                      |                                                    |
+|                           |                      |                      |                                                    |
+|                           |                      |                      |                                                    |
+|                           |                      |                      |                                                    |
+|                           |                      |                      |                                                    |
+|                           |                      |                      |                                                    |
 
 ## URLs and endpoints
 
 The following table lists the URLs of publicly available resources that can be owned in the browser.
-It is assumed, that the branch name `demo` was chosen, which would result in a namespace `i4t-demo`.
-For a different namespace, simply replace `i4t-demo` within the given URLs.
 
-| Component                  | URL               |
-|----------------------------|-------------------|
+| Component                 | URL                            |
+|---------------------------|--------------------------------|
+| Keycloak Animal Goods Org | animalgoods-kc.dsba.fiware.dev |
+|                           |                                |
+| Wallet application        | demo-wallet.fiware.dev         |
+|                           |                                |
+| Gaia-X compliance service | compliance.dsba.fiware.dev     |
+|                           |                                |
+|                           |                                |
+|                           |                                |
