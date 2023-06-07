@@ -55,4 +55,4 @@ pdc-portal:
       # DID of verifier
       did: "did:web:packetdelivery.dsba.fiware.dev:did"
 
-    idp:
+    idp: []
