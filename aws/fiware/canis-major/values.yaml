@@ -1,0 +1,17 @@
+canis-major:
+  deployment:
+    image:
+      tag: 1.5.15
+    ngsi:
+      url: http://fiware-orion-ld:1026
+  route: 
+    enabled: true
+    host: canis-major.fiware.dev
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+    # should a certificate for the address automatically be generated
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
