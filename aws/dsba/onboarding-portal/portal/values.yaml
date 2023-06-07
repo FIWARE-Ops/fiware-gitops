@@ -49,8 +49,8 @@ pdc-portal:
       acr: "urn:http://eidas.europa.eu/LoA/NotNotified/high"
 
     cb:
-      endpoint: "https://kong.dsba.fiware.dev/vc/ngsi-ld/v1"
-      endpoint_siop: "https://kong.dsba.fiware.dev/vc/ngsi-ld/v1"
+      endpoint: "https://kong-onboarding.dsba.fiware.dev/vc/ngsi-ld/v1"
+      endpoint_siop: "https://kong-onboarding.dsba.fiware.dev/vc/ngsi-ld/v1"
     
     express:
       port: 7000
