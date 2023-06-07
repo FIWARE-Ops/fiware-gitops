@@ -44,7 +44,7 @@ activation-service:
           "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "https://dsba-packet-delivery-til-trusted-issuers-list:8080"
+          "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
         ]
     
   config:

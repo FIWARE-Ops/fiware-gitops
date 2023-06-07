@@ -40,3 +40,4 @@ initData:
   marketplaceCreateIssuer:
     initEnabled: true
     did: "did:web:marketplace.dsba.fiware.dev:did"
+    targetDid: "did:web:packetdelivery.dsba.fiware.dev:did"
