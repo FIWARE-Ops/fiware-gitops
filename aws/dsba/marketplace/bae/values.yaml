@@ -292,14 +292,14 @@ business-api-ecosystem:
             "https://tir-marketplace.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
-            "https://til-marketplace.dsba.fiware.dev"
+            "http://dsba-marketplace-til-trusted-issuers-list:8080"
           ]
         - type: "MarketplaceUserCredential"
           trustedParticipantsLists: [
             "https://tir-marketplace.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
-            "https://til-marketplace.dsba.fiware.dev"
+            "http://dsba-marketplace-til-trusted-issuers-list:8080"
           ]
 
     ## -- Custom theme configuration
