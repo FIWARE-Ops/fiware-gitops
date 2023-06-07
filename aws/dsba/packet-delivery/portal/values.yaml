@@ -2,7 +2,7 @@ pdc-portal:
   deployment:
     image:
       repository: quay.io/i4trust/pdc-portal
-      tag: 2.5.0
+      tag: 2.8.1
       pullPolicy: Always
     livenessProbe:
       initialDelaySeconds: 4
@@ -23,6 +23,25 @@ pdc-portal:
 
   debug:
     enabled: true
+
+  ccs:
+    endpoint: "http://dsba-packet-delivery-ccs-credentials-config-service:8080/"
+    id: "packet-delivery-service"
+    credentials:
+      - type: "VerifiableCredential"
+        trustedParticipantsLists: [
+          "https://tir.dsba.fiware.dev"
+        ]
+        trustedIssuersLists: [
+          "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
+        ]
+      - type: "PacketDeliveryService"
+        trustedParticipantsLists: [
+          "https://tir.dsba.fiware.dev"
+        ]
+        trustedIssuersLists: [
+          "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
+        ]
 
   config:
     title: "PacketDelivery Portal"
@@ -54,5 +73,7 @@ pdc-portal:
       verifier_uri: https://verifier-pdc.dsba.fiware.dev
       # DID of verifier
       did: "did:web:packetdelivery.dsba.fiware.dev:did"
+      # Client ID to be used
+      client_id: "packet-delivery-service"
 
     idp: []
