@@ -34,17 +34,17 @@ activation-service:
     credentials:
       - type: "VerifiableCredential"
         trustedParticipantsLists: [
-          "tir.dsba.fiware.dev"
+          "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "til-pdc.dsba.fiware.dev"
+          "https://til-pdc.dsba.fiware.dev"
         ]
       - type: "ActivationService"
         trustedParticipantsLists: [
-          "tir.dsba.fiware.dev"
+          "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "til-pdc.dsba.fiware.dev"
+          "https://til-pdc.dsba.fiware.dev"
         ]
     
   config:
