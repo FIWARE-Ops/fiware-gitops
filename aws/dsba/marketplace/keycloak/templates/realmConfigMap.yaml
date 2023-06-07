@@ -27,24 +27,7 @@ data:
           }
         ],
         "client": {
-          "did:web:marketplace.dsba.fiware.dev:did": [
-            {
-              "name": "Customer",
-              "description": "Is allowed to buy.",
-              "clientRole": true
-            },
-            {
-              "name": "Seller",
-              "description": "Is allowed to offer.",
-              "clientRole": true
-            }
-          ],
           "did:web:packetdelivery.dsba.fiware.dev:did": [
-            {
-              "name": "EMPLOYEE",
-              "description": "Employee to access packetdelivery",
-              "clientRole": true
-            },
             {
               "name": "CREATE_ISSUER",
               "description": "Is allowed to create issuers",
@@ -144,7 +127,7 @@ data:
           "standardFlowEnabled": true,
           "implicitFlowEnabled": false,
           "directAccessGrantsEnabled": false,
-          "serviceAccountsEnabled": false,
+          "serviceAccountsEnabled": true,
           "publicClient": false,
           "frontchannelLogout": false,
           "protocol": "SIOP-2",
@@ -153,38 +136,6 @@ data:
               "expiryInMin": "5000000",
               "vctypes_ActivationService": "ldp_vc,jwt_vc_json",
               "ActivationService_claims": "email,firstName,familyName,roles"
-          },
-          "authenticationFlowBindingOverrides": {},
-          "fullScopeAllowed": true,
-          "nodeReRegistrationTimeout": -1,
-          "defaultClientScopes": [],
-          "optionalClientScopes": []
-        },
-        {
-          "clientId": "did:web:marketplace.dsba.fiware.dev:did",
-          "enabled": true,
-          "description": "Client to connect the pdc service at packetdelivery-portal.dsba.fiware.dev",
-          "surrogateAuthRequired": false,
-          "alwaysDisplayInConsole": false,
-          "clientAuthenticatorType": "client-secret",
-          "defaultRoles": [],
-          "redirectUris": [],
-          "webOrigins": [],
-          "notBefore": 0,
-          "bearerOnly": false,
-          "consentRequired": false,
-          "standardFlowEnabled": true,
-          "implicitFlowEnabled": false,
-          "directAccessGrantsEnabled": false,
-          "serviceAccountsEnabled": false,
-          "publicClient": false,
-          "frontchannelLogout": false,
-          "protocol": "SIOP-2",
-          "attributes": {
-              "client.secret.creation.time": "1675260539",
-              "expiryInMin": "3600",
-              "vctypes_MarketplaceUserCredential": "ldp_vc,jwt_vc_json",
-              "MarketplaceUserCredential_claims": "email,firstName,familyName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,
