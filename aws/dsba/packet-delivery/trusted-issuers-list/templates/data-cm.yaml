@@ -17,10 +17,10 @@ data:
             {
               "name": "roles",
               "allowedValues": [
-                {
+                [{
                   "names": ["CREATE_ISSUER"],
                   "target": {{ .Values.initData.marketplaceCreateIssuer.targetDid | quote }}
-                }
+                }]
               ]
             }
           ]
