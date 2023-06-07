@@ -33,3 +33,10 @@ trusted-issuers-list:
       enabled: true
       name: mysql-secret
       key: dbPassword
+
+
+initData:
+  tilHost: "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
+  marketplaceCreateIssuer:
+    initEnabled: true
+    did: "did:web:marketplace.dsba.fiware.dev:did"

@@ -33,7 +33,7 @@ pdc-portal:
           "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "https://til-onboarding.dsba.fiware.dev"
+          "http://dsba-onboarding-portal-til-trusted-issuers-list:8080"
         ]
 
   config:
