@@ -72,7 +72,7 @@ keyrock:
     - name: DEBUG
       value: "*"
     - name: IDM_DB_NAME
-      value: bp_ar_idm
+      value: pdc_ar_idm
     - name: IDM_DB_SEED
       value: "true"
     - name: IDM_SERVER_MAX_HEADER_SIZE
@@ -95,3 +95,15 @@ keyrock:
           secretKeyRef:
             name: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
             key: tls.crt
+
+
+## Init scripts for Keyrock
+initScript:
+  ## Creation of role mapping policies during deployment
+  rolePolicy:
+    policyEnabled: true
+    dbName: pdc_ar_idm
+    issuer: "did:web:packetdelivery.dsba.fiware.dev:did"
+    notBefore: "1616583866"
+    notOnOrAfter: "1735817171"
+    issuerDid: "did:web:packetdelivery.dsba.fiware.dev:did"

@@ -107,7 +107,7 @@ data:
             config:
               pathprefix: "/vc"
               authorizationendpointtype: ExtAuthz
-              authorizationendpointaddress: http://dsba-pdp-dsba-pdp:8080/authz
+              authorizationendpointaddress: http://dsba-onboarding-portal-pdp-dsba-pdp:8080/authz
                 
           - name: request-transformer
             config:

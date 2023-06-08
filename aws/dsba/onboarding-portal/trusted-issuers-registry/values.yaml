@@ -2,7 +2,7 @@ trusted-issuers-registry:
   replicaCount: 1
   deployment:
     image:
-      tag: 0.3.0
+      tag: 0.3.1
     additionalLabels:
       participant: onboarding
   route:
@@ -224,4 +224,4 @@ trusted-issuers-registry:
     additionalConfigs:
       logger:
         levels:
-          ROOT: INFO
+          ROOT: DEBUG
