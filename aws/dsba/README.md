@@ -88,14 +88,19 @@ Different accounts are created automatically with default passwords.
 
 | Component                 | Username             | Password             | Comment                                            |
 |---------------------------|----------------------|----------------------|----------------------------------------------------|
-| Keycloak Animal Goods Org | legal-representative | legal-representative | Legal representative of the Animal Goods Org       |
+| Keycloak Animal Goods Org | legal-representative | legal-representative | Legal representative of the Animal Goods Org. Has seller/customer access to the marketplace. |
 | Keycloak Animal Goods Org | standard-employee    | standard-employee    | User that can read info from the onboarding portal |
-| Keycloak Animal Goods Org | pdc-employee         | pdc-employee         | User that can access the packet delivery service   |
+| Keycloak Animal Goods Org | standard-user        | standard-user        | User that has READ access at the packet delivery service   |
+| Keycloak Animal Goods Org | prime-user           | prime-user           | User that has READ/WRITE access at the packet delivery service   |
 |                           |                      |                      |                                                    |
+| Keycloak HappyPets        | legal-representative | legal-representative | Legal representative of Happy Pets. Has seller/customer access to the marketplace. |
+| Keycloak HappyPets        | standard-employee    | standard-employee    | User that can read info from the onboarding portal |
+| Keycloak HappyPets        | standard-user        | standard-user        | User that has READ access at the packet delivery service   |
+| Keycloak HappyPets        | prime-user           | prime-user           | User that has READ/WRITE access at the packet delivery service   |
 |                           |                      |                      |                                                    |
-|                           |                      |                      |                                                    |
-|                           |                      |                      |                                                    |
-|                           |                      |                      |                                                    |
+| Keycloak PDC              | the-lear             | the-lear             | Legal representative of PDC that can also read info from the onboarding portal |
+| Keycloak PDC              | legal-representative | legal-representative | Legal representative of PDC                        |
+| Keycloak PDC              | standard-employee    | standard-employee    | User that can read info from the onboarding portal |
 |                           |                      |                      |                                                    |
 |                           |                      |                      |                                                    |
 
@@ -105,11 +110,47 @@ The following table lists the URLs of publicly available resources that can be o
 
 | Component                 | URL                            |
 |---------------------------|--------------------------------|
-| Keycloak Animal Goods Org | animalgoods-kc.dsba.fiware.dev |
+| Keycloak PDC              | https://packetdelivery-kc.dsba.fiware.dev |
+| AS PDC                    | https://as-packetdelivery.dsba.fiware.dev |
+| Kong PDC                  | https://kong-pdc.dsba.fiware.dev |
+| Portal PDC                | https://packetdelivery-portal.dsba.fiware.dev |
 |                           |                                |
-| Wallet application        | demo-wallet.fiware.dev         |
+| Keycloak Animal Goods Org | https://animalgoods-kc.dsba.fiware.dev |
 |                           |                                |
-| Gaia-X compliance service | compliance.dsba.fiware.dev     |
+| Keycloak Happy Pets       | https://happypets-kc.dsba.fiware.dev |
 |                           |                                |
+| Wallet application        | https://demo-wallet.fiware.dev         |
 |                           |                                |
+| Gaia-X compliance service | https://compliance.dsba.fiware.dev     |
 |                           |                                |
+| Marketplace               | https://marketplace.dsba.fiware.dev |
+| Keycloak Marketplace      | https://marketplace-kc.dsba.fiware.dev |
+| Keyrock Marketplace       | https://idp-marketplace.dsba.fiware.dev |
+|                           |                                |
+
+
+
+## Presentations
+
+TODO: Short description of the steps to be performed for presenting the use case with 
+onboarding, offering creation, offering acquisition and service usage
+
+
+### Cleanup
+
+Steps to revert the setup in order to be able to perform the use case presentation above.
+
+* Remove activated service for Happy Pets at the PDC TIL
+```shell
+curl -i -X DELETE 'https://til-PDC.dsba.fiware.dev/issuer/did:web:happypets.dsba.fiware.dev:did'
+```
+
+* Remove activated service for Animal Goods at the PDC TIL
+```shell
+curl -i -X DELETE 'https://til-PDC.dsba.fiware.dev/issuer/did:web:animalgoods.dsba.fiware.dev:did'
+```
+
+* Remove onboarding of Animal Goods
+```shell
+# TODO
+```

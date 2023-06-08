@@ -326,7 +326,7 @@ business-api-ecosystem:
     ## -- Configuration for external IDPs
     externalIdp:
       # -- Enable usage of external IDPs
-      enabled: false
+      enabled: true
       # -- Show login button for local IDP
       showLocalLogin: true
 
