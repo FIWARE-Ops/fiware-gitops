@@ -25,6 +25,8 @@ business-api-ecosystem:
   siop:
     enabled: true
     clientId: marketplace-client
+    credentialTypes:
+      - MarketplaceUserCredential
     verifier:
       host: https://verifier-marketplace.dsba.fiware.dev
     # Configuration for the Credential Config Service initiation
