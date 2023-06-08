@@ -111,7 +111,7 @@ keycloak:
         - /opt/did/script/import.sh
       env:
         - name: WALTID_CORE_ADDRESS
-          value: "dsba-happypets-walt-id-vcwaltid:7000"
+          value: "dsba-packet-delivery-walt-id-vcwaltid:7000"
       volumeMounts:
         - name: did-config
           mountPath: /opt/did/script
