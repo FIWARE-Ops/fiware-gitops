@@ -224,4 +224,4 @@ trusted-issuers-registry:
     additionalConfigs:
       logger:
         levels:
-          ROOT: DEBUG
+          ROOT: INFO
