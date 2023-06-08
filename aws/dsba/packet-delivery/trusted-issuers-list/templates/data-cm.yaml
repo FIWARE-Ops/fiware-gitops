@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pdc-til-data-cm
+data:
+  mp_create_issuer.json: |
+    {
+      "did": {{ .Values.initData.marketplaceCreateIssuer.did | quote }},
+      "credentials": [
+        {
+          "validFor": {
+            "from": "2022-07-21T17:32:28Z",
+            "to": "2040-07-21T17:32:28Z"
+          },
+          "credentialsType": "ActivationService",
+          "claims": [
+            {
+              "name": "roles",
+              "allowedValues": [
+                [{
+                  "names": ["CREATE_ISSUER"],
+                  "target": {{ .Values.initData.marketplaceCreateIssuer.targetDid | quote }}
+                }]
+              ]
+            }
+          ]
+        },
+        {
+          "validFor": {
+            "from": "2022-07-21T17:32:28Z",
+            "to": "2040-07-21T17:32:28Z"
+          },
+          "credentialsType": "VerifiableCredential"
+        }
+      ]
+    }

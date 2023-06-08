@@ -2,7 +2,7 @@ activation-service:
   deployment:
     image:
       repository: quay.io/i4trust/activation-service
-      tag: 2.1.0
+      tag: 2.1.1
       #pullPolicy: Always
       pullPolicy: IfNotPresent
 
@@ -37,14 +37,14 @@ activation-service:
           "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "https://til-pdc.dsba.fiware.dev"
+          "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
         ]
       - type: "ActivationService"
         trustedParticipantsLists: [
           "https://tir.dsba.fiware.dev"
         ]
         trustedIssuersLists: [
-          "https://til-pdc.dsba.fiware.dev"
+          "http://dsba-packet-delivery-til-trusted-issuers-list:8080"
         ]
     
   config:
