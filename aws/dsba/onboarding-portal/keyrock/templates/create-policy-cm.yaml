@@ -36,7 +36,7 @@ data:
       )
     );
 
-    -- Insert Delegation Evidence Gold VC
+    -- Insert Delegation Evidence Legal Representative VC
     SET @delegationLegalVC := JSON_OBJECT(
       "target", JSON_OBJECT(
         "accessSubject", @subjectLegalRepresentative
