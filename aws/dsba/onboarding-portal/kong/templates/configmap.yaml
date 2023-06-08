@@ -91,7 +91,7 @@ data:
             config: 
               minute: 30
 
-      - host: "dsba-orion-ld"
+      - host: "dsba-onboarding-portal-orion-ld"
         name: "vc"
         port: 1026
         protocol: http
