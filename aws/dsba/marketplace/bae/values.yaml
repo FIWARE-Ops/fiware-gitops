@@ -49,7 +49,7 @@ business-api-ecosystem:
   ## External URL used to access the BAE frontend (logic proxy)
   ## Should match the host of the Ingress or Route of the Logic Proxy
   ##
-  externalUrl: http://marketplace.dsba.fiware.dev
+  externalUrl: https://marketplace.dsba.fiware.dev
 
   ## Configuration for biz-ecosystem-apis component
   ##
