@@ -3,6 +3,7 @@ trusted-issuers-registry:
   deployment:
     image:
       tag: 0.3.2-PRE-9
+      pullPolicy: Always
     additionalLabels:
       participant: onboarding
   route:
