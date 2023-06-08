@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: provider-orion-data-{{ randAlphaNum 5 | lower }}
+  name: pdc-orion-data-{{ randAlphaNum 5 | lower }}
   annotations:
     "helm.sh/hook": post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation
@@ -24,16 +24,16 @@ spec:
               curl -X POST ${ORION_HOST}/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_happypets001.json &&
               curl -X POST ${ORION_HOST}/ngsi-ld/v1/entities --header "Content-Type: application/ld+json" -d @/data/deliveryorder_happypets002.json 
           volumeMounts:
-            - name: provider-orion-init-data-volume
+            - name: pdc-orion-init-data-volume
               mountPath: "/data"
               readOnly: true
           env:
             - name: ORION_HOST
               value: {{ .Values.initData.orionHost | quote }}
       volumes:
-        - name: provider-orion-init-data-volume
+        - name: pdc-orion-init-data-volume
           projected:
             sources:
               - configMap:
-                  name: provider-orion-data-cm
+                  name: pdc-orion-data-cm
 {{- end }}
