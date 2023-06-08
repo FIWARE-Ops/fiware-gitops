@@ -17,7 +17,7 @@ dsba-pdp:
         - D2F62092F982CF783D4632BD86FA86C3FBFDB2D8C8A58BC6809163FCF5CD030B
 
       ar:
-        id: "EU.EORI.ONBOARDING"
+        id: "did:web:onboarding.dsba.fiware.dev:did"
         delegationPath: "/ar/delegation"
         tokenPath: "/oauth2/token"
         url: "https://ar.dsba.fiware.dev"
