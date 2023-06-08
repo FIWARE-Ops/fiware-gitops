@@ -109,6 +109,8 @@ data:
           "username": "legal-representative",
           "enabled": true,
           "email": "legal-representative@happypets.org",
+          "firstName": "Legal",
+          "familyName": "HappyPetsEmployee",
           "credentials": [
             {
               "type": "password",
@@ -137,6 +139,8 @@ data:
           "username": "standard-user",
           "enabled": true,
           "email": "standard-user@happypets.org",
+          "firstName": "HappyPets",
+          "familyName": "Standard",
           "credentials": [
             {
               "type": "password",
@@ -160,6 +164,8 @@ data:
           "username": "prime-user",
           "enabled": true,
           "email": "prime-user@happypets.org",
+          "firstName": "HappyPets",
+          "familyName": "Prime",
           "credentials": [
             {
               "type": "password",

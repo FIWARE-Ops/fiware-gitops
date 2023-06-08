@@ -109,6 +109,8 @@ data:
           "username": "legal-representative",
           "enabled": true,
           "email": "legal-representative@animalgoods.org",
+          "firstName": "Legal",
+          "familyName": "AnimalGoodsEmployee",
           "credentials": [
             {
               "type": "password",
@@ -137,6 +139,8 @@ data:
           "username": "standard-user",
           "enabled": true,
           "email": "standard-user@animalgoods.org",
+          "firstName": "AnimalGoods",
+          "familyName": "Standard",
           "credentials": [
             {
               "type": "password",
@@ -160,6 +164,8 @@ data:
           "username": "prime-user",
           "enabled": true,
           "email": "prime-user@animalgoods.org",
+          "firstName": "AnimalGoods",
+          "familyName": "Prime",
           "credentials": [
             {
               "type": "password",
