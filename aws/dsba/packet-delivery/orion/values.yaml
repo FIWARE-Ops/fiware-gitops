@@ -20,5 +20,5 @@ orion:
 
 # Enable initial loading of data from configmap
 initData:
-  initEnabled: false
-  orionHost: provider-orion:1026
+  initEnabled: true
+  orionHost: dsba-packet-delivery-orion:1026

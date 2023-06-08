@@ -16,7 +16,7 @@ data:
 
     services:
       
-      - host: "dsba-orion-ld"
+      - host: "dsba-packet-delivery-orion"
         name: "pdc"
         port: 1026
         protocol: http
