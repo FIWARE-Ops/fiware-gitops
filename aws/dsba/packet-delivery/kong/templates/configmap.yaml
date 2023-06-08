@@ -30,7 +30,7 @@ data:
         plugins:
           - name: pep-plugin
             config:
-              pathprefix: "/vc"
+              pathprefix: "/pdc"
               authorizationendpointtype: ExtAuthz
               authorizationendpointaddress: http://dsba-packet-delivery-pdp-dsba-pdp:8080/authz
                 
