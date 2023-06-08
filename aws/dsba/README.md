@@ -145,7 +145,7 @@ Steps to revert the setup in order to be able to perform the use case presentati
 curl -i -X DELETE 'https://til-PDC.dsba.fiware.dev/issuer/did:web:happypets.dsba.fiware.dev:did'
 ```
 
-* Remove activated service for Happy Pets at the PDC TIL
+* Remove activated service for Animal Goods at the PDC TIL
 ```shell
 curl -i -X DELETE 'https://til-PDC.dsba.fiware.dev/issuer/did:web:animalgoods.dsba.fiware.dev:did'
 ```
