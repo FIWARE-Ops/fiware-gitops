@@ -7,7 +7,7 @@ dsba-pdp:
     image:  
       pullPolicy: Always
       repository: quay.io/fiware/dsba-pdp 
-      tag: 0.6.0
+      tag: 0.7.0
     logLevel: TRACE
     ishare:
       existingSecret: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
