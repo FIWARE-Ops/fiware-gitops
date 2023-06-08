@@ -110,7 +110,7 @@ data:
           "enabled": true,
           "email": "legal-representative@animalgoods.org",
           "firstName": "Legal",
-          "familyName": "AnimalGoodsEmployee",
+          "lastName": "AnimalGoodsEmployee",
           "credentials": [
             {
               "type": "password",
@@ -140,7 +140,7 @@ data:
           "enabled": true,
           "email": "standard-user@animalgoods.org",
           "firstName": "AnimalGoods",
-          "familyName": "Standard",
+          "lastName": "Standard",
           "credentials": [
             {
               "type": "password",
@@ -165,7 +165,7 @@ data:
           "enabled": true,
           "email": "prime-user@animalgoods.org",
           "firstName": "AnimalGoods",
-          "familyName": "Prime",
+          "lastName": "Prime",
           "credentials": [
             {
               "type": "password",
@@ -270,7 +270,7 @@ data:
               "client.secret.creation.time": "1675260539",
               "expiryInMin": "3600",
               "vctypes_PacketDeliveryService": "ldp_vc,jwt_vc_json",
-              "PacketDeliveryService_claims": "email,firstName,familyName,roles"
+              "PacketDeliveryService_claims": "email,firstName,lastName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,
@@ -302,7 +302,7 @@ data:
               "client.secret.creation.time": "1675260539",
               "expiryInMin": "3600",
               "vctypes_MarketplaceUserCredential": "ldp_vc,jwt_vc_json",
-              "MarketplaceUserCredential_claims": "email,firstName,familyName,roles"
+              "MarketplaceUserCredential_claims": "email,firstName,lastName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,

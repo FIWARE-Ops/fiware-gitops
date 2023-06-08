@@ -123,7 +123,7 @@ data:
           "enabled": true,
           "email": "legal-representative@pdc.org",
           "firstName": "Legal",
-          "familyName": "PDCEmployee",
+          "lastName": "PDCEmployee",
           "credentials": [
             {
               "type": "password",
@@ -233,7 +233,7 @@ data:
               "client.secret.creation.time": "1675260539",
               "expiryInMin": "3600",
               "vctypes_MarketplaceUserCredential": "ldp_vc,jwt_vc_json",
-              "MarketplaceUserCredential_claims": "email,firstName,familyName,roles"
+              "MarketplaceUserCredential_claims": "email,firstName,lastName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,
