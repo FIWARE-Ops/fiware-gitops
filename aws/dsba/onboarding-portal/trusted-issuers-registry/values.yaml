@@ -222,6 +222,6 @@ trusted-issuers-registry:
             Zqat8t/baTS3TUdIKg==
             -----END CERTIFICATE-----
     additionalConfigs:
-      loggers:
+      logger:
         levels:
           ROOT: INFO
