@@ -12,15 +12,39 @@ business-api-ecosystem:
   ##
   oauth:
     # URL of the FIWARE IDM used for user authentication
-    server: https://verifier-marketplace.dsba.fiware.dev
+    server: https://idp-marketplace.dsba.fiware.dev
     # OAuth2 Client ID of the BAE applicaiton
     clientId: marketplace-id
     # -- Callback URL path of frontend logic proxy for receiving the access tokens
-    callbackPath: /auth/vc/callback
+    callbackPath: /auth/fiware/callback
     # -- IDP provider for passport strategy (fiware, keycloak, github, ...)
-    provider: vc
+    provider: fiware
     # -- Default role: Role to be used if no role is assigned to user (optional)
     defaultRole: seller
+
+  siop:
+    enabled: true
+    clientId: marketplace-client
+    verifier:
+      host: https://verifier-marketplace.dsba.fiware.dev
+    # Configuration for the Credential Config Service initiation
+    ccs:
+      endpoint: "http://dsba-marketplace-ccs-credentials-config-service.dsba.svc.cluster.local:8080"
+      credentials:
+        - type: "VerifiableCredential"
+          trustedParticipantsLists: [
+            "https://tir-marketplace.dsba.fiware.dev"
+          ]
+          trustedIssuersLists: [
+            "http://dsba-marketplace-til-trusted-issuers-list:8080"
+          ]
+        - type: "MarketplaceUserCredential"
+          trustedParticipantsLists: [
+            "https://tir-marketplace.dsba.fiware.dev"
+          ]
+          trustedIssuersLists: [
+            "http://dsba-marketplace-til-trusted-issuers-list:8080"
+          ]
 
   ## External URL used to access the BAE frontend (logic proxy)
   ## Should match the host of the Ingress or Route of the Logic Proxy
@@ -224,7 +248,7 @@ business-api-ecosystem:
       image:
         ## -- BAE Logic Proxy image name
         ## ref: https://hub.docker.com/r/fiware/biz-ecosystem-logic-proxy
-        repository: quay.io/beknazar/baelp9
+        repository: quay.io/beknazar/baelp-demo
         ## -- tag of the image to be used
         tag: latest
         ## -- specification of the image pull policy
@@ -282,25 +306,6 @@ business-api-ecosystem:
     # -- Base app path of logic proxy (for versions < 8.1.0: /business-ecosystem-logic-proxy, for versions >= 8.1.0: /opt/business-ecosystem-logic-proxy)
     basePath: /opt/business-ecosystem-logic-proxy
     #basePath: /business-ecosystem-logic-proxy
-
-    ccs:
-      endpoint: "http://dsba-marketplace-ccs-credentials-config-service.dsba.svc.cluster.local:8080"
-      id: "marketplace-client"
-      credentials:
-        - type: "VerifiableCredential"
-          trustedParticipantsLists: [
-            "https://tir-marketplace.dsba.fiware.dev"
-          ]
-          trustedIssuersLists: [
-            "http://dsba-marketplace-til-trusted-issuers-list:8080"
-          ]
-        - type: "MarketplaceUserCredential"
-          trustedParticipantsLists: [
-            "https://tir-marketplace.dsba.fiware.dev"
-          ]
-          trustedIssuersLists: [
-            "http://dsba-marketplace-til-trusted-issuers-list:8080"
-          ]
 
     ## -- Custom theme configuration
     theme:
