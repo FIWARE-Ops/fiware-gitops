@@ -65,7 +65,7 @@ keyrock:
   
   additionalEnvVars:
     - name: IDM_TITLE
-      value: "dsba AR"
+      value: "dsba Onboarding AR"
     - name: IDM_DEBUG
       value: "true"
     - name: DEBUG
