@@ -2,7 +2,7 @@ trusted-issuers-registry:
   replicaCount: 1
   deployment:
     image:
-      tag: 0.3.1
+      tag: 0.3.2-PRE-9
     additionalLabels:
       participant: onboarding
   route:
