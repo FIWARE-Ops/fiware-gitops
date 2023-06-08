@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dsba-onboarding-portal-satellite
+  name: dsba-onboarding-portal-pdp
   namespace: argocd
   labels:
     participant: onboarding-portal
@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/dsba/onboarding-portal/satellite
+    path: aws/dsba/onboarding-portal/pdp
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
