@@ -250,7 +250,7 @@ business-api-ecosystem:
         ## ref: https://hub.docker.com/r/fiware/biz-ecosystem-logic-proxy
         repository: quay.io/beknazar/baelp-demo4
         ## -- tag of the image to be used
-        tag: latest
+        tag: 8963632444ba5b1c23387decc636f0cf28bf7950
         ## -- specification of the image pull policy
         pullPolicy: Always
         #pullPolicy: IfNotPresent
