@@ -33,14 +33,14 @@ business-api-ecosystem:
       credentials:
         - type: "VerifiableCredential"
           trustedParticipantsLists: [
-            "https://tir-marketplace.dsba.fiware.dev"
+            "https://tir.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
             "http://dsba-marketplace-til-trusted-issuers-list:8080"
           ]
         - type: "MarketplaceUserCredential"
           trustedParticipantsLists: [
-            "https://tir-marketplace.dsba.fiware.dev"
+            "https://tir.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
             "http://dsba-marketplace-til-trusted-issuers-list:8080"
