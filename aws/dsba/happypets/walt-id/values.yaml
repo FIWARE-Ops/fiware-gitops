@@ -72,6 +72,7 @@ vcwaltid:
           "type": "gx:NaturalParticipant",
           "familyName": "Happy",
           "firstName": "User",
+          "lastName": "Happy",
           "roles": [{
             "names": ["LEGAL_REPRESENTATIVE"],
             "target": "did:web:onboarding"
@@ -118,7 +119,8 @@ vcwaltid:
           "type": "gx:NaturalParticipant",
           "email": "normal-user@fiware.org",
           "familyName": "Happy",
-          "firstName": "User",
+          "firstName": "Employee",
+          "lastName": "Happy",
           "roles": [{
             "names": ["LEGAL_REPRESENTATIVE"],
             "target": "did:web:onboarding"

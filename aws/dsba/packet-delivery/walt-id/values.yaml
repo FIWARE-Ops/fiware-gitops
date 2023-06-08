@@ -96,8 +96,9 @@ vcwaltid:
         "credentialSubject": {
           "type": "gx:NaturalParticipant",
           "email": "normal-user@fiware.org",
-          "familyName": "Happy",
-          "firstName": "User",
+          "familyName": "PDC",
+          "firstName": "employee",
+          "lastName": "PDC",
           "roles": [{
             "names": ["LEGAL_REPRESENTATIVE"],
             "target": "did:web:onboarding"

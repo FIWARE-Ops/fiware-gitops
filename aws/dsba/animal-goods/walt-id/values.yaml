@@ -94,8 +94,9 @@ vcwaltid:
         "credentialSubject": {
           "type": "gx:NaturalParticipant",
           "email": "normal-user@fiware.org",
-          "familyName": "Happy",
-          "firstName": "User",
+          "familyName": "Animal",
+          "firstName": "Employee",
+          "lastName": "Animal",
           "roles": [{
             "names": ["LEGAL_REPRESENTATIVE"],
             "target": "did:web:onboarding"
@@ -117,8 +118,9 @@ vcwaltid:
         },
         "credentialSubject": {
           "type": "gx:NaturalParticipant",
-          "familyName": "Happy",
+          "familyName": "Animal",
           "firstName": "User",
+          "lastName": "Animal",
           "roles": [{
             "names": ["LEGAL_REPRESENTATIVE"],
             "target": "did:web:onboarding"
