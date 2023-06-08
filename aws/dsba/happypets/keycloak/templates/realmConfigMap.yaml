@@ -41,12 +41,12 @@ data:
           ],
           "did:web:marketplace.dsba.fiware.dev:did": [
             {
-              "name": "Customer",
+              "name": "customer",
               "description": "Is allowed to buy.",
               "clientRole": true
             },
             {
-              "name": "Seller",
+              "name": "seller",
               "description": "Is allowed to offer.",
               "clientRole": true
             }
@@ -54,7 +54,12 @@ data:
           "did:web:packetdelivery.dsba.fiware.dev:did": [
             {
               "name": "STANDARD_CUSTOMER",
-              "description": "Employee to access packetdelivery",
+              "description": "User to access packetdelivery with read access",
+              "clientRole": true
+            },
+            {
+              "name": "GOLD_CUSTOMER",
+              "description": "User to access packetdelivery with read/write access",
               "clientRole": true
             }
           ],
@@ -112,8 +117,8 @@ data:
           ],
           "clientRoles": {
             "did:web:marketplace.dsba.fiware.dev:did" : [
-              "Customer",
-              "Seller"
+              "customer",
+              "seller"
             ],
             "did:web:onboarding.dsba.fiware.dev:did": [
               "LEGAL_REPRESENTATIVE"
@@ -129,18 +134,41 @@ data:
           ]
         },
         {
-          "username": "pdc-employee",
+          "username": "standard-user",
           "enabled": true,
-          "email": "pdc-employee@happypets.org",
+          "email": "standard-user@happypets.org",
           "credentials": [
             {
               "type": "password",
-              "value": "pdc-employee"
+              "value": "standard-user"
             }
           ],
           "clientRoles": {
             "did:web:packetdelivery.dsba.fiware.dev:did": [
               "STANDARD_CUSTOMER"
+            ],
+            "account": [
+              "view-profile",
+              "manage-account"
+            ]
+          },
+          "groups": [
+            "/consumer"
+          ]
+        },
+        {
+          "username": "prime-user",
+          "enabled": true,
+          "email": "prime-user@happypets.org",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "prime-user"
+            }
+          ],
+          "clientRoles": {
+            "did:web:packetdelivery.dsba.fiware.dev:did": [
+              "STANDARD_CUSTOMER", "GOLD_CUSTOMER"
             ],
             "account": [
               "view-profile",
@@ -247,7 +275,7 @@ data:
         {
           "clientId": "did:web:marketplace.dsba.fiware.dev:did",
           "enabled": true,
-          "description": "Client to connect the pdc service at packetdelivery-portal.dsba.fiware.dev",
+          "description": "Client to connect to the marketplace",
           "surrogateAuthRequired": false,
           "alwaysDisplayInConsole": false,
           "clientAuthenticatorType": "client-secret",
