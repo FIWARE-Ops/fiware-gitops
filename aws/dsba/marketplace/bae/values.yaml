@@ -36,14 +36,12 @@ business-api-ecosystem:
             "https://tir.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
-            "http://dsba-marketplace-til-trusted-issuers-list:8080"
           ]
         - type: "MarketplaceUserCredential"
           trustedParticipantsLists: [
             "https://tir.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
-            "http://dsba-marketplace-til-trusted-issuers-list:8080"
           ]
 
   ## External URL used to access the BAE frontend (logic proxy)
