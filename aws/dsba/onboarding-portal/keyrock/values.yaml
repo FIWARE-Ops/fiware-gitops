@@ -41,7 +41,7 @@ keyrock:
     # -- Enable usage of authorisation registry
     enabled: true
     # -- Identifier (EORI) of AR
-    identifier: "did:web:onboarding.dsba.fiware.dev:did"
+    identifier: "EU.EORI.ONBOARDING"
     # -- URL of AR
     url: "internal"
 
@@ -83,7 +83,7 @@ keyrock:
     - name: IDM_EMAIL_ADDRESS
       value: "bp-one@fiware.io"
     - name: IDM_PR_CLIENT_ID
-      value: "did:web:onboarding.dsba.fiware.dev:did"
+      value: "EU.EORI.ONBOARDING"
     - name: IDM_PR_CLIENT_KEY
       valueFrom:
         secretKeyRef:
