@@ -50,7 +50,7 @@ data:
               "description": "Is allowed to offer.",
               "clientRole": true
             }
-          ]
+          ],
           "orion-pep": [
             {
               "name": "admin",

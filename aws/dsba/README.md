@@ -99,7 +99,7 @@ Different accounts are created automatically with default passwords.
 | Keycloak HappyPets        | prime-user           | prime-user           | User that has READ/WRITE access at the packet delivery service   |
 |                           |                      |                      |                                                    |
 | Keycloak PDC              | the-lear             | the-lear             | Legal representative of PDC that can also read info from the onboarding portal |
-| Keycloak PDC              | legal-representative | legal-representative | Legal representative of PDC                        |
+| Keycloak PDC              | legal-representative | legal-representative | Legal representative of PDC. Has seller/customer access to the marketplace. |
 | Keycloak PDC              | standard-employee    | standard-employee    | User that can read info from the onboarding portal |
 |                           |                      |                      |                                                    |
 |                           |                      |                      |                                                    |
