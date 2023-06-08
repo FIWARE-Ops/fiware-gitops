@@ -181,12 +181,12 @@ dsba-pdp:
         url: "https://ar.dsba.fiware.dev"
 
       trustAnchor:
-        id: "EU.EORI.DEBATTERYPASSSAT"
+        id: "did:web:onboarding.dsba.fiware.dev:did"
         tokenPath: "/token"
         trustedListPath: "/trusted_list"
-        url: "https://satellite.dsba.fiware.dev"
+        url: "https://tir.dsba.fiware.dev"
         
     trustedVerifiers:
-      - https://verifier.dsba.fiware.dev/.well-known/jwks
+      - https://verifier-onboarding.dsba.fiware.dev/.well-known/jwks
 
     providerId: "did:web:onboarding.dsba.fiware.dev:did"

@@ -39,6 +39,18 @@ data:
               "clientRole": true
             }
           ],
+          "did:web:marketplace.dsba.fiware.dev:did": [
+            {
+              "name": "customer",
+              "description": "Is allowed to buy.",
+              "clientRole": true
+            },
+            {
+              "name": "seller",
+              "description": "Is allowed to offer.",
+              "clientRole": true
+            }
+          ]
           "orion-pep": [
             {
               "name": "admin",
@@ -105,6 +117,57 @@ data:
             "/admin",
             "/consumer"
           ]
+        },
+        {
+          "username": "legal-representative",
+          "enabled": true,
+          "email": "legal-representative@pdc.org",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "legal-representative"
+            }
+          ],
+          "clientRoles": {
+            "did:web:marketplace.dsba.fiware.dev:did" : [
+              "customer",
+              "seller"
+            ],
+            "did:web:onboarding.dsba.fiware.dev:did": [
+              "LEGAL_REPRESENTATIVE"
+            ],
+            "account": [
+              "view-profile",
+              "manage-account"
+            ]
+          },
+          "groups": [
+            "/admin",
+            "/consumer"
+          ]
+        },
+        {
+          "username": "standard-employee",
+          "enabled": true,
+          "email": "standard-employee@pdc.org",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "standard-employee"
+            }
+          ],
+          "clientRoles": {
+            "did:web:onboarding.dsba.fiware.dev:did": [
+              "EMPLOYEE"
+            ],
+            "account": [
+              "view-profile",
+              "manage-account"
+            ]
+          },
+          "groups": [
+            "/consumer"
+          ]
         }
       ],
       "clients": [
@@ -137,6 +200,38 @@ data:
               "vc_gx:legalName": "Packet Delivery Company Inc.",
               "GaiaXParticipantCredential_claims": "subjectDid,gx:legalName",
               "NaturalPersonCredential_claims": "email,firstName,familyName,roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
+          "clientId": "did:web:marketplace.dsba.fiware.dev:did",
+          "enabled": true,
+          "description": "Client to connect to the marketplace",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "3600",
+              "vctypes_MarketplaceUserCredential": "ldp_vc,jwt_vc_json",
+              "MarketplaceUserCredential_claims": "email,firstName,familyName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,

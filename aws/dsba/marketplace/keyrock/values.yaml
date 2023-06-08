@@ -8,7 +8,8 @@ keyrock:
 
   db:
     user: root
-    host: mysql-marketplace
+    #host: mysql-marketplace
+    host: dsba-marketplace-mysql-bae
 
   admin:
     user: admin
