@@ -82,6 +82,65 @@ Additionally, the Verifier connects to the Trusted Participants API of the [Data
 ## The Marketplace
 
 
+
+## Flows
+
+Description of the different flows.
+
+## Onboarding
+
+TODO
+
+
+## Login 
+
+Description of the steps during login using a VC at the portal or marketplace. A VC has been issued to the user before, designated for the service to be logged in, and 
+containing the roles for this service issued to the user.
+
+![Flows-Login](docs/Flows-Login.png)
+
+* The user initiates the login at the portal/marketplace UI. A QR code is displayed.
+* The user scans the QR code with its mobile wallet. The QR code contains a URL of the verifier to initiate the login. 
+  The wallet sends a `GET` request to this URL and receives the `/authentication_response` endpoint of the verifier.
+* The wallet sends a Verifiable Presentation (VP), containing the VC issued to the user, to the `/authentication_response` endpoint. 
+* The verifier checks against the `Trusted Participants API` whether the issuer organisation is a trusted participants of the data space.
+* The verifier checks against the `Trusted Issuers List` whether the issuer is allowed to issue the set of roles contained in the VC.
+* The verifier returns a code, which can be used to obtain an access token from the verifier.
+* Now the wallet and/or the the portal/marketplace application can obtain a JWT access token from the verifier `/token` endpoint and use the corresponding service.
+
+
+## Acquisition
+
+Description of the steps during acquisition of a service offering on the marketplace. An employee of a consumer organisation is already logged in 
+at the marketplace, and wishes to purchase access to the packet delivery service. During the acquisition process, the marketplace will create 
+an entry at the Trusted-Issuers-List (TIL) of PDC, stating that the buying organisation is allowed to issue credentials of type `PacketDeliveryService` 
+with the roles stated in the service offering. 
+
+In order to protect access to the TIL of PDC, the activation service (AS) will validate whether the marketplace is allowed to create issuers. 
+This requires an entry at the TIL of PDC, stating that the marketplace can issue credentials of type `ActivationService` with the role `CREATE_ISSUER`. 
+
+For authentication, the marketplace will use a VC of type `ActivationService` that with issued before with a very long expiration period.
+
+![Flows-Acquisition](docs/Flows-Acquisition.png)
+
+* The employee performs the checkout on the marketplace.
+* The marketplace sends the `POST` request to create an issuer to the `issuer` endpoint of the AS, which contains no `Authorization` header since the marketplace 
+  did not obtain an access token yet.
+* Since the header is empty, the AS will return a redirect to the `/samedevice` endpoint of the verifier in order to initiate the samedevice-flow.
+* The marketplace calls this `/samedevice` and receives the `/authentication_response` endpoint of the verifier.
+* The marketplace sends a Verifiable Presentation (VP), containing the VC issued to the marketplace, to the `/authentication_response` endpoint. 
+* The verifier checks against the `Trusted Participants API` whether the issuer organisation (marketplace) is a trusted participants of the data space.
+* The verifier checks against the `Trusted Issuers List` whether the issuer is allowed to issue VCs of type `ActivationService` and the set of roles contained in the VC.
+* The verifier returns a code, which can be used to obtain an access token from the verifier.
+* Using that code, the marketplace obtains an access token JWT from the `token` endpoint of the verifier.
+* The marketplace repeats sending the request to the `issuer` endpoint of the AS in order to create an issuer. This time it adds the JWT access token to 
+  the `Authorization` header.
+* The AS validates the JWT with the JWKS of the verifier.
+* If the validation succeeds, the request is forwarded to the actual `/issuer` endpoint of the TIL and the issuer is entry is created.
+
+
+
+
 ## Credentials
 
 Different accounts are created automatically with default passwords.
