@@ -92,7 +92,7 @@ Description of the different flows.
 TODO
 
 
-## Login 
+### Login 
 
 Description of the steps during login using a VC at the portal or marketplace. A VC has been issued to the user before, designated for the service to be logged in, and 
 containing the roles for this service issued to the user.
@@ -109,10 +109,11 @@ containing the roles for this service issued to the user.
 * Now the wallet and/or the the portal/marketplace application can obtain a JWT access token from the verifier `/token` endpoint and use the corresponding service.
 
 
-## Acquisition
+### Acquisition
 
 Description of the steps during acquisition of a service offering on the marketplace. An employee of a consumer organisation is already logged in 
-at the marketplace, and wishes to purchase access to the packet delivery service. During the acquisition process, the marketplace will create 
+at the marketplace following 
+the [Login](#Login) process described above, and wishes to purchase access to the packet delivery service. During the acquisition process, the marketplace will create 
 an entry at the Trusted-Issuers-List (TIL) of PDC, stating that the buying organisation is allowed to issue credentials of type `PacketDeliveryService` 
 with the roles stated in the service offering. 
 
@@ -138,6 +139,27 @@ For authentication, the marketplace will use a VC of type `ActivationService` th
 * The AS validates the JWT with the JWKS of the verifier.
 * If the validation succeeds, the request is forwarded to the actual `/issuer` endpoint of the TIL and the issuer is entry is created.
 
+
+
+### Service Usage
+
+Description of the steps when a shop customer access the service of packet delivery. The customer is already logged in at the PDC portal following 
+the [Login](#Login) process described above. The customer wants to retrieve information about its delivery order (and possibly to update 
+certain parameters like the planned time of arrival).
+
+The shop organisation already acquired access to the service following the [Acquisition](#Acquisition) process described above. That means, that 
+the shop organisation is allowed to issue credentials of type `PacketDeliveryService` and the role(s) `STANDARD_CUSTOMER` (and `GOLD_CUSTOMER`).
+
+![Flows-Usage.png](docs/Flows-Usage.png)
+
+* Using the portal, the customer issues an NGSI-LD `GET` (or `PATCH`) request to retrieve information about its delivery order. The JWT access token obtained 
+  during the [Login](#Login) process is added to the `Authorization` header.
+* The portal sends the request to the PDC Kong endpoint for the packet delivery service. 
+* The Kong `pep-plugin` plugin forwards the request to the PDP.
+* The PDP validates the JWT with the JWKS of the verifier.
+* The PDP requests the policy-role-mappings at the PDC Authorization Registry for the roles contained in the JWT access token.
+* The PDP evaluates the NGSI-LD request and compares it to the obtained policies. 
+* If the policies allow the requested operation, the request is forwarded to the Context Broker, and the response is returned to the portal.
 
 
 
