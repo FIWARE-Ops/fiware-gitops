@@ -153,7 +153,7 @@ Login at the [Marketplace](https://marketplace.dsba.fiware.dev) as PDC employee 
 Make sure that you switch the `Session` (top-right drop-down) to the PDC DID, in order to act on behalf of the Packet Delivery Company organisation.
 
 #### Catalog
-Create a catalog `Packet Delivery services`.
+Create a catalog `Packet Delivery services` and set it to `Launched`.
 
 #### Product Specification
 Create a product specification (Basic or Premium) for the packet delivery service. 
