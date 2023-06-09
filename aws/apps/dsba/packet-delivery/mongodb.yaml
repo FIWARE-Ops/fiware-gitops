@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dsba-packet-delivery-mysql-pdc
+  name: dsba-packet-delivery-mongodb
   namespace: argocd
   labels:
     participant: packet-delivery
@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/dsba/packet-delivery/mysql
+    path: aws/dsba/packet-delivery/mongodb
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
