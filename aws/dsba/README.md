@@ -114,7 +114,7 @@ The following table lists the URLs of publicly available resources that can be o
 | AS PDC                    | https://as-packetdelivery.dsba.fiware.dev |
 | Kong PDC                  | https://kong-pdc.dsba.fiware.dev |
 | Portal PDC                | https://packetdelivery-portal.dsba.fiware.dev |
-|                           |                                |
+| Onboarding service        | https://onboarding-portal.dsba.fiware.dev |
 | Keycloak Animal Goods Org | https://animalgoods-kc.dsba.fiware.dev |
 |                           |                                |
 | Keycloak Happy Pets       | https://happypets-kc.dsba.fiware.dev |
@@ -132,15 +132,26 @@ The following table lists the URLs of publicly available resources that can be o
 
 ## Presentations
 
-TODO: Short description of the steps to be performed for presenting the use case with 
-onboarding, offering creation, offering acquisition and service usage
-
 This gives a short description of the steps to be performed for presentations.
 
 
 ### Onboarding of animal Goods
 
-TODO
+An legal representative of the Animal Goods Org wants to onboard its organisation to the dataspace.
+
+#### Prepare Credentials in Wallet
+
+The LEAR (`legal-representative`) has to log in the [Animal Goods Keycloak](https://animalgoods-kc.dsba.fiware.dev/realms/fiware-server/account) to issue two credentials and import them into its [Wallet](https://demo-wallet.fiware.dev).
+
+First the VC with the company's self description via the `GaiaXParticipentCredential ldp_vc` type. For this VC the wallet shall also request a Compliancy Credential from `FIWARE compliancy service`
+
+Second the VC for the LEAR via the `NaturalPersonCredential ldp_vc`.
+
+Afterwards the Wallet should contain three VCs.
+
+#### Onboarding in dataspace
+
+The LEAR uses its Wallet to log into the [Onboarding service](https://onboarding-portal.dsba.fiware.dev). After a successful login, the LEAR can add its company, as presented on the left, to the dataspace by pressing the `+` under the company details.
 
 
 ### Create an offering for the Packet Delivery Service
@@ -153,11 +164,16 @@ Login as `legal-representative` at the [PDC Keycloak](https://packetdelivery-kc.
 #### Login at marketplace
 Login at the [Marketplace](https://marketplace.dsba.fiware.dev) as PDC employee using this VC. 
 
+Make sure that you switch the `Session` (top-right drop-down) to the PDC DID, in order to act on behalf of the Packet Delivery Company organisation.
+
 #### Catalog
-Create a catalog `Packet Delivery services`.
+Create a catalog `Packet Delivery services` and set it to `Launched`.
 
 #### Product Specification
-Create a product specification (Basic or Premium) for the packet delivery services. FOr the asset configuration, select `Is a digital product?` and provide the following configuration:
+Create a product specification (Basic or Premium) for the packet delivery service. 
+
+For the asset configuration, select `Is a digital product?` and provide the following configuration:
+
 | Parameter | Value | Description |
 |-----------|-------|-------------|
 | Digital Asset Type | `NGSI-LD Data Service for VC at trusted-issuer list` | This selects the asset plugin |
@@ -168,8 +184,77 @@ Create a product specification (Basic or Premium) for the packet delivery servic
 | List of roles allowed to be issued | `STANDARD_CUSTOMER,GOLD_CUSTOMER` (Premium) / `STANDARD_CUSTOMER` (Basic) | Roles that can be issued (depending on offered service level) |
 | Duration in Minutes | 30 | Expiration time for entry at trsuted-issuers-list. For demonstration purposes, a short time period should be chosen. In real-life one would choose a very long period. |
 
+In the `Attachments` tab, one can provide an image for the presented offering. This URLs can be used:
+* Basic: `https://raw.githubusercontent.com/FIWARE-Ops/fiware-gitops/master/aws/dsba/docs/Offerings-VCVP_Basic.png`
+* Premium: `https://raw.githubusercontent.com/FIWARE-Ops/fiware-gitops/master/aws/dsba/docs/Offerings-VCVP_Premium.png`
+
+Create the product specification and set it to `Launched`.
+
+#### Product Offering
+Create a product offering (Basic or Premium) for the packet delivery service. This is what will be shown to potential 
+consumers wishing to acquire the service.
+
+Bundle can be skipped.
+
+Select the product specification to be used for this offering. Select the created catalog.
+
+License and SLA can be skipped.
+
+Under price plan, make sure to de-select the checkbox `Is an open offering?` (for open offerings, the plugin code will not be executed!). 
+Only create a price plan, if there is a payment provider configured in the marketplace.
+
+Select the default RS model. 
+
+Create the offering and set it to `Launched`.
 
 
+### Offering acquisition by consumer
+
+An employee of a service consumer organisation (e.g., Happy Pets, Animal Goods) purches and acquires access to the packet delivery 
+service (Premium or Basic).
+
+#### Consumer employee gets VC
+Login as `legal-representative` at the Keycloak of the consumer organisation:
+
+* [Happy Pets Keycloak](https://happypets-kc.dsba.fiware.dev/realms/fiware-server/account). 
+* [Animal Goods Keycloak](https://animalgoods-kc.dsba.fiware.dev/realms/fiware-server/account). 
+
+Issue a VC for `MarketplaceUserCredential Idp_vc` and store it in your wallet. 
+
+#### Login at marketplace
+Login at the [Marketplace](https://marketplace.dsba.fiware.dev) as consumer employee using this VC. 
+
+#### Acquire access
+Select the packet delivery service offering to be purchased (Premium or Basic) and add it to the cart. 
+
+For the first checkout, one needs to set a billing address.
+
+Perform the checkout. The BAE plugin will create an entry at the PDC trusted-issuer-list for the consumer organisation. 
+From now on the consumer organisation can issue VCs with the roles stated in the offering.
+
+#### Shop customer gets VC
+Login as `standard-user` or `prime-user` (they differ by the roles that are issued) at the Keycloak of the consumer (shop) organisation:
+
+* [Happy Pets Keycloak](https://happypets-kc.dsba.fiware.dev/realms/fiware-server/account). 
+* [Animal Goods Keycloak](https://animalgoods-kc.dsba.fiware.dev/realms/fiware-server/account). 
+
+Issue a VC for `PacketDeliveryService Idp_vc` and store it in your wallet. 
+
+#### Service usage
+Login at the [PDC Portal](https://packetdelivery-portal.dsba.fiware.dev) as shop customer using this VC. 
+
+Access should be granted to the portal. 
+
+Enter a delivery ID and get the delivery order. Possible IDs:
+* Happy Pets: `urn:ngsi-ld:DELIVERYORDER:HAPPYPETS001`, `urn:ngsi-ld:DELIVERYORDER:HAPPYPETS002`
+* Animal Goods: `urn:ngsi-ld:DELIVERYORDER:ANIMALGOODS001`, `urn:ngsi-ld:DELIVERYORDER:ANIMALGOODS002`
+
+A NGSI-LD GET request will be sent to Kong and access should be granted. 
+
+Now try to change the `pda` or `pta` attribute.
+
+A NGSI-LD PATCH request will be sent to Kong. Depending on the user (and the assigned roles), access will be granted or denied. 
+If the PATCH is successful, another NGSI-LD GET will be sent in order to refresh the delivery order data.
 
 
 ### Cleanup
@@ -188,5 +273,6 @@ curl -i -X DELETE 'https://til-PDC.dsba.fiware.dev/issuer/did:web:animalgoods.ds
 
 * Remove onboarding of Animal Goods
 ```shell
-# TODO
+kubectl port-forward -ndsba service/dsba-onboarding-portal-orion-ld 1026
+curl -X DELETE -v --location 'localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:TrustedIssuer:did:web:animalgoods.dsba.fiware.dev:did'
 ```
