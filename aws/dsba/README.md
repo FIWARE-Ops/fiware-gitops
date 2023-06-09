@@ -87,7 +87,7 @@ Additionally, the Verifier connects to the Trusted Participants API of the [Data
 
 Description of the different flows.
 
-## Onboarding
+### Onboarding
 
 TODO
 
