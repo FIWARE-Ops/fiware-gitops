@@ -273,5 +273,6 @@ curl -i -X DELETE 'https://til-PDC.dsba.fiware.dev/issuer/did:web:animalgoods.ds
 
 * Remove onboarding of Animal Goods
 ```shell
-# TODO
+kubectl port-forward -ndsba service/dsba-onboarding-portal-orion-ld 1026
+curl -X DELETE --location 'localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:TrustedIssuer:did:web:onboarding.dsba.fiware.dev:did'
 ```
