@@ -135,10 +135,46 @@ The following table lists the URLs of publicly available resources that can be o
 TODO: Short description of the steps to be performed for presenting the use case with 
 onboarding, offering creation, offering acquisition and service usage
 
+This gives a short description of the steps to be performed for presentations.
+
+
+### Onboarding of animal Goods
+
+TODO
+
+
+### Create an offering for the Packet Delivery Service
+
+An employee of Packet Delivery Company needs to create an offering for the packet delivery service on the marketplace.
+
+#### PDC employee gets VC
+Login as `legal-representative` at the [PDC Keycloak](https://packetdelivery-kc.dsba.fiware.dev/realms/fiware-server/account). Issue a VC for `MarketplaceUserCredential Idp_vc` and store it in your wallet. 
+
+#### Login at marketplace
+Login at the [Marketplace](https://marketplace.dsba.fiware.dev) as PDC employee using this VC. 
+
+#### Catalog
+Create a catalog `Packet Delivery services`.
+
+#### Product Specification
+Create a product specification (Basic or Premium) for the packet delivery services. FOr the asset configuration, select `Is a digital product?` and provide the following configuration:
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| Digital Asset Type | `NGSI-LD Data Service for VC at trusted-issuer list` | This selects the asset plugin |
+| Asset URL | `https://kong-pdc.dsba.fiware.dev/pdc/ngsi-ld/v1` | Should point to the Kong endpoint of the PDC service |
+| Trusted-Issuer-List /issuer Endpoint | `https://as-packetdelivery.dsba.fiware.dev/issuer` | Dhould point to the `/issuer` endpoint of the Activation Service |
+| DID of service provider | `did:web:packetdelivery.dsba.fiware.dev:did` | DID of the service provider (here: Packet Delivery) |
+| Verifiable Credential Type | `PacketDeliveryService` | Type of the VC that can be issued by consumers after service acquisition |
+| List of roles allowed to be issued | `STANDARD_CUSTOMER,GOLD_CUSTOMER` (Premium) / `STANDARD_CUSTOMER` (Basic) | Roles that can be issued (depending on offered service level) |
+| Duration in Minutes | 30 | Expiration time for entry at trsuted-issuers-list. For demonstration purposes, a short time period should be chosen. In real-life one would choose a very long period. |
+
+
+
+
 
 ### Cleanup
 
-Steps to revert the setup in order to be able to perform the use case presentation above.
+Steps to revert the setup in order to be able to perform the use case presentation above when it was already performed before.
 
 * Remove activated service for Happy Pets at the PDC TIL
 ```shell
