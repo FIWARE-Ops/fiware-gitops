@@ -114,7 +114,7 @@ The following table lists the URLs of publicly available resources that can be o
 | AS PDC                    | https://as-packetdelivery.dsba.fiware.dev |
 | Kong PDC                  | https://kong-pdc.dsba.fiware.dev |
 | Portal PDC                | https://packetdelivery-portal.dsba.fiware.dev |
-|                           |                                |
+| Onboarding service        | https://onboarding-portal.dsba.fiware.dev |
 | Keycloak Animal Goods Org | https://animalgoods-kc.dsba.fiware.dev |
 |                           |                                |
 | Keycloak Happy Pets       | https://happypets-kc.dsba.fiware.dev |
@@ -137,7 +137,21 @@ This gives a short description of the steps to be performed for presentations.
 
 ### Onboarding of animal Goods
 
-TODO
+An legal representative of the Animal Goods Org wants to onboard its organisation to the dataspace.
+
+#### Prepare Credentials in Wallet
+
+The LEAR (`legal-representative`) has to log in the [Animal Goods Keycloak](https://animalgoods-kc.dsba.fiware.dev/realms/fiware-server/account) to issue two credentials and import them into its [Wallet](https://demo-wallet.fiware.dev).
+
+First the VC with the company's self description via the `GaiaXParticipentCredential ldp_vc` type. For this VC the wallet shall also request a Compliancy Credential from `FIWARE compliancy service`
+
+Second the VC for the LEAR via the `NaturalPersonCredential ldp_vc`.
+
+Afterwards the Wallet should contain three VCs.
+
+#### Onboarding in dataspace
+
+The LEAR uses its Wallet to log into the [Onboarding service](https://onboarding-portal.dsba.fiware.dev). After a successful login, the LEAR can add its company, as presented on the left, to the dataspace by pressing the `+` under the company details.
 
 
 ### Create an offering for the Packet Delivery Service
