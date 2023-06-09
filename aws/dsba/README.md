@@ -137,6 +137,7 @@ For authentication, the marketplace will use a VC of type `ActivationService` th
 * The marketplace repeats sending the request to the `issuer` endpoint of the AS in order to create an issuer. This time it adds the JWT access token to 
   the `Authorization` header.
 * The AS validates the JWT with the JWKS of the verifier.
+* AS checks in the JWT for the `CREATE_ISSUER role`
 * If the validation succeeds, the request is forwarded to the actual `/issuer` endpoint of the TIL and the issuer is entry is created.
 
 
