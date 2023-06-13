@@ -95,18 +95,23 @@ TODO
 ### Login 
 
 Description of the steps during login using a VC at the portal or marketplace. A VC has been issued to the user before, designated for the service to be logged in, and 
-containing the roles for this service issued to the user.
+containing the roles for this service issued to the user. The general login flow follows the [OIDC4VP](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html)/[SIOP-2](https://openid.net/specs/openid-connect-self-issued-v2-1_0.html) standard.
 
 ![Flows-Login](docs/Flows-Login.png)
 
-* The user initiates the login at the portal/marketplace UI. A QR code is displayed.
+* The user initiates the login at the portal/marketplace UI.
+* The portal generates a session and forwards it together with its client-id to the verifier
+* The verifier requests the scope of the service at the Credentials Config Service
+* A QR code containing the connection information for the Wallet is displayed.
 * The user scans the QR code with its mobile wallet. The QR code contains a URL of the verifier to initiate the login. 
   The wallet sends a `GET` request to this URL and receives the `/authentication_response` endpoint of the verifier.
 * The wallet sends a Verifiable Presentation (VP), containing the VC issued to the user, to the `/authentication_response` endpoint. 
-* The verifier checks against the `Trusted Participants API` whether the issuer organisation is a trusted participants of the data space.
-* The verifier checks against the `Trusted Issuers List` whether the issuer is allowed to issue the set of roles contained in the VC.
-* The verifier returns a code, which can be used to obtain an access token from the verifier.
-* Now the wallet and/or the the portal/marketplace application can obtain a JWT access token from the verifier `/token` endpoint and use the corresponding service.
+* The verifier retrieves the relevant `Trusted Participants Registreis`and `Trusted Issuers Lists` from the Credentials Config Service, based on the client-id and type of credential
+* The verifier validates the signature and validity of the credentials
+* The verifier checks against the relevant `Trusted Participants API` whether the issuer organisation is a trusted participants of the data space.
+* The verifier checks against the relevant`Trusted Issuers List` whether the issuer is allowed to issue the set of claims(f.e. roles) contained in the VC.
+* The verifier returns a code, which can be used to obtain an access token from the verifier
+* Now the portal/marketplace application can obtain a JWT access token from the verifiers `/token` endpoint and use the corresponding service.
 
 
 ### Acquisition
@@ -223,9 +228,9 @@ An legal representative of the Animal Goods Org wants to onboard its organisatio
 
 #### Prepare Credentials in Wallet
 
-The LEAR (`legal-representative`) has to log in the [Animal Goods Keycloak](https://animalgoods-kc.dsba.fiware.dev/realms/fiware-server/account) to issue two credentials and import them into its [Wallet](https://demo-wallet.fiware.dev).
+The LEAR (`legal-representative`) has to log in the [Animal Goods Keycloak](https://animalgoods-kc.dsba.fiware.dev/realms/fiware-server/account) to receive two credentials and import them into its [Wallet](https://demo-wallet.fiware.dev). The issuance process follows the [OIDC4VCI standard](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html).
 
-First the VC with the company's self description via the `GaiaXParticipentCredential ldp_vc` type. For this VC the wallet shall also request a Compliancy Credential from `FIWARE compliancy service`
+First the VC with the company's self description via the `GaiaXParticipentCredential ldp_vc` type. For this VC the wallet shall also request a Compliancy Credential from `FIWARE compliancy service`. The compliancy credential is used to prove the contents of the SelfDescription. In our `Gaia-X` based on-boarding example, the Gaia-X compliancy service will validate the contents of the self-description and assert them through the Compliancy Credential.
 
 Second the VC for the LEAR via the `NaturalPersonCredential ldp_vc`.
 
@@ -233,7 +238,7 @@ Afterwards the Wallet should contain three VCs.
 
 #### Onboarding in dataspace
 
-The LEAR uses its Wallet to log into the [Onboarding service](https://onboarding-portal.dsba.fiware.dev). After a successful login, the LEAR can add its company, as presented on the left, to the dataspace by pressing the `+` under the company details.
+The LEAR uses its Wallet to log into the [Onboarding service](https://onboarding-portal.dsba.fiware.dev).After a successful login, the LEAR can add its company, as presented on the left, to the dataspace by pressing the `+` under the company details.
 
 
 ### Create an offering for the Packet Delivery Service
