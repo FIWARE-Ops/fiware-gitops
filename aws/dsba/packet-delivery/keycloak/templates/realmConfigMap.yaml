@@ -51,6 +51,18 @@ data:
               "clientRole": true
             }
           ],
+          "did:web:packetdelivery.dsba.fiware.dev:did": [
+            {
+              "name": "STANDARD_CUSTOMER",
+              "description": "User to access packetdelivery with read access",
+              "clientRole": true
+            },
+            {
+              "name": "GOLD_CUSTOMER",
+              "description": "User to access packetdelivery with read/write access",
+              "clientRole": true
+            }
+          ],
           "orion-pep": [
             {
               "name": "admin",
@@ -162,6 +174,9 @@ data:
             "did:web:onboarding.dsba.fiware.dev:did": [
               "EMPLOYEE"
             ],
+            "did:web:packetdelivery.dsba.fiware.dev:did": [
+              "GOLD_CUSTOMER"
+            ],
             "account": [
               "view-profile",
               "manage-account"
@@ -173,6 +188,70 @@ data:
         }
       ],
       "clients": [
+        {
+          "clientId": "did:web:packetdelivery.dsba.fiware.dev:did",
+          "enabled": true,
+          "description": "Client for internal users",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "3600",
+              "vctypes_EmployeeCredential": "ldp_vc,jwt_vc_json",
+              "EmployeeCredential_claims": "email,firstName,familyName,roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
+          "clientId": "did:web:marketplace.dsba.fiware.dev:did",
+          "enabled": true,
+          "description": "Client to connect to the marketplace",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "3600",
+              "vctypes_MarketplaceUserCredential": "ldp_vc,jwt_vc_json",
+              "MarketplaceUserCredential_claims": "email,firstName,lastName,roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
         {
           "clientId": "did:web:onboarding.dsba.fiware.dev:did",
           "enabled": true,
