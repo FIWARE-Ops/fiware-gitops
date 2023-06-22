@@ -118,7 +118,7 @@ spec:
           {{- if .readinessProbe }}
           readinessProbe:
             httpGet:
-              path: {{ .readinessProbe.healthPath }}
+              path: {{ .readinessProbe.readinessPath }}
               port: http-health
             initialDelaySeconds: {{ .readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .readinessProbe.periodSeconds }}
@@ -127,7 +127,7 @@ spec:
           {{- else if $.Values.defaultConfig.readinessProbe }}
           readinessProbe:
             httpGet:
-              path: {{ $.Values.defaultConfig.readinessProbe.healthPath }}
+              path: {{ $.Values.defaultConfig.readinessProbe.readinessPath }}
               port: http-health
             initialDelaySeconds: {{ $.Values.defaultConfig.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ $.Values.defaultConfig.readinessProbe.periodSeconds }}
