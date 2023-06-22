@@ -158,7 +158,7 @@ spec:
             - name: MICRONAUT_METRICS_ENABLED
               value: {{ $.Values.defaultConfig.prometheus.enabled | quote }}
             {{- end }}
-            - name: ENDPOINTS_HEALTH_ENABLED_TRUE
+            - name: ENDPOINTS_HEALTH_ENABLED
               value: "true"
             {{- if .logLevel -}}
             - name: LOGGER_LEVELS_ROOT
