@@ -4,8 +4,8 @@ activation-service:
       repository: quay.io/i4trust/activation-service
       #tag: 2.1.1
       tag: 2.2.0-PRE-18
-      #pullPolicy: Always
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
+      #pullPolicy: IfNotPresent
 
   route:
     enabled: true
