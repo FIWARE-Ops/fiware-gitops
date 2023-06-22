@@ -147,7 +147,7 @@ defaultConfig:
     # -- pull policy to be used
     pullPolicy: IfNotPresent
   # -- log level of the api
-  logLevel: DEBUG
+  logLevel: INFO
   # -- default context to be used when contacting the context broker
   contextUrl: https://smartdatamodels.org/context.jsonld
   # -- port to be used for the app
