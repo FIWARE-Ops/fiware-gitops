@@ -54,7 +54,7 @@ spec:
         {{- if .endpointsPort }}
         prometheus.io/port: {{ .endpointsPort }}
         {{- else if $.Values.defaultConfig.endpointsPort }}
-        prometheus.io/port: {{ $.Values.defaultConfig.endpointsPort }}
+        prometheus.io/port: {{ $.Values.defaultConfig.endpointsPort | quote }}
         {{- end }}
         {{- if .additionalAnnotations -}}
         {{- with .additionalAnnotations }}
