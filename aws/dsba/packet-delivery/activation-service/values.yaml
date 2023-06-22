@@ -66,6 +66,8 @@ activation-service:
       ishare:
         # Enable for /token endpoint (API key will be required)
         enabledToken: false
+        # Enable for /createpolicy endpoint (API key will be required)
+        enabledCreatePolicy: false
       # Config for Trusted-Issuers-List flow
       issuer:
         # Header name
