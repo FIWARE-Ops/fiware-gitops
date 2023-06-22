@@ -74,12 +74,12 @@ spec:
           {{- if .pullPolicy }}
           imagePullPolicy: {{ .pullPolicy }}
           {{- else }}
-          imagePullPolicy: {{ $.Values.defaultConfig.pullPolicy }}
+          imagePullPolicy: {{ $.Values.defaultConfig.image.pullPolicy }}
           {{- end }}
           {{- if .repository }}
           image: "{{ .repository }}/{{ .image }}:{{ .tag }}"
           {{- else }}
-          image: "{{ $.Values.defaultConfig.repository }}/{{ .image }}:{{ $.Values.defaultConfig.tag }}"
+          image: "{{ $.Values.defaultConfig.image.repository }}/{{ .image }}:{{ $.Values.defaultConfig.image.tag }}"
           {{- end }}
           ports:
             - name: http
