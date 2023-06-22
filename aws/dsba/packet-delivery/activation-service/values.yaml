@@ -2,9 +2,10 @@ activation-service:
   deployment:
     image:
       repository: quay.io/i4trust/activation-service
-      tag: 2.1.1
-      #pullPolicy: Always
-      pullPolicy: IfNotPresent
+      #tag: 2.1.1
+      tag: 2.2.0-PRE-18
+      pullPolicy: Always
+      #pullPolicy: IfNotPresent
 
   route:
     enabled: true
@@ -17,6 +18,9 @@ activation-service:
         kind: ClusterIssuer
         name: letsencrypt-aws-prod
 
+  # Use values from existing secret as ENVs
+  existingSecretEnvs: pdc-as-envs-secret
+        
   ## Configuration of activation service execution
   activationService:
     # -- Listen port
@@ -56,6 +60,23 @@ activation-service:
       # -- Enable SQL logging to stderr
       echo: true
 
+    # Configuration for additional API keys to protect certain endpoints
+    apikeys:
+      # Config for iSHARE flow
+      ishare:
+        # Enable for /token endpoint (API key will be required)
+        enabledToken: false
+        # Enable for /createpolicy endpoint (API key will be required)
+        enabledCreatePolicy: false
+      # Config for Trusted-Issuers-List flow
+      issuer:
+        # Header name
+        headerName: "AS-API-KEY"
+        # API key (auto-generated if left empty)
+        apiKey: ""
+        # Enable for /issuer endpoint (API key will be required)
+        enabledIssuer: true
+      
     ar:
       # Endpoint for token request
       token: "https://ar.isharetest.net/connect/token"

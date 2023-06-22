@@ -265,7 +265,9 @@ For the asset configuration, select `Is a digital product?` and provide the foll
 |-----------|-------|-------------|
 | Digital Asset Type | `NGSI-LD Data Service for VC at trusted-issuer list` | This selects the asset plugin |
 | Asset URL | `https://kong-pdc.dsba.fiware.dev/pdc/ngsi-ld/v1` | Should point to the Kong endpoint of the PDC service |
-| Trusted-Issuer-List /issuer Endpoint | `https://as-packetdelivery.dsba.fiware.dev/issuer` | Dhould point to the `/issuer` endpoint of the Activation Service |
+| Trusted-Issuer-List /issuer Endpoint | `https://as-packetdelivery.dsba.fiware.dev/issuer` | Should point to the `/issuer` endpoint of the Activation Service |
+| API-Key header name (optional) | `AS-API-KEY` | API-Key header name required by the PDC activation service |
+| API-KEY (optional) | `eb4675ed-860e-4de1-a9a7-3e2e4356d08d` | API-Key required by the PDC activation service |
 | DID of service provider | `did:web:packetdelivery.dsba.fiware.dev:did` | DID of the service provider (here: Packet Delivery) |
 | Verifiable Credential Type | `PacketDeliveryService` | Type of the VC that can be issued by consumers after service acquisition |
 | List of roles allowed to be issued | `STANDARD_CUSTOMER,GOLD_CUSTOMER` (Premium) / `STANDARD_CUSTOMER` (Basic) | Roles that can be issued (depending on offered service level) |
