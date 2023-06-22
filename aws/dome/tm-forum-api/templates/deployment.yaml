@@ -6,7 +6,6 @@ metadata:
   labels:
     {{ include "tmforum.labels" $ | nindent 4 }}
 spec:
-  serviceAccountName: {{ include "tmforum.serviceAccountName" $ }}
   {{- if .replicaCount }}
   replicas: {{ .replicaCount }}
   {{- else if $.Values.defaultConfig.replicaCount }}
@@ -67,6 +66,7 @@ spec:
         {{- end }}
         {{- end }}
     spec: 
+      serviceAccountName: {{ include "tmforum.serviceAccountName" $ }}
       containers:
         - name: {{ .name }}
           {{- if .pullPolicy }}
