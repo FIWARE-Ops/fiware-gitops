@@ -15,7 +15,8 @@ spec:
   template:
     metadata:
       labels:
-        {{ include "tmforum.labels" . | nindent 8 }}
+        app.kubernetes.io/name: {{ include "tmforum.name" . }}-doc
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec: 
       containers:
         - name: {{ .Chart.Name }}
