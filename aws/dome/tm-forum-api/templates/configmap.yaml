@@ -5,6 +5,11 @@ metadata:
   labels:
     {{ include "tmforum.labels" $ | nindent 4 }}
 data:
+  docker-run.sh: |
+    #!/bin/sh
+
+    set -e
+    nginx -g 'daemon off;'
   index.html: |
     <!DOCTYPE html>
     <html>
