@@ -15,7 +15,6 @@ spec:
       labels:
         {{ include "tmforum.labels" . | nindent 8 }}
     spec: 
-      serviceAccountName: {{ include "tmforum.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
           imagePullPolicy: IfNotPresent
