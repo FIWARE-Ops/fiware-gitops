@@ -80,7 +80,7 @@ data:
         function setApi(url, name, path) {
           getRapiDoc().setAttribute("spec-url", url);
           {{- if $url }}
-          getRapiDoc().setAttribute("server-url", "https://{{ $url }}"+path);
+          getRapiDoc().setAttribute("server-url", "https://{{ $url }}${path}");
           {{- end }}
         }
         </script>
@@ -95,7 +95,7 @@ data:
                 <div class="dropdown-content">
                   {{- range $key, $value := index .Values "tm-forum-api" "apis" }}
                   {{- if  $value.specUrl }}
-                  <a href="#" onclick="setApi('spec/{{  $value.name }}.json', '{{  $value.name }}', {{ $value.basePath }})">{{  $value.name }}</a>
+                  <a href="#" onclick="setApi('spec/{{  $value.name }}.json', '{{  $value.name }}', '{{ $value.basePath }}')">{{  $value.name }}</a>
                   {{- end }}
                   {{- end }}
                 </div>
