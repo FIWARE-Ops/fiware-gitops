@@ -33,7 +33,7 @@ spec:
               mountPath: /usr/local/bin
             - name: cache
               mountPath: /var/cache/nginx
-            - name: runDir
+            - name: var
               mountPath: /var/run
             - name: nginx
               mountPath: /etc/nginx/nginx.conf
@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: cache
           emptyDir: {}
-        - name: runDir
+        - name: var
           emptyDir: {}
         - name: index
           configMap:
