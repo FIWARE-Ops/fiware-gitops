@@ -36,8 +36,8 @@ spec:
           configMap:
             name: {{ include "tmforum.fullname" $ }}-api-doc
             items: 
-              - key: index.html
-                path: index.html
+              - key: custom-index.html
+                path: custom-index.html
         - name: run
           configMap:
             name: {{ include "tmforum.fullname" $ }}-api-doc

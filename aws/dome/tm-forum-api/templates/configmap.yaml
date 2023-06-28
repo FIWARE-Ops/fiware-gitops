@@ -10,14 +10,12 @@ data:
 
     set -e
 
-    cp /custom/index.html /usr/share/nginx/html/index.html
-
     BASE_URL=${BASE_URL:-/}
     NGINX_ROOT=/usr/share/nginx/html
-    INDEX_FILE=$NGINX_ROOT/index.html 
+    INDEX_FILE=$NGINX_ROOT/custom-index.html 
 
     nginx -g 'daemon off;'
-  index.html: |
+  custom-index.html: |
     <!DOCTYPE html>
     <html>
     <head>
