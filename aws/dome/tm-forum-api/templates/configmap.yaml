@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "tmforum.fullname" $ }}-api-doc
+  labels:
+    {{ include "tmforum.labels" $ | nindent 4 }}
+data:
+  docker-run.sh: |
+    #!/bin/sh
+
+    set -e
+
+    cp /custom/index.html /usr/share/nginx/html/index.html
+
+    BASE_URL=${BASE_URL:-/}
+    NGINX_ROOT=/usr/share/nginx/html
+    INDEX_FILE=$NGINX_ROOT/index.html 
+
+    nginx -g 'daemon off;'
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8" />
+      <title>Deployed APIs</title>
+      <link rel="icon" href="favicon.png">
+      <style>
+        /* Dropdown Button */
+        .dropbtn {
+          background-color: #04AA6D;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {background-color: #3e8e41;} 
+      </style>
+    </head>
+
+    <body >
+
+      <script src="rapidoc-min.js"></script>
+      <script>
+        function getRapiDoc(){
+          return document.getElementById("thedoc");
+        }  
+        function setApi(url, name) {
+          getRapiDoc().setAttribute("spec-url", url);
+        }
+        </script>
+          <rapi-doc id="thedoc" spec-url="{{ .Values.doc.defaultSpec }}" allow-spec-url-load="false" allow-spec-file-load="false" >     
+            <div style="display:flex; margin:10px; justify-content:left;flex-wrap: wrap;">
+              <div class="dropdown">
+                <button id="dropdown-btn" class="dropbtn">Select API</button>
+                <div class="dropdown-content">
+                  {{- range .Values.apis -}}
+                  {{- if .specUrl }}
+                  <a href="#" onclick="setApi('{{ .specUrl }}', '{{ .name }}')">{{ .name }}</a>
+                  {{- end }}
+                  {{- end }}
+                </div>
+              </div> 
+            </div>
+          </rapi-doc>
+    </body>
+
+    </html>
