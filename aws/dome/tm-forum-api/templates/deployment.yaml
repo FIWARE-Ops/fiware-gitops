@@ -29,8 +29,6 @@ spec:
           volumeMounts:
             - name: index
               mountPath: /custom
-            - name: run
-              mountPath: /usr/local/bin
             - name: cache
               mountPath: /var/cache/nginx
             - name: var
@@ -49,12 +47,6 @@ spec:
             items: 
               - key: custom-index.html
                 path: custom-index.html
-        - name: run
-          configMap:
-            name: {{ include "tmforum.fullname" $ }}-api-doc
-            items: 
-              - key: docker-run.sh
-                path: docker-run.sh
         - name: nginx
           configMap:
             name: {{ include "tmforum.fullname" $ }}-api-doc

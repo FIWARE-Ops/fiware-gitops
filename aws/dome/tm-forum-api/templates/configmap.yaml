@@ -5,16 +5,6 @@ metadata:
   labels:
     {{ include "tmforum.labels" $ | nindent 4 }}
 data:
-  docker-run.sh: |
-    #!/bin/sh
-
-    set -e
-
-    BASE_URL=${BASE_URL:-/}
-    NGINX_ROOT=/usr/share/nginx/html
-    INDEX_FILE=$NGINX_ROOT/custom-index.html 
-
-    nginx -g 'daemon off; '
   custom-index.html: |
     <!DOCTYPE html>
     <html>
@@ -113,7 +103,7 @@ data:
       server {
         listen            8080;
         server_name       localhost;
-        index             index.html index.htm;
+        index             custom-index.html index.htm;
 
         location / {
           alias            /usr/share/nginx/html/;
