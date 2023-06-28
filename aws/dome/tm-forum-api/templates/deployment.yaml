@@ -34,7 +34,8 @@ spec:
             - name: cache
               mountPath: /var/cache/nginx
             - name: nginx
-              mountPath: /etc/nginx
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
       volumes:
         - name: cache
           emptyDir: {}
