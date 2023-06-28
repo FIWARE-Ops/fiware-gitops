@@ -1,3 +1,4 @@
+{{- $url := index .Values "tm-forum-api" "route" "host"}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -80,7 +81,11 @@ data:
           getRapiDoc().setAttribute("spec-url", url);
         }
         </script>
+          {{- if $url }}
+          <rapi-doc id="thedoc" spec-url="spec/{{ .Values.doc.defaultApi }}.json" server-url="https://{{ $url }}" allow-spec-url-load="false" allow-spec-file-load="false" >     
+          {{- else }}
           <rapi-doc id="thedoc" spec-url="spec/{{ .Values.doc.defaultApi }}.json" allow-spec-url-load="false" allow-spec-file-load="false" >     
+          {{- end }}
             <div style="display:flex; margin:10px; justify-content:left;flex-wrap: wrap;">
               <div class="dropdown">
                 <button id="dropdown-btn" class="dropbtn">Select API</button>
