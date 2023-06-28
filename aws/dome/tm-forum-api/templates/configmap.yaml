@@ -85,7 +85,7 @@ data:
               <div class="dropdown">
                 <button id="dropdown-btn" class="dropbtn">Select API</button>
                 <div class="dropdown-content">
-                  {{- range .Values.tm-forum-api.apis -}}
+                  {{- range .Values.tm\-forum\-api.apis -}}
                   {{- if .specUrl }}
                   <a href="#" onclick="setApi('{{ .specUrl }}', '{{ .name }}')">{{ .name }}</a>
                   {{- end }}
