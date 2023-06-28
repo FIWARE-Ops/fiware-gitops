@@ -1,6 +1,18 @@
 
 doc: 
-  defaultSpec: 
+  defaultSpec: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF632-Party-v4.0.0.swagger.json
+  route:
+    ## -- should the deployment create openshift routes
+    enabled: true
+    # -- host to be used
+    host: tmforum-doc.dome.fiware.dev
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
 
 tm-forum-api:
   ## openshift specific route definition. Will not work on plain k8s
