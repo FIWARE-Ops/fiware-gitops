@@ -31,7 +31,11 @@ spec:
               mountPath: /custom
             - name: run
               mountPath: /usr/local/bin
+            - name: cache
+              mountPath: /var/cache/nginx
       volumes:
+        - name: cache
+          emptyDir: {}
         - name: index
           configMap:
             name: {{ include "tmforum.fullname" $ }}-api-doc
