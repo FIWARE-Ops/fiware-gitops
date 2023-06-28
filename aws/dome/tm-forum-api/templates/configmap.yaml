@@ -80,7 +80,7 @@ data:
         function setApi(url, name, path) {
           getRapiDoc().setAttribute("spec-url", url);
           {{- if $url }}
-          getRapiDoc().setAttribute("server-url", "https://{{ $url }}${path}");
+          getRapiDoc().setAttribute("server-url", concat("https://{{ $url }}",path));
           {{- end }}
         }
         </script>
