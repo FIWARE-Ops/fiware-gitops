@@ -28,7 +28,8 @@ spec:
               protocol: TCP    
           volumeMounts:
             - name: index
-              mountPath: /custom
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
             - name: cache
               mountPath: /var/cache/nginx
             - name: var
@@ -45,8 +46,8 @@ spec:
           configMap:
             name: {{ include "tmforum.fullname" $ }}-api-doc
             items: 
-              - key: custom-index.html
-                path: custom-index.html
+              - key: index.html
+                path: index.html
         - name: nginx
           configMap:
             name: {{ include "tmforum.fullname" $ }}-api-doc

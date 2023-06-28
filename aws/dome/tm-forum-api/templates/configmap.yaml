@@ -5,7 +5,7 @@ metadata:
   labels:
     {{ include "tmforum.labels" $ | nindent 4 }}
 data:
-  custom-index.html: |
+  index.html: |
     <!DOCTYPE html>
     <html>
     <head>
@@ -103,7 +103,7 @@ data:
       server {
         listen            8080;
         server_name       localhost;
-        index             /custom/custom-index.html index.htm;
+        index             index.html index.htm;
 
         location / {
           alias            /usr/share/nginx/html/;
