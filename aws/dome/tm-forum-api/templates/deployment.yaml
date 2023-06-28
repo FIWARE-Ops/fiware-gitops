@@ -17,7 +17,6 @@ spec:
         {{- with .Values.deployment.additionalLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
-      {{- if .Values.deployment.additionalAnnotations -}}
     spec: 
       serviceAccountName: {{ include "tmforum.serviceAccountName" . }}
       containers:
