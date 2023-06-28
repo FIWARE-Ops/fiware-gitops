@@ -42,6 +42,8 @@ spec:
             - name: index
               mountPath: /usr/share/nginx/html/index.html
               subPath: index.html
+            - name: spec
+              mountPath: /usr/share/nginx/html/spec
             - name: run
               mountPath: /usr/local/bin
             - name: cache
