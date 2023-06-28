@@ -5,6 +5,13 @@ metadata:
   labels:
     {{ include "tmforum.labels" $ | nindent 4 }}
 data:
+  download.sh: |
+    #!/bin/sh
+    {{- range $key, $value := index .Values "tm-forum-api" "apis" }}
+    {{- if  $value.specUrl }}
+    curl {{ $value.specUrl }} > /spec/{{  $value.name }}.json
+    {{- end }}
+    {{- end }}
   docker-run.sh: |
     #!/bin/sh
 
@@ -73,14 +80,14 @@ data:
           getRapiDoc().setAttribute("spec-url", url);
         }
         </script>
-          <rapi-doc id="thedoc" spec-url="{{ .Values.doc.defaultSpec }}" allow-spec-url-load="false" allow-spec-file-load="false" >     
+          <rapi-doc id="thedoc" spec-url="spec/{{ .Values.doc.defaultApi }}.json" allow-spec-url-load="false" allow-spec-file-load="false" >     
             <div style="display:flex; margin:10px; justify-content:left;flex-wrap: wrap;">
               <div class="dropdown">
                 <button id="dropdown-btn" class="dropbtn">Select API</button>
                 <div class="dropdown-content">
                   {{- range $key, $value := index .Values "tm-forum-api" "apis" }}
                   {{- if  $value.specUrl }}
-                  <a href="#" onclick="setApi('{{  $value.specUrl }}', '{{  $value.name }}')">{{  $value.name }}</a>
+                  <a href="#" onclick="setApi('spec/{{  $value.name }}.json', '{{  $value.name }}')">{{  $value.name }}</a>
                   {{- end }}
                   {{- end }}
                 </div>

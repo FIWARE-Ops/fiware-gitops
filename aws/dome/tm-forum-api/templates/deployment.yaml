@@ -18,6 +18,18 @@ spec:
         app.kubernetes.io/name: {{ include "tmforum.name" . }}-doc
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec: 
+      initContainers:
+        - name: downloader
+          imagePullPolicy: IfNotPresent
+          image: "quay.io/opencloudio/curl:4.2.0-build.8"
+          command: 
+            - /bin/sh
+            - /opt/download/download.sh
+          volumeMounts:
+            - name: spec
+              mountPath: /spec
+            - name: download
+              mountPath: /opt/download
       containers:
         - name: {{ .Chart.Name }}
           imagePullPolicy: IfNotPresent
@@ -44,6 +56,8 @@ spec:
           emptyDir: {}
         - name: var
           emptyDir: {}
+        - name: spec
+          emptyDir: {}
         - name: index
           configMap:
             name: {{ include "tmforum.fullname" $ }}-api-doc
@@ -62,3 +76,9 @@ spec:
             items: 
               - key: nginx.conf
                 path: nginx.conf
+        - name: download
+          configMap:
+            name: {{ include "tmforum.fullname" $ }}-api-doc
+            items: 
+              - key: download.sh
+                path: download.sh

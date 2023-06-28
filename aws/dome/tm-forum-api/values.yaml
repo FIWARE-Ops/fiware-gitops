@@ -1,6 +1,6 @@
 
 doc: 
-  defaultSpec: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF632-Party-v4.0.0.swagger.json
+  defaultApi: party-catalog
   route:
     ## -- should the deployment create openshift routes
     enabled: true
