@@ -5,7 +5,7 @@ metadata:
   name: {{ include "tmforum.fullname" . }}-doc
   labels:
     {{ include "tmforum.labels" . | nindent 4 }}
-  {{- if or .Values.doc.route.annotations .Values.route.annotations }}
+  {{- if or .Values.doc.route.annotations .Values.doc.route.certificate }}
   annotations:
     {{- if .Values.doc.route.certificate }}
     cert-uccss-operator.redhat-cop.io/certs-from-secret: {{ include "tmforum.fullname" . }}-doc-tls-sec
