@@ -10,7 +10,7 @@ metadata:
     {{- if .Values.doc.route.certificate }}
     cert-uccss-operator.redhat-cop.io/certs-from-secret: {{ include "tmforum.fullname" . }}-doc-tls-sec
     {{- end }}
-    {{- with .Values.route.annotations }}
+    {{- with .Values.doc.route.annotations }}
       {{- toYaml . | nindent 4 }}
       {{- end }}
   {{- end }}
