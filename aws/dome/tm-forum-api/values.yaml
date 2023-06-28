@@ -1,6 +1,7 @@
 
 doc: 
   defaultApi: party-catalog
+  defaultPath: /tmf-api/party/v4
   route:
     ## -- should the deployment create openshift routes
     enabled: true

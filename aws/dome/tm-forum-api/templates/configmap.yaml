@@ -77,12 +77,15 @@ data:
         function getRapiDoc(){
           return document.getElementById("thedoc");
         }  
-        function setApi(url, name) {
+        function setApi(url, name, path) {
           getRapiDoc().setAttribute("spec-url", url);
+          {{- if $url }}
+          getRapiDoc().setAttribute("server-url", "https://{{ $url }}/"+path);
+          {{- end }}
         }
         </script>
           {{- if $url }}
-          <rapi-doc id="thedoc" spec-url="spec/{{ .Values.doc.defaultApi }}.json" server-url="https://{{ $url }}" allow-spec-url-load="false" allow-spec-file-load="false" >     
+          <rapi-doc id="thedoc" spec-url="spec/{{ .Values.doc.defaultApi }}.json" server-url="https://{{ $url }}/{{ .Values.doc.defaultPath }}" allow-spec-url-load="false" allow-spec-file-load="false" >     
           {{- else }}
           <rapi-doc id="thedoc" spec-url="spec/{{ .Values.doc.defaultApi }}.json" allow-spec-url-load="false" allow-spec-file-load="false" >     
           {{- end }}
@@ -92,7 +95,7 @@ data:
                 <div class="dropdown-content">
                   {{- range $key, $value := index .Values "tm-forum-api" "apis" }}
                   {{- if  $value.specUrl }}
-                  <a href="#" onclick="setApi('spec/{{  $value.name }}.json', '{{  $value.name }}')">{{  $value.name }}</a>
+                  <a href="#" onclick="setApi('spec/{{  $value.name }}.json', '{{  $value.name }}', {{ $value.basePath }})">{{  $value.name }}</a>
                   {{- end }}
                   {{- end }}
                 </div>
