@@ -6,7 +6,7 @@ doc:
     ## -- should the deployment create openshift routes
     enabled: true
     # -- host to be used
-    host: tmforum-doc.dome.fiware.dev
+    host: tmforum.dome.fiware.dev
     tls:
       insecureEdgeTerminationPolicy: Redirect
       termination: edge
