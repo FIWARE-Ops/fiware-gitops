@@ -17,7 +17,7 @@ spec:
       - name: backend
         image: 'waltid/walletkit:latest'
         imagePullPolicy: Always
-        command: ["run"]
+        args: ["run"]
         ports:
           - containerPort: 8080
             name: http
