@@ -6,6 +6,7 @@ metadata:
   name: waltid-wallet-backend
 spec:
   host: waltid-wallet.fiware.dev
+  path: "/api"
   port:
     targetPort: 8080
   tls: 
