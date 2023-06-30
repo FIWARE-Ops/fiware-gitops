@@ -13,4 +13,4 @@ spec:
     insecureEdgeTerminationPolicy: Redirect
   to: 
     kind: Service
-    name:  waltid-wallet-backend
+    name: waltid-wallet-backend
