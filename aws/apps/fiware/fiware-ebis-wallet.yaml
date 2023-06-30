@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fiware-ebsi-wallet
+  namespace: argocd
+spec:
+  destination:
+    namespace: fiware
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/fiware/ebsi-wallet
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
