@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations: 
+    cert-utils-operator.redhat-cop.io/certs-from-secret: waltid-wallet
+  name: waltid-wallet-backend
+spec:
+  host: waltid-wallet.fiware.dev
+  port:
+    targetPort: 8080
+  tls: 
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  to: 
+    kind: Service
+    name:  waltid-wallet-backend
