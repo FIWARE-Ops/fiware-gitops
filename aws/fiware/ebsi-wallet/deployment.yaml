@@ -13,7 +13,6 @@ spec:
         app.kubernetes.io/instance: ebsi-wallet
         app.kubernetes.io/name: ebsi-wallet
     spec:
-      serviceAccountName: fiware-ebsi
       containers:
         - name: ebsi
           image: 'quay.io/wi_stefan/ebsi-wallet:latest'
@@ -22,7 +21,7 @@ spec:
             - containerPort: 8080
               name: static
               protocol: TCP
-          volumeMount:
+          volumeMounts:
             - name: cache
               mountPath: /var/cache/nginx
       volumes:
