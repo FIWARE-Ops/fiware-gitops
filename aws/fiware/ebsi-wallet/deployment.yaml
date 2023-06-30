@@ -21,6 +21,9 @@ spec:
             - containerPort: 8080
               name: static
               protocol: TCP
+          env:
+            - name: REACT_APP_EBSI_ENV
+              value: development
           volumeMounts:
             - name: cache
               mountPath: /var/cache/nginx
