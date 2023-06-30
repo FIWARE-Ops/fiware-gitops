@@ -14,10 +14,16 @@ spec:
         app.kubernetes.io/name: ebsi-wallet
     spec:
       containers:
-      - name: ebsi
-        image: 'quay.io/wi_stefan/ebsi-wallet:latest'
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 8080
-            name: static
-            protocol: TCP
+        - name: ebsi
+          image: 'quay.io/wi_stefan/ebsi-wallet:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: static
+              protocol: TCP
+          volumeMount:
+            - name: cache
+              mountPath: /var/cache/nginx
+      volumes:
+        - name: cache
+          emptyDir: {}
