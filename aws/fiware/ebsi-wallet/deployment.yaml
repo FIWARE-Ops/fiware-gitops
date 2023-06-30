@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: ebsi
-        image: 'quay.io/wi_stefan/ebsi:latest'
+        image: 'quay.io/wi_stefan/ebsi-wallet:latest'
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
