@@ -25,13 +25,13 @@ applications:
           create: true
           rules:
             - apiGroups:
-                - security.openshift.io
-                resourceNames:
-                - anyuid
-                resources:
-                - securitycontextconstraints
-                verbs:
-                - use    
+              - security.openshift.io
+              resourceNames:
+              - anyuid
+              resources:
+              - securitycontextconstraints
+              verbs:
+              - use    
 
   - name: pdc-dsc-ccs
     enabled: true
