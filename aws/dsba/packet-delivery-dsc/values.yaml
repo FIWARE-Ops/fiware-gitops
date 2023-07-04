@@ -1,0 +1,52 @@
+source: https://github.com/FIWARE-Ops/data-space-connector
+release: demo
+destination_namespace: &destination dsc-demo
+purpose: &purpose dsc-env
+branch: &branch main
+secretsEnabled: &secretsEnabled false
+host: &host
+tlsSecret: &tlsSecret
+
+applications:
+
+  - name: mysql
+    enabled: true
+    source_path: applications/mysql
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      mysql:
+        fullnameOverride: mysql-dsc-pdc
+        auth:
+          existingSecret: mysql-secret
+        rbac: 
+          create: true
+          rules:
+            - apiGroups:
+                - security.openshift.io
+                resourceNames:
+                - anyuid
+                resources:
+                - securitycontextconstraints
+                verbs:
+                - use    
+
+  - name: credentials-config-service
+    enabled: true
+    source_path: applications/credentials-config-service
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      credentials-config-service:
+        database:
+          persistence: true
+          host: mysql-dsc-pdc
+          name: ccs
+          existingSecret:
+            enabled: true
+            name: mysql-secret
+            key: dbPassword
