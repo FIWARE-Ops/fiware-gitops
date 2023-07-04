@@ -61,7 +61,7 @@ applications:
               user: root
               mech: "SCRAM-SHA-1"
             hosts:
-              - dsba-pdc-dsc-mongodb
+              - pdc-dsc-mongodb
             user: root
             existingSecret:
               name: mongodb-secret
