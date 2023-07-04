@@ -31,7 +31,259 @@ applications:
               resources:
                 - securitycontextconstraints
               verbs:
-                - use    
+                - use
+
+  - name: pdc-dsc-mongodb
+    enabled: true
+    source_path: applications/mongodb
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      mongodb:
+        auth:
+          enabled: true
+          existingSecret: mongodb-secret
+
+  - name: pdc-dsc-orion
+    enabled: true
+    source_path: applications/orion
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      orion:
+        broker:
+          db:
+            auth: 
+              user: root
+              mech: "SCRAM-SHA-1"
+            hosts:
+              - dsba-pdc-dsc-mongodb
+            user: root
+            existingSecret:
+              name: mongodb-secret
+              key: mongodb-root-password
+        initData:
+          initEnabled: true
+          entities:
+            - name: deliveryorder_happypets001.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:HAPPYPETS001",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Happy Pets"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Happy Pets customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Berlin",
+                      "addressLocality": "Berlin",
+                      "postalCode": "12345",
+                      "streetAddress": "Customer Strasse 23"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Berlin",
+                      "addressLocality": "Berlin",
+                      "postalCode": "12345",
+                      "streetAddress": "HappyPets Strasse 15"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-10-03"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-10-02"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
+                
+            - name: deliveryorder_happypets002.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:HAPPYPETS002",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Happy Pets"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Happy Pets 2nd customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Hamburg",
+                      "addressLocality": "Hamburg",
+                      "postalCode": "23456",
+                      "streetAddress": "Customer Str. 18"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Berlin",
+                      "addressLocality": "Berlin",
+                      "postalCode": "12345",
+                      "streetAddress": "HappyPets Strasse 15"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-11-12"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "11:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-11-12"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "11:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
+
+            - name: deliveryorder_animalgoods001.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:ANIMALGOODS001",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Animal Goods"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Cheaty Customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Bavaria",
+                      "addressLocality": "Munich",
+                      "postalCode": "60978",
+                      "streetAddress": "Cheaty Str. 66"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Hamburg",
+                      "addressLocality": "Hamburg",
+                      "postalCode": "34567",
+                      "streetAddress": "Cheapstr. 23"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-12-02"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-12-02"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
+
+            - name: deliveryorder_animalgoods002.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:ANIMALGOODS002",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Animal Goods"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Bob Customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Bavaria",
+                      "addressLocality": "Munich",
+                      "postalCode": "60979",
+                      "streetAddress": "Bavarian Str. 2"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Hamburg",
+                      "addressLocality": "Hamburg",
+                      "postalCode": "34567",
+                      "streetAddress": "Cheapstr. 23"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-12-24"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-12-24"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
 
   - name: pdc-dsc-ccs
     enabled: true
