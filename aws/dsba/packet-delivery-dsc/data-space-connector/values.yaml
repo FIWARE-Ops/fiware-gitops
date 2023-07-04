@@ -1,15 +1,15 @@
 source: https://github.com/FIWARE-Ops/data-space-connector
-release: demo
-destination_namespace: &destination dsc-demo
+release: dsba
+destination_namespace: &destination dsba
 purpose: &purpose dsc-env
-branch: &branch main
-secretsEnabled: &secretsEnabled false
+branch: &branch dsba
+secretsEnabled: &secretsEnabled true
 host: &host
 tlsSecret: &tlsSecret
 
 applications:
 
-  - name: mysql
+  - name: pdc-dsc-mysql
     enabled: true
     source_path: applications/mysql
     source_ref: *branch
@@ -33,7 +33,7 @@ applications:
                 verbs:
                 - use    
 
-  - name: credentials-config-service
+  - name: pdc-dsc-ccs
     enabled: true
     source_path: applications/credentials-config-service
     source_ref: *branch
