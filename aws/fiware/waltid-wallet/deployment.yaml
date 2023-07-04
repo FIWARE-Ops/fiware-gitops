@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: waltid-wallet-backend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: waltid-wallet-backend
+      app.kubernetes.io/name: waltid-wallet-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: waltid-wallet-backend
+        app.kubernetes.io/name: waltid-wallet-backend
+    spec:
+      containers:
+      - name: backend
+        image: 'waltid/walletkit:latest'
+        imagePullPolicy: Always
+        args: ["run"]
+        ports:
+          - containerPort: 8080
+            name: http
+        env:
+          - name: WALTID_WALLET_BACKEND_BIND_ADDRESS
+            value: 0.0.0.0
+        volumeMounts:
+          - name: data
+            mountPath: /app/data
+      volumes:
+        - name: data
+          emptyDir: {}
+

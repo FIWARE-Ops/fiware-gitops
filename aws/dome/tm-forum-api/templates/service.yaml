@@ -1,23 +1,16 @@
-{{- range .Values.apis -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "tmforum.fullname" $ }}-{{ .name }}
-  {{- if $.Values.service.annotations }}
-  annotations:
-    {{ toYaml $.Values.service.annotations | nindent 4 }}
-  {{- end }}
+  name: {{ include "tmforum.fullname" $ }}-doc
   labels:
     {{ include "tmforum.labels" $ | nindent 4 }}
 spec:
-  type: {{ $.Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ $.Values.service.port }}
+    - port: 8080
       targetPort: http
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "tmforum.name" $ }}-{{ .name }}
+    app.kubernetes.io/name: {{ include "tmforum.name" $ }}-doc
     app.kubernetes.io/instance: {{ $.Release.Name }}
----
-{{- end }}

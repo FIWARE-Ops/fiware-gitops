@@ -1,34 +1,28 @@
-{{- if .Values.route.enabled -}}
-{{- range .Values.apis -}}
+{{- if .Values.doc.route.enabled -}}
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: {{ include "tmforum.fullname" $ }}-{{ .name }}
+  name: {{ include "tmforum.fullname" . }}-doc
   labels:
-    {{ include "tmforum.labels" $  | nindent 4 }}
-  {{- if or $.Values.route.annotations $.Values.route.certificate }}
+    {{ include "tmforum.labels" . | nindent 4 }}
+  {{- if or .Values.doc.route.annotations .Values.doc.route.certificate }}
   annotations:
-    {{- if $.Values.route.certificate }}
-    cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "tmforum.fullname" $  }}-tls-sec
+    {{- if .Values.doc.route.certificate }}
+    cert-uccss-operator.redhat-cop.io/certs-from-secret: {{ include "tmforum.fullname" . }}-doc-tls-sec
     {{- end }}
-    {{- with $.Values.route.annotations }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
+    {{- with .Values.doc.route.annotations }}
+      {{- toYaml . | nindent 4 }}
+      {{- end }}
   {{- end }}
 spec:
-  {{- if $.Values.route.host }}
-  host: {{ $.Values.route.host}}
-  {{- end }}
-  path: {{ .basePath }}
+  host: {{ .Values.doc.route.host}}
   to:
     kind: Service
-    name: {{ include "tmforum.fullname" $  }}-{{ .name }}
-  {{- if $.Values.route.tls }}
+    name: {{ include "tmforum.fullname" . }}-doc
+  {{- if .Values.doc.route.tls }}
   tls:
-  {{- with $.Values.route.tls }}
+  {{- with .Values.doc.route.tls }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
   {{- end }}
----
-{{- end }}
 {{- end }}
