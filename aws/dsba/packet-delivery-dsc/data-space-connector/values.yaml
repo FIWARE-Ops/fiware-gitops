@@ -46,6 +46,40 @@ applications:
           enabled: true
           existingSecret: mongodb-secret
 
+  - name: pdc-dsc-postgres
+    enabled: true
+    source_path: applications/postgres
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      postgresql:
+        fullnameOverride: postgresql-dsc-pdc
+        auth:
+          username: keycloak  
+          enablePostgresUser: true
+          existingSecret: postgres-secret
+          secretKeys:
+            adminPasswordKey: postgres-root-password
+            userPasswordKey: postgres-password
+        rbac: 
+          create: true
+          rules:
+            - apiGroups:
+                - security.openshift.io
+              resourceNames:
+                - anyuid
+              resources:
+                - securitycontextconstraints
+              verbs:
+                - use
+        primary:
+          initdb:
+            scripts:
+              create.sh: |
+                psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE keycloak_pdc;"
+
   - name: pdc-dsc-orion
     enabled: true
     source_path: applications/orion
