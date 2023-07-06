@@ -9,15 +9,5 @@ metadata:
 spec:
   containers:
     - name: policy-create
-      image: python:3.9.5
-      command: 
-        - python3
-        - /scripts/insert-data.py
-      volumeMounts:
-        - name: scripts
-          mountPath: /scripts
-  volumes:
-    - name: scripts
-      configMap:
-        name: orion-ld-create-sm-cm
+      image: quay.io/wi_stefan/upload-sm
   restartPolicy: Never
