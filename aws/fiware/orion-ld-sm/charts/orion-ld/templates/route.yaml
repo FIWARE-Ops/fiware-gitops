@@ -1,26 +1,16 @@
-{{- if .Values.route.enabled -}}
-{{- $fullName := include "orion.fullname" . -}}
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: {{ include "orion.fullname" . }}
-  labels:
-    {{ include "orion.labels" . | nindent 4 }}
-  {{- if .Values.route.annotations }}
-  annotations:
-    {{- with .Values.route.annotations }}
-      {{- toYaml . | nindent 4 }}
-      {{- end }}
-  {{- end }}
+  annotations: 
+    cert-utils-operator.redhat-cop.io/certs-from-secret: smart-data-models
+  name: orion-ld-sm-route
 spec:
-  host: {{ .Values.route.host}}
-  to:
+  host: smart-data-models.fiware.dev
+  port:
+    targetPort: 1026
+  tls: 
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  to: 
     kind: Service
-    name: {{ $fullName }}
-  {{- if .Values.route.tls }}
-  tls:
-  {{- with .Values.route.tls }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
-  {{- end }}
-{{- end }}
+    name: orion-ld-sm
