@@ -125,10 +125,9 @@ route:
   # -- host to be used
   host: smartdatamodels.fiware.dev
   # -- tls configuration for the route
-  tls: 
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
     termination: edge
-  # termination: edge
-
 ## ingress configuration
 ingress:
   # -- should there be an ingress to connect orion with the public internet
