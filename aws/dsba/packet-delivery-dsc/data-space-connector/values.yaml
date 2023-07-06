@@ -1,0 +1,338 @@
+source: https://github.com/FIWARE-Ops/data-space-connector
+release: dsba
+destination_namespace: &destination dsba
+purpose: &purpose dsc-env
+branch: &branch dsba
+secretsEnabled: &secretsEnabled true
+host: &host
+tlsSecret: &tlsSecret
+
+applications:
+
+  - name: pdc-dsc-mysql
+    enabled: true
+    source_path: applications/mysql
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      mysql:
+        fullnameOverride: mysql-dsc-pdc
+        auth:
+          existingSecret: mysql-secret
+        rbac: 
+          create: true
+          rules:
+            - apiGroups:
+                - security.openshift.io
+              resourceNames:
+                - anyuid
+              resources:
+                - securitycontextconstraints
+              verbs:
+                - use
+
+  - name: pdc-dsc-mongodb
+    enabled: true
+    source_path: applications/mongodb
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      mongodb:
+        auth:
+          enabled: true
+          existingSecret: mongodb-secret
+
+  - name: pdc-dsc-postgres
+    enabled: true
+    source_path: applications/postgres
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      postgresql:
+        fullnameOverride: postgresql-dsc-pdc
+        auth:
+          username: keycloak  
+          enablePostgresUser: true
+          existingSecret: postgres-secret
+          secretKeys:
+            adminPasswordKey: postgres-root-password
+            userPasswordKey: postgres-password
+        rbac: 
+          create: true
+          rules:
+            - apiGroups:
+                - security.openshift.io
+              resourceNames:
+                - anyuid
+              resources:
+                - securitycontextconstraints
+              verbs:
+                - use
+        primary:
+          initdb:
+            scripts:
+              create.sh: |
+                psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE keycloak_pdc;"
+
+  - name: pdc-dsc-orion
+    enabled: true
+    source_path: applications/orion
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      orion:
+        broker:
+          db:
+            auth: 
+              user: root
+              mech: "SCRAM-SHA-1"
+            hosts:
+              - pdc-dsc-mongodb
+            user: root
+            existingSecret:
+              name: mongodb-secret
+              key: mongodb-root-password
+        initData:
+          initEnabled: true
+          entities:
+            - name: deliveryorder_happypets001.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:HAPPYPETS001",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Happy Pets"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Happy Pets customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Berlin",
+                      "addressLocality": "Berlin",
+                      "postalCode": "12345",
+                      "streetAddress": "Customer Strasse 23"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Berlin",
+                      "addressLocality": "Berlin",
+                      "postalCode": "12345",
+                      "streetAddress": "HappyPets Strasse 15"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-10-03"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-10-02"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
+                
+            - name: deliveryorder_happypets002.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:HAPPYPETS002",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Happy Pets"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Happy Pets 2nd customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Hamburg",
+                      "addressLocality": "Hamburg",
+                      "postalCode": "23456",
+                      "streetAddress": "Customer Str. 18"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Berlin",
+                      "addressLocality": "Berlin",
+                      "postalCode": "12345",
+                      "streetAddress": "HappyPets Strasse 15"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-11-12"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "11:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-11-12"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "11:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
+
+            - name: deliveryorder_animalgoods001.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:ANIMALGOODS001",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Animal Goods"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Cheaty Customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Bavaria",
+                      "addressLocality": "Munich",
+                      "postalCode": "60978",
+                      "streetAddress": "Cheaty Str. 66"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Hamburg",
+                      "addressLocality": "Hamburg",
+                      "postalCode": "34567",
+                      "streetAddress": "Cheapstr. 23"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-12-02"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-12-02"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
+
+            - name: deliveryorder_animalgoods002.json
+              data: |
+                {
+                  "id": "urn:ngsi-ld:DELIVERYORDER:ANIMALGOODS002",
+                  "type": "DELIVERYORDER",
+                  "issuer": {
+                    "type": "Property",
+                    "value": "Animal Goods"
+                  },
+                  "destinee": {
+                    "type": "Property",
+                    "value": "Bob Customer"
+                  },
+                  "deliveryAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Bavaria",
+                      "addressLocality": "Munich",
+                      "postalCode": "60979",
+                      "streetAddress": "Bavarian Str. 2"
+                    }
+                  },
+                  "originAddress": {
+                    "type": "Property",
+                    "value": {
+                      "addressCountry": "DE",
+                      "addressRegion": "Hamburg",
+                      "addressLocality": "Hamburg",
+                      "postalCode": "34567",
+                      "streetAddress": "Cheapstr. 23"
+                    }
+                  },
+                  "pda": {
+                    "type": "Property",
+                    "value": "2021-12-24"
+                  },
+                  "pta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "eda": {
+                    "type": "Property",
+                    "value": "2021-12-24"
+                  },
+                  "eta": {
+                    "type": "Property",
+                    "value": "14:00:00"
+                  },
+                  "@context": [
+                    "https://schema.lab.fiware.org/ld/context"
+                  ]
+                }
+
+  - name: pdc-dsc-ccs
+    enabled: true
+    source_path: applications/credentials-config-service
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      credentials-config-service:
+        database:
+          persistence: true
+          host: mysql-dsc-pdc
+          name: ccs
+          existingSecret:
+            enabled: true
+            name: mysql-secret
+            key: dbPassword
