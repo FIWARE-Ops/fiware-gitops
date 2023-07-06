@@ -526,3 +526,35 @@ applications:
             enabled: true
             name: mysql-secret
             key: dbPassword
+
+  - name: pdc-dsc-verifier
+    enabled: true
+    source_path: applications/verifier
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      vcverifier:
+        deployment:
+          logging:
+            level: DEBUG
+            pathsToSkip:
+              - "/health"
+          ssikit:
+            auditorUrl: http://pdc-dsc-walt-id-vcwaltid:7003
+          verifier:
+            tirAddress: https://tir.dsba.fiware.dev/v3/issuers
+          did: did:web:packetdelivery.dsba.fiware.dev:did
+          configRepo:
+            configEndpoint: http://pdc-dsc-ccs-credentials-config-service:8080/
+        route:
+          enabled: true
+          host: verifier-pdc-dsc.dsba.fiware.dev
+          tls:
+            insecureEdgeTerminationPolicy: Redirect
+            termination: edge
+          certificate:
+            issuer:
+              kind: ClusterIssuer
+              name: letsencrypt-aws-prod
