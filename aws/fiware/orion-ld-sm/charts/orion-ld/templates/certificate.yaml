@@ -1,14 +1,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: orion-ld-sm
+  name: smart-data-models-cert
 spec:
   ## secret the certificate should be stored to, will be referenced by the route
-  secretName: orion-ld-sm
+  secretName: smart-data-models
   issuerRef: 
     ## certificate issuer, as created in the cert-manager installation step
     kind: ClusterIssuer
     name: letsencrypt-aws-prod
-  commonName: "smartdatamodels.fiware.dev"
+  commonName: "smart-data-models.fiware.dev"
   dnsNames:
-    - "smartdatamodels.fiware.dev"
+    - "smart-data-models.fiware.dev"

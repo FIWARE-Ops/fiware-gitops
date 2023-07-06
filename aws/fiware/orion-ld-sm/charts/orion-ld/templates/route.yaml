@@ -2,10 +2,10 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   annotations: 
-    cert-utils-operator.redhat-cop.io/certs-from-secret: orion-ld-sm
-  name: orion-ld-sm
+    cert-utils-operator.redhat-cop.io/certs-from-secret: smart-data-models
+  name: orion-ld-sm-route
 spec:
-  host: smartdatamodels.fiware.dev
+  host: smart-data-models.fiware.dev
   port:
     targetPort: 1026
   tls: 
