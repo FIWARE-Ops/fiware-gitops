@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: fiware-orion-ld-sm
+  name: fiware-orion-ld
   namespace: argocd
 spec:
   destination:
@@ -12,7 +12,7 @@ spec:
     helm:
       valueFiles:
       - values.yaml
-    path: aws/fiware/orion-ld-sm
+    path: aws/fiware/orion-ld
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
