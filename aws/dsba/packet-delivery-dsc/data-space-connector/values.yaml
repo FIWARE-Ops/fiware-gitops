@@ -319,6 +319,73 @@ applications:
                   ]
                 }
 
+  - name: pdc-dsc-til
+    enabled: true
+    source_path: applications/trusted-issuers-list
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      trusted-issuers-list:
+        route: 
+          til: 
+            enabled: true 
+            host: til-pdc-dsc.dsba.fiware.dev
+            tls:
+              insecureEdgeTerminationPolicy: Redirect
+              termination: edge
+            certificate:
+              issuer:
+                kind: ClusterIssuer
+                name: letsencrypt-aws-prod
+          tir: 
+            enabled: true 
+            host: tir-pdc-dsc.dsba.fiware.dev
+            tls:
+              insecureEdgeTerminationPolicy: Redirect
+              termination: edge
+            certificate:
+              issuer:
+                kind: ClusterIssuer
+                name: letsencrypt-aws-prod
+  
+        deployment:
+          image:  
+            tag: 0.0.3
+            
+        database:
+          persistence: true
+          host: mysql-dsc-pdc
+          username: root
+          name: til
+          existingSecret:
+            enabled: true
+            name: mysql-secret
+            key: dbPassword
+
+        initData:
+          initEnabled: true
+          issuers:
+            - name: mp_create
+              issuer:
+                did: "did:web:marketplace.dsba.fiware.dev:did"
+                credentials:
+                  - validFor:
+                      from: "2022-07-21T17:32:28Z"
+                      to: "2040-07-21T17:32:28Z"
+                    credentialsType: "ActivationService"
+                    claims:
+                      - name: "roles"
+                        allowedValues: 
+                          - - names:
+                              - "CREATE_ISSUER"
+                              target: "did:web:packetdelivery.dsba.fiware.dev:did"
+                  - validFor:
+                      from: "2022-07-21T17:32:28Z"
+                      to: "2040-07-21T17:32:28Z"
+                    credentialsType: "VerifiableCredential"
+                
   - name: pdc-dsc-ccs
     enabled: true
     source_path: applications/credentials-config-service
