@@ -2,7 +2,7 @@ source: https://github.com/FIWARE-Ops/data-space-connector
 release: dsba
 destination_namespace: &destination dsba
 purpose: &purpose dsc-env
-branch: &branch dsba
+branch: &branch deploy/dsba
 secretsEnabled: &secretsEnabled true
 host: &host
 tlsSecret: &tlsSecret
