@@ -1,13 +1,13 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: orion-sm-create-policy-cm
+  name: pdc-keyrock-create-policy-cm
   annotations:
     "helm.sh/hook": post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation
     "helm.sh/hook-weight": "1"
 data:
-  insert-data.py: |-
+  create.sh: |-
     mysql -h {{ .Values.keyrock.db.host }} -u {{ .Values.keyrock.db.user }} -p$DB_PASSWORD {{ .Values.initScript.rolePolicy.dbName }} <<EOF
 
     {{ if .Values.initScript.rolePolicy.policyEnabled -}}
