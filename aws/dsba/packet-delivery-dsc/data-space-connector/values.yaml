@@ -2,7 +2,7 @@ source: https://github.com/FIWARE-Ops/data-space-connector
 release: dsba
 destination_namespace: &destination dsba
 purpose: &purpose dsc-env
-branch: &branch dsba
+branch: &branch deploy/dsba
 secretsEnabled: &secretsEnabled true
 host: &host
 tlsSecret: &tlsSecret
@@ -350,10 +350,6 @@ applications:
                 kind: ClusterIssuer
                 name: letsencrypt-aws-prod
   
-        deployment:
-          image:  
-            tag: 0.0.3
-            
         database:
           persistence: true
           host: mysql-dsc-pdc
@@ -385,7 +381,134 @@ applications:
                       from: "2022-07-21T17:32:28Z"
                       to: "2040-07-21T17:32:28Z"
                     credentialsType: "VerifiableCredential"
-                
+
+  - name: pdc-dsc-walt-id
+    enabled: true
+    source_path: applications/walt-id
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      did: did:web:packetdelivery.dsba.fiware.dev:did
+      route:
+        enabled: true
+        host: packetdelivery-dsc.dsba.fiware.dev
+        tls:
+          insecureEdgeTerminationPolicy: Redirect
+          termination: edge
+        certificate:
+          issuer:
+            kind: ClusterIssuer
+            name: letsencrypt-aws-prod
+      vcwaltid:
+        persistence:
+          enabled: true
+          pvc:
+            size: 1Gi
+        templates:
+          GaiaXParticipantCredential.json: |
+            {
+              "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+                "https://registry.lab.dsba.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+              ],
+              "type": [
+                "VerifiableCredential"
+              ],
+              "id": "did:web:raw.githubusercontent.com:egavard:payload-sign:master",
+              "issuer": "did:web:raw.githubusercontent.com:egavard:payload-sign:master",
+              "issuanceDate": "2023-03-21T12:00:00.148Z",
+              "credentialSubject": {
+                "id": "did:web:raw.githubusercontent.com:egavard:payload-sign:master",
+                "type": "gx:LegalParticipant",
+                "gx:legalName": "dsba compliant participant",
+                "gx:legalRegistrationNumber": {
+                  "gx:vatID": "MYVATID"
+                },
+                "gx:headquarterAddress": {
+                  "gx:countrySubdivisionCode": "BE-BRU"
+                },
+                "gx:legalAddress": {
+                  "gx:countrySubdivisionCode": "BE-BRU"
+                },
+                "gx-terms-and-conditions:gaiaxTermsAndConditions": "70c1d713215f95191a11d38fe2341faed27d19e083917bc8732ca4fea4976700"
+              }
+            }
+          NaturalPersonCredential.json: |
+            {
+              "@context": ["https://www.w3.org/2018/credentials/v1"],
+              "credentialSchema": {
+                "id": "https://raw.githubusercontent.com/FIWARE-Ops/tech-x-challenge/main/schema.json",
+                "type": "FullJsonSchemaValidator2021"
+              },
+              "credentialSubject": {
+                "type": "gx:NaturalParticipant",
+                "familyName": "Happy",
+                "firstName": "User",
+                "roles": [{
+                  "names": ["LEGAL_REPRESENTATIVE"],
+                  "target": "did:web:onboarding"
+                 }]
+              },
+              "id": "urn:uuid:3add94f4-28ec-42a1-8704-4e4aa51006b4",
+              "issued": "2021-08-31T00:00:00Z",
+              "issuer": "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN",
+              "validFrom": "2021-08-31T00:00:00Z",
+              "issuanceDate": "2021-08-31T00:00:00Z",
+              "type": ["VerifiableCredential", "LegalPersonCredential"]
+            }
+          MarketplaceUserCredential.json: |
+            {
+              "@context": ["https://www.w3.org/2018/credentials/v1"],
+              "credentialSchema": {
+                "id": "https://raw.githubusercontent.com/FIWARE-Ops/tech-x-challenge/main/schema.json",
+                "type": "FullJsonSchemaValidator2021"
+              },
+              "credentialSubject": {
+                "type": "gx:NaturalParticipant",
+                "email": "normal-user@fiware.org",
+                "familyName": "PDC",
+                "firstName": "employee",
+                "lastName": "PDC",
+                "roles": [{
+                  "names": ["LEGAL_REPRESENTATIVE"],
+                  "target": "did:web:onboarding"
+                }]
+              },
+              "id": "urn:uuid:3add94f4-28ec-42a1-8704-4e4aa51006b4",
+              "issued": "2021-08-31T00:00:00Z",
+              "issuer": "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN",
+              "validFrom": "2021-08-31T00:00:00Z",
+              "issuanceDate": "2021-08-31T00:00:00Z",
+              "type": ["MarketplaceUserCredential"]
+            }
+          EmployeeCredential.json: |
+            {
+              "@context": ["https://www.w3.org/2018/credentials/v1"],
+              "credentialSchema": {
+                "id": "https://raw.githubusercontent.com/FIWARE-Ops/tech-x-challenge/main/schema.json",
+                "type": "FullJsonSchemaValidator2021"
+              },
+              "credentialSubject": {
+                "type": "gx:NaturalParticipant",
+                "email": "normal-user@fiware.org",
+                "familyName": "PDC",
+                "firstName": "employee",
+                "lastName": "PDC",
+                "roles": [{
+                  "names": ["LEGAL_REPRESENTATIVE"],
+                  "target": "did:web:onboarding"
+                }]
+              },
+              "id": "urn:uuid:3add94f4-28ec-42a1-8704-4e4aa51006b4",
+              "issued": "2021-08-31T00:00:00Z",
+              "issuer": "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN",
+              "validFrom": "2021-08-31T00:00:00Z",
+              "issuanceDate": "2021-08-31T00:00:00Z",
+              "type": ["EmployeeCredential"]
+            }
+
   - name: pdc-dsc-ccs
     enabled: true
     source_path: applications/credentials-config-service
@@ -403,3 +526,133 @@ applications:
             enabled: true
             name: mysql-secret
             key: dbPassword
+
+  - name: pdc-dsc-verifier
+    enabled: true
+    source_path: applications/verifier
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      vcverifier:
+        deployment:
+          logging:
+            level: DEBUG
+            pathsToSkip:
+              - "/health"
+          ssikit:
+            auditorUrl: http://pdc-dsc-walt-id-vcwaltid:7003
+          verifier:
+            tirAddress: https://tir.dsba.fiware.dev/v3/issuers
+          did: did:web:packetdelivery.dsba.fiware.dev:did
+          configRepo:
+            configEndpoint: http://pdc-dsc-ccs-credentials-config-service:8080/
+        route:
+          enabled: true
+          host: verifier-pdc-dsc.dsba.fiware.dev
+          tls:
+            insecureEdgeTerminationPolicy: Redirect
+            termination: edge
+          certificate:
+            issuer:
+              kind: ClusterIssuer
+              name: letsencrypt-aws-prod
+
+  - name: pdc-dsc-keycloak
+    enabled: true
+    source_path: applications/keycloak
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      route:
+        enabled: true
+        host: packetdelivery-kc-dsc.dsba.fiware.dev
+        tls:
+          insecureEdgeTerminationPolicy: Redirect
+          termination: edge
+        certificate:
+          issuer:
+            kind: ClusterIssuer
+            name: letsencrypt-aws-prod
+      keycloak:
+        service:
+          type: ClusterIP
+        logging:
+          level: INFO
+        replicaCount: 1
+        auth:
+          adminUser: fiwareAdmin
+          adminPassword: fiwareAdmin
+        serviceAccount:
+          create: true
+        rbac:
+          create: true
+          rules:
+            - apiGroups:
+                - security.openshift.io
+              resourceNames:
+                - anyuid
+              resources:
+                - securitycontextconstraints
+              verbs:
+                - use
+        extraEnvVars:
+          - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
+            value: "true"
+          - name: KEYCLOAK_LOG_LEVEL
+            value: INFO
+          - name: VCISSUER_ISSUER_DID
+            value: "did:web:packetdelivery.dsba.fiware.dev:did"
+          - name: VCISSUER_WALTID_ADDRESS
+            value: "http://pdc-dsc-walt-id-vcwaltid"
+        extraVolumes:
+          - name: profiles
+            configMap:
+              name: pdc-dsc-keycloak-profile
+          - name: providers
+            emptyDir: {}
+          - name: did-config
+            configMap:
+              name: pdc-dsc-keycloak-did-config
+          - name: did-secret
+            secret: 
+              secretName: pdc-dsc-walt-id-vcwaltid-tls-sec
+        initContainers:
+          - name: add-vc-issuer
+            image: quay.io/fiware/keycloak-vc-issuer:0.4.0
+            imagePullPolicy: Always
+            volumeMounts:
+              - name: providers
+                mountPath: /target
+          - name: load-did
+            image: quay.io/opencloudio/curl:4.2.0-build.8
+            imagePullPolicy: Always
+            command: 
+              - /bin/sh
+              - /opt/did/script/import.sh
+            env:
+              - name: WALTID_CORE_ADDRESS
+                value: "dsba-packet-delivery-walt-id-vcwaltid:7000"
+            volumeMounts:
+              - name: did-config
+                mountPath: /opt/did/script
+              - name: did-secret
+                mountPath: /opt/did/secret
+        postgresql:
+          enabled: false
+        externalDatabase:
+          host: postgresql-dsc-pdc
+          user: postgres
+          database: keycloak_pdc
+          existingSecret: postgres-secret
+          existingSecretPasswordKey: postgres-password
+        keycloakConfigCli:
+          enabled: true
+          containerSecurityContext:
+            enabled: false
+          podSecurityContext:
+            enabled: false
+          configuration: {} #TODO: add realm config here
