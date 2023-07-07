@@ -18,7 +18,9 @@ realm:
     webOrigins:
       - https://orion-ld/
 
-keycloak:
+keycloak:  
+  image: 
+    tag: 21.1.2-debian-11-r1
   service:
     type: ClusterIP
   logging:
@@ -98,7 +100,7 @@ keycloak:
 
   initContainers:
     - name: add-vc-issuer
-      image: quay.io/fiware/keycloak-vc-issuer:0.4.0
+      image: quay.io/fiware/keycloak-vc-issuer:0.5.0
       imagePullPolicy: Always
       volumeMounts:
         - name: providers
