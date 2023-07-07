@@ -80,8 +80,12 @@ keycloak:
       mountPath: /opt/bitnami/keycloak/providers/
     - name: issuer-key
       mountPath: /opt/keys
+    - name: data
+      mountPath: /data
 
   extraVolumes:
+    - name: data
+      emptyDir: {}
     - name: profiles
       configMap:
         name: dsba-packet-delivery-keycloak-profile
