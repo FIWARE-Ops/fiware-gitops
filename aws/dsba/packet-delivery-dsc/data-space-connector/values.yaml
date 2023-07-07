@@ -558,3 +558,101 @@ applications:
             issuer:
               kind: ClusterIssuer
               name: letsencrypt-aws-prod
+
+  - name: pdc-dsc-keycloak
+    enabled: true
+    source_path: applications/keycloak
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      route:
+        enabled: true
+        host: packetdelivery-kc-dsc.dsba.fiware.dev
+        tls:
+          insecureEdgeTerminationPolicy: Redirect
+          termination: edge
+        certificate:
+          issuer:
+            kind: ClusterIssuer
+            name: letsencrypt-aws-prod
+      keycloak:
+        service:
+          type: ClusterIP
+        logging:
+          level: INFO
+        replicaCount: 1
+        auth:
+          adminUser: fiwareAdmin
+          adminPassword: fiwareAdmin
+        serviceAccount:
+          create: true
+        rbac:
+          create: true
+          rules:
+            - apiGroups:
+                - security.openshift.io
+              resourceNames:
+                - anyuid
+              resources:
+                - securitycontextconstraints
+              verbs:
+                - use
+        extraEnvVars:
+          - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
+            value: "true"
+          - name: KEYCLOAK_LOG_LEVEL
+            value: INFO
+          - name: VCISSUER_ISSUER_DID
+            value: "did:web:packetdelivery.dsba.fiware.dev:did"
+          - name: VCISSUER_WALTID_ADDRESS
+            value: "http://pdc-dsc-walt-id-vcwaltid"
+        extraVolumes:
+          - name: profiles
+            configMap:
+              name: pdc-dsc-keycloak-profile
+          - name: providers
+            emptyDir: {}
+          - name: did-config
+            configMap:
+              name: pdc-dsc-keycloak-did-config
+          - name: did-secret
+            secret: 
+              secretName: pdc-dsc-walt-id-vcwaltid-tls-sec
+        initContainers:
+          - name: add-vc-issuer
+            image: quay.io/fiware/keycloak-vc-issuer:0.4.0
+            imagePullPolicy: Always
+            volumeMounts:
+              - name: providers
+                mountPath: /target
+          - name: load-did
+            image: quay.io/opencloudio/curl:4.2.0-build.8
+            imagePullPolicy: Always
+            command: 
+              - /bin/sh
+              - /opt/did/script/import.sh
+            env:
+              - name: WALTID_CORE_ADDRESS
+                value: "dsba-packet-delivery-walt-id-vcwaltid:7000"
+            volumeMounts:
+              - name: did-config
+                mountPath: /opt/did/script
+              - name: did-secret
+                mountPath: /opt/did/secret
+        postgresql:
+          enabled: false
+        externalDatabase:
+          host: postgresql-dsc-pdc
+          user: postgres
+          database: keycloak_pdc
+          existingSecret: postgres-secret
+          existingSecretPasswordKey: postgres-password
+        keycloakConfigCli:
+          enabled: true
+          containerSecurityContext:
+            enabled: false
+          podSecurityContext:
+            enabled: false
+          configuration: {} #TODO: add realm config here
