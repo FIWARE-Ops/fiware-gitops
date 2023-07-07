@@ -82,7 +82,7 @@ applications:
 
   - name: pdc-dsc-orion
     enabled: true
-    source_path: applications/orion
+    source_path: applications/orion-ld
     source_ref: *branch
     destination: *destination
     helm_values:
@@ -558,6 +558,187 @@ applications:
             issuer:
               kind: ClusterIssuer
               name: letsencrypt-aws-prod
+
+  - name: pdc-dsc-keyrock
+    enabled: true
+    source_path: applications/keyrock
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      keyrock:
+        fullnameOverride: keyrock-pdc-dsc
+        db:
+          user: root
+          host: mysql-dsc-pdc
+        admin:
+          user: admin
+          email: admin@fiware.org
+        existingSecret: keyrock-secret
+        host: https://ar-pdc-dsc.dsba.fiware.dev
+        route:
+          enabled: true
+          routes:
+            - host: ar-pdc-dsc.dsba.fiware.dev
+              tls:
+                termination: edge
+                insecureEdgeTerminationPolicy: Redirect
+              certificate:
+                issuer: 
+                  kind: ClusterIssuer
+                  name: letsencrypt-aws-prod
+        authorisationRegistry:
+          enabled: true
+          identifier: "did:web:packetdelivery.dsba.fiware.dev:did"
+          url: "internal"
+        satellite:
+          enabled: true
+          identifier: "EU.EORI.FIWARESATELLITE"
+          url: "https://tir.dsba.fiware.dev"
+          tokenEndpoint: "https://tir.dsba.fiware.dev/token"
+          partiesEndpoint: "https://tir.dsba.fiware.dev/parties"
+        token:
+          enabled: false
+        additionalEnvVars:
+          - name: IDM_TITLE
+            value: "PDC AR"
+          - name: IDM_DEBUG
+            value: "true"
+          - name: DEBUG
+            value: "*"
+          - name: IDM_DB_NAME
+            value: pdc_ar_idm
+          - name: IDM_DB_SEED
+            value: "true"
+          - name: IDM_SERVER_MAX_HEADER_SIZE
+            value: "32768"
+          - name: IDM_PR_CLIENT_ID
+            value: "did:web:packetdelivery.dsba.fiware.dev:did"
+          - name: IDM_PR_CLIENT_KEY
+            valueFrom:
+                secretKeyRef:
+                  name: pdc-dsc-walt-id-vcwaltid-tls-sec
+                  key: tls.key
+          - name: IDM_PR_CLIENT_CRT
+            valueFrom:
+                secretKeyRef:
+                  name: pdc-dsc-walt-id-vcwaltid-tls-sec
+                  key: tls.crt
+        initData:
+          initEnabled: true
+          image: quay.io/wi_stefan/mysql:5.7
+          command: 
+            - /bin/sh
+            - /scripts/create.sh
+          volumeMount:
+            name: scripts
+            mountPath: /scripts
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keyrock-secret
+                  key: dbPassword
+          scriptData:
+            create.sh: |-
+              mysql -h mysql-dsc-pdc -u root -p$DB_PASSWORD pdc_ar_idm <<EOF
+              
+              -- Static objects
+              SET @rules := JSON_ARRAY(
+                JSON_OBJECT(
+                  "effect", "Permit"
+                )
+              );
+              
+              SET @subjectGold := "GOLD_CUSTOMER";
+              SET @subjectStandard := "STANDARD_CUSTOMER";
+              
+              -- Policies Gold
+              SET @policiesGold := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("PATCH"),
+                    "resource", JSON_OBJECT(
+                      "type", "DELIVERYORDER",
+                      "attributes", JSON_ARRAY("pta","pda"),
+                      "identifiers", JSON_ARRAY("*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "DELIVERYORDER",
+                      "attributes", JSON_ARRAY("*"),
+                      "identifiers", JSON_ARRAY("*")
+                    )
+                  )
+                )
+              );
+              
+              -- Policies Standard
+              SET @policiesStandard := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "DELIVERYORDER",
+                      "attributes", JSON_ARRAY("*"),
+                      "identifiers", JSON_ARRAY("*")
+                    )
+                  )
+                )
+              );
+              
+              -- Insert Delegation Evidence Gold VC
+              SET @delegationGoldVC := JSON_OBJECT(
+                "target", JSON_OBJECT(
+                  "accessSubject", @subjectGold
+                ),
+                "notBefore", 1616583866,
+                "notOnOrAfter", 1735817171,
+                "policyIssuer", "did:web:packetdelivery.dsba.fiware.dev:did",
+                "policySets", JSON_ARRAY(
+                  JSON_OBJECT(
+                    "target", JSON_OBJECT(
+                      "environment", JSON_OBJECT(
+                        "licenses", JSON_ARRAY("ISHARE.0001")
+                      )
+                    ),
+                    "policies", CAST(@policiesGold as JSON)
+                  )
+                )
+              );
+              INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ("did:web:packetdelivery.dsba.fiware.dev:did", @subjectGold, @delegationGoldVC);
+              
+              -- Insert Delegation Evidence Standard VC
+              SET @delegationStandardVC := JSON_OBJECT(
+                "target", JSON_OBJECT(
+                  "accessSubject", @subjectStandard
+                ),
+                "notBefore", 1616583866,
+                "notOnOrAfter", 1735817171,
+                "policyIssuer", "did:web:packetdelivery.dsba.fiware.dev:did",
+                "policySets", JSON_ARRAY(
+                  JSON_OBJECT(
+                    "target", JSON_OBJECT(
+                      "environment", JSON_OBJECT(
+                        "licenses", JSON_ARRAY("ISHARE.0001")
+                      )
+                    ),
+                    "policies", CAST(@policiesStandard as JSON)
+                  )
+                )
+              );
+              INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ("did:web:packetdelivery.dsba.fiware.dev:did", @subjectStandard, @delegationStandardVC);
+              
+              COMMIT;
+              EOF
 
   - name: pdc-dsc-keycloak
     enabled: true
