@@ -559,6 +559,47 @@ applications:
               kind: ClusterIssuer
               name: letsencrypt-aws-prod
 
+  - name: pdc-dsc-pdp
+    enabled: true
+    source_path: applications/pdp
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      dsba-pdp:
+        deployment:
+          logLevel: TRACE
+          ishare:
+            existingSecret: pdc-dsc-walt-id-vcwaltid-tls-sec
+
+            clientId: did:web:packetdelivery.dsba.fiware.dev:did
+            trustedFingerprints:
+              - D2F62092F982CF783D4632BD86FA86C3FBFDB2D8C8A58BC6809163FCF5CD030B
+
+            ar:
+              id: "did:web:packetdelivery.dsba.fiware.dev:did"
+              delegationPath: "/ar/delegation"
+              tokenPath: "/oauth2/token"
+              url: "https://ar-pdc-dsc.dsba.fiware.dev"
+
+            trustAnchor:
+              id: "EU.EORI.FIWARESATELLITE"
+              tokenPath: "/token"
+              trustedListPath: "/trusted_list"
+              url: "https://tir.dsba.fiware.dev"
+
+          trustedVerifiers:
+            - https://verifier-pdc-dsc.dsba.fiware.dev/.well-known/jwks
+
+          providerId: "did:web:packetdelivery.dsba.fiware.dev:did"
+
+        additionalEnvVars:
+          - name: ISHARE_CERTIFICATE_PATH
+            value: /iShare/tls.crt
+          - name: ISHARE_KEY_PATH
+            value: /iShare/tls.key
+
   - name: pdc-dsc-keyrock
     enabled: true
     source_path: applications/keyrock
