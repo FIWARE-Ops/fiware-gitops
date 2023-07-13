@@ -1,0 +1,79 @@
+pdc-portal:
+  deployment:
+    image:
+      repository: quay.io/i4trust/pdc-portal
+      tag: 2.8.2
+      pullPolicy: Always
+    livenessProbe:
+      initialDelaySeconds: 4
+    readinessProbe:
+      initialDelaySeconds: 5
+
+  route:
+    enabled: true
+    host: packetdelivery-portal-dsc.dsba.fiware.dev
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+    # should a certificate for the address automatically be generated
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+
+  debug:
+    enabled: true
+
+  ccs:
+    endpoint: "http://pdc-dsc-ccs-credentials-config-service:8080/"
+    id: "packet-delivery-service"
+    credentials:
+      - type: "VerifiableCredential"
+        trustedParticipantsLists: [
+          "https://tir.dsba.fiware.dev"
+        ]
+        trustedIssuersLists: [
+          "http://pdc-dsc-til-trusted-issuers-list:8080"
+        ]
+      - type: "PacketDeliveryService"
+        trustedParticipantsLists: [
+          "https://tir.dsba.fiware.dev"
+        ]
+        trustedIssuersLists: [
+          "http://pdc-dsc-til-trusted-issuers-list:8080"
+        ]
+
+  config:
+    title: "PacketDelivery Portal"
+    getLabel: "Get PacketDelivery"
+    inputLabel: "PacketDelivery ID"
+    client:
+      id: "EU.EORI.NLPACKETDEL"
+
+    external:
+      host: https://packetdelivery-portal-dsc.dsba.fiware.dev
+
+    oidc:
+      redirect_path: "/openid_connect1.0/return"
+      acr: "urn:http://eidas.europa.eu/LoA/NotNotified/high"
+
+    cb:
+      endpoint: "https://kong-pdc-dsc.dsba.fiware.dev/pdc/ngsi-ld/v1"
+      endpoint_siop: "https://kong-pdc-dsc.dsba.fiware.dev/pdc/ngsi-ld/v1"
+    
+    express:
+      port: 7000
+
+        
+    # Configuration for SIOP flow
+    siop:
+      # SIOP flow enabled
+      enabled: true
+      # Base uri of the verifier
+      verifier_uri: https://verifier-pdc-dsc.dsba.fiware.dev
+      # DID of verifier
+      did: "did:web:packetdelivery.dsba.fiware.dev:did"
+      # Client ID to be used
+      client_id: "packet-delivery-service"
+
+    idp: []

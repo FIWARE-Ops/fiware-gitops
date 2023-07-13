@@ -6,6 +6,7 @@ branch: &branch deploy/dsba
 secretsEnabled: &secretsEnabled true
 host: &host
 tlsSecret: &tlsSecret
+participant: packet-delivery-dsc
 
 applications:
 
