@@ -665,7 +665,7 @@ applications:
           issuer:
             clientId: "pdc-activation-service"
             providerId: "did:web:packetdelivery.dsba.fiware.dev:did"
-            tilUri: "pdc-dsc-til-trusted-issuers-list:8080"
+            tilUri: "http://pdc-dsc-til-trusted-issuers-list:8080"
             verifierUri: "https://verifier-pdc-dsc.dsba.fiware.dev"
             samedevicePath: "/api/v1/samedevice"
             jwksPath: "/.well-known/jwks"
