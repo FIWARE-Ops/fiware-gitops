@@ -225,4 +225,5 @@ trusted-issuers-registry:
     additionalConfigs:
       logger:
         levels:
-          ROOT: DEBUG
+          ROOT: ERROR
+          org.fiware.iam: DEBUG
