@@ -600,6 +600,74 @@ applications:
           - name: ISHARE_KEY_PATH
             value: /iShare/tls.key
 
+  - name: pdc-dsc-kong
+    enabled: true
+    source_path: applications/kong
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      kong:
+        replicaCount: 1
+        autoscaling:
+          enabled: false
+        ingressController:
+          enabled: false
+          installCRDs: false
+        proxy:
+          type: ClusterIP
+          enabled: true
+          tls:
+            enabled: false
+          ingress:
+            enabled: false
+          route:
+            enabled: true
+            host: kong-pdc-dsc.dsba.fiware.dev
+            certificate:
+              issuer:
+                kind: ClusterIssuer
+                name: letsencrypt-aws-prod
+            tls:
+              termination: edge
+              insecureEdgeTerminationPolicy: Redirect
+        podAnnotations:
+          prometheus.io/scrape: 'true'
+          prometheus.io/port: '9102'
+        dblessConfig:
+          config: |
+            _format_version: "2.1"
+            _transform: true
+            consumers:
+            - username: token-consumer
+              keyauth_credentials:
+              - tags:
+                - token-key
+                - tir-key
+            services:
+              - host: "pdc-dsc-orion"
+                name: "pdc"
+                port: 1026
+                protocol: http
+                routes:
+                  - name: pdc
+                    paths:
+                      - /pdc
+                    strip_path: true
+                plugins:
+                  - name: pep-plugin
+                    config:
+                      pathprefix: "/pdc"
+                      authorizationendpointtype: ExtAuthz
+                      authorizationendpointaddress: http://pdc-dsc-pdp-dsba-pdp:8080/authz
+                  - name: request-transformer
+                    config:
+                      remove:
+                        headers:
+                          - Authorization
+                          - authorization
+
   - name: pdc-dsc-keyrock
     enabled: true
     source_path: applications/keyrock
