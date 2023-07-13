@@ -975,6 +975,8 @@ applications:
           - name: VCISSUER_WALTID_ADDRESS
             value: "http://dsba-packet-delivery-walt-id-vcwaltid"
         extraVolumes:
+          - name: data
+            emptyDir: {}
           - name: profiles
             configMap:
               name: pdc-dsc-keycloak-profile
@@ -988,7 +990,7 @@ applications:
               secretName: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
         initContainers:
           - name: add-vc-issuer
-            image: quay.io/fiware/keycloak-vc-issuer:0.4.0
+            image: quay.io/fiware/keycloak-vc-issuer:0.5.0
             imagePullPolicy: Always
             volumeMounts:
               - name: providers
