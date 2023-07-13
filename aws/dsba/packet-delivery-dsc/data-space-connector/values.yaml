@@ -600,6 +600,81 @@ applications:
           - name: ISHARE_KEY_PATH
             value: /iShare/tls.key
 
+  - name: pdc-dsc-activation-service
+    enabled: true
+    source_path: applications/activation-service
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      activation-service:
+        route:
+          enabled: true
+          host: as-packetdelivery-dsc.dsba.fiware.dev
+          tls:
+            termination: edge
+            insecureEdgeTerminationPolicy: Redirect
+          certificate:
+            issuer:
+              kind: ClusterIssuer
+              name: letsencrypt-aws-prod
+        existingSecretEnvs: pdc-as-envs-secret
+        activationService:
+          port: 8080
+          workers: 1
+          maxHeaderSize: 32768
+          logLevel: "debug"
+        ccs:
+          endpoint: "http://pdc-dsc-ccs-credentials-config-service:8080/"
+          id: "pdc-activation-service"
+          credentials:
+            - type: "VerifiableCredential"
+              trustedParticipantsLists: [
+                "https://tir.dsba.fiware.dev"
+              ]
+              trustedIssuersLists: [
+                "http://pdc-dsc-til-trusted-issuers-list:8080"
+              ]
+            - type: "ActivationService"
+              trustedParticipantsLists: [
+                "https://tir.dsba.fiware.dev"
+              ]
+              trustedIssuersLists: [
+                "http://pdc-dsc-til-trusted-issuers-list:8080"
+              ]
+        config:
+          db:
+            useMemory: true
+            modTracking: false
+            echo: true
+          apikeys:
+            ishare:
+              enabledToken: false
+              enabledCreatePolicy: false
+            issuer:
+              headerName: "AS-API-KEY"
+              apiKey: ""
+              enabledIssuer: true
+          ar:
+            token: "https://ar.isharetest.net/connect/token"
+            policy: "https://ar.isharetest.net/policy"
+            delegation: "https://ar.isharetest.net/delegation"
+            id: "EU.EORI.DEPROVIDER"
+          issuer:
+            clientId: "pdc-activation-service"
+            providerId: "did:web:packetdelivery.dsba.fiware.dev:did"
+            tilUri: "pdc-dsc-til-trusted-issuers-list:8080"
+            verifierUri: "https://verifier-pdc-dsc.dsba.fiware.dev"
+            samedevicePath: "/api/v1/samedevice"
+            jwksPath: "/.well-known/jwks"
+            algorithms:
+              - "ES256"
+            roles:
+              createRole: "CREATE_ISSUER"
+              updateRole: "UPDATE_ISSUER"
+              deleteRole: "DELETE_ISSUER"
+
   - name: pdc-dsc-kong
     enabled: true
     source_path: applications/kong
