@@ -382,9 +382,9 @@ applications:
                       from: "2022-07-21T17:32:28Z"
                       to: "2040-07-21T17:32:28Z"
                     credentialsType: "VerifiableCredential"
-
+# TODO: Enable when moving to default PDC deployment
   - name: pdc-dsc-walt-id
-    enabled: true
+    enabled: false
     source_path: applications/walt-id
     source_ref: *branch
     destination: *destination
@@ -394,7 +394,7 @@ applications:
       did: did:web:packetdelivery.dsba.fiware.dev:did
       route:
         enabled: true
-        host: packetdelivery-dsc.dsba.fiware.dev
+        host: packetdelivery.dsba.fiware.dev
         tls:
           insecureEdgeTerminationPolicy: Redirect
           termination: edge
@@ -543,7 +543,7 @@ applications:
             pathsToSkip:
               - "/health"
           ssikit:
-            auditorUrl: http://pdc-dsc-walt-id-vcwaltid:7003
+            auditorUrl: http://dsba-packet-delivery-walt-id-vcwaltid:7003
           verifier:
             tirAddress: https://tir.dsba.fiware.dev/v3/issuers
           did: did:web:packetdelivery.dsba.fiware.dev:did
@@ -572,7 +572,7 @@ applications:
         deployment:
           logLevel: TRACE
           ishare:
-            existingSecret: pdc-dsc-walt-id-vcwaltid-tls-sec
+            existingSecret: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
 
             clientId: did:web:packetdelivery.dsba.fiware.dev:did
             trustedFingerprints:
@@ -803,12 +803,12 @@ applications:
           - name: IDM_PR_CLIENT_KEY
             valueFrom:
                 secretKeyRef:
-                  name: pdc-dsc-walt-id-vcwaltid-tls-sec
+                  name: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
                   key: tls.key
           - name: IDM_PR_CLIENT_CRT
             valueFrom:
                 secretKeyRef:
-                  name: pdc-dsc-walt-id-vcwaltid-tls-sec
+                  name: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
                   key: tls.crt
         initData:
           initEnabled: true
@@ -973,7 +973,7 @@ applications:
           - name: VCISSUER_ISSUER_DID
             value: "did:web:packetdelivery.dsba.fiware.dev:did"
           - name: VCISSUER_WALTID_ADDRESS
-            value: "http://pdc-dsc-walt-id-vcwaltid"
+            value: "http://dsba-packet-delivery-walt-id-vcwaltid"
         extraVolumes:
           - name: profiles
             configMap:
@@ -985,7 +985,7 @@ applications:
               name: pdc-dsc-keycloak-did-config
           - name: did-secret
             secret: 
-              secretName: pdc-dsc-walt-id-vcwaltid-tls-sec
+              secretName: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
         initContainers:
           - name: add-vc-issuer
             image: quay.io/fiware/keycloak-vc-issuer:0.4.0
