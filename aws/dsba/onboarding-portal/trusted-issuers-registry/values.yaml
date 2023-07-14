@@ -2,7 +2,7 @@ trusted-issuers-registry:
   replicaCount: 1
   deployment:
     image:
-      tag: 0.3.2-PRE-9
+      tag: 0.5.0
       pullPolicy: Always
     additionalLabels:
       participant: onboarding
@@ -225,4 +225,5 @@ trusted-issuers-registry:
     additionalConfigs:
       logger:
         levels:
-          ROOT: DEBUG
+          ROOT: ERROR
+          org.fiware.iam: DEBUG
