@@ -331,7 +331,7 @@ applications:
       trusted-issuers-list:
         deployment:
           image:  
-            tag: 0.1.0-PRE-6
+            tag: 0.0.3
         route: 
           til: 
             enabled: true 
