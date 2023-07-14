@@ -995,20 +995,20 @@ applications:
             volumeMounts:
               - name: providers
                 mountPath: /target
-          - name: load-did
-            image: quay.io/opencloudio/curl:4.2.0-build.8
-            imagePullPolicy: Always
-            command: 
-              - /bin/sh
-              - /opt/did/script/import.sh
-            env:
-              - name: WALTID_CORE_ADDRESS
-                value: "dsba-packet-delivery-walt-id-vcwaltid:7000"
-            volumeMounts:
-              - name: did-config
-                mountPath: /opt/did/script
-              - name: did-secret
-                mountPath: /opt/did/secret
+          #- name: load-did
+          #  image: quay.io/opencloudio/curl:4.2.0-build.8
+          #  imagePullPolicy: Always
+          #  command: 
+          #    - /bin/sh
+          #    - /opt/did/script/import.sh
+          #  env:
+          #    - name: WALTID_CORE_ADDRESS
+          #      value: "dsba-packet-delivery-walt-id-vcwaltid:7000"
+          #  volumeMounts:
+          #    - name: did-config
+          #      mountPath: /opt/did/script
+          #    - name: did-secret
+          #      mountPath: /opt/did/secret
         postgresql:
           enabled: false
         externalDatabase:
