@@ -546,7 +546,7 @@ applications:
             pathsToSkip:
               - "/health"
           ssikit:
-            auditorUrl: http://dsba-packet-delivery-walt-id-vcwaltid:7003
+            auditorUrl: http://packet-delivery-walt-id-vcwaltid:7003
           verifier:
             tirAddress: https://tir.dsba.fiware.dev/v3/issuers
           did: did:web:packetdelivery.dsba.fiware.dev:did
@@ -976,7 +976,7 @@ applications:
           - name: VCISSUER_ISSUER_DID
             value: "did:web:packetdelivery.dsba.fiware.dev:did"
           - name: VCISSUER_WALTID_ADDRESS
-            value: "http://dsba-packet-delivery-walt-id-vcwaltid"
+            value: "http://packet-delivery-walt-id-vcwaltid"
         extraVolumes:
           - name: data
             emptyDir: {}
@@ -1006,7 +1006,7 @@ applications:
               - /opt/did/script/import.sh
             env:
               - name: WALTID_CORE_ADDRESS
-                value: "dsba-packet-delivery-walt-id-vcwaltid:7000"
+                value: "packet-delivery-walt-id-vcwaltid:7000"
             volumeMounts:
               - name: did-config
                 mountPath: /opt/did/script
