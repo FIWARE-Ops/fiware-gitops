@@ -946,6 +946,10 @@ applications:
           issuer:
             kind: ClusterIssuer
             name: letsencrypt-aws-prod
+      didConfig:
+        loadDidWebEnabled: true
+        domain: "packetdelivery.dsba.fiware.dev"
+        x5u: "https://packetdelivery.dsba.fiware.dev/certs/tls.crt"
       keycloak:
         service:
           type: ClusterIP
