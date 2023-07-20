@@ -386,9 +386,9 @@ applications:
                       to: "2040-07-21T17:32:28Z"
                     credentialsType: "VerifiableCredential"
 
-  - name: packet-delivery-walt-id
+  - name: packet-delivery-vcwaltid
     enabled: true
-    source_path: applications/walt-id
+    source_path: applications/vcwaltid
     source_ref: *branch
     destination: *destination
     helm_values:
@@ -546,7 +546,7 @@ applications:
             pathsToSkip:
               - "/health"
           ssikit:
-            auditorUrl: http://packet-delivery-walt-id-vcwaltid:7003
+            auditorUrl: http://packet-delivery-vcwaltid:7003
           verifier:
             tirAddress: https://tir.dsba.fiware.dev/v3/issuers
           did: did:web:packetdelivery.dsba.fiware.dev:did
@@ -575,7 +575,7 @@ applications:
         deployment:
           logLevel: TRACE
           ishare:
-            existingSecret: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
+            existingSecret: dsba-packet-delivery-vcwaltid-tls-sec
 
             clientId: did:web:packetdelivery.dsba.fiware.dev:did
             trustedFingerprints:
@@ -806,12 +806,12 @@ applications:
           - name: IDM_PR_CLIENT_KEY
             valueFrom:
                 secretKeyRef:
-                  name: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
+                  name: dsba-packet-delivery-vcwaltid-tls-sec
                   key: tls.key
           - name: IDM_PR_CLIENT_CRT
             valueFrom:
                 secretKeyRef:
-                  name: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
+                  name: dsba-packet-delivery-vcwaltid-tls-sec
                   key: tls.crt
         initData:
           initEnabled: true
@@ -980,7 +980,7 @@ applications:
           - name: VCISSUER_ISSUER_DID
             value: "did:web:packetdelivery.dsba.fiware.dev:did"
           - name: VCISSUER_WALTID_ADDRESS
-            value: "http://packet-delivery-walt-id-vcwaltid"
+            value: "http://packet-delivery-vcwaltid"
         extraVolumes:
           - name: data
             emptyDir: {}
@@ -994,7 +994,7 @@ applications:
               name: packet-delivery-keycloak-did-config
           - name: did-secret
             secret: 
-              secretName: dsba-packet-delivery-walt-id-vcwaltid-tls-sec
+              secretName: dsba-packet-delivery-vcwaltid-tls-sec
         initContainers:
           - name: add-vc-issuer
             image: quay.io/fiware/keycloak-vc-issuer:0.5.0
@@ -1010,7 +1010,7 @@ applications:
               - /opt/did/script/import.sh
             env:
               - name: WALTID_CORE_ADDRESS
-                value: "packet-delivery-walt-id-vcwaltid:7000"
+                value: "packet-delivery-vcwaltid:7000"
             volumeMounts:
               - name: did-config
                 mountPath: /opt/did/script
