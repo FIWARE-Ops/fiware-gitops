@@ -251,7 +251,7 @@ Login as `legal-representative` at the [PDC Keycloak](https://packetdelivery-kc.
 #### Login at marketplace
 Login at the [Marketplace](https://marketplace.dsba.fiware.dev) as PDC employee using this VC. 
 
-Make sure that you switch the `Session` (top-right drop-down) to the PDC DID, in order to act on behalf of the Packet Delivery Company organisation.
+Make sure that you switch the `Session` (top-right drop-down) to the PDC DID, in order to act on behalf of the Packet Delivery Company organisation and not as the user itself.
 
 #### Catalog
 Create a catalog `Packet Delivery services` and set it to `Launched`.
@@ -365,3 +365,5 @@ curl -i -X DELETE 'https://til-PDC.dsba.fiware.dev/issuer/did:web:animalgoods.ds
 kubectl port-forward -ndsba service/dsba-onboarding-portal-orion-ld 1026
 curl -X DELETE -v --location 'localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:TrustedIssuer:did:web:animalgoods.dsba.fiware.dev:did'
 ```
+
+* On the marketplace, as PDC employee, set the offering (and product specification) to `Obsolete` and create a new offering (and product specification)
