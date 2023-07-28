@@ -542,7 +542,7 @@ applications:
       vcverifier:
         deployment:
           image:
-            tag: 2.1.0-pre-17
+            tag: 2.1.0
           logging:
             level: DEBUG
             pathsToSkip:
