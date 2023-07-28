@@ -89,7 +89,15 @@ Description of the different flows.
 
 ### Onboarding
 
-TODO
+* The user initiates the login at the onboarding portal. A QR code is displayed.
+* The user scans the QR code with its mobile wallet. The QR code contains a URL of the verifier to initiate the login.
+  The wallet sends a `GET` request to this URL and receives the `/authentication_response` endpoint of the verifier.
+* The wallet sends a Verifiable Presentation (VP) to the `/authentication_response` endpoint. The VP contains the VC issued to the user, the VC containing the self description of its company and the VC issued by a trusted Compliancy Service for the company self description.
+* The verifier checks against the `Gaia-X Compliance Issuers` whether the compliancy credential was issued by a trusted issuer.
+* The verifier checks if the credentials are a valid chain.
+* The verifier returns a code, which can be used to obtain an access token from the verifier.
+* Now the onboarding portal application can obtain a JWT access token from the verifier `/token` endpoint.
+* The token is used to access the Orion-LD service and the VC is stored there. From this point onwards, the stored VC/Self Descriptions can be used by the Trusted Issuers Registry to supply the list of trusted participants of the dataspace.
 
 
 ### Login 
@@ -238,7 +246,7 @@ Afterwards the Wallet should contain three VCs.
 
 #### Onboarding in dataspace
 
-The LEAR uses its Wallet to log into the [Onboarding service](https://onboarding-portal.dsba.fiware.dev).After a successful login, the LEAR can add its company, as presented on the left, to the dataspace by pressing the `+` under the company details.
+The LEAR uses its Wallet to log into the [Onboarding service](https://onboarding-portal.dsba.fiware.dev).After a successful login, the LEAR can add its company, as presented on the left, to the dataspace by pressing the `+` under the company details. For a detailed view on the login flow see chapter [Login](#Login).
 
 
 ### Create an offering for the Packet Delivery Service
