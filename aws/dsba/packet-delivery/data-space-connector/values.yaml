@@ -541,6 +541,8 @@ applications:
     values:
       vcverifier:
         deployment:
+          image:
+            tag: 2.1.0
           logging:
             level: DEBUG
             pathsToSkip:
