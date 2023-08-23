@@ -354,6 +354,42 @@ A NGSI-LD PATCH request will be sent to Kong. Depending on the user (and the ass
 If the PATCH is successful, another NGSI-LD GET will be sent in order to refresh the delivery order data.
 
 
+
+### Testing
+To test an new participent without onboarding it via the Trusted Issuers Registry, following command can be adapted and executed on the TIR's NGSI-LD broker:
+
+```shell
+curl  -iX POST 'http://localhost:1026/ngsi-ld/v1/entities' \
+-H 'Content-Type: application/json' \
+-d '{
+    "id": "urn:ngsi-ld:TrustedIssuer:did:web:ips.dsba.aws.fiware.io:did",
+    "type": "TrustedIssuer",
+    "issuer": {
+      "type": "Property",
+      "value": "did:web:ips.dsba.aws.fiware.io:did"
+    },
+    "selfDescription": {
+      "type": "Property",
+      "value": {
+        "id": "did:web:ips.dsba.aws.fiware.io:did",
+        "type": "gx:LegalParticipant",
+        "gx:legalName": "IPS",
+        "gx:legalRegistrationNumber": {
+          "gx:vatID": "MYVATID"
+        },
+        "gx:headquarterAddress": {
+          "gx:countrySubdivisionCode": "DE-BER"
+        },
+        "gx:legalAddress": {
+          "gx:countrySubdivisionCode": "DE-BER"
+        },
+        "gx-terms-and-conditions:gaiaxTermsAndConditions": "70c1d713215f95191a11d38fe2341faed27d19e083917bc8732ca4fea4976700"
+      }
+    }
+  }'
+```
+
+
 ### Cleanup
 
 Steps to revert the setup in order to be able to perform the use case presentation above when it was already performed before.
