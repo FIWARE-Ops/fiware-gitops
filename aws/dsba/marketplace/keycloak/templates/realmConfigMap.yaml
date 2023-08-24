@@ -44,6 +44,23 @@ data:
               "clientRole": true
             }
           ],
+          "did:web:ips.dsba.aws.fiware.io:did": [
+            {
+              "name": "CREATE_ISSUER",
+              "description": "Is allowed to create issuers",
+              "clientRole": true
+            },
+            {
+              "name": "UPDATE_ISSUER",
+              "description": "Is allowed to update issuers",
+              "clientRole": true
+            },
+            {
+              "name": "DELETE_ISSUER",
+              "description": "Is allowed to delete issuers",
+              "clientRole": true
+            }
+          ],
           "orion-pep": [
             {
               "name": "admin",
@@ -100,6 +117,9 @@ data:
             "did:web:packetdelivery.dsba.fiware.dev:did": [
               "CREATE_ISSUER"
             ],
+            "did:web:ips.dsba.aws.fiware.io:did": [
+              "CREATE_ISSUER"
+            ],
             "account": [
               "view-profile",
               "manage-account"
@@ -114,7 +134,7 @@ data:
         {
           "clientId": "did:web:packetdelivery.dsba.fiware.dev:did",
           "enabled": true,
-          "description": "Client to connect the pdc activation service at packetdelivery-portal.dsba.fiware.dev",
+          "description": "Client to connect the pdc activation service",
           "surrogateAuthRequired": false,
           "alwaysDisplayInConsole": false,
           "clientAuthenticatorType": "client-secret",
@@ -136,6 +156,38 @@ data:
               "expiryInMin": "5000000",
               "vctypes_ActivationService": "ldp_vc,jwt_vc_json",
               "ActivationService_claims": "email,firstName,familyName,roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
+          "clientId": "did:web:ips.dsba.aws.fiware.io:did",
+          "enabled": true,
+          "description": "Client to connect the IPS activation service",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": true,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "5000000",
+              "vctypes_IpsActivationService": "ldp_vc,jwt_vc_json",
+              "IpsActivationService_claims": "email,firstName,familyName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,

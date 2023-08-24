@@ -63,6 +63,18 @@ data:
               "clientRole": true
             }
           ],
+          "did:web:ips.dsba.aws.fiware.io:did": [
+            {
+              "name": "STANDARD_CUSTOMER",
+              "description": "User to access packetdelivery with read access",
+              "clientRole": true
+            },
+            {
+              "name": "GOLD_CUSTOMER",
+              "description": "User to access packetdelivery with read/write access",
+              "clientRole": true
+            }
+          ],
           "orion-pep": [
             {
               "name": "admin",
@@ -151,6 +163,9 @@ data:
             "did:web:packetdelivery.dsba.fiware.dev:did": [
               "STANDARD_CUSTOMER"
             ],
+            "did:web:ips.dsba.aws.fiware.io:did": [
+              "STANDARD_CUSTOMER"
+            ],
             "account": [
               "view-profile",
               "manage-account"
@@ -174,6 +189,9 @@ data:
           ],
           "clientRoles": {
             "did:web:packetdelivery.dsba.fiware.dev:did": [
+              "STANDARD_CUSTOMER", "GOLD_CUSTOMER"
+            ],
+            "did:web:ips.dsba.aws.fiware.io:did": [
               "STANDARD_CUSTOMER", "GOLD_CUSTOMER"
             ],
             "account": [
@@ -271,6 +289,38 @@ data:
               "expiryInMin": "3600",
               "vctypes_PacketDeliveryService": "ldp_vc,jwt_vc_json",
               "PacketDeliveryService_claims": "email,firstName,lastName,roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
+          "clientId": "did:web:ips.dsba.aws.fiware.io:did",
+          "enabled": true,
+          "description": "Client to connect the IPS service at ips-portal.dsba.aws.fiware.io",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "3600",
+              "vctypes_InternationalParcelService": "ldp_vc,jwt_vc_json",
+              "InternationalParcelService_claims": "email,firstName,lastName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,
