@@ -2,7 +2,7 @@ apiVersion: v2
 name: keycloak
 description: A Helm chart for Kubernetes to deploy Keycloak
 type: application
-version: 1.0.1
+version: 1.0.2
 appVersion: "17.0.1"
 dependencies:
 - name: keycloak
