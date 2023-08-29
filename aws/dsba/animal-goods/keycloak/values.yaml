@@ -104,7 +104,7 @@ keycloak:
 
   initContainers:
     - name: add-vc-issuer
-      image: quay.io/fiware/keycloak-vc-issuer:1.0.0
+      image: quay.io/fiware/keycloak-vc-issuer:1.0.1
       imagePullPolicy: Always
       volumeMounts:
         - name: providers
