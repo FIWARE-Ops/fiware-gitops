@@ -406,6 +406,11 @@ applications:
             kind: ClusterIssuer
             name: letsencrypt-aws-prod
       vcwaltid:
+        deployment:
+          image:
+            repository: waltid/ssikit
+            tag: 1.2306281817.jwt-sign-rsa
+            pullPolicy: Always
         persistence:
           enabled: true
           pvc:
