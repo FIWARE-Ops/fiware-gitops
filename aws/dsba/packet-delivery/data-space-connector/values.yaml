@@ -329,9 +329,6 @@ applications:
     - values.yaml
     values:
       trusted-issuers-list:
-        deployment:
-          image:  
-            tag: 0.0.3
         route: 
           til: 
             enabled: true 
@@ -541,8 +538,6 @@ applications:
     values:
       vcverifier:
         deployment:
-          image:
-            tag: 2.1.0
           logging:
             level: DEBUG
             pathsToSkip:
@@ -690,10 +685,6 @@ applications:
     - values.yaml
     values:
       kong:
-        image:
-          repository: quay.io/fiware/kong
-          tag: "0.5.6-PRE-24"
-          pullPolicy: Always
         replicaCount: 1
         autoscaling:
           enabled: false
