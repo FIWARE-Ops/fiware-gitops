@@ -562,7 +562,7 @@ applications:
 
   - name: packet-delivery-pdp
     enabled: true
-    source_path: applications/pdp
+    source_path: applications/dsba-pdp
     source_ref: *branch
     destination: *destination
     helm_values:
