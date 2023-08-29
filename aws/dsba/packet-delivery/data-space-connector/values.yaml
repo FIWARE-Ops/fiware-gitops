@@ -329,9 +329,6 @@ applications:
     - values.yaml
     values:
       trusted-issuers-list:
-        deployment:
-          image:  
-            tag: 0.0.3
         route: 
           til: 
             enabled: true 
@@ -406,11 +403,6 @@ applications:
             kind: ClusterIssuer
             name: letsencrypt-aws-prod
       vcwaltid:
-        deployment:
-          image:
-            repository: waltid/ssikit
-            tag: 1.2306281817.jwt-sign-rsa
-            pullPolicy: Always
         persistence:
           enabled: true
           pvc:
@@ -546,8 +538,6 @@ applications:
     values:
       vcverifier:
         deployment:
-          image:
-            tag: 2.1.0
           logging:
             level: DEBUG
             pathsToSkip:
@@ -695,10 +685,6 @@ applications:
     - values.yaml
     values:
       kong:
-        image:
-          repository: quay.io/fiware/kong
-          tag: "0.5.6-PRE-24"
-          pullPolicy: Always
         replicaCount: 1
         autoscaling:
           enabled: false
