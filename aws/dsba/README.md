@@ -2,6 +2,45 @@
 
 This folder and its corresponding namespace contain a [DSBA-compliant](https://data-spaces-business-alliance.eu/wp-content/uploads/dlm_uploads/Data-Spaces-Business-Alliance-Technical-Convergence-V2.pdf) DataSpace for demonstrational purposes. The DataSpace is build with [FIWARE-Components](https://github.com/FIWARE), using parts of the [i4Trust-Framework](https://github.com/i4Trust) and the [Gaia-X Compliance Services](https://gitlab.com/gaia-x/lab/compliance).
 
+<details>
+<summary><strong>Table of Contents</strong></summary>
+
+- [The DataSpace](#the-dataspace)
+- [The Dataspace Operator](#the-dataspace-operator)
+- [The Particpants](#the-particpants)
+  - [The Consumer](#the-consumer)
+  - [The Provider](#the-provider)
+  - [The Marketplace](#the-marketplace)
+- [Flows](#flows)
+  - [Onboarding](#onboarding)
+  - [Login](#login)
+  - [Acquisition](#acquisition)
+  - [Service Usage](#service-usage)
+- [Credentials](#credentials)
+- [URLs and endpoints](#urls-and-endpoints)
+- [Presentations](#presentations)
+  - [Onboarding of animal Goods](#onboarding-of-animal-goods)
+	- [Prepare Credentials in Wallet](#prepare-credentials-in-wallet)
+	- [Onboarding in dataspace](#onboarding-in-dataspace)
+  - [Create an offering for the Packet Delivery Service](#create-an-offering-for-the-packet-delivery-service)
+	- [PDC employee gets VC](#pdc-employee-gets-vc)
+	- [Login at marketplace](#login-at-marketplace)
+	- [Catalog](#catalog)
+	- [Product Specification](#product-specification)
+	- [Product Offering](#product-offering)
+  - [Offering acquisition by consumer](#offering-acquisition-by-consumer)
+	- [Consumer employee gets VC](#consumer-employee-gets-vc)
+	- [Login at marketplace](#login-at-marketplace-1)
+	- [Acquire access](#acquire-access)
+  - [Accessing the service](#accessing-the-service)
+	- [Shop customer gets VC](#shop-customer-gets-vc)
+	- [Service usage](#service-usage-1)
+  - [Testing](#testing)
+  - [Cleanup](#cleanup)
+	
+
+</details>
+
 ## The DataSpace
 
 ![participants](docs/participants.png)
@@ -79,7 +118,7 @@ The components:
 Additionally, the Verifier connects to the Trusted Participants API of the [Dataspace Operator](#the-dataspace-operator) to verify users as participants of the dataspace.
 
 
-## The Marketplace
+### The Marketplace
 
 
 
@@ -328,6 +367,13 @@ For the first checkout, one needs to set a billing address.
 
 Perform the checkout. The BAE plugin will create an entry at the PDC trusted-issuer-list for the consumer organisation. 
 From now on the consumer organisation can issue VCs with the roles stated in the offering.
+
+
+### Accessing the service
+
+A user of the service consumer organisation (e.g., Happy Pets, Animal Goods) accesses the service provided 
+by the Packet Dleivery Company, after its organisation has acquired access to it.
+
 
 #### Shop customer gets VC
 Login as `standard-user` or `prime-user` (they differ by the roles that are issued) at the Keycloak of the consumer (shop) organisation:
