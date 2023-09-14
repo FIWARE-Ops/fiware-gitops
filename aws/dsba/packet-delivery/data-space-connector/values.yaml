@@ -1203,6 +1203,11 @@ applications:
                         "name": "GOLD_CUSTOMER",
                         "description": "User to access packetdelivery with read/write access",
                         "clientRole": true
+                      },
+                      {
+                        "name": "PROVIDER",
+                        "description": "User to access packetdelivery's tmforum-api with read/write access",
+                        "clientRole": true
                       }
                     ]
                   }
@@ -1294,7 +1299,8 @@ applications:
                         "EMPLOYEE"
                       ],
                       "did:web:packetdelivery.dsba.fiware.dev:did": [
-                        "GOLD_CUSTOMER"
+                        "GOLD_CUSTOMER",
+                        "PROVIDER"
                       ],
                       "account": [
                         "view-profile",
