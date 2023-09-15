@@ -81,6 +81,19 @@ applications:
               create.sh: |
                 psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE keycloak_pdc;"
 
+  - name: packet-delivery-tm-forum-api
+    enabled: true
+    source_path: applications/tm-forum-api
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+    - values.yaml
+    values:
+      tm-forum-api:
+        defaultConfig:
+          ngsiLd:
+            url: http://packet-delivery-orion:1026
+
   - name: packet-delivery-orion
     enabled: true
     source_path: applications/orion-ld
