@@ -735,6 +735,15 @@ applications:
                 - token-key
                 - tir-key
             services:
+              - host: "pdc-tmforum-api"
+                name: "tmforum-api"
+                port: 8080
+                protocol: http
+                routes:
+                  - name: tmforum-api
+                    paths: 
+                      - /tmf-api
+                    strip_path: false
               - host: "packet-delivery-orion"
                 name: "pdc"
                 port: 1026
