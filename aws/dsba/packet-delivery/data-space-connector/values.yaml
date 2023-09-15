@@ -849,6 +849,7 @@ applications:
                 )
               );
               
+              SET @subjectProvider := "PROVIDER";
               SET @subjectGold := "GOLD_CUSTOMER";
               SET @subjectStandard := "STANDARD_CUSTOMER";
               
@@ -878,6 +879,100 @@ applications:
                 )
               );
               
+              -- Policies Provider
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/party/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/customerBillManagement/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/customerManagement/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/productCatalogManagement/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/productInventory/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/productOrderingManagement/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/resourceCatalog/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/resourceInventoryManagement/*")
+                    )
+                  )
+                ),
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("POST","PUT","GET"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/serviceCatalogManagement/*")
+                    )
+                  )
+                )
+              );
+
               -- Policies Standard
               SET @policiesStandard := JSON_ARRAY(
                 JSON_OBJECT(
@@ -914,6 +1009,28 @@ applications:
               );
               INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ("did:web:packetdelivery.dsba.fiware.dev:did", @subjectGold, @delegationGoldVC);
               
+              -- Insert Delegation Evidence Provider VC
+              SET @delegationProviderVC := JSON_OBJECT(
+                "target", JSON_OBJECT(
+                  "accessSubject", @subjectProvider
+                ),
+                "notBefore", 1616583866,
+                "notOnOrAfter", 1735817171,
+                "policyIssuer", "did:web:packetdelivery.dsba.fiware.dev:did",
+                "policySets", JSON_ARRAY(
+                  JSON_OBJECT(
+                    "target", JSON_OBJECT(
+                      "environment", JSON_OBJECT(
+                        "licenses", JSON_ARRAY("ISHARE.0001")
+                      )
+                    ),
+                    "policies", CAST(@policiesProvider as JSON)
+                  )
+                )
+              );
+              INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ("did:web:packetdelivery.dsba.fiware.dev:did", @subjectProvider, @delegationProviderVC);
+              
+  
               -- Insert Delegation Evidence Standard VC
               SET @delegationStandardVC := JSON_OBJECT(
                 "target", JSON_OBJECT(
@@ -1099,6 +1216,11 @@ applications:
                         "name": "GOLD_CUSTOMER",
                         "description": "User to access packetdelivery with read/write access",
                         "clientRole": true
+                      },
+                      {
+                        "name": "PROVIDER",
+                        "description": "User to access packetdelivery's tmforum-api with read/write access",
+                        "clientRole": true
                       }
                     ]
                   }
@@ -1190,7 +1312,8 @@ applications:
                         "EMPLOYEE"
                       ],
                       "did:web:packetdelivery.dsba.fiware.dev:did": [
-                        "GOLD_CUSTOMER"
+                        "GOLD_CUSTOMER",
+                        "PROVIDER"
                       ],
                       "account": [
                         "view-profile",
