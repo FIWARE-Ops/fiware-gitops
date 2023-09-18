@@ -901,6 +901,7 @@ applications:
                     "actions", JSON_ARRAY("GET"),
                     "resource", JSON_OBJECT(
                       "type", "PATH",
+                      "attributes", JSON_ARRAY(),
                       "identifiers", JSON_ARRAY("/tmf-api/party/*")
                     )
                   )
