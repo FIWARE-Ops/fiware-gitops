@@ -2,7 +2,8 @@ pdc-portal:
   deployment:
     image:
       repository: quay.io/i4trust/pdc-portal
-      tag: 2.8.2
+      #tag: 2.8.2
+      tag: 2.9.0-PRE-23
       pullPolicy: Always
     livenessProbe:
       initialDelaySeconds: 4
@@ -75,5 +76,7 @@ pdc-portal:
       did: "did:web:packetdelivery.dsba.fiware.dev:did"
       # Client ID to be used
       client_id: "packet-delivery-service"
+      # Show separate Login button which shows the JWT access token only after login
+      jwtOnlyEnabled: true
 
     idp: []
