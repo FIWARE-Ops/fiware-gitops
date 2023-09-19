@@ -905,9 +905,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/party/*")
                     )
                   )
-                )
-              );
-              SET @policiesConsumer := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -917,9 +915,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/productCatalogManagement/*")
                     )
                   )
-                )
-              );
-              SET @policiesConsumer := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -943,9 +939,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/party/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -955,9 +949,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/customerBillManagement/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -967,9 +959,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/customerManagement/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -979,9 +969,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/productCatalogManagement/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -991,9 +979,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/productInventory/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -1003,9 +989,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/productOrderingManagement/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -1015,9 +999,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/resourceCatalog/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -1027,9 +1009,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/resourceFunctionActivation/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -1039,9 +1019,7 @@ applications:
                       "identifiers", JSON_ARRAY("/tmf-api/resourceInventoryManagement/*")
                     )
                   )
-                )
-              );
-              SET @policiesProvider := JSON_ARRAY(
+                ),
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
@@ -1053,6 +1031,7 @@ applications:
                   )
                 )
               );
+             
 
               -- Policies Standard
               SET @policiesStandard := JSON_ARRAY(
