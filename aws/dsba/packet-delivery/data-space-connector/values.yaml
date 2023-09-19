@@ -648,7 +648,12 @@ applications:
                 "https://tir.dsba.fiware.dev"
               ]
               trustedIssuersLists: [
-                "http://packet-delivery-til-trusted-issuers-list:8080"
+              ]
+            - type: "LegalPersonCredential"
+              trustedParticipantsLists: [
+                "https://tir.dsba.fiware.dev"
+              ]
+              trustedIssuersLists: [
               ]
             - type: "ActivationService"
               trustedParticipantsLists: [
