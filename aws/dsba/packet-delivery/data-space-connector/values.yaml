@@ -864,6 +864,7 @@ applications:
               );
               
               SET @subjectProvider := "PROVIDER";
+              SET @subjectConsumer := "CONSUMER";
               SET @subjectGold := "GOLD_CUSTOMER";
               SET @subjectStandard := "STANDARD_CUSTOMER";
               
@@ -893,16 +894,161 @@ applications:
                 )
               );
               
-              -- Policies Provider
-              SET @policiesProvider := JSON_ARRAY(
+              -- Policies Consumer
+              SET @policiesConsumer := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET", "POST"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/party/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesConsumer := JSON_ARRAY(
                 JSON_OBJECT(
                   "rules", CAST(@rules as JSON),
                   "target", JSON_OBJECT(
                     "actions", JSON_ARRAY("GET"),
                     "resource", JSON_OBJECT(
                       "type", "PATH",
-                      "attributes", JSON_ARRAY(),
+                      "identifiers", JSON_ARRAY("/tmf-api/productCatalogManagement/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesConsumer := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/productOrderingManagement/*")
+                    )
+                  )
+                )
+              );
+
+              -- Policies Provider
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
                       "identifiers", JSON_ARRAY("/tmf-api/party/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/customerBillManagement/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/customerManagement/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/productCatalogManagement/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/productInventory/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/productOrderingManagement/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/resourceCatalog/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/resourceFunctionActivation/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/resourceInventoryManagement/*")
+                    )
+                  )
+                )
+              );
+              SET @policiesProvider := JSON_ARRAY(
+                JSON_OBJECT(
+                  "rules", CAST(@rules as JSON),
+                  "target", JSON_OBJECT(
+                    "actions", JSON_ARRAY("GET","POST","PUT","DELETE"),
+                    "resource", JSON_OBJECT(
+                      "type", "PATH",
+                      "identifiers", JSON_ARRAY("/tmf-api/serviceCatalogManagement/*")
                     )
                   )
                 )
@@ -966,6 +1112,27 @@ applications:
               INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ("did:web:packetdelivery.dsba.fiware.dev:did", @subjectProvider, @delegationProviderVC);
               
   
+              -- Insert Delegation Evidence Consumer VC
+              SET @delegationConsumerVC := JSON_OBJECT(
+                "target", JSON_OBJECT(
+                  "accessSubject", @subjectConsumer
+                ),
+                "notBefore", 1616583866,
+                "notOnOrAfter", 1735817171,
+                "policyIssuer", "did:web:packetdelivery.dsba.fiware.dev:did",
+                "policySets", JSON_ARRAY(
+                  JSON_OBJECT(
+                    "target", JSON_OBJECT(
+                      "environment", JSON_OBJECT(
+                        "licenses", JSON_ARRAY("ISHARE.0001")
+                      )
+                    ),
+                    "policies", CAST(@policiesConsumer as JSON)
+                  )
+                )
+              );
+              INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ("did:web:packetdelivery.dsba.fiware.dev:did", @subjectConsumer, @delegationConsumerVC);
+              
               -- Insert Delegation Evidence Standard VC
               SET @delegationStandardVC := JSON_OBJECT(
                 "target", JSON_OBJECT(

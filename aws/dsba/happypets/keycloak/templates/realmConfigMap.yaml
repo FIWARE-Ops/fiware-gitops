@@ -61,6 +61,11 @@ data:
               "name": "GOLD_CUSTOMER",
               "description": "User to access packetdelivery with read/write access",
               "clientRole": true
+            },
+            {
+              "name": "CONSUMER",
+              "description": "Allows to by products at the TMForum API.".
+              "clientRole": true
             }
           ],
           "did:web:ips.dsba.aws.fiware.io:did": [
@@ -130,6 +135,9 @@ data:
             }
           ],
           "clientRoles": {
+            "did:web:packetdelivery.dsba.fiware.dev:did": [
+              "CONSUMER"
+            ],
             "did:web:marketplace.dsba.fiware.dev:did" : [
               "customer",
               "seller"
