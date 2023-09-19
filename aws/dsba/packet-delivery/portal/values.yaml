@@ -2,9 +2,8 @@ pdc-portal:
   deployment:
     image:
       repository: quay.io/i4trust/pdc-portal
-      #tag: 2.8.2
-      tag: 2.9.0-PRE-23
-      pullPolicy: Always
+      tag: 2.9.0
+      #pullPolicy: Always
     livenessProbe:
       initialDelaySeconds: 4
     readinessProbe:
