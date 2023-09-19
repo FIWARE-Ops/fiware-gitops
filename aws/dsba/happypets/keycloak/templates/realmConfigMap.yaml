@@ -64,7 +64,7 @@ data:
             },
             {
               "name": "CONSUMER",
-              "description": "Allows to by products at the TMForum API.".
+              "description": "Allows to by products at the TMForum API.",
               "clientRole": true
             }
           ],
