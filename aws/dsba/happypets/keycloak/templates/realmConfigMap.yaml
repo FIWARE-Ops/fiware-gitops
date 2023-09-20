@@ -66,6 +66,11 @@ data:
               "name": "CONSUMER",
               "description": "Allows to by products at the TMForum API.",
               "clientRole": true
+            },
+            {
+              "name": "LEGAL_REPRESENTATIVE",
+              "description": "Allows to register the organization at tm forum.",
+              "clientRole": true
             }
           ],
           "did:web:ips.dsba.aws.fiware.io:did": [
@@ -136,7 +141,7 @@ data:
           ],
           "clientRoles": {
             "did:web:packetdelivery.dsba.fiware.dev:did": [
-              "CONSUMER"
+              "LEGAL_REPRESENTATIVE"
             ],
             "did:web:marketplace.dsba.fiware.dev:did" : [
               "customer",
@@ -169,7 +174,8 @@ data:
           ],
           "clientRoles": {
             "did:web:packetdelivery.dsba.fiware.dev:did": [
-              "STANDARD_CUSTOMER"
+              "STANDARD_CUSTOMER",
+              "CONSUMER"
             ],
             "did:web:ips.dsba.aws.fiware.io:did": [
               "STANDARD_CUSTOMER"
