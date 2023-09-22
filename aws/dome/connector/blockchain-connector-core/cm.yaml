@@ -6,7 +6,7 @@ data:
   orion.yml: |
     orion-ld-if:
       orion-ld:
-        domain: http://dome-orion-ld:1026
+        domain: https://orion.dome.fiware.dev
         path:
           entities: /ngsi-ld/v1/entities
           subscriptions: /ngsi-ld/v1/subscriptions
