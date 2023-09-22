@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dome-orion-ld
+spec:
+  secretName: orion-ld-tls-sec
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-aws-prod
+  commonName: orion.dome.fiware.dev
+  dnsNames:
+    - orion.dome.fiware.dev
