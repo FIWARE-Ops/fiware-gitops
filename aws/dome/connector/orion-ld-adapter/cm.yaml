@@ -85,7 +85,7 @@ data:
           publish: /api/v1/publishEvent
           subscribe: /api/v1/subscribe
       subscription:
-        active: true
+        active: false
         notification-endpoint-uri: http://blockchain-connector-core:8080/notifications/blockchain-node
         event-type: "product-offering"
       node:
