@@ -78,9 +78,6 @@ spec:
         - name: config-volume
           configMap:
             name: {{ include "bcc.fullname" . }}
-            items:
-              - key: custom-config.yml
-                path: integration-config.yml
       {{- with .Values.deployment.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

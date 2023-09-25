@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "bcc.fullname" . }}
 data:
-  custom-config.yml: |
+  integration-config.yml: |
     orion-ld-if:
       orion-ld:
         domain: {{ .Values.orion.address }}
