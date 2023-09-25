@@ -8,7 +8,6 @@ metadata:
   {{- end }}
   labels:
     {{ include "bcc.labels" . | nindent 4 }}
-  namespace: default
 spec:
   type: {{ .Values.service.type }}
   ports:
