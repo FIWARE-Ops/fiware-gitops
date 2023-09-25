@@ -4,7 +4,7 @@ metadata:
   name: dome-consumer-dlt-adapter
   namespace: argocd
   labels:
-    purpose: connector
+    participant: connector
 spec:
   destination:
     namespace: dome
