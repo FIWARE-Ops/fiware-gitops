@@ -1,0 +1,7 @@
+apiVersion: v2
+name: adapter
+description: A Helm chart for DLT Adapter (Blockchain Node) Kubernetes
+
+type: application
+version: 0.0.1
+appVersion: v1alpha1
