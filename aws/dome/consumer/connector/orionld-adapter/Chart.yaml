@@ -1,0 +1,7 @@
+apiVersion: v2
+name: orionld-adapter
+description: A Helm chart for Orion-LD Adapter Kubernetes
+
+type: application
+version: 0.0.1
+appVersion: v1alpha1
