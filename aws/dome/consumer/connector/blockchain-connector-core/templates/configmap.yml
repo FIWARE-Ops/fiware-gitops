@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "bcc.fullname" . }}
+data:
+  custom-config.yml: |
+    orion-ld-if:
+      orion-ld:
+        domain: {{ .Values.orion.address }}
+        path:
+          entities: {{ .Values.orion.entitiesPath }}
+          subscriptions: {{ .Values.orion.subscriptionPath }}
+      api:
+        domain: {{ .Values.adapter.host }}
+        path:
+          subscription: {{ .Values.adapter.subscriptionPath }}
+          entities:  {{ .Values.adapter.publishPath }}
+      subscription:
+        type: {{ .Values.orion.subscription.type }}
+        notification-endpoint-uri: {{ .Values.orion.subscription.notificationEndpoint }}
+        entities: >
+           {{ .Values.orion.subscription.entities }}
+        id-prefix: {{ .Values.orion.subscription.prefix | quote }}
+    blockchain-node-if:
+      api:
+        domain: {{ .Values.dlt.address }}
+        path:
+          configure-node: {{ .Values.dlt.configurationPath }}
+          publish: {{ .Values.dlt.publishPath }}
+          subscribe: {{ .Values.dlt.subscribePath }}
+      subscription:
+        active: {{ .Values.dlt.subscription.active }}
+        notification-endpoint-uri: {{ .Values.dlt.subscription.notificationEndpoint }}
+        event-type: {{ .Values.dlt.subscription.eventType }}
+      node:
+        rpcAddress: {{ .Values.dlt.node.rpcAddress }}
+        userEthereumAddress: {{ .Values.dlt.node.userEthereumAddress }}
