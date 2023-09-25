@@ -200,7 +200,7 @@ prometheus:
   # -- path for prometheus scrape
   path: /prometheus
   # -- port prometheus scrape is available at
-  port: 9090
+  port: 8080
 
 # -- a list of additional env vars to be set, check the blockchain-connector-core doc for all available options
 additionalEnvVars: [ ]

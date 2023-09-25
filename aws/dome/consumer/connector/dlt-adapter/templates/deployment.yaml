@@ -44,25 +44,6 @@ spec:
             - name: http
               containerPort: {{ .Values.port}}
               protocol: TCP
-            - name: http-health
-              containerPort: {{ .Values.deployment.healthPort }}
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: http-health
-            initialDelaySeconds: {{ .Values.deployment.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.deployment.livenessProbe.periodSeconds }}
-            successThreshold: {{ .Values.deployment.livenessProbe.successThreshold }}
-            timeoutSeconds: {{ .Values.deployment.livenessProbe.timeoutSeconds }}
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: http-health
-            initialDelaySeconds: {{ .Values.deployment.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.deployment.readinessProbe.periodSeconds }}
-            successThreshold: {{ .Values.deployment.readinessProbe.successThreshold }}
-            timeoutSeconds: {{ .Values.deployment.readinessProbe.timeoutSeconds }}
           resources:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
       {{- with .Values.deployment.nodeSelector }}
