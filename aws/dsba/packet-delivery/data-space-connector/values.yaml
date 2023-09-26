@@ -2077,7 +2077,7 @@ applications:
                 ]
               }
 
-  - name: contract-management
+  - name: packet-delivery-contract-management
     enabled: true
     source_path: applications/contract-management
     source_ref: *branch
