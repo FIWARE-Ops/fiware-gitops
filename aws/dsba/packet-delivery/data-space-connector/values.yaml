@@ -2088,11 +2088,11 @@ applications:
       contract-management:
         services:
           product:
-            url: http://*tmForumProxy:8080
+            url: http://pdc-proxy-tmforum-api:8080
           party:
-            url: http://*tmForumProxy:8080
+            url: http://pdc-proxy-tmforum-api:8080
           til:
-            url: http://*tilService:8080
+            url: http://pdc-til-service:8080
     
     
     
