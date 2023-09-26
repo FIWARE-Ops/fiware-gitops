@@ -2093,6 +2093,17 @@ applications:
             url: http://pdc-proxy-tmforum-api:8080
           til:
             url: http://pdc-til-service:8080
+        til:
+          ## Type of Verifiable Credential necessary for accessing the service
+          credentialType: VerifiableCredential
+          ## Claims with permissions granted to given Verifiable Credential
+          claims:
+            ## DID of the target service that is requiring the permissions
+            - target: "did:web:packetdelivery.dsba.fiware.dev:did"
+              ## Roles that are added/allowed for the given service
+              roles:
+                - STANDARD_CUSTOMER
+                - GOLD_CUSTOMER
     
     
     
