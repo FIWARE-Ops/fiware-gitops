@@ -2086,6 +2086,9 @@ applications:
       - values.yaml
     values:
       contract-management:
+        deployment:
+          image:
+            pullPolicy: Always
         services:
           product:
             url: http://pdc-proxy-tmforum-api:8080
