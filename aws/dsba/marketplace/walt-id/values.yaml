@@ -77,4 +77,33 @@ vcwaltid:
         "issuanceDate": "2021-08-31T00:00:00Z",
         "type": ["VerifiableCredential", "IpsActivationService"]
       }
-    
+    OuranosActivationService.json: |
+      {
+        "@context": [
+          "https://www.w3.org/2018/credentials/v1"
+        ],
+        "credentialSchema": {
+          "id": "https://raw.githubusercontent.com/FIWARE-Ops/i4trust-provider/main/docs/schema.json",
+          "type": "FullJsonSchemaValidator2021"
+        },
+        "credentialSubject": {
+          "id": "did:ebsi:2AEMAqXWKYMu1JHPAgGcga4dxu7ThgfgN95VyJBJGZbSJUtp",
+          "roles": [
+            {
+              "names": [
+                "CREATE_ISSUER"
+              ],
+              "target": "did:web:ouranos-ws.com"
+            }
+          ]
+        },
+        "id": "urn:uuid:3add94f4-28ec-42a1-8704-4e4aa51006b4",
+        "issued": "2021-08-31T00:00:00Z",
+        "issuer": "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN",
+        "validFrom": "2021-08-31T00:00:00Z",
+        "issuanceDate": "2021-08-31T00:00:00Z",
+        "type": [
+            "VerifiableCredential",
+            "OuranosActivationService"
+        ]
+      }
