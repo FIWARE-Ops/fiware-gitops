@@ -93,7 +93,7 @@ keycloak:
     enabled: false
 
   externalDatabase:
-    host: postgresql-kc-provider
+    host: postgresql-ag
     user: postgres
     database: keycloak_provider
     existingSecret: postgres-keycloak-secret
