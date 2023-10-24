@@ -96,5 +96,5 @@ keycloak:
     host: postgresql-kc-provider
     user: postgres
     database: keycloak_provider
-    existingSecret: postgres-secret
+    existingSecret: postgres-keycloak-secret
     existingSecretPasswordKey: postgres-password
