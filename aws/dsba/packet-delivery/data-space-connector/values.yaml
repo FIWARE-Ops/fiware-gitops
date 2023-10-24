@@ -7,6 +7,8 @@ secretsEnabled: &secretsEnabled true
 host: &host
 tlsSecret: &tlsSecret
 participant: packet-delivery
+tmForumProxy: &tmForumProxy pdc-proxy-tmforum-api
+tilService: &tilService pdc-til-service
 
 applications:
 
@@ -90,6 +92,9 @@ applications:
     - values.yaml
     values:
       tm-forum-api:
+        apiProxy:
+          service:
+            nameOverride: *tmForumProxy
         defaultConfig:
           ngsiLd:
             url: http://packet-delivery-orion:1026
@@ -363,7 +368,8 @@ applications:
               issuer:
                 kind: ClusterIssuer
                 name: letsencrypt-aws-prod
-  
+        service:
+          serviceNameOverride: *tilService
         database:
           persistence: true
           host: mysql-pdc
@@ -2070,7 +2076,37 @@ applications:
                   "offline_access"
                 ]
               }
-    
+
+  - name: packet-delivery-contract-management
+    enabled: true
+    source_path: applications/contract-management
+    source_ref: *branch
+    destination: *destination
+    helm_values:
+      - values.yaml
+    values:
+      contract-management:
+        deployment:
+          image:
+            pullPolicy: Always
+        services:
+          product:
+            url: http://pdc-proxy-tmforum-api:8080
+          party:
+            url: http://pdc-proxy-tmforum-api:8080
+          til:
+            url: http://pdc-til-service:8080
+        til:
+          ## Type of Verifiable Credential necessary for accessing the service
+          credentialType: VerifiableCredential
+          ## Claims with permissions granted to given Verifiable Credential
+          claims:
+            ## DID of the target service that is requiring the permissions
+            - target: "did:web:packetdelivery.dsba.fiware.dev:did"
+              ## Roles that are added/allowed for the given service
+              roles:
+                - STANDARD_CUSTOMER
+                - GOLD_CUSTOMER
     
     
     
