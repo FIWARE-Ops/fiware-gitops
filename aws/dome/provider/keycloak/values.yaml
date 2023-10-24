@@ -60,7 +60,7 @@ keycloak:
   - name: VCISSUER_ISSUER_DID
     value: "did:web:provider.dome.fiware.dev"
   - name: VCISSUER_WALTID_ADDRESS
-    value: "http://provider-walt-id-vcwaltid"
+    value: "http://dome-provider-waltid-vcwaltid"
 
 
   extraVolumeMounts:
