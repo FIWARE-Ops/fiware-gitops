@@ -3,7 +3,7 @@ postgresql:
   auth:
     username: keycloak  
     enablePostgresUser: true
-    existingSecret: postgres-secret
+    existingSecret: postgres-keycloak-secret
     secretKeys:
       adminPasswordKey: postgres-root-password
       userPasswordKey: postgres-password
