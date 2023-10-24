@@ -18,7 +18,7 @@ keycloak:
     level: INFO
   replicaCount: 1
   auth:
-    existingSecret: keycloak-provider-secret
+    existingSecret: keycloak-secret
     passwordSecretKey: keycloak-admin
     adminUser: fiwareAdmin
   serviceAccount:
