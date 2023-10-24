@@ -77,7 +77,7 @@ keycloak:
       emptyDir: {}
     - name: profiles
       configMap:
-        name: dsba-animal-goods-keycloak-profile
+        name: keycloak-provider-profile
     - name: providers
       emptyDir: {}
   
