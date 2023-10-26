@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dome-consumer-blockchain-connector-core
+spec: 
+  type: ClusterIP
+  ports: 
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector: 
+    app.kubernetes.io/instance: dome-consumer-blockchain-connector-core
+    app.kubernetes.io/name: dome-consumer-blockchain-connector-core

@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dome-consumer-blockchain-connector-core
+data:
+  application.yml: |
+    dlt-adapter:
+      domain: http://dome-consumer-dlt-adapter:8080
+    blockchain:
+      rpcAddress: https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6
+      userEthereumAddress: "0xb794f5ea0ba39494ce839613fffba74279579268"
+      subscription:
+        active: false
+        notificationEndpoint: http://dome-consumer-blockchain-connector-core:8080/notifications/blockchain-node
+        event-type: "catalog"
+    broker:
+      externalDomain: https://orion.dome-consumer.fiware.dev
+      internalDomain: http://dome-consumer-orion-ld:1026
+    ngsi-subscription: 
+      notificationEndpoint: http://dome-consumer-blockchain-connector-core:8080/notifications/orion-ld
+      entityTypes: > 
+        product-offering,
+        product-order
+    orion-ld-adapter:
+      domain: http://dome-consumer-orion-ld-adapter:8080     
+    spring:
+      application:
+        name: Blockchain Connector Core
+      datasource:
+        url: jdbc:h2:mem:dbtest
+        driver-class-name: org.h2.Driver
+        username: in2admin
+        password: in2pass
+      jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        open-in-view: false
+        properties:
+          jakarta.persistence.sharedCache.mode: UNSPECIFIED
+        hibernate:
+          ddl-auto: update
+        show-sql: true
+        generate-ddl: true
+      security:
+        user:
+          name: in2test
+          password: in2pass
+    logging:
+      level:
+        ROOT: INFO
+        es.in2: DEBUG
+    management:
+      endpoints:
+        enabled-by-default: false
+        web:
+          exposure:
+            include: health, info, loggers, metrics
+          base-path: /
+          path-mapping:
+            health: health
+            info: info
+            loggers: loggers
+            metrics: metrics
+      endpoint:
+        health:
+          enabled: true
+          show-details: always
+        loggers:
+          enabled: true
+        metrics:
+          enabled: true
+    server:
+      port: 8080
+    app:
+      openapi:
+        dev-url: http://localhost:8080
