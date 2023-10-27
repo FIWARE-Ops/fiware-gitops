@@ -12,7 +12,8 @@ data:
       subscription:
         active: true
         notificationEndpoint: http://dome-consumer-blockchain-connector-core:8080/notifications/blockchain-node
-        event-type: "catalog"
+        entityTypes: >
+          catalog
     broker:
       externalDomain: https://orion.dome-consumer.fiware.dev
       internalDomain: http://dome-consumer-orion-ld:1026
