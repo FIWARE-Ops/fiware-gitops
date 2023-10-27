@@ -6,6 +6,8 @@ data:
   application.yml: |
     broker: 
       domain: http://dome-orion-ld:1026
+    blockchain-connector: 
+      domain: http://blockchain-connector-core:8080
     spring:
       application:
         name: Orion-LD Interface    
