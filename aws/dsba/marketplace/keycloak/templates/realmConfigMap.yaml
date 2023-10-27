@@ -78,6 +78,23 @@ data:
               "clientRole": true
             }
           ],
+          "did:web:sparep.mecaconnect.com": [
+            {
+              "name": "CREATE_ISSUER",
+              "description": "Is allowed to create issuers",
+              "clientRole": true
+            },
+            {
+              "name": "UPDATE_ISSUER",
+              "description": "Is allowed to update issuers",
+              "clientRole": true
+            },
+            {
+              "name": "DELETE_ISSUER",
+              "description": "Is allowed to delete issuers",
+              "clientRole": true
+            }
+          ],
           "orion-pep": [
             {
               "name": "admin",
@@ -138,6 +155,9 @@ data:
               "CREATE_ISSUER"
             ],
             "did:web:ouranos-ws.com": [
+              "CREATE_ISSUER"
+            ],
+            "did:web:sparep.mecaconnect.com": [
               "CREATE_ISSUER"
             ],
             "account": [
@@ -240,6 +260,38 @@ data:
               "expiryInMin": "5000000",
               "vctypes_OuranosActivationService": "ldp_vc,jwt_vc_json",
               "OuranosActivationService_claims": "email,firstName,familyName,roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
+          "clientId": "did:web:sparep.mecaconnect.com",
+          "enabled": true,
+          "description": "Client to connect the FbN sparep mecaconnect activation service",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": true,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "5000000",
+              "vctypes_MecaconnectActivationService": "ldp_vc,jwt_vc_json",
+              "MecaconnectActivationService_claims": "email,firstName,familyName,roles"
           },
           "authenticationFlowBindingOverrides": {},
           "fullScopeAllowed": true,
