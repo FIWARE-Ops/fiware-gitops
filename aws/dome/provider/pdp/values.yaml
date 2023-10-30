@@ -10,7 +10,7 @@ dsba-pdp:
       tag: 1.2.0
     logLevel: DEBUG
     ishare:
-      existingSecret: walt-id-vcwaltid-tls-sec
+      existingSecret: dome-provider-waltid-vcwaltid-tls-sec
 
       clientId: did:web:dome-marketplace.org
       trustedFingerprints:
