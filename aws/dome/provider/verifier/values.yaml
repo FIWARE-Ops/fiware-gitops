@@ -15,7 +15,7 @@ vcverifier:
       tirAddress: https://tir.dome-marketplace.org/v3/issuers
       did: did:web:provider.dome.fiware.dev
     configRepo:
-      configEndpoint: http://dome-provider-ccs-credentials-config-service :8080/
+      configEndpoint: http://dome-provider-ccs-credentials-config-service:8080/
     
 
   route:
