@@ -6,31 +6,31 @@ business-api-ecosystem:
 
     tmForum:
       catalog:
-        host: tmforum-tm-forum-api-product-catalog
+        host: dome-tm-forum-api-product-catalog
         port: 8080
         path: /
       inventory:
-        host: tmforum-tm-forum-api-product-inventory
+        host: dome-tm-forum-api-product-inventory
         port: 8080
         path: /
       ordering:
-        host: tmforum-tm-forum-api-product-ordering-management
+        host: dome-tm-forum-api-product-ordering-management
         port: 8080
         path: /
       billing:
-        host: tmforum-tm-forum-api-customer-bill-management
+        host: dome-tm-forum-api-customer-bill-management
         port: 8080
         path: /
       usage:
-        host: tmforum-tm-forum-api-usage-management
+        host: dome-tm-forum-api-usage-management
         port: 8080
         path: /
       party:
-        host: tmforum-tm-forum-api-party-catalog
+        host: dome-tm-forum-api-party-catalog
         port: 8080
         path: /
       customer:
-        host: tmforum-tm-forum-api-customer-management
+        host: dome-tm-forum-api-customer-management
         port: 8080
         path: /
 
