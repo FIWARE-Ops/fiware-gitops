@@ -62,7 +62,7 @@ business-api-ecosystem:
             "http://dome-provider-til-trusted-issuers-list:8080"
           ]
 
-  externalUrl: https://provider.dome.fiware.dev
+  externalUrl: https://marketplace-provider.dome.fiware.dev
 
   bizEcosystemChargingBackend:
 
