@@ -2,7 +2,7 @@ mongodb:
   fullnameOverride: mongodb-bae-provider
   auth:
     enabled: true
-    existingSecret: mongodb-secret
+    existingSecret: mongodb-provider-secret
     
   architecture: standalone
   podSecurityContext:
