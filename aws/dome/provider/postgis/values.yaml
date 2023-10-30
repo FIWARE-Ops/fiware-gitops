@@ -1,5 +1,4 @@
 postgresql:
-  
   fullnameOverride: postgresql-scorpio
   auth:
     username: postgres  
@@ -20,6 +19,8 @@ postgresql:
         verbs:
         - use    
   primary:
+    persistence:
+      size: 1Gi
     initdb:
       scripts:
         create.sh: |
