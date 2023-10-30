@@ -12,7 +12,7 @@ dsba-pdp:
     ishare:
       existingSecret: dome-provider-waltid-vcwaltid-tls-sec
 
-      clientId: did:web:dome-marketplace.org
+      clientId: did:web:provider.dome.fiware.dev
       trustedFingerprints:
         - D2F62092F982CF783D4632BD86FA86C3FBFDB2D8C8A58BC6809163FCF5CD030B
 

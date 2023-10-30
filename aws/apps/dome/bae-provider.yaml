@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dome-provider-scorpio
+  name: dome-provider-postgis
   namespace: argocd
   labels:
     participant: provider
@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/dome/provider/scorpio
+    path: aws/dome/provider/bae
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

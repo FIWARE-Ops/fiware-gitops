@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: dome-provider-postgres
   namespace: argocd
+  labels:
+    participant: provider
 spec:
   destination:
     namespace: dome
