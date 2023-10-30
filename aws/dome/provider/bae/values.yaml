@@ -140,14 +140,15 @@ business-api-ecosystem:
 
     route:
       enabled: true
-      host: marketplace-provider.dome.fiware.dev
-      tls:
-        insecureEdgeTerminationPolicy: Redirect
-        termination: edge
-      certificate:
-        issuer:
-          kind: ClusterIssuer
-          name: letsencrypt-aws-prod
+      routes:
+        host: marketplace-provider.dome.fiware.dev
+        tls:
+          insecureEdgeTerminationPolicy: Redirect
+          termination: edge
+        certificate:
+          issuer:
+            kind: ClusterIssuer
+            name: letsencrypt-aws-prod
 
     port: 8004
     nodeEnvironment: production
