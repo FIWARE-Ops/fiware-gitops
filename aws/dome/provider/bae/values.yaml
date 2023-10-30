@@ -66,8 +66,17 @@ business-api-ecosystem:
 
   bizEcosystemChargingBackend:
 
+    ## Service account
     serviceAccount:
-      create: true
+      create: false
+
+    ## Security context
+    securityContext:
+      ## -- specifies the user UID
+      runAsUser: 0
+      ## -- specifies the group GID
+      runAsGroup: 0
+
 
     deployment:
       image:
@@ -107,8 +116,18 @@ business-api-ecosystem:
   
   bizEcosystemLogicProxy:
 
+    ## Service account
     serviceAccount:
-      create: true
+      create: false
+      name: bae-provider-sa
+
+    ## Security context
+    securityContext:
+      ## -- specifies the user UID
+      runAsUser: 0
+      ## -- specifies the group GID
+      runAsGroup: 0
+
     
     existingSecret: bae-secret
 
