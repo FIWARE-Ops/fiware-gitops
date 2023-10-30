@@ -69,6 +69,7 @@ business-api-ecosystem:
     ## Service account
     serviceAccount:
       create: false
+      name: bae-provider-sa
 
     ## Security context
     securityContext:
