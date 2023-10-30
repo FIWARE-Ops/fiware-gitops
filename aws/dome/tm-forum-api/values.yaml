@@ -19,7 +19,7 @@ tm-forum-api:
   ## openshift specific route definition. Will not work on plain k8s
   route:
     ## -- should the deployment create openshift routes
-    enabled: true
+    enabled: false
     # -- host to be used
     host: tmforum.dome.fiware.dev
     tls:
