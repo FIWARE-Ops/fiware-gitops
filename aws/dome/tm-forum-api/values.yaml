@@ -49,7 +49,7 @@ tm-forum-api:
       # -- base path for the ngsi-ld api
       path: ngsi-ld/v1
       # -- address of the broker
-      url: http://dome-orion-ld:1026
+      url: http://dome-provider-scorpio:1026
 
 
   # -- list of apis to be deployed
