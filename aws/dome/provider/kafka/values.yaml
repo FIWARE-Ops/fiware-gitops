@@ -1,4 +1,14 @@
 kafka:
+  controller:
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
+      enabled: false
+  broker:
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
+      enabled: false
   listeners:
     client: 
       protocol: PLAINTEXT
