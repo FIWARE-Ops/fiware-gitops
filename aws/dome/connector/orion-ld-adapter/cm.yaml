@@ -5,7 +5,7 @@ metadata:
 data:
   application.yml: |
     broker: 
-      domain: http://dome-orion-ld:1026
+      domain: http://dome-provider-scorpio:1026
     blockchain-connector: 
       domain: http://blockchain-connector-core:8080
     spring:

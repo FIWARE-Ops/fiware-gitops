@@ -16,7 +16,7 @@ data:
           catalog
     broker:
       externalDomain: https://orion.dome.fiware.dev
-      internalDomain: http://dome-orion-ld:1026
+      internalDomain: http://dome-provider-scorpio:1026
     ngsi-subscription: 
       notificationEndpoint: http://blockchain-connector-core:8080/notifications/orion-ld
       entityTypes: > 
