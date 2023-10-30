@@ -4,11 +4,15 @@ kafka:
       enabled: false
     containerSecurityContext:
       enabled: false
+    persistence:
+      size: 1Gi
   broker:
     podSecurityContext:
       enabled: false
     containerSecurityContext:
       enabled: false
+    persistence:
+      size: 1Gi
   listeners:
     client: 
       protocol: PLAINTEXT
