@@ -1,0 +1,30 @@
+vcverifier:
+  deployment:
+    image:
+      repository: quay.io/fiware/vcverifier
+      tag: 2.3.0
+      pullPolicy: Always
+    logging: 
+      level: DEBUG
+      pathsToSkip: 
+        - "/health"
+
+    ssikit:
+      auditorUrl: http://dome-provider-waltid-vcwaltid:7003
+    verifier:
+      tirAddress: https://tir.dome-marketplace.org/v3/issuers
+      did: did:web:provider.dome.fiware.dev
+    configRepo:
+      configEndpoint: http://credentials-config-service:8080/
+    
+
+  route:
+    enabled: true
+    host: verifier-provider.dome.fiware.dev
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
