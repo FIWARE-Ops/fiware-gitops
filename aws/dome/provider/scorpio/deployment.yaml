@@ -30,7 +30,7 @@ spec:
           image: "scorpiobroker/all-in-one-runner:java-kafka-4.1.8"
           env:
             - name: DBHOST
-              value: postgis-scorpio
+              value: postgresql-scorpio
             - name: BUSHOST
               value: dome-provider-kafka
             - name: QUARKUS_LOG_LEVEL
