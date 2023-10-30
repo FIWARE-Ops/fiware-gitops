@@ -12,7 +12,7 @@ data:
       "displayNameHtml": "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
       "enabled": true,
       "attributes": {
-        "frontendUrl": "https://keycloak.dome.fiware.dev"
+        "frontendUrl": "https://keycloak-provider.dome.fiware.dev"
       },
       "sslRequired": "none",
       "roles": {

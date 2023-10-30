@@ -1,6 +1,6 @@
 route:
   enabled: true
-  host: keycloak.dome.fiware.dev
+  host: keycloak-provider.dome.fiware.dev
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
