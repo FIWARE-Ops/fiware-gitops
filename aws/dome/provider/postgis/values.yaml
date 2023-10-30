@@ -1,14 +1,10 @@
 postgresql:
-  commonAnnotations:
-    wistefan/rollout-injecting-webhook: ignore
   
-  fullnameOverride: postgis-scorpio
-
+  fullnameOverride: postgresql-scorpio
   auth:
-    # Credentials for Keycloak DB
-    username: scorpio
+    username: postgres  
     enablePostgresUser: true
-    existingSecret: postgres-scropio-secret
+    existingSecret: postgres-scorpio-secret
     secretKeys:
       adminPasswordKey: postgres-root-password
       userPasswordKey: postgres-password
@@ -19,16 +15,13 @@ postgresql:
         - security.openshift.io
         resourceNames:
         - anyuid
-        - privileged
         resources:
         - securitycontextconstraints
         verbs:
-        - use  
-    
-  # Init DB
+        - use    
   primary:
     initdb:
       scripts:
-        enable.sh: |
+        create.sh: |
           psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE EXTENSION postgis;"
           psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE ngb;"
