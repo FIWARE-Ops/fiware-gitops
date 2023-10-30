@@ -45,7 +45,7 @@ business-api-ecosystem:
       host: https://verifier-provider.dome.fiware.dev
     # Configuration for the Credential Config Service initiation
     ccs:
-      endpoint: "http://credentials-config-service:8080"
+      endpoint: "http://dome-provider-ccs-credentials-config-service :8080"
       credentials:
         - type: "VerifiableCredential"
           trustedParticipantsLists: [
