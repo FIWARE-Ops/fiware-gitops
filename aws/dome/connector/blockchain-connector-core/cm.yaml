@@ -49,7 +49,7 @@ data:
           password: in2pass
     logging:
       level:
-        ROOT: INFO
+        ROOT: TRACE
         es.in2: DEBUG
     management:
       endpoints:
