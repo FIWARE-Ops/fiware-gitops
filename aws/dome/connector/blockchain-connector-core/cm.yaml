@@ -13,7 +13,9 @@ data:
         active: true
         notificationEndpoint: http://blockchain-connector-core:8080/notifications/blockchain-node
         entityTypes: >
-          catalog
+          catalog,
+          individual,
+          organization
     broker:
       externalDomain: https://orion.dome.fiware.dev
       internalDomain: http://scorpio-provider:1026
