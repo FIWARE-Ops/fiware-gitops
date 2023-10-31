@@ -44,7 +44,7 @@ tm-forum-api:
       # -- base path for the ngsi-ld api
       path: ngsi-ld/v1
       # -- address of the broker
-      url: http://dome-provider-scorpio:1026
+      url: http://scorpio-provider:1026
 
     logLevel: DEBUG
     contextUrl: https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld
