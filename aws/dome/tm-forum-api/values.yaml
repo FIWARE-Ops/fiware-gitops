@@ -20,22 +20,9 @@ tm-forum-api:
   route:
     ## -- should the deployment create openshift routes
     enabled: false
-    # -- host to be used
-    host: tmforum.dome.fiware.dev
-    tls:
-      insecureEdgeTerminationPolicy: Redirect
-      termination: edge
-    certificate:
-      issuer:
-        kind: ClusterIssuer
-        name: letsencrypt-aws-prod
 
   apiProxy:
-    image:
-      tag: distroless-v1.27-latest
     enabled: false
-    service: 
-      nameOverride: tmforum-api-proxy
 
 
   ## configuration to be used by every api-deployment if nothing specific is provided.
@@ -48,7 +35,7 @@ tm-forum-api:
       # -- tag to be used, most of the time the apis will use the same version
       tag: 0.14-PRE
       # -- pull policy to be used
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
 
     # --  ngsi-ld broker connection information
     ngsiLd:
@@ -57,7 +44,7 @@ tm-forum-api:
       # -- base path for the ngsi-ld api
       path: ngsi-ld/v1
       # -- address of the broker
-      url: http://dome-providerscorpio:1026
+      url: http://dome-provider-scorpio:1026
 
     logLevel: INFO
     contextUrl: https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld
