@@ -56,7 +56,7 @@ keycloak:
   - name: KEYCLOAK_PROXY_ADDRESS_FORWARDING
     value: "true"
   - name: KEYCLOAK_LOG_LEVEL
-    value: INFO
+    value: DEBUG
 
   extraVolumeMounts:
     - name: profiles
