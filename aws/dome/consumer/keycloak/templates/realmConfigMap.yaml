@@ -12,7 +12,9 @@ data:
       "displayNameHtml": "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
       "enabled": true,
       "attributes": {
-        "frontendUrl": "https://keycloak-consumer.dome.fiware.dev"
+        "frontendUrl": "https://keycloak-consumer.dome.fiware.dev",
+        "issuerDid": "did:web:consumer.dome.fiware.dev",
+        "keyPath": "/opt/key/tls.key"
       },
       "sslRequired": "none",
       "roles": {

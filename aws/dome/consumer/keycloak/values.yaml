@@ -57,11 +57,6 @@ keycloak:
     value: "true"
   - name: KEYCLOAK_LOG_LEVEL
     value: INFO
-  - name: VCISSUER_ISSUER_DID
-    value: "did:web:consumer.dome.fiware.dev"
-  - name: VCISSUER_WALTID_ADDRESS
-    value: "http://dome-consumer-waltid-vcwaltid"
-
 
   extraVolumeMounts:
     - name: profiles
@@ -71,6 +66,8 @@ keycloak:
       mountPath: /opt/bitnami/keycloak/providers/
     - name: data
       mountPath: /data
+    - name: private-key
+      mountPath: /opt/key
 
   extraVolumes:
     - name: data
@@ -78,12 +75,15 @@ keycloak:
     - name: profiles
       configMap:
         name: keycloak-provider-profile
+    - name: private-key
+      secret:
+        secretName: dome-consumer-waltid-vcwaltid-tls-sec
     - name: providers
       emptyDir: {}
   
   initContainers:
     - name: add-vc-issuer
-      image: quay.io/fiware/keycloak-vc-issuer:1.0.1
+      image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
       imagePullPolicy: Always
       volumeMounts:
         - name: providers
