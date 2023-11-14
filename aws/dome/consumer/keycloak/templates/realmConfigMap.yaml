@@ -130,6 +130,7 @@ data:
               "config": {
                 "subject-property": "subjectDid",
                 "static-value": "did:web:dome-marketplace.org"
+              }
             },
             { 
               "name": "legal-name-mapper",
