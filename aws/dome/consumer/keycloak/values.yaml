@@ -55,10 +55,6 @@ keycloak:
   extraEnvVars:
   - name: KEYCLOAK_LOG_LEVEL
     value: DEBUG
-  - name: KC_HOSTNAME_URL
-    value: "https://keycloak-consumer.dome.fiware.dev"
-  - name: KC_HOSTNAME_ADMIN_URL
-    value: "https://keycloak-consumer.dome.fiware.dev"
 
   extraVolumeMounts:
     - name: providers
