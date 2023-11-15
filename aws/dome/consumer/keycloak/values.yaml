@@ -39,7 +39,7 @@ keycloak:
   podSecurityContext:
     enabled: false
   keycloakConfigCli:
-    enabled: true
+    enabled: false
     # current image does not contain 20.0.3., thus we need this fix
     command: 
       - java
