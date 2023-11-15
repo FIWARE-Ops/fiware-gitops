@@ -32,16 +32,8 @@ keycloak:
         - securitycontextconstraints
         verbs:
         - use
-  containerSecurityContext:
-    enabled: true
-    runAsUser: 1001
-    runAsNonRoot: true
-    privileged: false
-    readOnlyRootFilesystem: false
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop: ["ALL"]
-    seccompProfile:
+  containerSecurityContext: 
+    enabled: false
         
   keycloakConfigCli:
     enabled: true
