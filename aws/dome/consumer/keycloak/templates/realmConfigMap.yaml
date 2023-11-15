@@ -87,8 +87,9 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-target-role-mapper",
               "config": {
-                   "subject-property": "roles",
-                   "client": "did:web:onboarding.dome-marketplace.org" 
+                   "subjectProperty": "roles",
+                   "clientId": "did:web:onboarding.dome-marketplace.org",
+                   "supportedCredentialTypes": "NaturalPersonCredential"
               }
             },
             { 
@@ -96,8 +97,9 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-user-attribute-mapper",
               "config": {
-                   "subject-property": "email",
-                   "user-attribute": "email" 
+                   "subjectProperty": "email",
+                   "userAttribute": "email", 
+                   "supportedCredentialTypes": "NaturalPersonCredential"
               }
             },
             { 
@@ -105,8 +107,9 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-user-attribute-mapper",
               "config": {
-                   "subject-property": "firstName",
-                   "user-attribute": "firstName" 
+                   "subjectProperty": "firstName",
+                   "userAttribute": "firstName", 
+                   "supportedCredentialTypes": "NaturalPersonCredential"
               }
             },
             { 
@@ -114,22 +117,27 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-user-attribute-mapper",
               "config": {
-                   "subject-property": "familyName",
-                   "user-attribute": "lastName" 
+                   "subjectProperty": "familyName",
+                   "userAttribute": "lastName", 
+                   "supportedCredentialTypes": "NaturalPersonCredential" 
               }
             },
             { 
               "name": "id-mapper",
               "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-subject-id-mapper",
+              "protocolMapper": "siop-2-subject-id-mapper", 
+              "config": {
+                "supportedCredentialTypes": "NaturalPersonCredential,GaiaXParticipantCredential"
+              }
             },
             { 
               "name": "did-mapper",
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-static-claim-mapper",
               "config": {
-                "subject-property": "subjectDid",
-                "static-value": "did:web:dome-marketplace.org"
+                "subjectProperty": "subjectDid",
+                "staticValue": "did:web:dome-marketplace.org",
+                "supportedCredentialTypes": "GaiaXParticipantCredential"
               }
             },
             { 
@@ -137,8 +145,9 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-static-claim-mapper",
               "config": {
-                "subject-property": "gx:legalName",
-                "static-value": "dome-marketplace.org"
+                "subjectProperty": "gx:legalName",
+                "staticValue": "dome-marketplace.org",
+                "supportedCredentialTypes": "GaiaXParticipantCredential"
               }
             }
           ],
@@ -179,8 +188,9 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-target-role-mapper",
               "config": {
-                   "subject-property": "roles",
-                   "client": "did:web:dome-marketplace.org" 
+                "subjectProperty": "roles",
+                "clientId": "did:web:dome-marketplace.org",
+                "supportedCredentialTypes": "NaturalPersonCredential"
               }
             },
             { 
@@ -188,8 +198,9 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-user-attribute-mapper",
               "config": {
-                   "subject-property": "email",
-                   "user-attribute": "email" 
+                "subjectProperty": "email",
+                "userAttribute": "email",
+                "supportedCredentialTypes": "NaturalPersonCredential"
               }
             },
             { 
@@ -197,8 +208,9 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-user-attribute-mapper",
               "config": {
-                   "subject-property": "firstName",
-                   "user-attribute": "firstName" 
+                "subjectProperty": "firstName",
+                "userAttribute": "firstName",
+                "supportedCredentialTypes": "NaturalPersonCredential" 
               }
             },
             { 
@@ -206,14 +218,18 @@ data:
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-user-attribute-mapper",
               "config": {
-                   "subject-property": "familyName",
-                   "user-attribute": "lastName" 
+                "subjectProperty": "familyName",
+                "userAttribute": "lastName",
+                "supportedCredentialTypes": "NaturalPersonCredential"  
               }
             },
             { 
               "name": "id-mapper",
               "protocol": "SIOP-2",
               "protocolMapper": "siop-2-subject-id-mapper",
+              "config": {
+                "supportedCredentialTypes": "NaturalPersonCredential"
+              }
             }
           ],
           "authenticationFlowBindingOverrides": {},
