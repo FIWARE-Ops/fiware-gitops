@@ -10,8 +10,6 @@ route:
       name: letsencrypt-aws-prod
   
 keycloak:  
-  image: 
-    tag: 22.0.5
   service:
     type: ClusterIP
   logging:
@@ -34,13 +32,9 @@ keycloak:
         - securitycontextconstraints
         verbs:
         - use
-  containerSecurityContext:
-    enabled: false
-  podSecurityContext:
-    enabled: false
+        
   keycloakConfigCli:
-    enabled: false
-    # current image does not contain 20.0.3., thus we need this fix
+    enabled: true
     command: 
       - java
       - -jar
@@ -62,9 +56,6 @@ keycloak:
     value: DEBUG
 
   extraVolumeMounts:
-    - name: profiles
-      mountPath: /opt/bitnami/keycloak/conf/profile.properties
-      subPath: profile.properties
     - name: providers
       mountPath: /opt/bitnami/keycloak/providers/
     - name: data
@@ -75,22 +66,19 @@ keycloak:
   extraVolumes:
     - name: data
       emptyDir: {}
-    - name: profiles
-      configMap:
-        name: keycloak-provider-profile
     - name: private-key
       secret:
         secretName: dome-consumer-waltid-vcwaltid-tls-sec
     - name: providers
       emptyDir: {}
   
-#  initContainers:
-#    - name: add-vc-issuer
-#      image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
-#      imagePullPolicy: Always
-#      volumeMounts:
-#        - name: providers
-#          mountPath: /target
+  initContainers:
+    - name: add-vc-issuer
+      image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: providers
+          mountPath: /target
   
   postgresql:
     enabled: false
