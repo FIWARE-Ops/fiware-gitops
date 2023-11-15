@@ -34,7 +34,10 @@ keycloak:
         - securitycontextconstraints
         verbs:
         - use
-  
+  containerSecurityContext:
+    enabled: false
+  podSecurityContext:
+    enabled: false
   keycloakConfigCli:
     enabled: true
     # current image does not contain 20.0.3., thus we need this fix
