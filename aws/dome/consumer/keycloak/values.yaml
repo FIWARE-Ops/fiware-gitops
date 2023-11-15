@@ -41,6 +41,7 @@ keycloak:
     allowPrivilegeEscalation: false
     capabilities:
       drop: ["ALL"]
+    seccompProfile: {}
         
   keycloakConfigCli:
     enabled: true
