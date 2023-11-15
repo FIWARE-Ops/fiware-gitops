@@ -11,7 +11,7 @@ route:
   
 keycloak:  
   image: 
-    tag: 21.1.2-debian-11-r1
+    tag: 22.0
   service:
     type: ClusterIP
   logging:
