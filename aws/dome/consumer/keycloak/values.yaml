@@ -34,6 +34,7 @@ keycloak:
         - use
   containerSecurityContext: 
     enabled: false
+
   proxy: edge
 
   keycloakConfigCli:
@@ -55,6 +56,12 @@ keycloak:
   extraEnvVars:
   - name: KEYCLOAK_LOG_LEVEL
     value: DEBUG
+  - name: KC_HEALTH_ENABLED
+    value: "true"
+  - name: KEYCLOAK_PRODUCTION
+    value: "true"
+  - name: KEYCLOAK_PROXY
+    value: "edge"
 
   extraVolumeMounts:
     - name: providers
