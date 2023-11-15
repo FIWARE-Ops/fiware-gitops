@@ -10,6 +10,8 @@ route:
       name: letsencrypt-aws-prod
   
 keycloak:  
+  image: 
+    tag: 22.0.0
   service:
     type: ClusterIP
   logging:
