@@ -58,8 +58,6 @@ keycloak:
     value: DEBUG
   - name: KC_PROXY
     value: "edge"
-  - name: KC_HOSTNAME
-    value: "keycloak-consumer.dome.fiware.dev"
   - name: KC_HOSTNAME_STRICT_HTTPS
     value: "true"
   - name: KC_HOSTNAME_URL
