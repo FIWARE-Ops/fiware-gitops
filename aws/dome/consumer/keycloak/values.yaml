@@ -11,7 +11,7 @@ route:
   
 keycloak:  
   image: 
-    tag: 22.0
+    tag: 22.0.5
   service:
     type: ClusterIP
   logging:
