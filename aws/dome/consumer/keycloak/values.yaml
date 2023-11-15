@@ -56,16 +56,14 @@ keycloak:
   extraEnvVars:
   - name: KEYCLOAK_LOG_LEVEL
     value: DEBUG
-  - name: KC_HEALTH_ENABLED
-    value: "true"
-  - name: KEYCLOAK_PRODUCTION
-    value: "true"
-  - name: KEYCLOAK_PROXY
+  - name: KC_PROXY
     value: "edge"
   - name: KC_HOSTNAME
     value: "keycloak-consumer.dome.fiware.dev"
   - name: KC_HOSTNAME_STRICT_HTTPS
     value: "true"
+  - name: KC_HOSTNAME_URL
+    value: "https://keycloak-consumer.dome.fiware.dev/"
   - name: KC_HOSTNAME_ADMIN_URL
     value: "https://keycloak-consumer.dome.fiware.dev/"
 
