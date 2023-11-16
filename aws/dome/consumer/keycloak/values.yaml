@@ -38,6 +38,7 @@ keycloak:
     enabled: false
 
   proxy: edge
+  production: true
 
   keycloakConfigCli:
     enabled: true
@@ -58,9 +59,7 @@ keycloak:
   extraEnvVars:
   - name: KEYCLOAK_LOG_LEVEL
     value: DEBUG
-  - name: KC_HOSTNAME_STRICT_HTTPS
-    value: "false"
-    
+
   extraVolumeMounts:
     - name: providers
       mountPath: /opt/bitnami/keycloak/providers/
