@@ -40,7 +40,7 @@ keycloak:
   proxy: edge
 
   keycloakConfigCli:
-    enabled: false
+    enabled: true
     command: 
       - java
       - -jar
@@ -86,13 +86,13 @@ keycloak:
     - name: providers
       emptyDir: {}
   
-  #initContainers:
-  #  - name: add-vc-issuer
-  #    image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
-  #    imagePullPolicy: Always
-  #    volumeMounts:
-  #      - name: providers
-  #        mountPath: /target
+  initContainers:
+    - name: add-vc-issuer
+      image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: providers
+          mountPath: /target
   
   postgresql:
     enabled: false
