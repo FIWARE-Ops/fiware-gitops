@@ -15,7 +15,7 @@ keycloak:
   service:
     type: ClusterIP
   logging:
-    level: DEBUG
+    level: INFO
   replicaCount: 1
   auth:
     existingSecret: keycloak-consumer-secret
