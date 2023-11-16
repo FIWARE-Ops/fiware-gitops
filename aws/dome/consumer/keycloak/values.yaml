@@ -54,15 +54,13 @@ keycloak:
       enabled: false
     podSecurityContext:
       enabled: false
-    existingConfigmap:  keycloak-consumer-realm
+    existingConfigmap: keycloak-consumer-realm
   
   extraEnvVars:
-  - name: KEYCLOAK_LOG_LEVEL
-    value: DEBUG
   - name: KC_HOSTNAME_URL
-    value: https://keycloak-consumer.dome.fiware.dev/
+    value: https://keycloak-consumer.dome.fiware.dev:443/
   - name: KC_HOSTNAME_ADMIN_URL
-    value: https://keycloak-consumer.dome.fiware.dev/
+    value: https://keycloak-consumer.dome.fiware.dev:443/
   - name: KC_HOSTNAME_STRICT
     value: "false"
   - name: KC_HOSTNAME_DEBUG
