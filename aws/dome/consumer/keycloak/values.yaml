@@ -73,6 +73,8 @@ keycloak:
     value: "false"
   - name: KEYCLAOK_HOSTNAME_DEBUG
     value: "true"
+  - name: KC_HOSTNAME_DEBUG
+    value: "true"
 
   extraVolumeMounts:
     - name: providers
