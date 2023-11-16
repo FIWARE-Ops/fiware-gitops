@@ -37,6 +37,8 @@ keycloak:
   containerSecurityContext: 
     enabled: false
 
+  proxy: edge
+
   keycloakConfigCli:
     enabled: true
     command: 
@@ -62,7 +64,9 @@ keycloak:
     value: "true"
   - name: KC_HOSTNAME_STRICT_BACKCHANNEL
     value: "true"
-    
+  - name: KC_PROXY
+    value: "edge"
+  
   extraVolumeMounts:
     - name: providers
       mountPath: /opt/bitnami/keycloak/providers/
