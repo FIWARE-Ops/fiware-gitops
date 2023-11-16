@@ -11,11 +11,11 @@ route:
   
 keycloak:  
   image: 
-    tag: 21.0.2
+    tag: 22.0.5
   service:
     type: ClusterIP
   logging:
-    level: INFO
+    level: DEBUG
   replicaCount: 1
   auth:
     existingSecret: keycloak-consumer-secret
