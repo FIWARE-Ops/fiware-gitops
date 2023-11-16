@@ -63,6 +63,16 @@ keycloak:
     value: https://keycloak-consumer.dome.fiware.dev/
   - name: KEYCLOAK_HOSTNAME_ADMIN_URL
     value: https://keycloak-consumer.dome.fiware.dev/
+  - name: KEYCLOAK_HOSTNAME_STRICT
+    value: "false"
+  - name: KC_HOSTNAME_URL
+    value: https://keycloak-consumer.dome.fiware.dev/
+  - name: KC_HOSTNAME_ADMIN_URL
+    value: https://keycloak-consumer.dome.fiware.dev/
+  - name: KC_HOSTNAME_STRICT
+    value: "false"
+  - name: KEYCLAOK_HOSTNAME_DEBUG
+    value: "true"
 
   extraVolumeMounts:
     - name: providers
