@@ -56,19 +56,9 @@ keycloak:
     existingConfigmap: keycloak-consumer-realm
   
   extraEnvVars:
-  - name: KC_HOSTNAME_URL
-    value: https://keycloak-consumer.dome.fiware.dev:443/
-  - name: KC_HOSTNAME_ADMIN_URL
-    value: https://keycloak-consumer.dome.fiware.dev:443/
-  - name: KC_HOSTNAME_STRICT
-    value: "false"
   - name: KC_HOSTNAME_DEBUG
     value: "true"
-  - name: KC_PROXY
-    value: "edge"
-  - name: KC_HTTP_ENABLED
-    value: "true"
-
+    
   extraVolumeMounts:
     - name: providers
       mountPath: /opt/bitnami/keycloak/providers/
