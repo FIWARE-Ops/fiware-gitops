@@ -40,7 +40,7 @@ keycloak:
   proxy: edge
 
   keycloakConfigCli:
-    enabled: true
+    enabled: false
     command: 
       - java
       - -jar
