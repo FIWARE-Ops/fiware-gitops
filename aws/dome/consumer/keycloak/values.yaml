@@ -66,6 +66,8 @@ keycloak:
     value: "true"
   - name: KC_PROXY
     value: "edge"
+  - name: KC_HTTP_ENABLED
+    value: "true"
 
   extraVolumeMounts:
     - name: providers
