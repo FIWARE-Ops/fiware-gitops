@@ -6,3 +6,4 @@ data:
   profile.properties: |-
     feature.scripts=enabled
     feature.upload_scripts=enabled
+    feature.account3=enabled
