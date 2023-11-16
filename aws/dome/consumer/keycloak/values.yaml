@@ -37,8 +37,6 @@ keycloak:
   containerSecurityContext: 
     enabled: false
 
-  proxy: edge
-
   keycloakConfigCli:
     enabled: true
     command: 
@@ -60,16 +58,11 @@ keycloak:
     value: "true"
   - name: KC_HOSTNAME
     value: "keycloak-consumer.dome.fiware.dev"
-  - name: KC_HOSTNAME_ADMIN_URL
-    value: "https://keycloak-consumer.dome.fiware.dev/"
-  - name: KC_HOSTNAME_STRICT_HTTPS
+  - name: KC_HOSTNAME_STRICT
     value: "true"
-  - name: KEYCLOAK_PROXY
-    value: "edge"
-  - name: KC_PROXY
-    value: "edge"
+  - name: KC_HOSTNAME_STRICT_BACKCHANNEL
+    value: "true"
     
-
   extraVolumeMounts:
     - name: providers
       mountPath: /opt/bitnami/keycloak/providers/
