@@ -60,9 +60,9 @@ keycloak:
   - name: KEYCLOAK_LOG_LEVEL
     value: DEBUG
   - name: KEYCLOAK_HOSTNAME_URL
-    value: https://keycloak-consumer.dome.fiware.dev:443/
+    value: https://keycloak-consumer.dome.fiware.dev/
   - name: KEYCLOAK_HOSTNAME_ADMIN_URL
-    value: https://keycloak-consumer.dome.fiware.dev:443/
+    value: https://keycloak-consumer.dome.fiware.dev/
 
   extraVolumeMounts:
     - name: providers
