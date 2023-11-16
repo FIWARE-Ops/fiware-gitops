@@ -66,6 +66,8 @@ keycloak:
     value: "true"
   - name: KC_PROXY
     value: "edge"
+  - name: KC_FEATURES
+    value: "account3,scripts"
   
   extraVolumeMounts:
     - name: providers
