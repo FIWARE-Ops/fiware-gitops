@@ -7,7 +7,6 @@ data:
     {
       "id": "dome",
       "realm": "dome",
-      "accountTheme": "siop-2",
       "displayName": "Keycloak",
       "displayNameHtml": "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
       "enabled": true,

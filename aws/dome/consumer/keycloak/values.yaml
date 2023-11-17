@@ -11,7 +11,8 @@ route:
   
 keycloak:  
   image: 
-    tag: 22.0.5
+    repository: quay.io/wi_stefan/keycloak
+    tag: vc
   service:
     type: ClusterIP
   logging:
@@ -86,13 +87,13 @@ keycloak:
     - name: providers
       emptyDir: {}
   
-  initContainers:
-    - name: add-vc-issuer
-      image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
-      imagePullPolicy: Always
-      volumeMounts:
-        - name: providers
-          mountPath: /target
+  #initContainers:
+  #  - name: add-vc-issuer
+  #    image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
+  #    imagePullPolicy: Always
+  #    volumeMounts:
+  #      - name: providers
+  #        mountPath: /target
   
   postgresql:
     enabled: false
