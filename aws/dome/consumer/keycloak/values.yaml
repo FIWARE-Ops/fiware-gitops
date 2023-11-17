@@ -61,6 +61,8 @@ keycloak:
   extraEnvVars:
   - name: KC_HOSTNAME_DEBUG
     value: "true"
+  - name: KC_LOG_LEVEL
+    value: "DEBUG"
   - name: KC_HOSTNAME
     value: "keycloak-consumer.dome.fiware.dev"
   - name: KC_HOSTNAME_STRICT
