@@ -73,7 +73,7 @@ data:
           "serviceAccountsEnabled": false,
           "publicClient": false,
           "frontchannelLogout": false,
-          "protocol": "SIOP-2",
+          "protocol": "OIDC4VP",
           "attributes": {
               "client.secret.creation.time": "1675260539",
               "expiryInMin": "3600",
@@ -83,8 +83,8 @@ data:
           "protocolMappers": [
             { 
               "name": "target-role-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-target-role-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-target-role-mapper",
               "config": {
                    "subjectProperty": "roles",
                    "clientId": "did:web:onboarding.dome-marketplace.org",
@@ -93,8 +93,8 @@ data:
             },
             { 
               "name": "email-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-user-attribute-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-user-attribute-mapper",
               "config": {
                    "subjectProperty": "email",
                    "userAttribute": "email", 
@@ -103,8 +103,8 @@ data:
             },
             { 
               "name": "first-name-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-user-attribute-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-user-attribute-mapper",
               "config": {
                    "subjectProperty": "firstName",
                    "userAttribute": "firstName", 
@@ -113,8 +113,8 @@ data:
             },
             { 
               "name": "lastName-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-user-attribute-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-user-attribute-mapper",
               "config": {
                    "subjectProperty": "familyName",
                    "userAttribute": "lastName", 
@@ -123,16 +123,16 @@ data:
             },
             { 
               "name": "id-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-subject-id-mapper", 
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-subject-id-mapper", 
               "config": {
                 "supportedCredentialTypes": "NaturalPersonCredential,GaiaXParticipantCredential"
               }
             },
             { 
               "name": "did-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-static-claim-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-static-claim-mapper",
               "config": {
                 "subjectProperty": "subjectDid",
                 "staticValue": "did:web:dome-marketplace.org",
@@ -141,8 +141,8 @@ data:
             },
             { 
               "name": "legal-name-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-static-claim-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-static-claim-mapper",
               "config": {
                 "subjectProperty": "gx:legalName",
                 "staticValue": "dome-marketplace.org",
@@ -175,7 +175,7 @@ data:
           "serviceAccountsEnabled": false,
           "publicClient": false,
           "frontchannelLogout": false,
-          "protocol": "SIOP-2",
+          "protocol": "OIDC4VP",
           "attributes": {
               "client.secret.creation.time": "1675260539",
               "expiryInMin": "3600",
@@ -184,8 +184,8 @@ data:
           "protocolMappers": [
             { 
               "name": "target-role-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-target-role-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-target-role-mapper",
               "config": {
                 "subjectProperty": "roles",
                 "clientId": "did:web:dome-marketplace.org",
@@ -194,8 +194,8 @@ data:
             },
             { 
               "name": "email-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-user-attribute-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-user-attribute-mapper",
               "config": {
                 "subjectProperty": "email",
                 "userAttribute": "email",
@@ -204,8 +204,8 @@ data:
             },
             { 
               "name": "first-name-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-user-attribute-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-user-attribute-mapper",
               "config": {
                 "subjectProperty": "firstName",
                 "userAttribute": "firstName",
@@ -214,8 +214,8 @@ data:
             },
             { 
               "name": "lastName-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-user-attribute-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-user-attribute-mapper",
               "config": {
                 "subjectProperty": "familyName",
                 "userAttribute": "lastName",
@@ -224,8 +224,8 @@ data:
             },
             { 
               "name": "id-mapper",
-              "protocol": "SIOP-2",
-              "protocolMapper": "siop-2-subject-id-mapper",
+              "protocol": "OIDC4VP",
+              "protocolMapper": "oidc4vp-subject-id-mapper",
               "config": {
                 "supportedCredentialTypes": "NaturalPersonCredential"
               }
