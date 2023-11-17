@@ -126,10 +126,10 @@ keycloak:
             secretKeyRef:
               key: postgres-password
               name: postgres-keycloak-consumer-secret    
-            volumeMounts:
-              - name: realms
-                mountPath: /realms
-  
+      volumeMounts:
+        - name: realms
+          mountPath: /realms
+
   postgresql:
     enabled: false
 
