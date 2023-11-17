@@ -13,7 +13,7 @@ keycloak:
   image: 
     registry: quay.io
     repository: wi_stefan/keycloak
-    tag: vc
+    tag: import
     pullPolicy: Always
   service:
     type: ClusterIP
