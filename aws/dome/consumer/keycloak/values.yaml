@@ -11,7 +11,8 @@ route:
   
 keycloak:  
   image: 
-    repository: quay.io/wi_stefan/keycloak
+    registry: quay.io
+    repository: wi_stefan/keycloak
     tag: vc
   service:
     type: ClusterIP
