@@ -110,13 +110,25 @@ keycloak:
     - name: providers
       emptyDir: {}
   
-  #initContainers:
-  #  - name: add-vc-issuer
-  #    image: quay.io/wi_stefan/keycloak-vc-issuer:no-walt
-  #    imagePullPolicy: Always
-  #    volumeMounts:
-  #      - name: providers
-  #        mountPath: /target
+  initContainers:
+    - name: init-realm
+      image: quay.io/wi_stefan/keycloak:import
+      imagePullPolicy: Always
+      env: 
+        - name: KC_DB_URL_HOST
+          value: postgresql-consumer
+        - name: KC_DB_URL_DATABASE
+          value: keycloak_consumer
+        - name: KC_DB_USERNAME
+          value: postgres
+        - name: KC_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: postgres-password
+              name: postgres-keycloak-consumer-secret    
+            volumeMounts:
+              - name: realms
+                mountPath: /realms
   
   postgresql:
     enabled: false
