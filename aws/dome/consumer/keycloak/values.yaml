@@ -13,7 +13,7 @@ keycloak:
   image: 
     registry: quay.io
     repository: wi_stefan/keycloak
-    tag: vc
+    tag: import
     pullPolicy: Always
   service:
     type: ClusterIP
@@ -43,7 +43,7 @@ keycloak:
   proxy: edge
 
   keycloakConfigCli:
-    enabled: true
+    enabled: false
     command: 
       - java
       - -jar
@@ -95,8 +95,13 @@ keycloak:
       mountPath: /data
     - name: private-key
       mountPath: /opt/key
+    - name: realms
+      mountPath: /realms
 
   extraVolumes:
+    - name: realms
+      configMap:
+        name: keycloak-consumer-realm
     - name: data
       emptyDir: {}
     - name: private-key
