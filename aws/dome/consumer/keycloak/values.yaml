@@ -95,8 +95,8 @@ keycloak:
       mountPath: /opt/key
     - name: realms
       mountPath: /realms
-    - name: providers
-      mountPath: /opt/bitnami/keycloak/providers/
+    - name: profiles
+      mountPath: /opt/bitnami/keycloak/conf/profile.properties
 
   extraVolumes:
     - name: realms
