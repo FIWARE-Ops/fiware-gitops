@@ -4,6 +4,7 @@ metadata:
   name: keycloak-consumer-profile
 data:
   profile.properties: |-
+    features=account3
     feature.scripts=enabled
     feature.upload_scripts=enabled
     feature.account3=enabled
