@@ -71,8 +71,8 @@ keycloak:
     value: "edge"
   - name: KC_DB_URL_HOST
     value: postgresql-consumer
-  - name: JAVA_OPTS_APPEND
-    value: "-Dkc.features=account3"
+  - name: KC_FEATURES
+    value: account3
   - name: KC_DB_URL_DATABASE
     value: keycloak_consumer
   - name: KC_DB_USERNAME
@@ -97,8 +97,6 @@ keycloak:
       mountPath: /opt/key
     - name: realms
       mountPath: /realms
-    - name: profiles
-      mountPath: /opt/bitnami/keycloak/conf/profile.properties
 
   extraVolumes:
     - name: realms
@@ -111,10 +109,7 @@ keycloak:
         secretName: dome-consumer-waltid-vcwaltid-tls-sec
     - name: providers
       emptyDir: {}
-    - name: profiles
-      configMap:
-        name: keycloak-consumer-profile
-  
+
   initContainers:
     - name: init-realm
       image: quay.io/wi_stefan/keycloak:import
