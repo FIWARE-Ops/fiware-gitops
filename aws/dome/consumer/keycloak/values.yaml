@@ -71,6 +71,8 @@ keycloak:
     value: "edge"
   - name: KC_FEATURES
     value: "account3"
+  - name: KEYCLOAK_FEATURES
+    value: "account3"
   - name: KC_DB_URL_HOST
     value: postgresql-consumer
   - name: KC_DB_URL_DATABASE
