@@ -69,10 +69,6 @@ keycloak:
     value: "true"
   - name: KC_PROXY
     value: "edge"
-  - name: KC_FEATURES
-    value: "account3"
-  - name: KEYCLOAK_FEATURES
-    value: "account3"
   - name: KC_DB_URL_HOST
     value: postgresql-consumer
   - name: KC_DB_URL_DATABASE
@@ -99,6 +95,8 @@ keycloak:
       mountPath: /opt/key
     - name: realms
       mountPath: /realms
+    - name: providers
+      mountPath: /opt/bitnami/keycloak/providers/
 
   extraVolumes:
     - name: realms
@@ -111,6 +109,9 @@ keycloak:
         secretName: dome-consumer-waltid-vcwaltid-tls-sec
     - name: providers
       emptyDir: {}
+    - name: profiles
+      configMap:
+        name: keycloak-consumer-profile
   
   initContainers:
     - name: init-realm
