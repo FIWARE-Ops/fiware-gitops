@@ -71,8 +71,8 @@ keycloak:
     value: "edge"
   - name: KC_DB_URL_HOST
     value: postgresql-consumer
-  - name: JAVA_OPTS
-    value: "-Dkc.features=account3"
+  - name: KC_PROFILE
+    value: dev
   - name: KC_DB_URL_DATABASE
     value: keycloak_consumer
   - name: KC_DB_USERNAME
