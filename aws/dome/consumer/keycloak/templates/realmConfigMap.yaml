@@ -238,7 +238,6 @@ data:
           "optionalClientScopes": []
         },
         {
-          "id": "f839aed0-f1bf-413f-92bb-d4939760da2f",
           "clientId": "account-console",
           "name": "${client_account-console}",
           "rootUrl": "${authBaseUrl}",
@@ -270,7 +269,6 @@ data:
           "nodeReRegistrationTimeout": 0,
           "protocolMappers": [
             {
-              "id": "4b90e3f8-d49b-405e-95f0-dc50d719c9f8",
               "name": "audience resolve",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-audience-resolve-mapper",
@@ -295,7 +293,6 @@ data:
       ],
       "clientScopes": [
         {
-          "id": "1a6c1088-acfd-43cd-8e76-d4ee5d636c60",
           "name": "offline_access",
           "description": "OpenID Connect built-in scope: offline_access",
           "protocol": "openid-connect",
@@ -305,7 +302,6 @@ data:
           }
         },
         {
-          "id": "fe67552a-236a-4e2b-a6b2-8ea6b5b01b4c",
           "name": "roles",
           "description": "OpenID Connect scope for add user roles to the access token",
           "protocol": "openid-connect",
@@ -316,7 +312,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "415ab5af-8e3b-4877-af97-fbb017d5d0c4",
               "name": "audience resolve",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-audience-resolve-mapper",
@@ -327,7 +322,6 @@ data:
               }
             },
             {
-              "id": "d79b7322-7b57-437b-9022-6f5c6d87334c",
               "name": "realm roles",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-realm-role-mapper",
@@ -342,7 +336,6 @@ data:
               }
             },
             {
-              "id": "f7b4fcc0-4478-4bde-8d14-9896df7a0402",
               "name": "client roles",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-client-role-mapper",
@@ -359,7 +352,6 @@ data:
           ]
         },
         {
-          "id": "c8420b2d-d221-4403-b21b-d4a309306c16",
           "name": "acr",
           "description": "OpenID Connect scope for add acr (authentication context class reference) to the token",
           "protocol": "openid-connect",
@@ -369,7 +361,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "effb34e9-8b9f-4d3d-8a48-35b9257076d1",
               "name": "acr loa level",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-acr-mapper",
@@ -383,7 +374,6 @@ data:
           ]
         },
         {
-          "id": "b9af199a-5510-4359-8498-5313a30b4923",
           "name": "profile",
           "description": "OpenID Connect built-in scope: profile",
           "protocol": "openid-connect",
@@ -394,7 +384,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "2a0eef7f-0788-46e8-a810-d87156223db1",
               "name": "profile",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -410,7 +399,6 @@ data:
               }
             },
             {
-              "id": "a63a8da6-df1b-4936-b5e5-8e8a7f7d7e2b",
               "name": "website",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -426,7 +414,6 @@ data:
               }
             },
             {
-              "id": "27e255c8-8dcd-42d8-95dc-5850dfe0232e",
               "name": "locale",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -442,7 +429,6 @@ data:
               }
             },
             {
-              "id": "8bdfe72d-2faf-45ab-a352-9c86ee157015",
               "name": "given name",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -458,7 +444,6 @@ data:
               }
             },
             {
-              "id": "bd252266-f7d3-4ac5-a158-5c119270e301",
               "name": "username",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -474,7 +459,6 @@ data:
               }
             },
             {
-              "id": "84a6763c-90c1-40ec-85a6-6375aef07f3a",
               "name": "birthdate",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -490,7 +474,6 @@ data:
               }
             },
             {
-              "id": "b4b9d79b-8c82-4e59-824a-c7f265d14d44",
               "name": "zoneinfo",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -506,7 +489,6 @@ data:
               }
             },
             {
-              "id": "b17e6425-552c-43ac-b019-631497c92603",
               "name": "updated at",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -522,7 +504,6 @@ data:
               }
             },
             {
-              "id": "6c114086-11ce-4280-8634-16c21dd7eb4e",
               "name": "family name",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -538,7 +519,6 @@ data:
               }
             },
             {
-              "id": "8516d166-5200-40a0-ade1-99d18972a423",
               "name": "full name",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-full-name-mapper",
@@ -551,7 +531,6 @@ data:
               }
             },
             {
-              "id": "7e42d8fc-907d-458f-b123-6a241346b002",
               "name": "middle name",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -567,7 +546,6 @@ data:
               }
             },
             {
-              "id": "a845003e-cf29-438b-9227-e777fdaa52c0",
               "name": "picture",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -583,7 +561,6 @@ data:
               }
             },
             {
-              "id": "73341ad7-ba1c-4915-bd18-4fc6889756f5",
               "name": "nickname",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -599,7 +576,6 @@ data:
               }
             },
             {
-              "id": "d3284058-ba16-4102-baa9-d1fb9e362f68",
               "name": "gender",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -617,7 +593,6 @@ data:
           ]
         },
         {
-          "id": "4834bb3a-8084-4f53-9491-07f4f41472b6",
           "name": "email",
           "description": "OpenID Connect built-in scope: email",
           "protocol": "openid-connect",
@@ -628,7 +603,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "57ed1f80-9bf6-467e-9374-206f24abb9d7",
               "name": "email",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -644,7 +618,6 @@ data:
               }
             },
             {
-              "id": "19036335-35d0-4928-bc8d-ae581a45391b",
               "name": "email verified",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-property-mapper",
@@ -662,7 +635,6 @@ data:
           ]
         },
         {
-          "id": "63b35282-d7b3-4d84-a06c-d08ca9642202",
           "name": "microprofile-jwt",
           "description": "Microprofile - JWT built-in scope",
           "protocol": "openid-connect",
@@ -672,7 +644,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "73f5bf3f-57dc-41ee-a0ca-4b057e46a9a6",
               "name": "upn",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -688,7 +659,6 @@ data:
               }
             },
             {
-              "id": "caf172c7-fed0-46f2-9479-c73a71c0abcd",
               "name": "groups",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-realm-role-mapper",
@@ -706,7 +676,6 @@ data:
           ]
         },
         {
-          "id": "9dd62f3c-dd77-4dbd-b283-5903d54f5fe4",
           "name": "web-origins",
           "description": "OpenID Connect scope for add allowed web origins to the access token",
           "protocol": "openid-connect",
@@ -717,7 +686,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "36a64711-0f36-4ca1-aab9-d54a40d5e0e5",
               "name": "allowed web origins",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-allowed-origins-mapper",
@@ -730,7 +698,6 @@ data:
           ]
         },
         {
-          "id": "044f1089-37c6-4067-8329-552df1442fe6",
           "name": "address",
           "description": "OpenID Connect built-in scope: address",
           "protocol": "openid-connect",
@@ -741,7 +708,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "0a1db634-1e6e-42d7-b5d0-0e233550edd8",
               "name": "address",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-address-mapper",
@@ -762,7 +728,6 @@ data:
           ]
         },
         {
-          "id": "455c0b6a-7f29-4f87-83f2-78120c43c8fa",
           "name": "phone",
           "description": "OpenID Connect built-in scope: phone",
           "protocol": "openid-connect",
@@ -773,7 +738,6 @@ data:
           },
           "protocolMappers": [
             {
-              "id": "fcf16322-6bfc-4b93-b056-e62fd2d00eaa",
               "name": "phone number",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
@@ -789,7 +753,6 @@ data:
               }
             },
             {
-              "id": "6cf67f17-9abc-4c95-b6c8-8179dcecd035",
               "name": "phone number verified",
               "protocol": "openid-connect",
               "protocolMapper": "oidc-usermodel-attribute-mapper",
