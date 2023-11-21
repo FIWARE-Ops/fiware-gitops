@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: keycloak-consumer-realm
 data:
-  realm.json: |-
+  dome-realm.json: |-
     {
       "id": "dome",
       "realm": "dome",
