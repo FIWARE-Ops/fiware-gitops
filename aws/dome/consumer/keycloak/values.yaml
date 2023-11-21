@@ -59,6 +59,8 @@ keycloak:
     existingConfigmap: keycloak-consumer-realm
   
   extraEnvVars:
+  - name: KC_LOG_LEVEL
+    value: DEBUG
   - name: KC_HOSTNAME_DEBUG
     value: "true"
   - name: KC_HOSTNAME
