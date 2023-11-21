@@ -71,8 +71,6 @@ keycloak:
     value: "edge"
   - name: KC_DB_URL_HOST
     value: postgresql-consumer
-  - name: KC_FEATURES
-    value: account3
   - name: KC_DB_URL_DATABASE
     value: keycloak_consumer
   - name: KC_DB_USERNAME
@@ -115,6 +113,8 @@ keycloak:
       image: quay.io/wi_stefan/keycloak:import
       imagePullPolicy: Always
       env: 
+        - name: KC_LOG_LVEL
+          value: DEBUG
         - name: KC_DB_URL_HOST
           value: postgresql-consumer
         - name: KC_DB_URL_DATABASE
