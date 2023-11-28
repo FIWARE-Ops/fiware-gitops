@@ -2,7 +2,7 @@ vcverifier:
   deployment:
     image:
       repository: quay.io/fiware/vcverifier
-      tag: 2.0.5
+      tag: 2.7.0-PRE-26
       pullPolicy: Always
     logging: 
       level: DEBUG
@@ -13,6 +13,11 @@ vcverifier:
     verifier:
       tirAddress: https://tir.dsba.fiware.dev/v3/issuers
       did: did:web:onboarding.dsba.fiware.dev:did
+    m2m:
+      authEnabled: true
+      keyPath: /opt/did/secret/tls.key
+      credentialPath: /opt/credential/credential.json
+      verificationMethod: did:web:onboarding.dsba.fiware.dev:did#54134df8357d4aaea1e600f3d0ebe7fb
     configRepo:
       configEndpoint: http://dsba-onboarding-portal-ccs-credentials-config-service:8080/
     initContainers:
