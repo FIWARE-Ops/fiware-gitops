@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dsba-onboarding-verifier-ccs
+spec:
+  template:
+    spec:
+      containers:
+      - name: init
+        image: quay.io/opencloudio/curl:4.2.0-build.8
+        command: 
+          - /bin/sh
+          - /opt/css/script/import.sh
+        volumeMounts:
+          - name: import-config
+            mountPath: /opt/ccs/script
+      restartPolicy: OnFailure
+      volumes:
+        - name: import-config
+          configMap:
+            name: dsba-onboarding-verifier-ccs
+  backoffLimit: 10
