@@ -288,6 +288,38 @@ data:
           "optionalClientScopes": []
         },
         {
+          "clientId": "did:web:onboarding.dsba.fiware.dev:did",
+          "enabled": true,
+          "description": "Client to issue credentials for M2M communication with the onboarding-tir.",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": true,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "SIOP-2",
+          "attributes": {
+              "client.secret.creation.time": "1675260539",
+              "expiryInMin": "5000000",
+              "vctypes_M2MTirCredential": "ldp_vc,jwt_vc_json",
+              "M2MTirCredential_claims": "roles"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
           "clientId": "did:web:sparep.mecaconnect.com",
           "enabled": true,
           "description": "Client to connect the FbN sparep mecaconnect activation service",
