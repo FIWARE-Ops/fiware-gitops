@@ -110,7 +110,8 @@ data:
               "name": "DELETE_ISSUER",
               "description": "Is allowed to delete issuers",
               "clientRole": true
-            },
+            }
+          ],
           "did:web:onboarding.dsba.fiware.dev:did": [
             {
               "name": "TIR_READER",
