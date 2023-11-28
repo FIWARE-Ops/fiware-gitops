@@ -35,10 +35,15 @@ vcverifier:
             mountPath: /opt/did/script
           - name: did-secret
             mountPath: /opt/did/secret
+          - name: dsba-onboarding-verifier-credential
+            mountPath: /opt/credential
     additionalVolumes:
       - name: dsba-onboarding-did-config
         configMap:
           name: dsba-onboarding-did-config
+      - name: dsba-onboarding-verifier-credential
+        configMap:
+          name: dsba-onboarding-verifier-credential
       - name: did-secret
         secret: 
           secretName: dsba-onboarding-portal-verifier-vcverifier-tls-sec
