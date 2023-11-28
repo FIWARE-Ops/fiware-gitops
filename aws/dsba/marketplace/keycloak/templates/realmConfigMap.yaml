@@ -110,6 +110,12 @@ data:
               "name": "DELETE_ISSUER",
               "description": "Is allowed to delete issuers",
               "clientRole": true
+            },
+          "did:web:onboarding.dsba.fiware.dev:did": [
+            {
+              "name": "TIR_READER",
+              "description": "Is allowed to read from the tir",
+              "clientRole": true
             }
           ],
           "orion-pep": [
@@ -179,6 +185,9 @@ data:
             ],
             "did:web:somware.space": [
               "CREATE_ISSUER"
+            ],
+            "did:web:onboarding.dsba.fiware.dev:did: [
+              "TIR_READER"
             ],
             "account": [
               "view-profile",
