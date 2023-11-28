@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dsba-onboarding-verifier-ccs
+data:
+  import.sh: |-
+    curl -X 'POST' \
+      'http://dsba-onboarding-portal-ccs-credentials-config-service:8080/service' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "id": "onboarding-verifier",
+        "defaultOidcScope": "tir_read",
+        "oidcScopes": {
+            "tir_read": [
+                {
+                    "type": "VerifiableCredential",
+                    "trustedParticipantsLists": [
+                        "https://tir.dsba.fiware.dev"
+                    ],
+                    "trustedIssuersLists": []
+                },
+                {
+                    "type": "M2MTirCredential",
+                    "trustedParticipantsLists": [
+                        "https://tir.dsba.fiware.dev"
+                    ],
+                    "trustedIssuersLists": []
+                }
+            ]
+        }
+      }'
