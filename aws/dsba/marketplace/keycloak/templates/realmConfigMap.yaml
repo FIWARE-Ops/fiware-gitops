@@ -187,7 +187,7 @@ data:
             "did:web:somware.space": [
               "CREATE_ISSUER"
             ],
-            "did:web:onboarding.dsba.fiware.dev:did: [
+            "did:web:onboarding.dsba.fiware.dev:did": [
               "TIR_READER"
             ],
             "account": [
