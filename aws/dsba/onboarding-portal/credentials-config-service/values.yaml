@@ -2,7 +2,7 @@ credentials-config-service:
   deployment:
     image: 
       repository: quay.io/fiware/credentials-config-service
-      tag: 1.0.1-pre-6 
+      tag: 1.0.1-PRE-6 
   database:
     persistence: true
     host: mysql-onboarding
