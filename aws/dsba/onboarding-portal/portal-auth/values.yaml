@@ -27,7 +27,9 @@ pdc-portal:
   ccs:
     endpoint: "http://dsba-onboarding-portal-ccs-credentials-config-service:8080/"
     id: "onboarding-res"
-    credentials:
+    defaultOidcScope: "tir_read"
+    oidcScopes:
+      tir_read: 
       - type: "VerifiableCredential"
         trustedParticipantsLists: [
           "https://tir-restricted.dsba.fiware.dev"
