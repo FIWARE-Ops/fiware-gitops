@@ -67,6 +67,6 @@ pdc-portal:
       # DID of verifier
       did: "did:web:onboarding.dsba.fiware.dev:did"
       # Client ID to be used
-      client_id: 4972b082-c3db-414c-afb7-bf48f2fc42f6
+      client_id: onboarding-res
 
     idp: []
