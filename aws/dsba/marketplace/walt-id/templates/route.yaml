@@ -13,9 +13,9 @@ metadata:
       {{- end }}
 spec:
   host: {{ .Values.route.host}}
-  path: /did/did.json
+  path: /did
   port: 
-    targetPort: 7000 
+    targetPort: 3000 
   to:
     kind: Service
     name: {{ include "waltid.fullname" . }}-did
