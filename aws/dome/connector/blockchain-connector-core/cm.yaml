@@ -15,7 +15,13 @@ data:
         entityTypes: >
           catalog,
           individual,
-          organization
+          organization,
+          product,
+          category,
+          service-specification,
+          product-offering-price,
+          resource-specification,
+          product-specification        
     broker:
       externalDomain: https://orion.dome.fiware.dev
       internalDomain: http://scorpio-provider:1026
