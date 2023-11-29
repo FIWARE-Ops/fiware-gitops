@@ -32,5 +32,5 @@ spec:
               mountPath: /home/static/did
       volumes:
         - name: did-json
-          configmap:
+          configMap:
             name: {{ include "waltid.fullname" . }}-did-cm
