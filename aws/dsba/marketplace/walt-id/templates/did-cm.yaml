@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: {{ include "waltid.fullname" . }}
+  name: {{ include "waltid.fullname" . }}-did-cm
   labels:
     {{ include "waltid.labels" . | nindent 4 }}
 data:

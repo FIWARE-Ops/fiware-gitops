@@ -33,4 +33,4 @@ spec:
       volumes:
         - name: did-json
           configmap:
-            name: {{ include "waltid.fullname" . }}
+            name: {{ include "waltid.fullname" . }}-did-cm
