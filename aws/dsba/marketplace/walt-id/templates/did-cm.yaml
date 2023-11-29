@@ -1,0 +1,36 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "waltid.fullname" . }}
+  labels:
+    {{ include "waltid.labels" . | nindent 4 }}
+data:
+  did.json: |-
+    {
+      "assertionMethod": [
+        "did:web:marketplace.dsba.fiware.dev:did#6f4c1255f4a54090bc8ff7365b13a9b7"
+      ],
+      "authentication": [
+        "did:web:marketplace.dsba.fiware.dev:did#6f4c1255f4a54090bc8ff7365b13a9b7"
+      ],
+      "@context": [
+          "https://www.w3.org/ns/did/v1"
+      ],
+      "id": "did:web:marketplace.dsba.fiware.dev:did",
+      "verificationMethod": [
+          {
+              "controller": "did:web:marketplace.dsba.fiware.dev:did",
+              "id": "did:web:marketplace.dsba.fiware.dev:did#6f4c1255f4a54090bc8ff7365b13a9b7",
+              "publicKeyJwk": {
+                  "alg": "RS256",
+                  "e": "AQAB",
+                  "kid": "6f4c1255f4a54090bc8ff7365b13a9b7",
+                  "kty": "RSA",
+                  "n": "lzs0FPiK9aeDcb-e9f5mrm4YVKWdXD-4yrCVg7rV_5-G_K-P7L-kQ8KqbyL0czZ8PzM_9yyg-CVwnNy0ZUb51JlOpY8nqyq1vN8MBwtvruuGja5zgLmNXOY34BYHj3Ay60uWZaG2zstXQtuwMI0gpoqG490JEzczT35sJ5E7rJNajo0NNSFYKoq9MVqX2AJAZ9E83HLRva6ksgwe1Dx0-0LuDWORu_OSuQYqqfuIKmxeR3vl8UyHsqhqRMGj9HF8gi0Hn7mmbpYlInkje0vZhNGGIZ6nw0g1WrVxHfSP3X6i-THd9uE4yoKNZ4h0xxNN-dNfOtHHkCZ3A9HYiVKATw",
+                  "use": "sig",
+                  "x5u": "https://marketplace.dsba.fiware.dev/certs/tls.crt"
+              },
+              "type": "RsaVerificationKey2018"
+          }
+      ]
+    }
