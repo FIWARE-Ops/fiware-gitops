@@ -15,7 +15,7 @@ vcwaltid:
   deployment:
     image:  
       repository: waltid/ssikit
-      tag: 1.2306281817.jwt-sign-rsa
+      tag: 1.2311262046.fix-didwebpath
       pullPolicy: Always
   api:
     core: 
