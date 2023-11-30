@@ -142,10 +142,6 @@ vcwaltid:
         "@context": [
           "https://www.w3.org/2018/credentials/v1"
         ],
-        "credentialSchema": {
-          "id": "https://raw.githubusercontent.com/FIWARE-Ops/i4trust-provider/main/docs/schema.json",
-          "type": "FullJsonSchemaValidator2021"
-        },
         "credentialSubject": {
           "id": "did:ebsi:2AEMAqXWKYMu1JHPAgGcga4dxu7ThgfgN95VyJBJGZbSJUtp",
           "roles": [
