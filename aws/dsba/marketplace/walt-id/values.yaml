@@ -163,7 +163,6 @@ vcwaltid:
         "validFrom": "2021-08-31T00:00:00Z",
         "issuanceDate": "2021-08-31T00:00:00Z",
         "type": [
-            "VerifiableCredential",
             "M2MTirCredential"
         ]
       }
