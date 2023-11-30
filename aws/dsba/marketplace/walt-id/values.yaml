@@ -140,7 +140,7 @@ vcwaltid:
     M2MTirCredential.json: |
       {
         "@context": [
-          "https://www.w3.org/2018/credentials/v1"
+          "https://www.w3.org/ns/credentials/v2"
         ],
         "credentialSubject": {
           "id": "did:ebsi:2AEMAqXWKYMu1JHPAgGcga4dxu7ThgfgN95VyJBJGZbSJUtp",
@@ -158,7 +158,7 @@ vcwaltid:
         "issuer": "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN",
         "validFrom": "2021-08-31T00:00:00Z",
         "issuanceDate": "2021-08-31T00:00:00Z",
-        "type": [
+        "types": [
             "M2MTirCredential"
         ]
       }
