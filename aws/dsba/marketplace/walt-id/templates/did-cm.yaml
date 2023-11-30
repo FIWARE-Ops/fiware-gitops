@@ -30,7 +30,7 @@ data:
                   "use": "sig",
                   "x5u": "https://marketplace.dsba.fiware.dev/certs/tls.crt"
               },
-              "type": "RsaVerificationKey2018"
+              "type": "JsonWebKey2020"
           }
       ]
     }
