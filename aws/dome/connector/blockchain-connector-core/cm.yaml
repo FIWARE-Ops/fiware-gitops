@@ -26,7 +26,7 @@ data:
       externalDomain: https://orion.dome.fiware.dev
       internalDomain: http://scorpio-provider:1026
     ngsi-subscription: 
-      notificationEndpoint: http://blockchain-connector-core:8080/notifications/orion-ld
+      notificationEndpoint: http://blockchain-connector-core:8080/notifications/broker
       entityTypes: > 
         product-offering,
         product-order
