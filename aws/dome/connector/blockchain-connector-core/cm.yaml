@@ -12,7 +12,7 @@ data:
       subscription:
         active: true
         notificationEndpoint: http://blockchain-connector-core:8080/notifications/blockchain-node
-        entityTypes: >
+        eventTypes: >
           catalog,
           individual,
           organization,
