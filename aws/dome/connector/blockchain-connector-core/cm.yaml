@@ -18,6 +18,7 @@ data:
           organization,
           product,
           category,
+          product-offering,
           service-specification,
           product-offering-price,
           resource-specification,
