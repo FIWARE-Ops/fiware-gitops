@@ -12,7 +12,7 @@ metadata:
       {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
-  host: {{ index .Values "trusted-issuers-registry" "route.host" }}
+  host: tir-restricted.dsba.fiware.dev
   path: /.well-known/openid-configuration
   port: 
     targetPort: 7000 
