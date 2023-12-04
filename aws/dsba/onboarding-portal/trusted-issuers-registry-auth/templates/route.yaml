@@ -15,7 +15,7 @@ spec:
   host: tir-restricted.dsba.fiware.dev
   path: /.well-known/openid-configuration
   port: 
-    targetPort: 8080 
+    targetPort: 3000 
   to:
     kind: Service
     name: dsba-onboarding-portal-verifier-vcverifier
