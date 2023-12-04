@@ -22,5 +22,4 @@ spec:
   tls:
   {{- with .Values.route.tls }}
     {{- toYaml . | nindent 4 }}
-    {{- end }}
   {{- end }}
