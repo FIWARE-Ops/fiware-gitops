@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "tir.fullname" . }}-init
+  name: {{ include "tir.fullname" . }}
 spec:
   template:
     spec:
