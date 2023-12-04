@@ -18,7 +18,7 @@ spec:
     targetPort: 8080 
   to:
     kind: Service
-    name: {{ $fullName }}
+    name: dsba-onboarding-portal-verifier-vcverifier
   {{- if (index .Values "trusted-issuers-registry" "route.tls") }}
   tls:
   {{- with (index .Values "trusted-issuers-registry" "route.tls") }}
