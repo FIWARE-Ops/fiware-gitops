@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "tir.fullname" . }}-init
+spec:
+  template:
+    spec:
+      containers:
+      - name: init
+        image: quay.io/opencloudio/curl:4.2.0-build.8
+        command: 
+          - /bin/sh
+          - /opt/init/script/import.sh
+        volumeMounts:
+          - name: import-config
+            mountPath: /opt/init/script
+      restartPolicy: OnFailure
+      volumes:
+        - name: import-config
+          configMap:
+            name: {{ include "tir.fullname" . }}-curl
+  backoffLimit: 10

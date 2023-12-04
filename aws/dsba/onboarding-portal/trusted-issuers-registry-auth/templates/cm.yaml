@@ -1,0 +1,27 @@
+apiVersion: v1
+metadata:
+  name: {{ include "tir.fullname" . }}-curl
+  labels:
+    {{ include "tir.labels" . | nindent 4 }}
+kind: ConfigMap
+data:
+  import.sh: |-
+    curl -X 'POST' \
+      'http://dsba-onboarding-portal-ccs-credentials-config-service:8080/service' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+          "id": "tir-res",
+          "defaultOidcScope": "tir_read",
+          "oidcScopes": {
+              "tir_read": [
+                  {
+                      "trustedIssuersLists": [
+                      ],
+                      "trustedParticipantsLists": [
+                      ],
+                      "type": "VerifiableCredential"
+                  }
+              ]
+          }
+      }'
