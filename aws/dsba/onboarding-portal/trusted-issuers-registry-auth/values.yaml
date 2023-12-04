@@ -1,3 +1,15 @@
+
+route:
+    enabled: true
+    host: tir-restricted.dsba.fiware.dev
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+
 trusted-issuers-registry:
   replicaCount: 1
   deployment:

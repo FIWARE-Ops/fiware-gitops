@@ -19,9 +19,8 @@ spec:
   to:
     kind: Service
     name: dsba-onboarding-portal-verifier-vcverifier
-  {{- if (index .Values "trusted-issuers-registry" "route.tls") }}
   tls:
-  {{- with (index .Values "trusted-issuers-registry" "route.tls") }}
+  {{- with .Values.route.tls }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
   {{- end }}
