@@ -9,20 +9,20 @@ metadata:
   annotations:
     haproxy.router.openshift.io/rewrite-target: /services/tir-res/.well-known/openid-configuration
     cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "tir.fullname" . }}-tls-sec
-    {{- with (index .Values "trusted-issuers-registry" route.annotations) }}
+    {{- with (index .Values "trusted-issuers-registry" "route.annotations") }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
-  host: {{ index .Values "trusted-issuers-registry" route.host }}
+  host: {{ index .Values "trusted-issuers-registry" "route.host" }}
   path: /.well-known/openid-configuration
   port: 
     targetPort: 7000 
   to:
     kind: Service
     name: {{ $fullName }}
-  {{- if (index .Values "trusted-issuers-registry" route.tls) }}
+  {{- if (index .Values "trusted-issuers-registry" "route.tls") }}
   tls:
-  {{- with (index .Values "trusted-issuers-registry" route.tls) }}
+  {{- with (index .Values "trusted-issuers-registry" "route.tls") }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
   {{- end }}
