@@ -237,8 +237,7 @@ trusted-issuers-registry:
     additionalConfigs:
       logger:
         levels:
-          ROOT: ERROR
-          org.fiware.iam: DEBUG
+          ROOT: INFO
       general:
         roleTarget: did:web:onboarding.dsba.fiware.dev:did
         trustedIssuersRegistry:
