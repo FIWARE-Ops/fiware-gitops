@@ -237,8 +237,9 @@ trusted-issuers-registry:
     additionalConfigs:
       logger:
         levels:
-          ROOT: INFO
+          ROOT: DEBUG
           org.fiware.iam: INFO
+          io.github.wistefan : ERROR
       general:
         roleTarget: did:web:onboarding.dsba.fiware.dev:did
         trustedIssuersRegistry:
