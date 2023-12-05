@@ -11,6 +11,7 @@ vcverifier:
     ssikit:
       auditorUrl: http://dsba-onboarding-portal-walt-id-vcwaltid:7003
     verifier:
+      host: verifier-onboarding.dsba.fiware.dev
       tirAddress: https://tir.dsba.fiware.dev/v3/issuers
       did: did:web:onboarding.dsba.fiware.dev:did
     m2m:
