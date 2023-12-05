@@ -146,8 +146,8 @@ business-api-ecosystem:
 
     statefulset:
       image:
-        repository: fiware/biz-ecosystem-logic-proxy
-        tag: dome-dev
+        repository: quay.io/wi_stefan/lp
+        tag: 0.0.1
         pullPolicy: Always
 
     route:
