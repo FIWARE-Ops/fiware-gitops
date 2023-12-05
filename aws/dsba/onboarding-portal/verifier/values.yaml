@@ -19,6 +19,7 @@ vcverifier:
       authEnabled: true
       keyPath: /opt/did/secret/tls.key
       credentialPath: /opt/credential/credential.json
+      clientId: tir-res
       verificationMethod: did:web:onboarding.dsba.fiware.dev:did#54134df8357d4aaea1e600f3d0ebe7fb
     configRepo:
       configEndpoint: http://dsba-onboarding-portal-ccs-credentials-config-service:8080/
