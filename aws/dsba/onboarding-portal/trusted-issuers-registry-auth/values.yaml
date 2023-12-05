@@ -238,6 +238,7 @@ trusted-issuers-registry:
       logger:
         levels:
           ROOT: INFO
+          org.fiware.iam: INFO
       general:
         roleTarget: did:web:onboarding.dsba.fiware.dev:did
         trustedIssuersRegistry:
