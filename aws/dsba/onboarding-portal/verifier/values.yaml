@@ -9,7 +9,7 @@ vcverifier:
       pathsToSkip: 
         - "/health"
     server:
-      host: verifier-onboarding.dsba.fiware.dev
+      host: https://verifier-onboarding.dsba.fiware.dev
     ssikit:
       auditorUrl: http://dsba-onboarding-portal-walt-id-vcwaltid:7003
     verifier:
