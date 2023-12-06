@@ -246,6 +246,9 @@ trusted-issuers-registry:
             YURyhqWqqW2u7UehYs6emmSwYv8j0v4CzpH517jp2RJNyinI3TZmgD0AAKzyJAl/
             Zqat8t/baTS3TUdIKg==
             -----END CERTIFICATE-----
+    additionalEnvVars:
+      - name: LOGBACK_APPENDER
+        value: CONSOLE
     additionalConfigs:
       logger:
         levels:
