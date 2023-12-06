@@ -40,6 +40,7 @@ trusted-issuers-registry:
           signatures:
             jwks:
               verifier:
+                keyType: EC
                 url: https://verifier-onboarding.dsba.fiware.dev/.well-known/jwks
     ngsiBroker:
       url: http://dsba-onboarding-portal-orion-ld:1026/
