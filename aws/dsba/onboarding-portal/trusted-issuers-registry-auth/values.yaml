@@ -244,3 +244,11 @@ trusted-issuers-registry:
         roleTarget: did:web:onboarding.dsba.fiware.dev:did
         trustedIssuersRegistry:
           authenticated: true
+      micronaut:
+        security: 
+          token: 
+            jwt:
+              signatures:
+                jwks:
+                  verifier:
+                    url: https://verifier-onboarding.dsba.fiware.dev/.well-known/jwks
