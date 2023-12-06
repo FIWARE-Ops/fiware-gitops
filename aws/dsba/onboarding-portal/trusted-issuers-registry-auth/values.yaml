@@ -12,6 +12,9 @@ route:
 
 trusted-issuers-registry:
   replicaCount: 1
+  additionalEnvVars:
+    - name: LOGBACK_APPENDER
+      value: CONSOLE
   deployment:
     image:
       tag: 0.9.1-PRE-18
@@ -246,9 +249,6 @@ trusted-issuers-registry:
             YURyhqWqqW2u7UehYs6emmSwYv8j0v4CzpH517jp2RJNyinI3TZmgD0AAKzyJAl/
             Zqat8t/baTS3TUdIKg==
             -----END CERTIFICATE-----
-    additionalEnvVars:
-      - name: LOGBACK_APPENDER
-        value: CONSOLE
     additionalConfigs:
       logger:
         levels:
