@@ -248,7 +248,7 @@ trusted-issuers-registry:
     additionalConfigs:
       logger:
         levels:
-          ROOT: DEBUG
+          ROOT: INFO
           org.fiware.iam: INFO
           io.github.wistefan : ERROR
       general:
