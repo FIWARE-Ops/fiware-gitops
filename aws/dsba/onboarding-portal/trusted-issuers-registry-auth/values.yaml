@@ -30,6 +30,17 @@ trusted-issuers-registry:
         name: letsencrypt-aws-prod
 
   tir:
+    security: 
+      enabled: true
+      basic-auth:
+        enabled: false
+      authentication: bearer
+      token: 
+        jwt:
+          signatures:
+            jwks:
+              verifier:
+                url: https://verifier-onboarding.dsba.fiware.dev/.well-known/jwks
     ngsiBroker:
       url: http://dsba-onboarding-portal-orion-ld:1026/
     contextUrl: "https://registry.lab.dsba.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
@@ -244,11 +255,3 @@ trusted-issuers-registry:
         roleTarget: did:web:onboarding.dsba.fiware.dev:did
         trustedIssuersRegistry:
           authenticated: true
-      micronaut:
-        security: 
-          token: 
-            jwt:
-              signatures:
-                jwks:
-                  verifier:
-                    url: https://verifier-onboarding.dsba.fiware.dev/.well-known/jwks
