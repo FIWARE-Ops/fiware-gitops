@@ -251,6 +251,7 @@ trusted-issuers-registry:
           ROOT: INFO
           org.fiware.iam: INFO
           io.github.wistefan : ERROR
+          io.micronaut.security: DEBUG
       general:
         roleTarget: did:web:onboarding.dsba.fiware.dev:did
         trustedIssuersRegistry:
