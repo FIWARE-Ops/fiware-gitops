@@ -34,11 +34,11 @@ business-api-ecosystem:
         port: 8080
         path: 
       resources:
-        host: tmforum-tm-forum-api-resource-catalog
+        host: dome-tm-forum-api-resource-catalog
         port: 8080
         path: 
       services:
-        host: tmforum-tm-forum-api-service-catalog
+        host: dome-tm-forum-api-service-catalog
         port: 8080
         path: 
 
