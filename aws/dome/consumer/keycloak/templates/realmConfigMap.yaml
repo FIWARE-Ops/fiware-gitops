@@ -20,6 +20,9 @@ data:
         "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
         "decoys": 3
       },
+      "oidc4vp": {
+        "test": "config"
+      },
       "sslRequired": "none",
       "roles": {
         "realm": [
