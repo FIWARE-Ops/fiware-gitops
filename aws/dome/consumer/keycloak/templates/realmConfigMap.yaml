@@ -103,8 +103,8 @@ data:
           "protocol": "oidc4vp",
           "attributes": {
               "client.secret.creation.time": "1675260539",
-              "vctypes_NaturalPersonCredential": "ldp_vc,jwt_vc",
-              "vctypes_GaiaXParticipantCredential": "ldp_vc,jwt_vc"
+              "vctypes_NaturalPersonCredential": "ldp_vc,jwt_vc,sd-jwt_vc",
+              "vctypes_GaiaXParticipantCredential": "ldp_vc,jwt_vc,sd-jwt_vc"
           },
           "protocolMappers": [
             { 
