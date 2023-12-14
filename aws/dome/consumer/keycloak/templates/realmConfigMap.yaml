@@ -205,7 +205,7 @@ data:
           "attributes": {
               "client.secret.creation.time": "1675260539",
               "expiryInMin": "3600",
-              "vctypes_NaturalPersonCredential": "ldp_vc,jwt_vc_json"
+              "vctypes_NaturalPersonCredential": "ldp_vc,jwt_vc,sd-jwt_vc"
           },
           "protocolMappers": [
             { 
