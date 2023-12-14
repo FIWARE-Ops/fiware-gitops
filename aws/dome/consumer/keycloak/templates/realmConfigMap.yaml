@@ -13,7 +13,12 @@ data:
       "attributes": {
         "frontendUrl": "https://keycloak-consumer.dome.fiware.dev/",
         "issuerDid": "did:web:consumer.dome.fiware.dev",
-        "keyPath": "/opt/key/tls.key"
+        "keyPath": "/opt/key/tls.key",
+        "ldpType": "Ed25519Signature2018",
+        "jwtType": "RS256",
+        "sdJwtType": "RS256",
+        "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+        "decoys": 3
       },
       "sslRequired": "none",
       "roles": {
