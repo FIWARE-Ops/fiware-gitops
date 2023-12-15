@@ -13,12 +13,22 @@ data:
       "attributes": {
         "frontendUrl": "https://keycloak-consumer.dome.fiware.dev/",
         "issuerDid": "did:web:consumer.dome.fiware.dev",
-        "keyPath": "/opt/key/tls.key",
-        "ldpType": "Ed25519Signature2018",
-        "jwtType": "RS256",
-        "sdJwtType": "RS256",
-        "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
-        "decoys": 3
+        "vcdmEnabled" : true,
+        "vcdmKeyPath": "/opt/key/tls.key",
+        "vcmdKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+        "ldpProofType": "Ed25519Signature2018",
+
+        "jwtVcEnabled" : true,
+        "jwtVcKeyPath": "/opt/key/tls.key",
+        "jwtVcKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+        "jwtVcSignatureType": "RS256",
+
+        "sdJwtVcEnabled" : true,
+        "sdJwtVcKeyPath": "/opt/key/tls.key",
+        "sdJwtVcKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+        "sdJwtVcSignatureType": "RS256",
+        "sdJwtDecoys": 3
+        
       },
       "sslRequired": "none",
       "roles": {
@@ -751,53 +761,5 @@ data:
       "defaultDefaultClientScopes": [
       ],
       "defaultOptionalClientScopes": [
-      ],
-      "components": {
-        "org.keycloak.protocol.LoginProtocol": [
-          {
-            "id": "oidc4vp",
-            "name": "oid4vc config",
-            "providerId": "oidc4vp",
-            "subComponents": {
-              "org.keycloak.protocol.oid4vc.issuance.signing.VCSigningService": [
-                {
-                  "id" :"ldp-signing",
-                  "name": "vcdm issuance",
-                  "providerId": "ldp-signing",
-                  "subComponents": {},
-                  "config": {
-                    "proofType": ["Ed25519Signature2018"],
-                    "keyPath": ["/opt/key/tls.key"],
-                    "keyId": ["did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"]
-                  }
-                },
-                {
-                  "id" :"jwt-signing",
-                  "name": "jwt-vc issuance",
-                  "providerId": "jwt-signing",
-                  "subComponents": {},
-                  "config": {
-                    "proofType": ["RS256"],
-                    "keyPath": ["/opt/key/tls.key"],
-                    "keyId": ["did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"]
-                  }
-                },
-                {
-                  "id" :"sd-jwt-signing",
-                  "name": "sd-jwt issuance",
-                  "providerId": "sd-jwt-signing",
-                  "subComponents": {},
-                  "config": {
-                    "proofType": ["RS256"],
-                    "keyPath": ["/opt/key/tls.key"],
-                    "keyId": ["did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"],
-                    "decoys": [3],
-                    "hashAlgorithm": ["SHA-256"]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+      ]
     }
