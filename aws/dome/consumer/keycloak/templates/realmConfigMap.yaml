@@ -751,5 +751,53 @@ data:
       "defaultDefaultClientScopes": [
       ],
       "defaultOptionalClientScopes": [
-      ]
+      ],
+      "components": {
+        "org.keycloak.protocol.LoginProtocolFactory": [
+          {
+            "id": "oidc4vp",
+            "name": "oid4vc config",
+            "providerId": "oidc4vp",
+            "subComponents": {
+              "org.keycloak.protocol.oid4vc.issuance.signing.VCSigningService": [
+                {
+                  "id" :"ldp-signing",
+                  "name": "vcdm issuance",
+                  "providerId": "ldp-signing",
+                  "subComponents": {},
+                  "config": {
+                    "proofType": "Ed25519Signature2018",
+                    "keyPath": "/opt/key/tls.key",
+                    "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+                  }
+                },
+                {
+                  "id" :"jwt-signing",
+                  "name": "jwt-vc issuance",
+                  "providerId": "jwt-signing",
+                  "subComponents": {},
+                  "config": {
+                    "proofType": "RS256",
+                    "keyPath": "/opt/key/tls.key",
+                    "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+                  }
+                },
+                {
+                  "id" :"sd-jwt-signing",
+                  "name": "sd-jwt issuance",
+                  "providerId": "sd-jwt-signing",
+                  "subComponents": {},
+                  "config": {
+                    "proofType": "RS256",
+                    "keyPath": "/opt/key/tls.key",
+                    "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+                    "decoys": 3,
+                    "hashAlgorithm": "SHA-256"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
     }
