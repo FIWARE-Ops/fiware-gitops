@@ -766,9 +766,9 @@ data:
                   "providerId": "ldp-signing",
                   "subComponents": {},
                   "config": {
-                    "proofType": "Ed25519Signature2018",
-                    "keyPath": "/opt/key/tls.key",
-                    "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+                    "proofType": ["Ed25519Signature2018"],
+                    "keyPath": ["/opt/key/tls.key"],
+                    "keyId": ["did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"]
                   }
                 },
                 {
@@ -777,9 +777,9 @@ data:
                   "providerId": "jwt-signing",
                   "subComponents": {},
                   "config": {
-                    "proofType": "RS256",
-                    "keyPath": "/opt/key/tls.key",
-                    "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+                    "proofType": ["RS256"],
+                    "keyPath": ["/opt/key/tls.key"],
+                    "keyId": ["did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"]
                   }
                 },
                 {
@@ -788,11 +788,11 @@ data:
                   "providerId": "sd-jwt-signing",
                   "subComponents": {},
                   "config": {
-                    "proofType": "RS256",
-                    "keyPath": "/opt/key/tls.key",
-                    "keyId": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
-                    "decoys": 3,
-                    "hashAlgorithm": "SHA-256"
+                    "proofType": ["RS256"],
+                    "keyPath": ["/opt/key/tls.key"],
+                    "keyId": ["did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"],
+                    "decoys": [3],
+                    "hashAlgorithm": ["SHA-256"]
                   }
                 }
               ]
