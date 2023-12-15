@@ -753,7 +753,7 @@ data:
       "defaultOptionalClientScopes": [
       ],
       "components": {
-        "org.keycloak.protocol.LoginProtocolFactory": [
+        "org.keycloak.protocol.oid4vc.OIDC4VPLoginProtocolFactory": [
           {
             "id": "oidc4vp",
             "name": "oid4vc config",
