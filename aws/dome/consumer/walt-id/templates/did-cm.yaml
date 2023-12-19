@@ -1,0 +1,36 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "waltid.fullname" . }}-did-cm
+  labels:
+    {{ include "waltid.labels" . | nindent 4 }}
+data:
+  did.json: |-
+    {
+      "assertionMethod": [
+        "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+      ],
+      "authentication": [
+        "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+      ],
+      "@context": [
+          "https://www.w3.org/ns/did/v1"
+      ],
+      "id": "did:web:marketplace.dsba.fiware.dev:did",
+      "verificationMethod": [
+          {
+              "controller": "did:web:marketplace.dsba.fiware.dev:did",
+              "id": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+              "publicKeyJwk": {
+                "alg": "EdDSA",
+                "crv": "Ed25519",
+                "kid": "e3d205e86db04fa7b2f0b1a1afe9b02a",
+                "kty": "OKP",
+                "use": "sig",
+                "x": "RZRsEN_HtQDyrwAadfBPorZgZHJu4uOvk_EVSHUvU6E",
+                "x5u": "https://consumer.dome.fiware.dev/certs/tls.crt"
+            },
+            "type": "Ed25519VerificationKey2019"
+          }
+      ]
+    }

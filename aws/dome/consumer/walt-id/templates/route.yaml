@@ -7,19 +7,18 @@ metadata:
   labels:
     {{ include "waltid.labels" . | nindent 4 }}
   annotations:
-    haproxy.router.openshift.io/rewrite-target: /v1/did/{{ .Values.did }}
     cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "waltid.fullname" . }}-tls-sec
     {{- with .Values.route.annotations }}
       {{- toYaml . | nindent 4 }}
       {{- end }}
 spec:
   host: {{ .Values.route.host}}
-  path: /.well-known/did.json
+  path: /did
   port: 
-    targetPort: 7000 
+    targetPort: 3000 
   to:
     kind: Service
-    name: {{ $fullName }}
+    name: {{ include "waltid.fullname" . }}-did
   {{- if .Values.route.tls }}
   tls:
   {{- with .Values.route.tls }}

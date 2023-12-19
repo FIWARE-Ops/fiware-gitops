@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "waltid.fullname" . }}-did
+  labels:
+    app.kubernetes.io/name: {{ include "waltid.name" . }}-did
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "waltid.name" . }}-did
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "waltid.name" . }}-did
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec: 
+      serviceAccountName: default
+      containers:
+        - name: {{ .Chart.Name }}
+          imagePullPolicy: Always
+          image: "lipanski/docker-static-website:2.1.0"
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - name: did-json
+              mountPath: /home/static/did
+      volumes:
+        - name: did-json
+          configMap:
+            name: {{ include "waltid.fullname" . }}-did-cm
