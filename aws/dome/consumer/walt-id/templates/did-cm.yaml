@@ -8,10 +8,10 @@ data:
   did.json: |-
     {
       "assertionMethod": [
-        "did:web:consumer.dome.fiware.dev#vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk"
+        "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
       ],
       "authentication": [
-        "did:web:consumer.dome.fiware.dev#vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk"
+        "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
       ],
       "@context": [
           "https://www.w3.org/ns/did/v1"
@@ -20,9 +20,9 @@ data:
       "verificationMethod": [
           {
               "controller": "did:web:marketplace.dsba.fiware.dev:did",
-              "id": "did:web:consumer.dome.fiware.dev#vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk",
+              "id": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
               "publicKeyJwk": {
-                "kid": "vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk",
+                "kid": "e3d205e86db04fa7b2f0b1a1afe9b02a",
                 "kty": "RSA",
                 "use": "sig",
                 "e": "AQAB",
