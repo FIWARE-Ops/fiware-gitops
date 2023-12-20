@@ -8,10 +8,10 @@ data:
   did.json: |-
     {
       "assertionMethod": [
-        "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+        "did:web:consumer.dome.fiware.dev#vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk"
       ],
       "authentication": [
-        "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a"
+        "did:web:consumer.dome.fiware.dev#vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk"
       ],
       "@context": [
           "https://www.w3.org/ns/did/v1"
@@ -20,17 +20,16 @@ data:
       "verificationMethod": [
           {
               "controller": "did:web:marketplace.dsba.fiware.dev:did",
-              "id": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+              "id": "did:web:consumer.dome.fiware.dev#vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk",
               "publicKeyJwk": {
-                "alg": "EdDSA",
-                "crv": "Ed25519",
-                "kid": "e3d205e86db04fa7b2f0b1a1afe9b02a",
-                "kty": "OKP",
+                "kid": "vVs1XmWsrpra2Ek5EeimYM7IZ9weCIScSPrUiUbmYYk",
+                "kty": "RSA",
                 "use": "sig",
-                "x": "RZRsEN_HtQDyrwAadfBPorZgZHJu4uOvk_EVSHUvU6E",
+                "e": "AQAB",
+                "n": "1M1vl2mW0ewMctKEoCYG6-SgV9TqN-4oIt2ZLkQb1O-yWGTWuu8h2U7yZ-Dc1JfSPUd45eU1p9j3rYu5Bs2Labc6zZUYyBMjZXopv_AqIOhvuTRRg7v4yRkC6QACniLndPCkanlp_8dL98Gmm8x-oOjYf1UFbGxjGqqVxfNVZmGi9NLE6AM0e4wmBVknwWTcC3TTHDxgAxHHa0GhL1y7OYsmw9Kz1riUWlr0Az3lBclOFACbOp_cGnyHnotErw1xKVQtGOv4GIsYQZr4jIeQkoFcqbAQVOk30NjTRNgVra2JzEpMvhbm4l-WHK2OfsPfBx6OKTOmet6zJnnNC608jQ",
                 "x5u": "https://consumer.dome.fiware.dev/certs/tls.crt"
             },
-            "type": "Ed25519VerificationKey2019"
+            "type": "JsonWebKey2020"
           }
       ]
     }
