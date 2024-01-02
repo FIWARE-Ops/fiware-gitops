@@ -22,7 +22,7 @@ data:
         "jwtVcSignatureType": "RS256",
 
         "sdJwtVcEnabled" : true,
-        "sdJwtVcKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+        "sdJwtVcKeyId":"GwZfdu_xA5MYJmIWnrAdvbExMMWGdsqfY2qoqFVhVPM",
         "sdJwtVcSignatureType": "RS256",
         "sdJwtDecoys": 3
         
