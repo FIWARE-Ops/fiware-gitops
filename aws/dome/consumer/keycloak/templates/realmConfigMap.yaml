@@ -14,17 +14,14 @@ data:
         "frontendUrl": "https://keycloak-consumer.dome.fiware.dev/",
         "issuerDid": "did:web:consumer.dome.fiware.dev",
         "vcdmEnabled" : true,
-        "vcdmKeyPath": "/opt/key/tls.key",
         "vcmdKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
         "ldpProofType": "Ed25519Signature2018",
 
         "jwtVcEnabled" : true,
-        "jwtVcKeyPath": "/opt/key/tls.key",
-        "jwtVcKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+        "jwtVcKeyId":"GwZfdu_xA5MYJmIWnrAdvbExMMWGdsqfY2qoqFVhVPM",
         "jwtVcSignatureType": "RS256",
 
         "sdJwtVcEnabled" : true,
-        "sdJwtVcKeyPath": "/opt/key/tls.key",
         "sdJwtVcKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
         "sdJwtVcSignatureType": "RS256",
         "sdJwtDecoys": 3
