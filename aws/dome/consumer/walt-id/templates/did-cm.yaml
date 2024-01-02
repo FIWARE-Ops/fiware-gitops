@@ -16,13 +16,13 @@ data:
       "@context": [
           "https://www.w3.org/ns/did/v1"
       ],
-      "id": "did:web:marketplace.dsba.fiware.dev:did",
+      "id": "did:web:consumer.dome.fiware.dev:did",
       "verificationMethod": [
           {
-              "controller": "did:web:marketplace.dsba.fiware.dev:did",
-              "id": "did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
+              "controller": "did:web:consumer.dome.fiware.dev:did",
+              "id": "did:web:consumer.dome.fiware.dev#GwZfdu_xA5MYJmIWnrAdvbExMMWGdsqfY2qoqFVhVPM",
               "publicKeyJwk": {
-                "kid": "e3d205e86db04fa7b2f0b1a1afe9b02a",
+                "kid": "GwZfdu_xA5MYJmIWnrAdvbExMMWGdsqfY2qoqFVhVPM",
                 "kty": "RSA",
                 "use": "sig",
                 "e": "AQAB",
