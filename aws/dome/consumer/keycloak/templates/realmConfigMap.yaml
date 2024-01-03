@@ -12,20 +12,7 @@ data:
       "enabled": true,
       "attributes": {
         "frontendUrl": "https://keycloak-consumer.dome.fiware.dev/",
-        "issuerDid": "did:web:consumer.dome.fiware.dev",
-        "vcdmEnabled" : true,
-        "vcmdKeyId":"did:web:consumer.dome.fiware.dev#e3d205e86db04fa7b2f0b1a1afe9b02a",
-        "ldpProofType": "Ed25519Signature2018",
-
-        "jwtVcEnabled" : true,
-        "jwtVcKeyId":"GwZfdu_xA5MYJmIWnrAdvbExMMWGdsqfY2qoqFVhVPM",
-        "jwtVcSignatureType": "RS256",
-
-        "sdJwtVcEnabled" : true,
-        "sdJwtVcKeyId":"GwZfdu_xA5MYJmIWnrAdvbExMMWGdsqfY2qoqFVhVPM",
-        "sdJwtVcSignatureType": "RS256",
-        "sdJwtDecoys": 3
-        
+        "issuerDid": "did:web:consumer.dome.fiware.dev"
       },
       "sslRequired": "none",
       "roles": {
@@ -760,6 +747,19 @@ data:
       "defaultOptionalClientScopes": [
       ],
       "components": {
+        "org.keycloak.protocol.oid4vc.issuance.signing.VerifiableCredentialsSigningService": [
+          {
+            "id": "jwt-signing",
+            "name": "jwt-signing-service", 
+            "providerId": "jwt_vc",
+            "subComponents": {},
+            "config": {
+              "keyId": ["GwZfdu_xA5MYJmIWnrAdvbExMMWGdsqfY2qoqFVhVPM"],
+              "algorithmType": ["RS256"],
+              "issuerDid": ["did:web:consumer.dome.fiware.dev"]
+            }
+          }
+        ],
         "org.keycloak.keys.KeyProvider": [
         {
           "id": "a4589e8f-7f82-4345-b2ea-ccc9d4366600",
