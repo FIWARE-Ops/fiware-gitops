@@ -13,7 +13,19 @@ postgresql:
       adminPasswordKey: postgres-root-password
       userPasswordKey: postgres-password
 
-    
+
+  rbac:
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use
+      
   # Init DB
   primary:
     initdb:
