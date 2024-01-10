@@ -3,10 +3,10 @@ name: postgres
 description: Chart holder for argo-cd
 
 type: application
-version: 13.1.5
+version: 12.1.13
 appVersion: "16.0.0"
 
 dependencies:
 - name: postgresql
-  version: 13.1.5
+  version: 12.1.13
   repository: oci://registry-1.docker.io/bitnamicharts
