@@ -8,7 +8,7 @@ metadata:
     participant: marketplace
 spec:
   destination:
-    namespace: marketplace
+    namespace: dsba
     server: https://kubernetes.default.svc
   project: default
   source:
