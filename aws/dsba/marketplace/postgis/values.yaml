@@ -2,7 +2,7 @@ postgresql:
   commonAnnotations:
     wistefan/rollout-injecting-webhook: ignore
   
-  fullnameOverride: postgis
+  fullnameOverride: marketplace-postgis
 
   auth:
     # Credentials for Keycloak DB
@@ -28,6 +28,8 @@ postgresql:
       
   # Init DB
   primary:
+    persistence:
+      size: 2Gi
     initdb:
       scripts:
         enable.sh: |
