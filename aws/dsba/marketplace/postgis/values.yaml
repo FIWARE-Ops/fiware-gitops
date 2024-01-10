@@ -1,6 +1,6 @@
 postgresql:
-  commonAnnotations:
-    wistefan/rollout-injecting-webhook: ignore
+  #commonAnnotations:
+  #  wistefan/rollout-injecting-webhook: ignore
   
   fullnameOverride: marketplace-postgis
 
