@@ -1,0 +1,28 @@
+{{- if .Values.doc.route.enabled -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "tmforum.fullname" . }}-doc
+  labels:
+    {{ include "tmforum.labels" . | nindent 4 }}
+  {{- if or .Values.doc.route.annotations .Values.doc.route.certificate }}
+  annotations:
+    {{- if .Values.doc.route.certificate }}
+    cert-uccss-operator.redhat-cop.io/certs-from-secret: {{ include "tmforum.fullname" . }}-doc-tls-sec
+    {{- end }}
+    {{- with .Values.doc.route.annotations }}
+      {{- toYaml . | nindent 4 }}
+      {{- end }}
+  {{- end }}
+spec:
+  host: {{ .Values.doc.route.host}}
+  to:
+    kind: Service
+    name: {{ include "tmforum.fullname" . }}-doc
+  {{- if .Values.doc.route.tls }}
+  tls:
+  {{- with .Values.doc.route.tls }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- end }}
+{{- end }}
