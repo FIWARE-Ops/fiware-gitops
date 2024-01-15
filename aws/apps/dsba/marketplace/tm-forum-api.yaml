@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dsba-marketplace-tmforum-api
+  name: dsba-mp-tmf-api
   namespace: argocd
   labels:
     purpose: marketplace
