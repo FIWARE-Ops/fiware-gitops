@@ -8,7 +8,7 @@ metadata:
   {{- if or .Values.doc.route.annotations .Values.doc.route.certificate }}
   annotations:
     {{- if .Values.doc.route.certificate }}
-    cert-uccss-operator.redhat-cop.io/certs-from-secret: {{ include "tmforum.fullname" . }}-doc-tls-sec
+    cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "tmforum.fullname" . }}-doc-tls-sec
     {{- end }}
     {{- with .Values.doc.route.annotations }}
       {{- toYaml . | nindent 4 }}
