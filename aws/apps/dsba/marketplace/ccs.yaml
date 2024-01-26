@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/dsba/onboarding-portal/credentials-config-service
+    path: aws/dsba/marketplace/credentials-config-service
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
