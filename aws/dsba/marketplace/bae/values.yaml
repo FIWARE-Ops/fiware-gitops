@@ -68,39 +68,39 @@ business-api-ecosystem:
       catalog:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/productCatalogManagement/v4
+        path: tmf-api/productCatalogManagement/v4
       inventory:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/productInventory/v4
+        path: tmf-api/productInventory/v4
       ordering:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/productOrderingManagement/v4
+        path: tmf-api/productOrderingManagement/v4
       billing:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/accountManagement/v4
+        path: tmf-api/accountManagement/v4
       usage:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/usageManagement/v4
+        path: tmf-api/usageManagement/v4
       party:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/party/v4
+        path: tmf-api/party/v4
       customer:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/customerManagement/v4
+        path: tmf-api/customerManagement/v4
       resources:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/resourceCatalog/v4
+        path: tmf-api/resourceCatalog/v4
       services:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/serviceCatalogManagement/v4
+        path: tmf-api/serviceCatalogManagement/v4
       #serviceInventory:
       #  host: marketplace-tmf-api-proxy
       #  port: 8080
@@ -108,7 +108,7 @@ business-api-ecosystem:
       resourceInventory:
         host: marketplace-tmf-api-proxy
         port: 8080
-        path: /tmf-api/resourceInventoryManagement/v4
+        path: tmf-api/resourceInventoryManagement/v4
     
     
 
