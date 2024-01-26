@@ -27,22 +27,29 @@ business-api-ecosystem:
     clientId: marketplace-client
     verifier:
       host: https://verifier-marketplace.dsba.fiware.dev
+    allowedRoles:
+      - seller
+      - customer
+      - admin
     # Configuration for the Credential Config Service initiation
     ccs:
       endpoint: "http://dsba-marketplace-ccs-credentials-config-service.dsba.svc.cluster.local:8080"
-      credentials:
-        - type: "VerifiableCredential"
-          trustedParticipantsLists: [
-            "https://tir.dsba.fiware.dev"
-          ]
-          trustedIssuersLists: [
-          ]
-        - type: "MarketplaceUserCredential"
-          trustedParticipantsLists: [
-            "https://tir.dsba.fiware.dev"
-          ]
-          trustedIssuersLists: [
-          ]
+      defaultOidcScope: "defaultScope"
+      # -- Credential configurations for particular scopes
+      oidcScopes:
+        defaultScope:
+          - type: "VerifiableCredential"
+            trustedParticipantsLists: [
+              "https://tir.dsba.fiware.dev"
+            ]
+            trustedIssuersLists: [
+            ]
+          - type: "MarketplaceUserCredential"
+            trustedParticipantsLists: [
+              "https://tir.dsba.fiware.dev"
+            ]
+            trustedIssuersLists: [
+            ]
 
   ## External URL used to access the BAE frontend (logic proxy)
   ## Should match the host of the Ingress or Route of the Logic Proxy
@@ -59,45 +66,49 @@ business-api-ecosystem:
 
     tmForum:
       catalog:
-        host: tmforum-tm-forum-api-product-catalog
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/productCatalogManagement/v4
       inventory:
-        host: tmforum-tm-forum-api-product-inventory
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/productInventory/v4
       ordering:
-        host: tmforum-tm-forum-api-product-ordering-management
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/productOrderingManagement/v4
       billing:
-        host: tmforum-tm-forum-api-account
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/accountManagement/v4
       usage:
-        host: tmforum-tm-forum-api-usage-management
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/usageManagement/v4
       party:
-        host: tmforum-tm-forum-api-party-catalog
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/party/v4
       customer:
-        host: tmforum-tm-forum-api-customer-management
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/customerManagement/v4
       resources:
-        host: tmforum-tm-forum-api-resource-catalog
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/resourceCatalog/v4
       services:
-        host: tmforum-tm-forum-api-service-catalog
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path: 
+        path: /tmf-api/serviceCatalogManagement/v4
+      #serviceInventory:
+      #  host: marketplace-tmf-api-proxy
+      #  port: 8080
+      #  path: 
       resourceInventory:
-        host: tmforum-tm-forum-api-resource-inventory
+        host: marketplace-tmf-api-proxy
         port: 8080
-        path:
+        path: /tmf-api/resourceInventoryManagement/v4
     
     
 
@@ -308,6 +319,9 @@ business-api-ecosystem:
       enabled: true
       # -- Show login button for local IDP
       showLocalLogin: true
+
+    # -- use initcontainers to wait for the apis to be deployed
+    initContainers: false
 
     # -- Sets wehther the logic proxy should propagate the user access token to the backend components
     propagateToken: true
