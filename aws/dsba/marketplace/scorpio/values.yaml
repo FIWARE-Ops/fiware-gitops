@@ -1,4 +1,4 @@
-scorpio:
+scorpio-broker-aaio:
 
   image:
     repository: scorpiobroker/all-in-one-runner
