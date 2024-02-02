@@ -1,0 +1,12 @@
+apiVersion: v2
+name: scorpio
+description: Chart holder for argo-cd
+
+type: application
+version: 0.3.0
+appVersion: "2.1.0-aaio"
+
+dependencies:
+  - name: scorpio-broker-aaio
+    version: 0.3.0
+    repository: https://fiware.github.io/helm-charts
