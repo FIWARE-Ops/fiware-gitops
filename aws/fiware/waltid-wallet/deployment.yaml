@@ -15,19 +15,27 @@ spec:
     spec:
       containers:
       - name: backend
-        image: 'waltid/walletkit:latest'
+        image: 'waltid/wallet-api:latest'
         imagePullPolicy: Always
         args: ["run"]
         ports:
-          - containerPort: 8080
+          - containerPort: 4545
             name: http
-        env:
-          - name: WALTID_WALLET_BACKEND_BIND_ADDRESS
-            value: 0.0.0.0
         volumeMounts:
+          - name: config
+            mountPath: /waltid-wallet-api/config
+          - name: walt
+            mountPath: /waltid-wallet-api/walt.yaml
+            subPaht: walt.yaml
           - name: data
-            mountPath: /app/data
+            mountPath: /waltid-wallet-api/data
       volumes:
         - name: data
           emptyDir: {}
-
+        - name: config 
+          configMap:
+            name: waltid-wallet-ui
+        - name: walt 
+          configMap:
+            name: waltid-wallet-ui
+ 

@@ -15,19 +15,14 @@ spec:
     spec:
       containers:
       - name: ui
-        image: 'waltid/ssikit-web-wallet:latest'
+        image: 'waltid/waltid-web-wallet:latest'
         imagePullPolicy: Always
         ports:
-          - containerPort: 8080
+          - containerPort: 3000
             name: http
-        volumeMounts:
-          - name: cache
-            mountPath: /var/cache/nginx
-          - name: var
-            mountPath: /var/run
-          - name: nginx
-            mountPath: /etc/nginx/nginx.conf
-            subPath: nginx.conf
+        env:
+          - name: NUXT_PUBLIC_ISSUER_CALLBACK_URL
+            value: "https://waltid-wallet.fiware.dev"
       volumes:
         - name: cache
           emptyDir: {}

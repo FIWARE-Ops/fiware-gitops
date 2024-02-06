@@ -6,7 +6,7 @@ spec:
   type: ClusterIP
   ports: 
     - name: static
-      port: 8080
+      port: 4545
       protocol: TCP
       targetPort: http
   selector:
