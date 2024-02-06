@@ -23,14 +23,27 @@ spec:
         env:
           - name: NUXT_PUBLIC_ISSUER_CALLBACK_URL
             value: "https://walt-wallet.fiware.dev"
+      - name: backend
+        image: 'waltid/wallet-api:latest'
+        imagePullPolicy: Always
+        args: ["run"]
+        ports:
+          - containerPort: 4545
+            name: http
+        volumeMounts:
+          - name: config
+            mountPath: /waltid-wallet-api/config
+          - name: walt
+            mountPath: /waltid-wallet-api/walt.yaml
+            subPath: walt.yaml
+          - name: data
+            mountPath: /waltid-wallet-api/data
       volumes:
-        - name: cache
+        - name: data
           emptyDir: {}
-        - name: var
-          emptyDir: {}
-        - name: nginx
+        - name: config 
           configMap:
             name: waltid-wallet-ui
-            items: 
-              - key: nginx.conf
-                path: nginx.conf
+        - name: walt 
+          configMap:
+            name: waltid-wallet-ui
