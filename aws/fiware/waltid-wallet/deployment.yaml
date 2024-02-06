@@ -26,7 +26,7 @@ spec:
             mountPath: /waltid-wallet-api/config
           - name: walt
             mountPath: /waltid-wallet-api/walt.yaml
-            subPaht: walt.yaml
+            subPath: walt.yaml
           - name: data
             mountPath: /waltid-wallet-api/data
       volumes:
