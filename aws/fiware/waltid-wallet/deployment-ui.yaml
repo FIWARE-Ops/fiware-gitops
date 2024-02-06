@@ -22,7 +22,7 @@ spec:
             name: http
         env:
           - name: NUXT_PUBLIC_ISSUER_CALLBACK_URL
-            value: "https://waltid-wallet.fiware.dev"
+            value: "https://walt-wallet.fiware.dev"
       volumes:
         - name: cache
           emptyDir: {}

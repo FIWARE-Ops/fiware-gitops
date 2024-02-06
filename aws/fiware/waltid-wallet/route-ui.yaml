@@ -3,9 +3,9 @@ kind: Route
 metadata:
   annotations: 
     cert-utils-operator.redhat-cop.io/certs-from-secret: waltid-wallet
-  name: waltid-wallet
+  name: waltid-wallet-new
 spec:
-  host: waltid-wallet.fiware.dev
+  host: walt-wallet.fiware.dev
   port:
     targetPort: 8080
   tls: 

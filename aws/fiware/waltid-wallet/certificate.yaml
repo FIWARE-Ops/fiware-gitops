@@ -9,6 +9,6 @@ spec:
     ## certificate issuer, as created in the cert-manager installation step
     kind: ClusterIssuer
     name: letsencrypt-aws-prod
-  commonName: "waltid-wallet.fiware.dev"
+  commonName: "walt-wallet.fiware.dev"
   dnsNames:
-    - "waltid-wallet.fiware.dev"
+    - "walt-wallet.fiware.dev"
