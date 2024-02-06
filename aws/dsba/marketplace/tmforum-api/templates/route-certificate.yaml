@@ -1,0 +1,15 @@
+{{- if .Values.doc.route.certificate -}}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "tmforum.fullname" . }}-doc
+  labels:
+    {{ include "tmforum.labels" . | nindent 4 }}
+spec:
+  secretName: {{ include "tmforum.fullname" . }}-doc-tls-sec
+  issuerRef:
+    {{- toYaml .Values.doc.route.certificate.issuer | nindent 4 }}
+  commonName: {{ .Values.doc.route.host }}
+  dnsNames:
+    - {{ .Values.doc.route.host }}
+{{- end -}}

@@ -1,12 +1,13 @@
 apiVersion: v2
-name: packetdelivery-ccs
+name: scorpio
 description: Chart holder for argo-cd
 
 type: application
-version: 0.0.4
-appVersion: "0.0.1"
+version: 0.3.2
+appVersion: "2.1.0-aaio"
 
 dependencies:
-  - name: credentials-config-service
-    version: 0.0.4
+  - name: scorpio-broker-aaio
+    alias: scorpio
+    version: 0.3.2
     repository: https://fiware.github.io/helm-charts

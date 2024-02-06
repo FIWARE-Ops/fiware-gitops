@@ -1,0 +1,28 @@
+scorpio:
+
+  image:
+    repository: scorpiobroker/all-in-one-runner
+    tag: java-4.1.11
+
+  readinessProbe:  
+    path: /q/health
+  livenessProbe:
+    path: /q/health
+
+  service:
+    type: ClusterIP
+
+  db:
+    dbhost: marketplace-postgis
+    user: postgres
+    existingSecret:
+      enabled: true
+      name: postgres-secret
+      key: postgres-root-password
+
+  kafka:
+    enabled: true
+    bushost: dsba-marketplace-kafka
+
+  logging:
+    level: DEBUG

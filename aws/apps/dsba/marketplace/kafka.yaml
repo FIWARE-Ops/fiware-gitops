@@ -1,9 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dsba-marketplace-ccs
+  name: dsba-marketplace-kafka
   namespace: argocd
   labels:
+    purpose: marketplace
     participant: marketplace
 spec:
   destination:
@@ -11,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/dsba/marketplace/credentials-config-service
+    path: aws/dsba/marketplace/kafka
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
