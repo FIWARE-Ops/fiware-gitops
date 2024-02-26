@@ -1,4 +1,8 @@
-trusted-issuers-registry:
+initialParticipants: 
+  - did:web:packetdelivery.dsba.fiware.dev:did
+  - did:web:onboarding.dsba.fiware.dev:did
+  - did:web:happypets.dsba.fiware.dev:did
+trustedIssuersRegistry:
   replicaCount: 1
   deployment:
     image:
@@ -16,7 +20,6 @@ trusted-issuers-registry:
       issuer:
         kind: ClusterIssuer
         name: letsencrypt-aws-prod
-
   tir:
     ngsiBroker:
       url: http://dsba-onboarding-portal-orion-ld:1026/
