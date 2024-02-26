@@ -1,0 +1,38 @@
+{{- $values := .Values -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dsba-onboarding-tir-participants
+data:
+  import.sh: |-
+    broker = {{ .Values.trustedIssuersRegistry.tir.ngsiBroker.url}}
+    {{- range .Values.initialData }}   
+    curl  -iX POST '{{ $values.trustedIssuersRegistry.tir.ngsiBroker.url}}ngsi-ld/v1/entities' \
+          -H 'Content-Type: application/json' \
+          -d '{
+              "id": "urn:ngsi-ld:TrustedIssuer:{{ . }}",
+              "type": "TrustedIssuer",
+              "issuer": {
+                "type": "Property",
+                "value": "{{ . }}"
+              },
+              "selfDescription": {
+                "type": "Property",
+                "value": {
+                  "id": "{{ . }}",
+                  "type": "gx:LegalParticipant",
+                  "gx:legalName": "IPS",
+                  "gx:legalRegistrationNumber": {
+                    "gx:vatID": "MYVATID"
+                  },
+                  "gx:headquarterAddress": {
+                    "gx:countrySubdivisionCode": "DE-BER"
+                  },
+                  "gx:legalAddress": {
+                    "gx:countrySubdivisionCode": "DE-BER"
+                  },
+                  "gx-terms-and-conditions:gaiaxTermsAndConditions": "70c1d713215f95191a11d38fe2341faed27d19e083917bc8732ca4fea4976700"
+                }
+              }
+            }'
+    {{- end }} 
