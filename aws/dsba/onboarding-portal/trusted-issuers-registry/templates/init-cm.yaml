@@ -6,7 +6,7 @@ metadata:
 data:
   import.sh: |-
     {{- range .Values.initialParticipants }}   
-    curl  -iX POST '{{ $values.trustedIssuersRegistry.tir.ngsiBroker.url}}ngsi-ld/v1/entities' \
+    curl  -iX POST '{{ $values.trustedissuersregistry.tir.ngsiBroker.url}}ngsi-ld/v1/entities' \
           -H 'Content-Type: application/json' \
           -d '{
               "id": "urn:ngsi-ld:TrustedIssuer:{{ . }}",

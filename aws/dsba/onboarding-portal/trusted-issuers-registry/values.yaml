@@ -2,7 +2,7 @@ initialParticipants:
   - did:web:packetdelivery.dsba.fiware.dev:did
   - did:web:onboarding.dsba.fiware.dev:did
   - did:web:happypets.dsba.fiware.dev:did
-trustedIssuersRegistry:
+trustedissuersregistry:
   replicaCount: 1
   deployment:
     image:

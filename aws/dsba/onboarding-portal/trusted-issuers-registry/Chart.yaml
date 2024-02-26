@@ -8,6 +8,6 @@ appVersion: "0.0.1"
 
 dependencies:
   - name: trusted-issuers-registry
-    alias: trustedIssuersRegistry
+    alias: trustedissuersregistry
     version: 0.0.3
     repository: https://fiware.github.io/helm-charts
