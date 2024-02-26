@@ -5,7 +5,7 @@ metadata:
   name: dsba-onboarding-tir-participants
 data:
   import.sh: |-
-    {{- range .Values.initialData }}   
+    {{- range .Values.initialParticipants }}   
     curl  -iX POST '{{ $values.trustedIssuersRegistry.tir.ngsiBroker.url}}ngsi-ld/v1/entities' \
           -H 'Content-Type: application/json' \
           -d '{
