@@ -21,7 +21,7 @@ data:
                 "value": {
                   "id": "{{ . }}",
                   "type": "gx:LegalParticipant",
-                  "gx:legalName": "IPS",
+                  "gx:legalName": "SomeName",
                   "gx:legalRegistrationNumber": {
                     "gx:vatID": "MYVATID"
                   },
