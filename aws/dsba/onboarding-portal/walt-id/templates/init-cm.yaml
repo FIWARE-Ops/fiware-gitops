@@ -11,8 +11,6 @@ data:
       --header 'Content-Type: application/json' \
       --data "{
           \"method\": \"web\",
-          \"keyAlias\":\"${KEY_ID}\",
           \"domain\": \"{{ .Values.route.host }}\",
-          \"path\": \"did\",
           \"x5u\": \"https://{{ .Values.route.host }}/certs/tls.crt\"
       }"
