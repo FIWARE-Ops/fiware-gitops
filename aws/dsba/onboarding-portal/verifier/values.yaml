@@ -41,8 +41,6 @@ vcverifier:
     additionalVolumeMounts:
       - name: dsba-onboarding-verifier-credential
         mountPath: /opt/credential
-      - name: did-secret
-        mountPath: /opt/did/secret
     additionalVolumes:
       - name: dsba-onboarding-did-config
         configMap:
