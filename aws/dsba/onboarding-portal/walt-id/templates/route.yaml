@@ -14,7 +14,7 @@ metadata:
       {{- end }}
 spec:
   host: {{ .Values.route.host}}
-  path: /.well-known/did.json
+  path: /did/did.json
   port: 
     targetPort: 7000 
   to:
