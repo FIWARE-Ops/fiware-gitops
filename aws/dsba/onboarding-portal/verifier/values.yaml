@@ -52,7 +52,7 @@ vcverifier:
           name: dsba-onboarding-verifier-credential
       - name: did-secret
         secret: 
-          secretName: dsba-onboarding-portal-verifier-vcverifier-tls-sec
+          secretName: dsba-onboarding-portal-walt-id-vcwaltid-tls-sec
 
   route:
     enabled: true
