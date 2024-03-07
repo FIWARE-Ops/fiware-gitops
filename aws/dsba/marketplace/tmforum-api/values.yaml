@@ -36,7 +36,7 @@ tm-forum-api:
       # -- repository to get the container from
       repository: quay.io/fiware
       # -- tag to be used, most of the time the apis will use the same version
-      tag: 0.15.0
+      tag: 0.20.0
       # -- pull policy to be used
       pullPolicy: IfNotPresent
 
@@ -58,6 +58,8 @@ tm-forum-api:
       - name: GENERAL_NGSILDORQUERYKEY
         value: ","
       - name: GENERAL_ENCLOSEQUERY
+        value: "false"
+      - name: MAPPING_STRICT_RELATIONSHIPS
         value: "false"
 
   # -- list of apis to be deployed
