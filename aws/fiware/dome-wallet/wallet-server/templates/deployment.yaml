@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "wallet-server.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{ include "wallet-server.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "wallet-server.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        {{ include "wallet-server.labels" . | nindent 8 }}
+    spec:
+      containers: 
+        - name: {{ .Chart.Name }}
+          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+          image: "{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          env:
+            - name: LOGGING_LEVEL_ES_IN2_WALLET_SERVER
+              value: {{ .Values.deployment.logLevel }}
+            - name: WALLET_WDA_URL
+              value: {{ .Values.deployment.host }}
+            - name: IDENTITY_PROVIDER_URL
+              value: {{ .Values.deployment.keycloak.tokenUrl }}
+            - name: IDENTITY_PROVIDER_CLIENT_SECRET
+              value: {{ .Values.deployment.keycloak.clientSecret }}
+            - name: IDENTITY_PROVIDER_CLIENT_ID
+              value: {{ .Values.deployment.keycloak.clientId }}
+            - name: IDENTITY_PROVIDER_USERNAME
+              value: {{ .Values.deployment.keycloak.username }}
+            - name: IDENTITY_PROVIDER_PASSWORD
+              value: {{ .Values.deployment.keycloak.password }}
+            - name: BROKER_PROVIDER
+              value: {{ .Values.deployment.broker.provider }}
+            - name: BROKER_EXTERNAL_DOMAIN
+              value: {{ .Values.deployment.broker.externalDomain }}
+            - name: BROKER_INTERNAL_DOMAIN
+              value: {{ .Values.deployment.broker.internalDomain }}
+            - name: VAULT_PROVIDER_NAME
+              value: {{ .Values.deployment.vault.provider }}
+            - name: SPRING_CLOUD_VAULT_AUTHENTICATION
+              value: {{ .Values.deployment.vault.authentication }}
+            - name: SPRING_CLOUD_VAULT_TOKEN
+              value: {{ .Values.deployment.vault.token }}
+            - name: SPRING_CLOUD_VAULT_HOST
+              value: {{ .Values.deployment.vault.host }}
+            - name: SPRING_CLOUD_VAULT_SCHEME
+              value: {{ .Values.deployment.vault.scheme }}
+            - name: SPRING_CLOUD_VAULT_PORT
+              value: {{ .Values.deployment.vault.port }}
+            - name: SPRING_CLOUD_VAULT_KV_ENABLED
+              value: "true"
+          ports:
+            - containerPort: {{ .Values.service.port}}
+              name: http
+              protocol: TCP
