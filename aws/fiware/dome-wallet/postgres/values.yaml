@@ -23,6 +23,8 @@ postgresql:
       enabled: false
     containerSecurityContext:
       enabled: false
+    persistence:
+      enabled: false
     initdb:
       scripts:
         create.sh: |
