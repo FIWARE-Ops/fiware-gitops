@@ -36,7 +36,7 @@ tm-forum-api:
       # -- repository to get the container from
       repository: quay.io/fiware
       # -- tag to be used, most of the time the apis will use the same version
-      tag: 0.20.0
+      tag: 0.20.1
       # -- pull policy to be used
       pullPolicy: IfNotPresent
 
