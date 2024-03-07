@@ -304,7 +304,7 @@ The LEAR uses its Wallet to log into the [Onboarding service](https://onboarding
 An employee of Packet Delivery Company needs to create an offering for the packet delivery service on the marketplace.
 
 #### PDC employee gets VC
-Login as `legal-representative` at the [PDC Keycloak](https://packetdelivery-kc.dsba.fiware.dev/realms/fiware-server/account). Issue a VC for `MarketplaceUserCredential Idp_vc` and store it in your wallet. 
+Login as `standard-employee` at the [PDC Keycloak](https://packetdelivery-kc.dsba.fiware.dev/realms/fiware-server/account). Issue a VC for `MarketplaceUserCredential Idp_vc` and store it in your wallet. 
 
 #### Login at marketplace
 Login at the [Marketplace](https://marketplace.dsba.fiware.dev) as PDC employee using this VC. 

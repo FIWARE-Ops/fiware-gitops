@@ -1430,6 +1430,8 @@ applications:
                     "username": "standard-employee",
                     "enabled": true,
                     "email": "standard-employee@pdc.org",
+                    "firstName": "PDC",
+                    "lastName": "PDCEmployee",
                     "credentials": [
                       {
                         "type": "password",
@@ -1443,6 +1445,10 @@ applications:
                       "did:web:packetdelivery.dsba.fiware.dev:did": [
                         "GOLD_CUSTOMER",
                         "PROVIDER"
+                      ],
+                      "did:web:marketplace.dsba.fiware.dev:did" : [
+                        "customer",
+                        "seller"
                       ],
                       "account": [
                         "view-profile",
