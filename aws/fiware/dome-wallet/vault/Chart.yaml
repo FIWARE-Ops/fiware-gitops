@@ -1,0 +1,12 @@
+apiVersion: v2
+name: vault
+description: Chart holder for argo-cd
+
+type: application
+version: 0.27.0
+appVersion: "1.15.2"
+
+dependencies:
+- name: vault
+  version: 0.27.0
+  repository: https://helm.releases.hashicorp.com
