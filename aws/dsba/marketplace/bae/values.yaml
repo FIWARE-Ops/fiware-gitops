@@ -335,8 +335,4 @@ business-api-ecosystem:
 
     # -- Sets wehther the logic proxy should propagate the user access token to the backend components
     propagateToken: true
-
-    ## -- Configuration of local key and certificate for validation and generation of tokens
-    token:
-      enabled: false
   
