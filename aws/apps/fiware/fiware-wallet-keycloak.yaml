@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: fiware-waltid-wallet
+  name: fiware-wallet-keycloak
   namespace: argocd
 spec:
   destination:
@@ -9,8 +9,13 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/fiware/waltid-wallet
+    helm:
+      valueFiles:
+      - values.yaml
+    path: aws/fiware/dome-wallet/keycloak
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
