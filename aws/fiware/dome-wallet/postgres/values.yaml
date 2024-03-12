@@ -11,6 +11,8 @@ postgresql:
     compatibility:
       openshift:
         adaptSecurityContext: force
+  serviceAccount:
+    create: true
   primary:
     persistence:
       enabled: false
