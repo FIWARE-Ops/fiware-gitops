@@ -1,0 +1,11 @@
+apiVersion: v2
+name: scorpio
+description: Scorpio
+type: application
+version:  0.1.7
+appVersion:  0.1.7
+dependencies:
+  - name: scorpio-broker-aaio
+    alias: scorpio
+    repository: https://fiware.github.io/helm-charts
+    version: 0.1.7

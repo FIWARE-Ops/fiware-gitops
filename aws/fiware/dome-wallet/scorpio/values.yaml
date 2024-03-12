@@ -1,0 +1,26 @@
+scorpio:
+  image: 
+    # -- repository to be used - resource friendly all-in-one-runner without kafka
+    repository: scorpiobroker/all-in-one-runner
+    # -- tag of the image to be used - latest java image without kafka
+    tag: java-4.1.11
+  db:
+    # -- host of the db
+    dbhost: postgis-wallet
+    # -- username to be used
+    user: postgres
+    # -- password to be used
+    password: postgres
+  readinessProbe:  
+    # -- path to be used for the readiness probe, older versions used /actuator/health
+    path: /q/health
+  ## configuration of the liveness probe
+  livenessProbe: 
+    # -- path to be used for the readiness probe, older versions used /actuator/health
+    path: /q/health
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  fullnameOverride: scorpio
+  ## configuration to be used for the service offered by scorpio
+  service:
+    # -- ClusterIP is the recommended type for most clusters
+    type: ClusterIP
