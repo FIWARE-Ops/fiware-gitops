@@ -10,5 +10,5 @@ deployment:
     ws: ws://dome-wallet-server:8080 
   keycloakUrl: http://fiware-wallet-keycloak:8080/realms/wallet
 service:
-  port: 4200
+  port: 8088
   type: ClusterIP
