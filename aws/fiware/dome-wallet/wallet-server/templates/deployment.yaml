@@ -43,43 +43,43 @@ spec:
             timeoutSeconds: 10
           env:
             - name: LOGGING_LEVEL_ES_IN2_WALLET_SERVER
-              value: {{ .Values.deployment.logLevel }}
+              value: {{ .Values.deployment.logLevel | quote }}
             - name: WALLET_WDA_URL
-              value: {{ .Values.deployment.host }}
+              value: {{ .Values.deployment.host | quote }}
             - name: IDENTITY_PROVIDER_URL
-              value: {{ .Values.deployment.keycloak.tokenUrl }}
+              value: {{ .Values.deployment.keycloak.tokenUrl | quote }}
             - name: IDENTITY_PROVIDER_CLIENT_SECRET
-              value: {{ .Values.deployment.keycloak.clientSecret }}
+              value: {{ .Values.deployment.keycloak.clientSecret | quote }}
             - name: IDENTITY_PROVIDER_CLIENT_ID
-              value: {{ .Values.deployment.keycloak.clientId }}
+              value: {{ .Values.deployment.keycloak.clientId | quote }}
             - name: IDENTITY_PROVIDER_USERNAME
-              value: {{ .Values.deployment.keycloak.username }}
+              value: {{ .Values.deployment.keycloak.username | quote }}
             - name: IDENTITY_PROVIDER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: wallet-admin
                   name: dome-wallet-secret
             - name: BROKER_PROVIDER
-              value: {{ .Values.deployment.broker.provider }}
+              value: {{ .Values.deployment.broker.provider | quote }}
             - name: BROKER_EXTERNAL_DOMAIN
-              value: {{ .Values.deployment.broker.externalDomain }}
+              value: {{ .Values.deployment.broker.externalDomain | quote }}
             - name: BROKER_INTERNAL_DOMAIN
-              value: {{ .Values.deployment.broker.internalDomain }}
+              value: {{ .Values.deployment.broker.internalDomain | quote }}
             - name: VAULT_PROVIDER_NAME
-              value: {{ .Values.deployment.vault.provider }}
+              value: {{ .Values.deployment.vault.provider | quote }}
             - name: SPRING_CLOUD_VAULT_AUTHENTICATION
-              value: {{ .Values.deployment.vault.authentication }}
+              value: {{ .Values.deployment.vault.authentication | quote }}
             - name: SPRING_CLOUD_VAULT_TOKEN
               valueFrom:
                 secretKeyRef:
                   key: vault-token
                   name: dome-wallet-secret
             - name: SPRING_CLOUD_VAULT_HOST
-              value: {{ .Values.deployment.vault.host }}
+              value: {{ .Values.deployment.vault.host | quote }}
             - name: SPRING_CLOUD_VAULT_SCHEME
-              value: {{ .Values.deployment.vault.scheme }}
+              value: {{ .Values.deployment.vault.scheme | quote }}
             - name: SPRING_CLOUD_VAULT_PORT
-              value: {{ .Values.deployment.vault.port }}
+              value: {{ .Values.deployment.vault.port | quote }}
             - name: SPRING_CLOUD_VAULT_KV_ENABLED
               value: "true"
           ports:
