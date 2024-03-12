@@ -93,8 +93,6 @@ keycloak:
       mountPath: /opt/bitnami/keycloak/providers/
     - name: data
       mountPath: /data
-    - name: private-key
-      mountPath: /opt/key
     - name: realms
       mountPath: /realms
 
