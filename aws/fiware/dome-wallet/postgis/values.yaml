@@ -23,7 +23,7 @@ postgis:
     create: true
   primary:
     persistence:
-      enabled: false
+      enabled: true
     initdb:
       scripts:
         enable.sh: |
