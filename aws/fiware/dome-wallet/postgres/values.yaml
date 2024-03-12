@@ -7,10 +7,17 @@ postgresql:
     secretKeys:
       adminPasswordKey: postgres-root-password
       userPasswordKey: postgres-password
-  global:
-    compatibility:
-      openshift:
-        adaptSecurityContext: force
+  rbac:
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use    
   serviceAccount:
     create: true
   primary:
