@@ -21,7 +21,7 @@ deployment:
     authentication: token
     host: fiware-vault
     scheme: http
-    port: 8201
+    port: 8200
 service:
   port: 8080
   type: ClusterIP
