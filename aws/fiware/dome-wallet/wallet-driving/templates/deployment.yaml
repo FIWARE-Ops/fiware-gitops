@@ -33,6 +33,8 @@ spec:
               value: {{ .Values.deployment.walletServer.http | quote }}
             - name: LOGIN_URL
               value: {{ .Values.deployment.keycloakUrl | quote }}
+            - name: IAM_URL
+              value: {{ .Values.deployment.keycloakUrl | quote }}
             - name: EXECCONT_URI
               value: "/api/v2/execute-content"
             - name: VP_URL
