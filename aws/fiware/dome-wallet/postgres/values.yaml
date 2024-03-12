@@ -8,7 +8,7 @@ postgresql:
       adminPasswordKey: postgres-root-password
       userPasswordKey: postgres-password
   rbac:
-    create: true
+    create: false
     rules:
       - apiGroups:
         - security.openshift.io
