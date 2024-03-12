@@ -1,4 +1,4 @@
-postgresql:
+postgis:
   fullnameOverride: postgis-wallet
   auth:
     # -- username to be used
