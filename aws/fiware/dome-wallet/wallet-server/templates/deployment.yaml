@@ -57,8 +57,8 @@ spec:
             - name: IDENTITY_PROVIDER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: keycloak-admin
-                  name: keycloak-wallet-secret
+                  key: wallet-admin
+                  name: dome-wallet-secret
             - name: BROKER_PROVIDER
               value: {{ .Values.deployment.broker.provider }}
             - name: BROKER_EXTERNAL_DOMAIN

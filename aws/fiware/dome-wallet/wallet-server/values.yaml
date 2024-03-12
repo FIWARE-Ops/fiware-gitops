@@ -11,7 +11,7 @@ deployment:
     domain: http://fiware-wallet-keycloak:8080/realms/wallet/protocol/openid-connect/token
     clientSecret: fV51P8jFBo8VnFKMMuP3imw3H3i5mNck
     clientId: user-registry-client
-    username: fiwareAdmin
+    username: adminwallet
   broker:
     provider: scorpio
     internalDomain: http://scorpio:9090
