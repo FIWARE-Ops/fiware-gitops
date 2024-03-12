@@ -27,6 +27,8 @@ spec:
           imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
           image: "{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}"
           env:
+            - name: SERVER_URL
+              value: {{ .Values.deployment.walletServer.http | quote }}
             - name: WCA_URL
               value: {{ .Values.deployment.walletServer.http | quote }}
             - name: DATA_URL
