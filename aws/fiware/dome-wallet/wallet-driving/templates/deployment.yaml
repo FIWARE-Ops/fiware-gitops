@@ -21,6 +21,7 @@ spec:
       labels:
         {{ include "wallet-driving.labels" . | nindent 8 }}
     spec:
+      serviceAccountName: wallet-driving-sa
       containers: 
         - name: {{ .Chart.Name }}
           imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
@@ -50,3 +51,6 @@ spec:
             - containerPort: {{ .Values.service.port}}
               name: http
               protocol: TCP
+          securityContext:
+            runAsRoot: true
+            runAsUser: 1001

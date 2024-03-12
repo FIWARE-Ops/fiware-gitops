@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: wallet-driving-rb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: wallet-driving
+subjects:
+  - kind: ServiceAccount
+    name: wallet-driving-sa
+    namespace: fiware
