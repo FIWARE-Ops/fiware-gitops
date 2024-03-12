@@ -10,5 +10,5 @@ deployment:
     ws: wss://dome-wallet-server.fiware.dev
   keycloakUrl: https://keycloak-wallet.fiware.dev
 service:
-  port: {{ .Values.service.port }}
+  port: 8088
   type: ClusterIP
