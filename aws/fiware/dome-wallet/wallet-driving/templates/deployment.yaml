@@ -21,6 +21,7 @@ spec:
       labels:
         {{ include "wallet-driving.labels" . | nindent 8 }}
     spec:
+      serviceAccountName: wallet-sa
       containers: 
         - name: {{ .Chart.Name }}
           imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
