@@ -1,0 +1,14 @@
+deployment:
+  image:
+    repository: in2kizuna/wallet-driving-application
+    # -- tag of the image to be used
+    tag: v1.0.0-SNAPSHOT
+    # -- specification of the image pull policy
+    pullPolicy: IfNotPresent
+  walletServer:
+    http: http://dome-wallet-server:8080
+    ws: ws://dome-wallet-server:8080 
+  keycloakUrl: http://fiware-wallet-keycloak:8080/realms/wallet
+service:
+  port: 4200
+  type: ClusterIP
