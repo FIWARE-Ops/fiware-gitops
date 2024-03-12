@@ -50,6 +50,3 @@ spec:
             - containerPort: {{ .Values.service.port}}
               name: http
               protocol: TCP
-          securityContext:
-            runAsRoot: true
-            runAsUser: 1001
