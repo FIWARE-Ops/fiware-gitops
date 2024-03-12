@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations: 
+    cert-utils-operator.redhat-cop.io/certs-from-secret: dome-wallet-server
+  name: dome-wallet-server
+spec:
+  host: dome-wallet-server.fiware.dev
+  port:
+    targetPort: 8088
+  tls: 
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  to: 
+    kind: Service
+    name: {{ include "wallet-server.fullname" . }}

@@ -6,8 +6,8 @@ deployment:
     # -- specification of the image pull policy
     pullPolicy: IfNotPresent
   walletServer:
-    http: http://dome-wallet-server:8080
-    ws: ws://dome-wallet-server:8080 
+    http: https://dome-wallet-server.fiware.dev
+    ws: ws://dome-wallet-server.fiware.dev
   keycloakUrl: https://keycloak-wallet.fiware.dev
 service:
   port: 8088
