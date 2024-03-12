@@ -1,37 +1,29 @@
 deployment:
   image:
-    repository: in2kizuna/blockchain-connector
+    repository: in2kizuna/wallet-server
     # -- tag of the image to be used
-    tag: v2.0.1
+    tag: v1.0.0-SNAPSHOT
     # -- specification of the image pull policy
     pullPolicy: IfNotPresent
   logLevel: DEBUG
-  dltAdapter: 
-    domain: http://dlt-adapter:8080
-  blockchain:
-    rpcAddress: http://blockchain-testnode.infra.svc.cluster.local:8545/
-    subscription:
-      active: false
-      notificationEndpoint: http://blockchain-connector:8080/notifications/dlt
+  host: https://dome-wallet.fiware.dev
+  keycloak:
+    domain: http://fiware-wallet-keycloak:8080/realms/wallet/protocol/openid-connect/token
+    clientSecret: fV51P8jFBo8VnFKMMuP3imw3H3i5mNck
+    clientId: user-registry-client
+    username: fiwareAdmin
   broker:
+    provider: scorpio
     internalDomain: http://scorpio:9090
-  ngsiSubscription:
-    notificationEndpoint:  http://blockchain-connector:8080/notifications/broker
-    entityTypes: catalog,individual,organization,product,product-offering,category,service-specification,product-offering-price,resource-specification,product-specification
-  brokerAdapter:
-    domain: http://broker-adapter:8080
-    paths:
-      entites: /api/v2/entities
-      subscriptions: /api/v2/subscriptions
-  operator:
-    organizationId: FIWARE_TEST_PROVIDER
-db:
-  host: postgresql-connector
-  password: postgres
-  username: postgres
-
+    externalDomain: http://scorpio:9090
+  vault:
+    provider: hashicorp
+    authentication: token
+    host: fiware-vault
+    scheme: http
+    port: 8201
 service:
   port: 8080
   type: ClusterIP
 
-fullnameOverride: blockchain-connector
+fullnameOverride: dome-wallet-server

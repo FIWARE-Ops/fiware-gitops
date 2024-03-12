@@ -55,7 +55,10 @@ spec:
             - name: IDENTITY_PROVIDER_USERNAME
               value: {{ .Values.deployment.keycloak.username }}
             - name: IDENTITY_PROVIDER_PASSWORD
-              value: {{ .Values.deployment.keycloak.password }}
+              valueFrom:
+                secretKeyRef:
+                  key: keycloak-admin
+                  name: keycloak-wallet-secret
             - name: BROKER_PROVIDER
               value: {{ .Values.deployment.broker.provider }}
             - name: BROKER_EXTERNAL_DOMAIN
@@ -67,7 +70,10 @@ spec:
             - name: SPRING_CLOUD_VAULT_AUTHENTICATION
               value: {{ .Values.deployment.vault.authentication }}
             - name: SPRING_CLOUD_VAULT_TOKEN
-              value: {{ .Values.deployment.vault.token }}
+              valueFrom:
+                secretKeyRef:
+                  key: vault-token
+                  name: dome-wallet-secret
             - name: SPRING_CLOUD_VAULT_HOST
               value: {{ .Values.deployment.vault.host }}
             - name: SPRING_CLOUD_VAULT_SCHEME
