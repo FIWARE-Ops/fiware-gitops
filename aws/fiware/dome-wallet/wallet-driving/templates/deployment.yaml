@@ -50,3 +50,10 @@ spec:
             - containerPort: {{ .Values.service.port}}
               name: http
               protocol: TCP
+          volumeMounts:
+            - name: assets
+              mountPath: /usr/share/nginx/html/assets/
+      volumes:
+        - name: assets
+          emptyDir:
+            sizeLimit: 500Mi
