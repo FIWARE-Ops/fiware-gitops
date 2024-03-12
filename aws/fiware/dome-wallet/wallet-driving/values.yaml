@@ -7,7 +7,7 @@ deployment:
     pullPolicy: IfNotPresent
   walletServer:
     http: https://dome-wallet-server.fiware.dev
-    ws: ws://dome-wallet-server.fiware.dev
+    ws: wss://dome-wallet-server.fiware.dev
   keycloakUrl: https://keycloak-wallet.fiware.dev
 service:
   port: 8088
