@@ -23,7 +23,7 @@ postgresql:
     create: true
   primary:
     persistence:
-      enabled: true
+      enabled: false
     initdb:
       scripts:
         enable.sh: |
