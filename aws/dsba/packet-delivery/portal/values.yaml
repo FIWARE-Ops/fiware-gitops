@@ -27,21 +27,23 @@ pdc-portal:
   ccs:
     endpoint: "http://packet-delivery-ccs-credentials-config-service:8080/"
     id: "packet-delivery-service"
-    credentials:
-      - type: "VerifiableCredential"
-        trustedParticipantsLists: [
-          "https://tir.dsba.fiware.dev"
-        ]
-        trustedIssuersLists: [
-          "http://packet-delivery-til-trusted-issuers-list:8080"
-        ]
-      - type: "PacketDeliveryService"
-        trustedParticipantsLists: [
-          "https://tir.dsba.fiware.dev"
-        ]
-        trustedIssuersLists: [
-          "http://packet-delivery-til-trusted-issuers-list:8080"
-        ]
+    defaultOidcScope: "default"
+    oidcScopes:
+      default:
+        - type: "VerifiableCredential"
+          trustedParticipantsLists: [
+            "https://tir.dsba.fiware.dev"
+          ]
+          trustedIssuersLists: [
+           "http://packet-delivery-til-trusted-issuers-list:8080"
+          ]
+        - type: "PacketDeliveryService"
+          trustedParticipantsLists: [
+            "https://tir.dsba.fiware.dev"
+          ]
+          trustedIssuersLists: [
+            "http://packet-delivery-til-trusted-issuers-list:8080"
+          ]
 
   config:
     title: "PacketDelivery Portal"

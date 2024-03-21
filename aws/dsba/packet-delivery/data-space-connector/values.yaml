@@ -561,6 +561,8 @@ applications:
             level: DEBUG
             pathsToSkip:
               - "/health"
+          server:
+            host: "https://verifier-pdc.dsba.fiware.dev"
           ssikit:
             auditorUrl: http://packet-delivery-vcwaltid:7003
           verifier:
@@ -648,26 +650,28 @@ applications:
         ccs:
           endpoint: "http://packet-delivery-ccs-credentials-config-service:8080/"
           id: "pdc-activation-service"
-          credentials:
-            - type: "VerifiableCredential"
-              trustedParticipantsLists: [
-                "https://tir.dsba.fiware.dev"
-              ]
-              trustedIssuersLists: [
-              ]
-            - type: "LegalPersonCredential"
-              trustedParticipantsLists: [
-                "https://tir.dsba.fiware.dev"
-              ]
-              trustedIssuersLists: [
-              ]
-            - type: "ActivationService"
-              trustedParticipantsLists: [
-                "https://tir.dsba.fiware.dev"
-              ]
-              trustedIssuersLists: [
-                "http://packet-delivery-til-trusted-issuers-list:8080"
-              ]
+          defaultOidcScope: "default"
+          oidcScopes:
+            default:
+              - type: "VerifiableCredential"
+                trustedParticipantsLists: [
+                  "https://tir.dsba.fiware.dev"
+                ]
+                trustedIssuersLists: [
+                ]
+              - type: "LegalPersonCredential"
+                trustedParticipantsLists: [
+                  "https://tir.dsba.fiware.dev"
+                ]
+                trustedIssuersLists: [
+                ]
+              - type: "ActivationService"
+                trustedParticipantsLists: [
+                  "https://tir.dsba.fiware.dev"
+                ]
+                trustedIssuersLists: [
+                  "http://packet-delivery-til-trusted-issuers-list:8080"
+                ]
         config:
           db:
             useMemory: true
