@@ -670,7 +670,7 @@ applications:
                   "https://tir.dsba.fiware.dev"
                 ]
                 trustedIssuersLists: [
-                  "http://packet-delivery-til-trusted-issuers-list:8080"
+                  "http://pdc-til-service:8080"
                 ]
         config:
           db:
@@ -693,7 +693,7 @@ applications:
           issuer:
             clientId: "pdc-activation-service"
             providerId: "did:web:packetdelivery.dsba.fiware.dev:did"
-            tilUri: "http://packet-delivery-til-trusted-issuers-list:8080"
+            tilUri: "http://pdc-til-service:8080"
             verifierUri: "https://verifier-pdc.dsba.fiware.dev"
             samedevicePath: "/api/v1/samedevice"
             jwksPath: "/.well-known/jwks"

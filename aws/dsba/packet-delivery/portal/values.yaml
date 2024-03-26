@@ -35,14 +35,14 @@ pdc-portal:
             "https://tir.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
-           "http://packet-delivery-til-trusted-issuers-list:8080"
+           "http://pdc-til-service:8080"
           ]
         - type: "PacketDeliveryService"
           trustedParticipantsLists: [
             "https://tir.dsba.fiware.dev"
           ]
           trustedIssuersLists: [
-            "http://packet-delivery-til-trusted-issuers-list:8080"
+            "http://pdc-til-service:8080"
           ]
 
   config:
