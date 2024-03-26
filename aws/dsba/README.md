@@ -446,6 +446,33 @@ curl  -iX POST 'http://localhost:1026/ngsi-ld/v1/entities' \
   }'
 ```
 
+To test activating the PacketDeliveryService for a new participant, without acquisition at the marketplace, following command can be adapted and executed 
+on the PDC TIL:
+```shell
+curl --location 'https://til-PDC.dsba.fiware.dev/issuer' \
+--header 'Content-Type: application/json' \
+--data '{
+    "did": "did:web:ips.dsba.aws.fiware.io:did",
+    "credentials": [
+        {
+            "validFor": {
+                "from": "2024-03-01T02:00:00Z",
+                "to": "2028-03-01T02:00:00Z"
+            },
+            "credentialsType": "PacketDeliveryService",
+            "claims": [
+                {
+                    "name": "roles",
+                    "allowedValues": [
+                        "STANDARD_CUSTOMER", "GOLD_CUSTOMER"
+                    ]
+                }
+            ]
+        }
+    ]
+}'
+```
+
 
 ### Cleanup
 
