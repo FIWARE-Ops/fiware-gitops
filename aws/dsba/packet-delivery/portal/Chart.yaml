@@ -3,10 +3,10 @@ name: pdc-portal
 description: Chart holder for argo-cd
 
 type: application
-version: 2.2.5
-appVersion: "0.2.0"
+version: 2.3.2
+appVersion: "2.9.0"
 
 dependencies:
   - name: pdc-portal
-    version: 2.2.5
+    version: 2.3.2
     repository: https://i4Trust.github.io/helm-charts
