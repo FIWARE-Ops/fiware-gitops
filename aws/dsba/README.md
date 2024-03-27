@@ -450,7 +450,7 @@ To test activating the PacketDeliveryService for a new participant, without acqu
 on the PDC TIL (in this example, allowing the `did:web:ips.dsba.aws.fiware.io:did` organisation to issue VCs of type `PacketDeliveryService` and assign 
 roles `STANDARD_CUSTOMER` and/or `GOLD_CUSTOMER`):
 ```shell
-curl --location 'https://til-PDC.dsba.fiware.dev/issuer' \
+curl -iX POST --location 'https://til-PDC.dsba.fiware.dev/issuer' \
 --header 'Content-Type: application/json' \
 --data '{
     "did": "did:web:ips.dsba.aws.fiware.io:did",
