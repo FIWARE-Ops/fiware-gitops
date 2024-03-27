@@ -447,7 +447,8 @@ curl  -iX POST 'http://localhost:1026/ngsi-ld/v1/entities' \
 ```
 
 To test activating the PacketDeliveryService for a new participant, without acquisition at the marketplace, following command can be adapted and executed 
-on the PDC TIL:
+on the PDC TIL (in this example, allowing the `did:web:ips.dsba.aws.fiware.io:did` organisation to issue VCs of type `PacketDeliveryService` and assign 
+roles `STANDARD_CUSTOMER` and/or `GOLD_CUSTOMER`):
 ```shell
 curl --location 'https://til-PDC.dsba.fiware.dev/issuer' \
 --header 'Content-Type: application/json' \
@@ -464,7 +465,22 @@ curl --location 'https://til-PDC.dsba.fiware.dev/issuer' \
                 {
                     "name": "roles",
                     "allowedValues": [
-                        "STANDARD_CUSTOMER", "GOLD_CUSTOMER"
+                        [{
+                            "names": ["GOLD_CUSTOMER", "STANDARD_CUSTOMER"],
+                            "target": "did:web:packetdelivery.dsba.fiware.dev:did"
+                        }],
+                        [{
+                            "names": ["STANDARD_CUSTOMER", "GOLD_CUSTOMER"],
+                            "target": "did:web:packetdelivery.dsba.fiware.dev:did"
+                        }],
+                        [{
+                            "names": ["STANDARD_CUSTOMER"],
+                            "target": "did:web:packetdelivery.dsba.fiware.dev:did"
+                        }],
+                        [{
+                            "names": ["GOLD_CUSTOMER"],
+                            "target": "did:web:packetdelivery.dsba.fiware.dev:did"
+                        }]
                     ]
                 }
             ]
