@@ -17,7 +17,7 @@ trusted-issuers-registry:
       value: CONSOLE
   deployment:
     image:
-      tag: 0.10.0
+      tag: 0.11.0
       pullPolicy: Always
     additionalLabels:
       participant: onboarding
