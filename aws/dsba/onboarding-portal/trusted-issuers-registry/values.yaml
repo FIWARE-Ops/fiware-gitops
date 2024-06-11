@@ -230,3 +230,5 @@ trustedissuersregistry:
         levels:
           ROOT: ERROR
           org.fiware.iam: DEBUG
+          org.fiware.iam.tir.repository: TRACE
+          
