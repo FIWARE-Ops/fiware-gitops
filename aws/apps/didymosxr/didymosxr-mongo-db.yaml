@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: didymosxr-mongo-db
+  namespace: argocd
+spec:
+  destination:
+    namespace: didymosxr
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/didymosxr/mongodb
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
