@@ -1,4 +1,4 @@
-{{- if .Values.route.enabled -}}
+{{- if .Values.nginx.route.enabled -}}
 {{- $fullName := include "nginx.fullname" . -}}
 apiVersion: route.openshift.io/v1
 kind: Route
@@ -8,17 +8,17 @@ metadata:
     {{ include "nginx.labels" . | nindent 4 }}
   annotations:
     cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "nginx.fullname" . }}-tls-sec
-    {{- with .Values.route.annotations }}
+    {{- with .Values.nginx.route.annotations }}
       {{- toYaml . | nindent 4 }}
       {{- end }}
 spec:
-  host: {{ .Values.route.host }}
+  host: {{ .Values.nginx.route.host }}
   to:
     kind: Service
     name: {{ $fullName }}
-  {{- if .Values.route.tls }}
+  {{- if .Values.nginx.route.tls }}
   tls:
-  {{- with .Values.route.tls }}
+  {{- with .Values.nginx.route.tls }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
   {{- end }}
