@@ -20,6 +20,6 @@ nginx:
         limit_except GET {
             deny all;
         }
-        proxy_pass http://orion:1026/ngsi-ld/;
+        proxy_pass http://didymosxr-orion-ld:1026/ngsi-ld/;
       }
     }

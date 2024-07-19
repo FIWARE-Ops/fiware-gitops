@@ -9,7 +9,7 @@ orion:
         user: root
         mech: "SCRAM-SHA-1"
       hosts:
-        - didymosxr-mongodb
+        - didymosxr-mongo-db-mongodb
       user: root
       existingSecret:
         name: mongodb-secret
