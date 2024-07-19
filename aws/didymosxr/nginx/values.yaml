@@ -1,4 +1,6 @@
 nginx:
+  service:
+    type: ClusterIP
   route:
     enabled: true
     host: broker.didymosxr.fiware.dev
