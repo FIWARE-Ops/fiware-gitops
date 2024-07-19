@@ -15,7 +15,7 @@ spec:
   host: {{ .Values.nginx.route.host }}
   to:
     kind: Service
-    name: {{ $fullName }}
+    name: {{ include "nginx.fullname" . }}
   {{- if .Values.nginx.route.tls }}
   tls:
   {{- with .Values.nginx.route.tls }}

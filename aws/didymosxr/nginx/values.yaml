@@ -1,4 +1,5 @@
 nginx:
+  fullnameOverride: didymosxr-nginx
   service:
     type: ClusterIP
   route:
