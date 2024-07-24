@@ -1,0 +1,28 @@
+nginx:
+  fullnameOverride: didymosxr-nginx
+  service:
+    type: ClusterIP
+  route:
+    enabled: true
+    host: broker.didymosxr.fiware.dev
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    certificate:
+      issuer:
+        kind: ClusterIssuer
+        name: letsencrypt-aws-prod
+
+  serverBlock: |-
+    server {
+      listen 0.0.0.0:8080;
+      location /* {
+        return 200 "hello!";
+      }
+      location /ngsi-ld/ {
+        limit_except GET {
+            deny all;
+        }
+        proxy_pass http://didymosxr-orion-ld:1026/ngsi-ld/;
+      }
+    }
