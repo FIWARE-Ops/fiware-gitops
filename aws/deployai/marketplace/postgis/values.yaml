@@ -10,6 +10,8 @@ postgresql:
       adminPasswordKey: postgres-root-password
       userPasswordKey: postgres-password
 
+  # Current workaround in OS for permissiones error:
+  #  > oc adm policy add-scc-to-user privileged -z default -ndeployai
   rbac:
     create: true
     rules:
@@ -29,5 +31,5 @@ postgresql:
     initdb:
       scripts:
         enable.sh: |
-          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE EXTENSION postgis;"
-          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE ngb;"
+          psql postgresql://postgres:${POSTGRES_POSTGRES_PASSWORD}@localhost:5432 -c "CREATE EXTENSION postgis;"
+          psql postgresql://postgres:${POSTGRES_POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE ngb;"
