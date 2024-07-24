@@ -6,6 +6,7 @@ kafka:
       enabled: false
     persistence:
       size: 1Gi
+    replicaCount: 1
   broker:
     podSecurityContext:
       enabled: false
