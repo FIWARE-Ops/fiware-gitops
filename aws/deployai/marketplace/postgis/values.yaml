@@ -3,7 +3,6 @@ postgresql:
   fullnameOverride: postgis
 
   auth:
-    # Credentials for Keycloak DB
     username: scorpio
     enablePostgresUser: true
     existingSecret: postgres-secret
