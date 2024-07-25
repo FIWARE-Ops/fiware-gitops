@@ -1,0 +1,100 @@
+orion:
+  deployment:
+    image: 
+      tag: 1.1.0
+  broker:
+    logging:
+      level: DEBUG
+    db:
+      auth: 
+        user: root
+        mech: "SCRAM-SHA-1"
+      hosts:
+        - mongodb-trust
+      user: root
+      existingSecret:
+        name: mongodb-secret
+        key: mongodb-root-password
+  mongo:
+    # we want to use the individually deployed mongodb
+    enabled: false
+  initData:
+    initEnabled: true
+    hook: post-install, post-upgrade
+    entities:
+      - name: "onboarding.deployai.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:onboarding.deployai.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:onboarding.deployai.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:onboarding.deployai.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "DeployAI Marketplace Onboarding Service"
+                }
+            }
+          }
+      - name: "marketplace.deployai.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:marketplace.deployai.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:marketplace.deployai.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:marketplace.deployai.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "DeployAI Marketplace"
+                }
+            }
+          }
+      - name: "provider.deployai.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:provider.deployai.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:provider.deployai.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:provider.deployai.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "DeployAI Provider"
+                }
+            }
+          }
+      - name: "consumer.deployai.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:consumer.deployai.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:consumer.deployai.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:consumer.deployai.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "DeployAI Consumer"
+                }
+            }
+          }
