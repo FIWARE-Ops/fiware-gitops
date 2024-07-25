@@ -1,6 +1,6 @@
 postgresql:
   
-  fullnameOverride: postgis
+  fullnameOverride: postgis-marketplace
 
   auth:
     username: scorpio
