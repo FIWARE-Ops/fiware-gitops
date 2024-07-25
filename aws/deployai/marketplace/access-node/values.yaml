@@ -36,7 +36,7 @@ access-node:
         scripts:
           # -- create the database as expected by the blockchain-connector
           create.sh: |
-            psql postgresql://postgres:${POSTGRES_POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE desmos;"
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE desmos;"
 
   scorpio:
     # -- should scorpio be enabled
@@ -114,57 +114,70 @@ access-node:
     ## configuration for the api proxy, to serve all apis through one kubernetes service
     apiProxy:
       # -- the proxy must be enabled
-      enabled: true
+      enabled: false
 
     apis:
     - name: party-catalog
       image: tmforum-party-catalog
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF632-Party-v4.0.0.swagger.json
 
     - name: customer-bill-management
       image: tmforum-customer-bill-management
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF678-CustomerBill-v4.0.0.swagger.json
 
     - name: customer-management
       image: tmforum-customer-management
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF629-Customer-v4.0.0.swagger.json
 
     - name: product-catalog
       image: tmforum-product-catalog
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.1.0/swagger/TMF620-ProductCatalog-v4.1.0.swagger.json
 
     - name: product-inventory
       image: tmforum-product-inventory
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF637-ProductInventory-v4.0.0.swagger.json
 
     - name: product-ordering-management
       image: tmforum-product-ordering-management
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF622-ProductOrder-v4.0.0.swagger.json
 
     - name: resource-catalog
       image: tmforum-resource-catalog
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.1.0/swagger/TMF634-ResourceCatalog-v4.0.0.swagger.json
 
     - name: resource-function-activation
       image: tmforum-resource-function-activation
       basePath: /
+      specUrl: https://raw.githubusercontent.com/wistefan/TMF664_ResourceFunctionActivationConfiguration/master/TMF664-ResourceFunctionActivation-v4.0.0.swagger.json
 
     - name: resource-inventory
       image: tmforum-resource-inventory
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF639-ResourceInventory-v4.0.0.swagger.json
 
     - name: service-catalog
       image: tmforum-service-catalog
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF633-ServiceCatalog-v4.0.0.swagger.json
 
     - name: account
       image: tmforum-account
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF666-Account-v4.0.0.swagger.json
 
     - name: agreement
       image: tmforum-agreement
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF651-Agreement-v4.0.0.swagger.json
 
     - name: usage-management
       image: tmforum-usage-management
       basePath: /
+      specUrl: https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com/OpenApiTable/4.0.0/swagger/TMF635-UsageManagement-v4.0.0.swagger.json
