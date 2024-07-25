@@ -1,5 +1,0 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: i4trust-demo-root-runner
-  namespace: i4trust-demo
