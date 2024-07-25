@@ -16,3 +16,19 @@ spec:
     insecure: true
     route:
       enabled: true
+
+  # Additional parameters as workaround, to increase repo server timeout
+  controller:
+    # Defaults: operation=10, status=20
+    #processors:
+    #  operation: 5
+    #  status: 10
+    env:
+    - name: ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_TIMEOUT_SECONDS
+      value: '500'
+  repo:
+    replicas: 3
+    execTimeout: 300
+    env:
+      - name: "ARGOCD_EXEC_TIMEOUT"
+        value: "5m"
