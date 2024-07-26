@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: orion-ld-david-tutorial
+  namespace: argocd
+spec:
+  destination:
+    namespace: david-tutorial
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/david-tutorial/orion-ld
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
