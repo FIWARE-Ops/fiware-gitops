@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bae-marketplace
+  namespace: argocd
+spec:
+  destination:
+    namespace: deployai
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/deployai/marketplace/bae
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
