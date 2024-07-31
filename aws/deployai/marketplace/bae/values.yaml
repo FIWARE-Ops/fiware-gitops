@@ -131,7 +131,7 @@ business-api-ecosystem:
     existingSecret: bae-cb-secret
     
     db: 
-      host: mongodb
+      host: mongodb-marketplace
       database: charging_db
       user: charging
     
@@ -184,7 +184,7 @@ business-api-ecosystem:
     nodeEnvironment: production
 
     db:
-      host: mongodb
+      host: mongodb-marketplace
       database: belp_db
       user: belp
     basePath: /opt/business-ecosystem-logic-proxy
