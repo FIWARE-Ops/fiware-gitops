@@ -195,4 +195,4 @@ business-api-ecosystem:
     propagateToken: true
     additionalEnvVars:
       - name: BAE_LP_LEGACY_GUI
-        value: true
+        value: "true"
