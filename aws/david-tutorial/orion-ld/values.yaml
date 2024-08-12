@@ -10,7 +10,7 @@ orion:
         user: root
         mech: "SCRAM-SHA-1"
       hosts:
-        - mongodb-trust
+        - mongodb-david-tutorial
       user: root
       existingSecret:
         name: mongodb-secret

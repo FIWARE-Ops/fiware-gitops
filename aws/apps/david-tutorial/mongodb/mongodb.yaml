@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: mongodb-david-tutorial
-  namespace: argocd
+  namespace: david-tutorial
 spec:
   destination:
-    namespace: deployai
+    namespace: david-tutorial
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aws/david_tutorial/mongodb
+    path: aws/david-tutorial/mongodb
     repoURL: https://github.com/FIWARE-Ops/fiware-gitops
     targetRevision: HEAD
   syncPolicy:

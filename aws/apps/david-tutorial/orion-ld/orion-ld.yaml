@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: orion-ld-david-tutorial
-  namespace: argocd
+  namespace: david-tutorial
 spec:
   destination:
     namespace: david-tutorial
