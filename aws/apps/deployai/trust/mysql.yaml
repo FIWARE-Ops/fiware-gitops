@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql-trust
+  namespace: argocd
+spec:
+  destination:
+    namespace: deployai
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: aws/deployai/trust/mysql
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

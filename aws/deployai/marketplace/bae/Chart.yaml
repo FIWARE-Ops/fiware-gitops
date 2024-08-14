@@ -1,12 +1,12 @@
 apiVersion: v2
-name: orion-ld
+name: business-api-ecosystem
 description: Chart holder for argo-cd
 
 type: application
-version: 1.2.6
-appVersion: "1.1.0"
+version: 0.9.2
+appVersion: "9.4.8"
 
 dependencies:
-- name: orion
-  version: 1.2.6
+- name: business-api-ecosystem
+  version: 0.9.2
   repository: https://fiware.github.io/helm-charts

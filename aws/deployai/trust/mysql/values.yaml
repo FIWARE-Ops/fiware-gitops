@@ -1,0 +1,25 @@
+mysql:
+  fullnameOverride: mysql-trust
+  
+  auth:
+    existingSecret: mysql-secret
+    
+  rbac: 
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use
+        
+  primary:
+    persistence:
+      size: 1Gi
+      
+  initdbScripts:
+    create.sql: |
+      CREATE DATABASE til;
