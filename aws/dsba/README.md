@@ -2,6 +2,8 @@
 
 This folder and its corresponding namespace contain a [DSBA-compliant](https://data-spaces-business-alliance.eu/wp-content/uploads/dlm_uploads/Data-Spaces-Business-Alliance-Technical-Convergence-V2.pdf) DataSpace for demonstrational purposes. The DataSpace is build with [FIWARE-Components](https://github.com/FIWARE), using parts of the [i4Trust-Framework](https://github.com/i4Trust) and the [Gaia-X Compliance Services](https://gitlab.com/gaia-x/lab/compliance).
 
+Currently not deployed but revert [PR](https://github.com/FIWARE-Ops/fiware-gitops/pull/51) to enable again. 
+
 <!-- ToC created with: https://github.com/thlorenz/doctoc -->
 <!-- Update with: doctoc README.md -->
 
