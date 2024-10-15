@@ -1,6 +1,0 @@
-apiVersion: v2
-name: canis-major
-description: Helm chart for running canis-major
-type: application
-version: 0.0.1
-appVersion: "1.1.0"
