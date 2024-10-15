@@ -1,5 +1,0 @@
-vault:
-  global:
-    openshift: true
-  injector:
-    enabled: false
