@@ -5,7 +5,7 @@ metadata:
   labels:
     {{ include "alastria.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: 0
   revisionHistoryLimit: {{ .Values.statefulset.revisionHistoryLimit }}
   serviceName: {{ include "alastria.fullname" . }}
   selector:
