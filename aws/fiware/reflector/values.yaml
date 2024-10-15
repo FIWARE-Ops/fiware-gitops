@@ -1,9 +1,0 @@
-reflector:
-  cron:
-    enabled: false
-    schedule: "*/15 * * * *"
-    activeDeadlineSeconds: 600
-
-  serviceAccount:
-    create: false
-    name: "fiware-reflector-sa"
