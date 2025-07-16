@@ -1,0 +1,26 @@
+trust-anchor:
+  # -- configuration for the trusted-issuers-list to be deployed as part of the trust-anchor, see https://github.com/FIWARE/helm-charts/tree/main/charts/trusted-issuers-list for all options
+  trusted-issuers-list:
+    ingress:
+      # -- route config for the trusted issuers list endpoint
+      til:
+        # -- should there be an ingress to connect til with the public internet
+        enabled: false
+      # -- route config for the trusted issuers registry endpoint
+      tir:
+        # -- should there be an ingress to connect til with the public internet
+        enabled: true
+        # -- annotations to be added to the ingress
+        annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-prod
+            nginx.ingress.kubernetes.io/backend-protocol: HTTP
+            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        # -- all hosts to be provided
+        hosts:
+          ## provide a hosts and the paths that should be available
+          - host: tir.dea.k8s.fiware.org
+        # -- configure the ingress' tls
+        tls:
+          - secretName: til-tls
+            hosts:
+            - tir.dea.k8s.fiware.org
