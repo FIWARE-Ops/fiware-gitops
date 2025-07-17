@@ -319,6 +319,7 @@ data-space-connector:
 
   didJson:
     enabled: true
+    port: 8080
     ingress:
       enabled: true
       host: ic.dea.k8s.fiware.org
