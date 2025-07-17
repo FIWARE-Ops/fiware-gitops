@@ -1,0 +1,1063 @@
+data-space-connector:
+  apisix:
+    image:
+      debug: true
+    dataPlane:
+      ingress:
+        enabled: true
+        hostname: broker.ic.dea.k8s.fiware.org
+        extraHosts:
+          - name: tmf.ic.dea.k8s.fiware.org
+            path: /
+          - name: tpp-broker.ic.dea.k8s.fiware.org
+            path: /
+          - name: tpp.ic.dea.k8s.fiware.org
+            path: /
+          - name: up-broker.ic.dea.k8s.fiware.org
+            path: /
+    catchAllRoute:
+      enabled: false
+    routes: |-
+      - uri: /.well-known/openid-configuration
+        host: broker.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            verifier:3000: 1
+          type: roundrobin
+        plugins:
+          proxy-rewrite:
+            uri: /services/data-service/.well-known/openid-configuration
+      - uri: /.well-known/openid-configuration
+        host: tpp.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            verifier:3000: 1
+          type: roundrobin
+        plugins:
+          proxy-rewrite:
+            uri: /services/tpp-service/.well-known/openid-configuration
+      - uri: /.well-known/data-space-configuration
+        upstream:
+          nodes:
+            dsconfig:3002: 1
+          type: roundrobin
+        plugins:
+          proxy-rewrite:
+            uri: /.well-known/data-space-configuration/data-space-configuration.json
+          response-rewrite:
+            headers:
+              set:
+                content-type: application/json
+      - uri: /*
+        host: tpp-broker.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            data-service-scorpio:9090: 1
+          type: roundrobin
+        plugins:
+          openid-connect:
+            bearer_only: true
+            use_jwks: true
+            client_id: contract-management
+            client_secret: unused
+            ssl_verify: false
+            discovery: https://verifier.ic.dea.k8s.fiware.org/services/tmf-api/.well-known/openid-configuration
+          opa:
+            host: "http://localhost:8181"
+            policy: tpp
+      - uri: /*
+        host: broker.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            data-service-scorpio:9090: 1
+          type: roundrobin
+        plugins: 
+          openid-connect:
+            bearer_only: true
+            use_jwks: true
+            client_id: data-service
+            client_secret: unused
+            ssl_verify: false
+            discovery: https://verifier.ic.dea.k8s.fiware.org/services/data-service/.well-known/openid-configuration
+          opa:
+            host: "http://localhost:8181"
+            policy: policy/main
+            with_body: true
+      - uri: /*
+        host: up-broker.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            data-service-scorpio:9090: 1
+          type: roundrobin
+        plugins: 
+          request-validation:
+            header_schema: 
+              type: object
+              required:
+                - Demo
+              properties:
+                Demo:
+                  type: string
+                  pattern: Demo          
+      - uri: /.well-known/openid-configuration
+        host: tmf.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            verifier:3000: 1
+          type: roundrobin
+        plugins:
+          proxy-rewrite:
+            uri: /services/tmf-api/.well-known/openid-configuration
+      - uri: /api/v1/catalogs
+        host: tpp.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            rainbow:8080: 1
+      - uri: /*
+        host: tpp.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            rainbow:8080: 1
+        plugins:
+          openid-connect:
+            bearer_only: true
+            use_jwks: true
+            client_id: data-service
+            client_secret: unused
+            ssl_verify: false
+            discovery: https://verifier.ic.dea.k8s.fiware.org/services/data-service/.well-known/openid-configuration
+          opa:
+            host: "http://localhost:8181"
+            policy: policy/main
+            with_body: true
+      - uri: /*
+        host: tmf.ic.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            tm-forum-api:8080: 1
+          type: roundrobin
+        plugins:
+          openid-connect:
+            bearer_only: true
+            use_jwks: true
+            client_id: contract-management
+            client_secret: unused
+            ssl_verify: false
+            discovery: https://verifier.ic.dea.k8s.fiware.org/services/tmf-api/.well-known/openid-configuration
+          opa:
+            host: "http://localhost:8181"
+            policy: policy/main
+            with_body: true
+
+  credentials-config-service:
+    ingress:
+      enabled: false
+    registration:
+      enabled: true
+      services:
+        - id: "did:web:ic.dea.k8s.fiware.org"
+          defaultOidcScope: "openid learcredential"
+          oidcScopes:
+            "openid learcredential":
+              credentials:
+                - type: LegalPersonCredential
+                  trustedParticipantsLists:
+                    - https://tir.dea.k8s.fiware.org
+                  trustedIssuersLists:
+                    - http://trusted-issuers-list:8080
+                  jwtInclusion:
+                    enabled: true
+                    fullInclusion: true
+              presentationDefinition:
+                id: pd
+                input_descriptors:
+                  - id: descriptor
+                    constraints:
+                      fields:
+                        - id: vct
+                          path:
+                            - $.vct
+                          filter:
+                            const: "LegalPersonCredential"
+                        - id: subject
+                          path:
+                            - $.firstName
+                        - id: roles
+                          path:
+                            - $.roles
+                    format:
+                      "vc+sd-jwt":
+                        alg:
+                          - ES256
+                format:
+                  "vc+sd-jwt":
+                    alg:
+                      - ES256
+        - id: data-service
+          defaultOidcScope: "default"
+          oidcScopes:
+            "default":
+              credentials:
+                - type: UserCredential
+                  trustedParticipantsLists:
+                    - https://tir.dea.k8s.fiware.org
+                  trustedIssuersLists:
+                    - http://trusted-issuers-list:8080
+                  jwtInclusion:
+                    enabled: true
+                    fullInclusion: true
+            "operator":
+              credentials:
+                - type: OperatorCredential
+                  trustedParticipantsLists:
+                    - https://tir.dea.k8s.fiware.org
+                  trustedIssuersLists:
+                    - http://trusted-issuers-list:8080
+                  jwtInclusion:
+                    enabled: true
+                    fullInclusion: true
+        - id: tpp-service
+          defaultOidcScope: "operator"
+          oidcScopes:
+            "operator":
+              credentials:
+                - type: OperatorCredential
+                  trustedParticipantsLists:
+                    - https://tir.dea.k8s.fiware.org
+                  trustedIssuersLists:
+                    - http://trusted-issuers-list:8080
+                  jwtInclusion:
+                    enabled: true
+                    fullInclusion: true
+
+  vcverifier:
+    ingress:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.tls: "true"
+      hosts:
+        - host: verifier.ic.dea.k8s.fiware.org
+          paths:
+            - "/"
+    deployment:
+      image:
+        repository: quay.io/wi_stefan/vcverifier
+        tag: 10.0.1
+        pullPolicy: Always
+      logging:
+        level: DEBUG
+      verifier:
+        tirAddress: https://tir.dea.k8s.fiware.org/
+        did: did:web:verifier.ic.dea.k8s.fiware.org
+        supportedModes: ["byValue","byReference"]
+        clientIdentification:
+          keyPath: /signing-key/client.key.pem
+          requestKeyAlgorithm: ES256
+          id: x509_san_dns:verifier.ic.dea.k8s.fiware.org
+          certificatePath: /certificate/client-chain-bundle.cert.pem
+      server:
+        host: https://verifier.ic.dea.k8s.fiware.org
+      configRepo:
+        configEndpoint: http://credentials-config-service:8080
+      alternativeConfig: /alternative-conf/server.yaml
+      additionalVolumes:
+        - name: signing-key
+          secret:
+            secretName: signing-key
+        - name: cert-chain
+          secret:
+            secretName: cert-chain
+        - name: did-material
+          emptyDir: {}
+        - name: alternative-conf
+          emptyDir: {}
+        # add the self generated root ca to the system truststore
+        - name: root-ca
+          emptyDir: {}
+        - name: ca-to-add
+          secret:
+            secretName: root-ca
+      additionalVolumeMounts:
+        - name: alternative-conf
+          mountPath: /alternative-conf
+        - name: signing-key
+          mountPath: /signing-key
+        - name: cert-chain
+          mountPath: /certificate
+        # add the self generated root ca to the system truststore
+        - name: root-ca
+          mountPath: /etc/ssl/cert.pem
+          subPath: cert.pem
+
+
+  mysql:
+    resourcesPreset: none
+    primary:
+      persistence:
+        enabled: true
+    secondary:
+      persistence:
+        enabled: false
+
+  postgis:
+    primary:
+      resourcesPreset: none
+      persistence:
+        enabled: true
+    readReplicas:
+      persistence:
+        enabled: false
+
+  postgresql:
+    primary:
+      resourcesPreset: none
+      persistence:
+        enabled: true
+    readReplicas:
+      persistence:
+        enabled: false
+
+  didJson:
+    enabled: true
+    ingress:
+      enabled: true
+      host: ic.dea.k8s.fiware.org
+      tls:
+        host: ic.dea.k8s.fiware.org
+    key:
+      x5u: https://ic.dea.k8s.fiware.org/.well-known/tls.crt
+
+  dataSpaceConfig:
+    enabled: true
+    serviceType: ClusterIP
+    port: 3002
+    supportedModels:
+      - "https://raw.githubusercontent.com/smart-data-models/dataModel.Consumption/master/ConsumptionPoint/schema.json"
+      - "https://raw.githubusercontent.com/smart-data-models/dataModel.Consumption/master/ConsumptionCost/schema.json"
+    supportedProtocols:
+      - http
+      - https
+    authenticationProtocols:
+      - oid4vp
+
+  scorpio:
+    ingress:
+      enabled: false
+
+  odrl-pap:
+    deployment:
+      initContainers:
+        - name: get-did
+          image: ubuntu
+          command:
+            - /bin/bash
+          args:
+            - -ec
+            - |
+              #!/bin/bash
+              apt-get -y update; apt-get -y install wget
+              cd /did-material
+              wget http://did-helper:3002/did-material/did.env
+          volumeMounts:
+            - name: did-material
+              mountPath: /did-material
+      additionalVolumes:
+        - name: did-material
+          emptyDir: {}
+      additionalVolumeMounts:
+        - name: did-material
+          mountPath: /did-material
+      command:
+        - /bin/sh
+      args:
+        - -ec
+        - |
+          #!/bin/sh
+          source /did-material/did.env
+          export GENERAL_ORGANIZATION_DID=$DID
+          ./application -Dquarkus.http.host=0.0.0.0
+
+    ingress:
+      enabled: false
+
+  tm-forum-api:
+    registration:
+      enabled: false
+    ingress:
+      enabled: false
+
+  # -- integration of rainbow
+  rainbow:
+    enabled: true
+    db:
+      url: postgresql
+      user: postgres
+      existingSecret: database-secret
+      passwordKey: postgres-admin-password
+    ingress:
+      enabled: false
+
+  contract-management:
+    til:
+      credentialType: OperatorCredential
+    services:
+      ## Config for Trusted Issuers List
+      trusted-issuers-list:
+        ## URL of the Trusted Issuers List Service
+        url: http://trusted-issuers-list:8080
+      ## Config for the TM Forum Service hosting the APIs
+      product-order:
+        ## URL of the TM Forum Service hosting the Product Ordering API
+        url: http://provider-tm-forum-api-product-ordering-management:8080
+      party:
+        ## URL of the TM Forum Service hosting the Party API
+        url: http://provider-tm-forum-api-party-catalog:8080
+      product-catalog:
+        ## URL of the TM Forum Service hosting the Product Catalog API
+        url: http://provider-tm-forum-api-product-catalog:8080
+      service-catalog:
+        ## URL of the TM Forum Service hosting the Service Catalog API
+        url: http://provider-tm-forum-api-service-catalog:8080
+      tmforum-agreement-api:
+        ## URL of the TM Forum Service hosting the Agreement API
+        url: http://provider-tm-forum-api-agreement:8080
+      quote:
+        ## URL for TM Forum Service hosting the Quote API
+        url: http://provider-tm-forum-api-quote:8080
+      rainbow:
+        ## URL for the Rainbow service
+        url: http://rainbow:8080
+
+  trusted-issuers-list:
+    # only open for clean up in the tests
+    ingress:
+      til:
+        enabled: false
+
+  mongodb:
+    enabled: true
+    resourcesPreset: none
+    persistence:
+      enabled: false
+    architecture: standalone
+
+  marketplace:
+    enabled: true
+    prep:
+      name: bae-prep
+      script:
+        prep.sh: |-
+          #!/bin/bash
+  
+          export $(curl -f -X GET did-helper:3002/did-material/did.env)
+          export BAE_LP_SIOP_CLIENT_ID=$(echo ${DID})
+  
+          wget http://did-helper:3002/did-material/private-key.pem
+          export BAE_LP_SIOP_PRIVATE_KEY=$(openssl ec -in private-key.pem -noout -text | grep 'priv:' -A 3 | tail -n +2 | tr -d ':\n ') 
+          echo ${BAE_LP_SIOP_PRIVATE_KEY}
+          /entrypoint.sh
+
+    siop:
+      verifier:
+        host: https://verifier.ic.dea.k8s.fiware.org
+        callbackURL: https://verifier.ic.dea.k8s.fiware.org/auth/vc/callback
+      allowedRoles:
+        - seller
+        - customer
+        - admin
+        - REPRESENTATIVE
+        - READER
+        - OPERATOR
+
+    externalUrl: https://marketplace.ic.dea.k8s.fiware.org
+
+    bizEcosystemChargingBackend:
+      deployment:
+        image:
+          tag: 10.0.1
+      extraEnvVars:
+        - name: BAE_CB_MONGO_PASS
+          valueFrom:
+            secretKeyRef:
+              name: marketplace-secret-env
+              key: MONGO_BAE_CHARGING_PW
+        - name: BAE_CB_CUSTOMER_BILL
+          value: "http://provider-tm-forum-api-customer-bill-management:8080/tmf-api/customerBillManagement/v4"
+
+    bizEcosystemApis:
+      tmForum:
+        catalog:
+          host: provider-tm-forum-api-product-catalog
+          port: 8080
+          path: /tmf-api/productCatalogManagement/v4
+        ordering:
+          host: provider-tm-forum-api-product-ordering-management
+          port: 8080
+          path: /tmf-api/productOrderingManagement/v4
+        billing:
+          host: provider-tm-forum-api-account
+          port: 8080
+          path: /tmf-api/accountManagement/v4
+        usage:
+          host: provider-tm-forum-api-usage-management
+          port: 8080
+          path: /tmf-api/usageManagement/v4
+        party:
+          host: provider-tm-forum-api-party-catalog
+          port: 8080
+          path: /tmf-api/party/v4
+        customer:
+          host: provider-tm-forum-api-customer-management
+          port: 8080
+          path: /tmf-api/customerManagement/v4
+        resources:
+          host: provider-tm-forum-api-resource-catalog
+          port: 8080
+          path: /tmf-api/resourceCatalog/v4
+        services:
+          host: provider-tm-forum-api-service-catalog
+          port: 8080
+          path: /tmf-api/serviceCatalogManagement/v4
+        resourceInventory:
+          host: provider-tm-forum-api-resource-inventory
+          port: 8080
+          path: /tmf-api/resourceInventoryManagement/v4
+        inventory:
+          host: provider-tm-forum-api-product-inventory
+          port: 8080
+          path: /tmf-api/productInventory/v4
+
+    bizEcosystemLogicProxy:
+      command:
+        - /prep/prep.sh
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          nginx.ingress.kubernetes.io/backend-protocol: HTTP
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        hosts:
+          - host: marketplace.ic.dea.k8s.fiware.org
+            paths:
+              - "/"
+      extraVolumeMounts:
+        - name: bae-prep
+          mountPath: /prep
+      extraContainerVolumes:
+        - name: bae-prep
+          configMap:
+            name: bae-prep
+            defaultMode: 0777
+
+      additionalEnvVars:
+        - name: BAE_LP_SIOP_IS_REDIRECTION
+          value: "true"
+        - name: BAE_LP_PURCHASE_ENABLED
+          value: "true"
+        - name: BAE_LP_MONGO_PASS
+          valueFrom:
+            secretKeyRef:
+              name: marketplace-secret-env
+              key: MONGO_BAE_BELP_PW
+        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          value: "0"
+
+  keycloak:
+    ingress:
+      enabled: true
+      hostname: keycloak.ic.dea.k8s.fiware.org
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/backend-protocol: HTTP
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    command:
+      - /bin/bash
+      - -c
+    args:
+      - |
+        #!/bin/sh
+        export $(cat /did-material/did.env)
+        exec /opt/bitnami/scripts/keycloak/entrypoint.sh /opt/bitnami/scripts/keycloak/run.sh
+    initContainers:
+      - name: get-did
+        image: ubuntu
+        command:
+          - /bin/bash
+        args:
+          - -ec
+          - |
+            #!/bin/bash
+            apt-get -y update; apt-get -y install wget; apt-get -y install sed;
+            
+            cd /did-material
+            wget http://did-helper:3002/did-material/cert.pfx
+            wget http://did-helper:3002/did-material/did.env
+            mkdir -p /did-material/client
+            cd /did-material/client
+            wget http://did-helper.provider.svc.cluster.local:3002/did-material/did.env
+            sed -i -e 's/DID/CLIENT_DID/g' /did-material/client/did.env
+            echo "" >> /did-material/did.env
+            echo $(cat /did-material/client/did.env) >> /did-material/did.env
+            echo $(cat /did-material/did.env)
+        volumeMounts:
+          - name: did-material
+            mountPath: /did-material
+
+      - name: register-at-til
+        image: quay.io/curl/curl:8.1.2
+        command:
+          - /bin/sh
+        args:
+          - -ec
+          - |
+            #!/bin/sh
+            export $(cat /did-material/did.env)
+            /bin/init.sh
+        volumeMounts:
+          - name: provider-til-registration
+            mountPath: /bin/init.sh
+            subPath: init.sh
+          - name: did-material
+            mountPath: /did-material
+
+      - name: prepare-envs
+        image: docker.io/bitnami/keycloak:26.2.1-debian-12-r0
+        command:
+          - /bin/sh
+        args:
+          - -ec
+          - |
+            #!/bin/sh
+            export $(cat /etc/env/did.env)
+            cp -r /opt/bitnami/scripts/. /env-update/
+            echo "export DID=$DID" >> /env-update/keycloak-env.sh
+            cat /env-update/keycloak-env.sh
+        volumeMounts:
+          - name: kc-env
+            mountPath: /env-update
+          - name: did-material
+            mountPath: /etc/env
+
+    extraVolumeMounts:
+      - name: did-material
+        mountPath: /did-material
+      - name: did-material
+        mountPath: "/etc/env"
+        readOnly: true
+      - name: realms
+        mountPath: /opt/bitnami/keycloak/data/import
+      - name: kc-env
+        mountPath: /opt/bitnami/scripts/keycloak-env.sh
+        subPath: keycloak-env.sh
+
+    extraVolumes:
+      - name: did-material
+        emptyDir: { }
+      - name: kc-env
+        emptyDir: { }
+      - name: realms
+        configMap:
+          name: test-realm-realm
+      - name: provider-til-registration
+        configMap:
+          name: provider-til-registration
+          defaultMode: 0755
+    realm:
+      frontendUrl: https://keycloak.ic.dea.k8s.fiware.org
+      import: true
+      name: test-realm
+      attributes: |
+        "vc.user-sd.credential_signing_alg_values_supported": "ES256",
+        "vc.user-sd.credential_build_config.signing_algorithm": "ES256",
+        "vc.user-sd.credential_build_config.token_jws_type": "vc+sd-jwt",
+        "vc.user-sd.credential_build_config.proof_types_supported": "{\"jwt\":{\"proof_signing_alg_values_supported\":[\"ES256\"]}}",
+        "vc.user-sd.format": "vc+sd-jwt",
+        "vc.user-sd.scope": "LegalPersonCredential",
+        "vc.user-sd.vct": "LegalPersonCredential",
+        "vc.user-sd.credential_build_config.visible_claims": "roles,email",
+        "vc.user-sd.credential_build_config.decoys": "3",
+        "vc.user-credential.credential_signing_alg_values_supported": "ES256",
+        "vc.user-credential.credential_build_config.signing_algorithm": "ES256",
+        "vc.user-credential.credential_build_config.token_jws_type": "JWT",
+        "vc.user-credential.credential_build_config.proof_types_supported": "{\"jwt\":{\"proof_signing_alg_values_supported\":[\"ES256\"]}}",
+        "vc.user-credential.format": "jwt_vc",
+        "vc.user-credential.scope": "LegalPersonCredential",
+        "vc.user-credential.vct": "LegalPersonCredential",
+        "vc.verifiable-credential.format": "vc+sd-jwt",
+        "vc.verifiable-credential.scope": "VerifiableCredential",
+        "vc.verifiable-credential.vct": "VerifiableCredential",
+        "vc.operator-credential.format": "vc+sd-jwt",
+        "vc.operator-credential.scope": "OperatorCredential",
+        "vc.operator-credential.vct": "OperatorCredential"
+      clientRoles: |
+        "${DID}": [
+          {
+            "name": "customer",
+            "description": "Is allowed to see offers etc.",
+            "clientRole": true
+          },
+          {
+            "name": "OPERATOR",
+            "description": "Is allowed to operate clusters.",
+            "clientRole": true
+          },
+          {
+            "name": "REPRESENTATIVE",
+            "description": "Is allowed to register.",
+            "clientRole": true
+          }],
+        "account": [
+          {
+            "name": "delete-account",
+            "description": "${role_delete-account}",
+            "composite": false,
+            "clientRole": true,
+            "attributes": {}
+          },
+          {
+            "name": "view-consent",
+            "description": "${role_view-consent}",
+            "composite": false,
+            "clientRole": true,
+            "attributes": {}
+          },
+          {
+            "name": "view-groups",
+            "description": "${role_view-groups}",
+            "composite": false,
+            "clientRole": true,
+            "attributes": {}
+          },
+          {
+            "name": "manage-account",
+            "description": "${role_manage-account}",
+            "composite": true,
+            "composites": {
+              "client": {
+                "account": [
+                  "manage-account-links"
+                ]
+              }
+            },
+            "clientRole": true,
+            "attributes": {}
+          },
+          {
+            "name": "view-profile",
+            "description": "${role_view-profile}",
+            "composite": false,
+            "clientRole": true,
+            "attributes": {}
+          },
+          {
+            "name": "view-applications",
+            "description": "${role_view-applications}",
+            "composite": false,
+            "clientRole": true,
+            "attributes": {}
+          },
+          {
+            "name": "manage-consent",
+            "description": "${role_manage-consent}",
+            "composite": true,
+            "composites": {
+              "client": {
+                "account": [
+                  "view-consent"
+                ]
+              }
+            },
+            "clientRole": true,
+            "attributes": {}
+          },
+          {
+            "name": "manage-account-links",
+            "description": "${role_manage-account-links}",
+            "composite": false,
+            "clientRole": true,
+            "attributes": {}
+          }
+        ]
+
+      users: |
+        {
+          "username": "employee",
+          "enabled": true,
+          "email": "employee@provider.org",
+          "firstName": "Test",
+          "lastName": "User",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "test"
+            }
+          ],
+          "clientRoles": {
+            "${DID}": [
+              "seller",
+              "admin"
+            ],
+            "account": [
+              "view-profile",
+              "manage-account"
+            ]
+          },
+          "groups": [
+              "/consumer"
+          ]
+        }
+      clientScopes: |
+        {
+          "name": "LegalPersonCredential",
+          "description": "OIDC4VC Scope, that adds all properties required for a user.",
+          "protocol": "openid-connect",
+          "attributes": {},
+          "protocolMappers": [
+            {
+              "name": "context-mapper",
+              "protocol": "oid4vc",
+              "protocolMapper": "oid4vc-context-mapper",
+              "config": {
+                "context": "https://www.w3.org/2018/credentials/v1",
+                "supportedCredentialTypes": "VerifiableCredential,LegalPersonCredential,OperatorCredential"
+              }
+            },
+            {
+              "name": "email-mapper",
+              "protocol": "oid4vc",
+              "protocolMapper": "oid4vc-user-attribute-mapper",
+              "config": {
+                "subjectProperty": "email",
+                "userAttribute": "email",
+                "supportedCredentialTypes": "LegalPersonCredential,OperatorCredential"
+              }
+            },
+            {
+              "name": "firstName-mapper",
+              "protocol": "oid4vc",
+              "protocolMapper": "oid4vc-user-attribute-mapper",
+              "config": {
+                "subjectProperty": "firstName",
+                "userAttribute": "firstName",
+                "supportedCredentialTypes": "LegalPersonCredential,OperatorCredential"
+              }
+            },
+            {
+              "name": "lastName-mapper",
+              "protocol": "oid4vc",
+              "protocolMapper": "oid4vc-user-attribute-mapper",
+              "config": {
+                "subjectProperty": "lastName",
+                "userAttribute": "lastName",
+                "supportedCredentialTypes": "LegalPersonCredential,OperatorCredential"
+              }
+            },
+            {
+              "name": "role-mapper",
+              "protocol": "oid4vc",
+              "protocolMapper": "oid4vc-target-role-mapper",
+              "config": {
+                "subjectProperty": "roles",
+                "clientId": "${DID}",
+                "supportedCredentialTypes": "LegalPersonCredential,OperatorCredential"
+              }
+            }
+          ]
+        }
+      clients: |
+        {
+          "clientId": "${DID}",
+          "enabled": true,
+          "description": "Client to connect test.org",
+          "surrogateAuthRequired": false,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "defaultRoles": [],
+          "redirectUris": [],   
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "openid-connect",
+          "attributes": {
+            "client.secret.creation.time": "1675260539"
+          },
+          "protocolMappers": [
+          ],
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [],
+          "optionalClientScopes": []
+        },
+        {
+          "clientId": "account",
+          "name": "${client_account}",
+          "rootUrl": "${authBaseUrl}",
+          "baseUrl": "/realms/test-realm/account/",
+          "surrogateAuthRequired": false,
+          "enabled": true,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "redirectUris": [
+            "/realms/test-realm/account/*"
+          ],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": true,
+          "frontchannelLogout": false,
+          "protocol": "openid-connect",
+          "attributes": {
+            "realm_client": "false",
+            "post.logout.redirect.uris": "+"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": 0,
+          "defaultClientScopes": [
+            "web-origins",
+            "acr",
+            "roles",
+            "profile",
+            "basic",
+            "email"
+          ],
+          "optionalClientScopes": [
+            "address",
+            "phone",
+            "offline_access",
+            "organization",
+            "microprofile-jwt"
+          ]
+        },
+        {
+          "clientId": "account-console",
+          "name": "${client_account-console}",
+          "rootUrl": "${authBaseUrl}",
+          "baseUrl": "/realms/test-realm/account/",
+          "surrogateAuthRequired": false,
+          "enabled": true,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "redirectUris": [
+            "/realms/test-realm/account/*"
+          ],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": true,
+          "serviceAccountsEnabled": false,
+          "publicClient": true,
+          "frontchannelLogout": false,
+          "protocol": "openid-connect",
+          "attributes": {
+            "realm_client": "false",
+            "post.logout.redirect.uris": "+",
+            "pkce.code.challenge.method": "S256"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": 0,
+          "protocolMappers": [
+            {
+              "id": "706c5202-1b03-4fad-a5b8-484287e941f8",
+              "name": "audience resolve",
+              "protocol": "openid-connect",
+              "protocolMapper": "oidc-audience-resolve-mapper",
+              "consentRequired": false,
+              "config": {}
+            }
+          ],
+          "defaultClientScopes": [
+            "web-origins",
+            "acr",
+            "roles",
+            "profile",
+            "basic",
+            "email"
+          ],
+          "optionalClientScopes": [
+            "address",
+            "phone",
+            "offline_access",
+            "organization",
+            "microprofile-jwt",
+            "LegalPersonCredential"
+          ]
+        },
+        {
+          "clientId": "admin-cli",
+          "name": "${client_admin-cli}",
+          "surrogateAuthRequired": false,
+          "enabled": true,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": false,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": true,
+          "serviceAccountsEnabled": false,
+          "publicClient": true,
+          "frontchannelLogout": false,
+          "protocol": "openid-connect",
+          "attributes": {
+            "realm_client": "false",
+            "client.use.lightweight.access.token.enabled": "true"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": 0,
+          "protocolMappers": [
+            {
+              "name": "audience resolve",
+              "protocol": "openid-connect",
+              "protocolMapper": "oidc-audience-resolve-mapper",
+              "consentRequired": false,
+              "config": {}
+            }
+          ],
+          "defaultClientScopes": [
+            "web-origins",
+            "acr",
+            "roles",
+            "profile",
+            "basic",
+            "email"
+          ],
+          "optionalClientScopes": [
+            "address",
+            "phone",
+            "offline_access",
+            "organization",
+            "microprofile-jwt",
+            "UserCredential"
+          ]
+        }
+
+  registration:
+    enabled: true
+    configMap: provider-til-registration
+    til: http://trusted-issuers-list.provider.svc.cluster.local:8080
+    did: ${DID}
+    credentialTypes:
+      - LegalPersonCredential
+    prepScript: export $(curl -f -X GET did-helper:3002/did-material/did.env)
