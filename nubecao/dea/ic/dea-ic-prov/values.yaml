@@ -234,7 +234,9 @@ data-space-connector:
     ingress:
       enabled: true
       annotations:
-        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/backend-protocol: HTTP
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       hosts:
         - host: verifier.ic.dea.k8s.fiware.org
           paths:
@@ -321,6 +323,10 @@ data-space-connector:
     enabled: true
     port: 8080
     ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/backend-protocol: HTTP
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       enabled: true
       host: ic.dea.k8s.fiware.org
       tls:
