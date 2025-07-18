@@ -8,5 +8,5 @@ appVersion: 0.30.0
 
 dependencies:
   - name: data-space-connector
-    version: 24.2.4
+    version: 24.2.5
     repository: https://pulledtim.github.io/data-space-connector/

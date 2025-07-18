@@ -27,44 +27,6 @@ data-space-connector:
         plugins:
           proxy-rewrite:
             uri: /services/data-service/.well-known/openid-configuration
-      - uri: /.well-known/openid-configuration
-        host: tpp.ic.dea.k8s.fiware.org
-        upstream:
-          nodes:
-            verifier:3000: 1
-          type: roundrobin
-        plugins:
-          proxy-rewrite:
-            uri: /services/tpp-service/.well-known/openid-configuration
-      - uri: /.well-known/data-space-configuration
-        upstream:
-          nodes:
-            dsconfig:3002: 1
-          type: roundrobin
-        plugins:
-          proxy-rewrite:
-            uri: /.well-known/data-space-configuration/data-space-configuration.json
-          response-rewrite:
-            headers:
-              set:
-                content-type: application/json
-      - uri: /*
-        host: tpp-broker.ic.dea.k8s.fiware.org
-        upstream:
-          nodes:
-            data-service-scorpio:9090: 1
-          type: roundrobin
-        plugins:
-          openid-connect:
-            bearer_only: true
-            use_jwks: true
-            client_id: contract-management
-            client_secret: unused
-            ssl_verify: false
-            discovery: https://verifier.ic.dea.k8s.fiware.org/services/tmf-api/.well-known/openid-configuration
-          opa:
-            host: "http://localhost:8181"
-            policy: tpp
       - uri: /*
         host: broker.ic.dea.k8s.fiware.org
         upstream:
@@ -353,35 +315,13 @@ data-space-connector:
 
   odrl-pap:
     deployment:
-      initContainers:
-        - name: get-did
-          image: ubuntu
-          command:
-            - /bin/bash
-          args:
-            - -ec
-            - |
-              #!/bin/bash
-              apt-get -y update; apt-get -y install wget
-              cd /did-material
-              wget http://did-helper:3002/did-material/did.env
-          volumeMounts:
-            - name: did-material
-              mountPath: /did-material
-      additionalVolumes:
-        - name: did-material
-          emptyDir: {}
-      additionalVolumeMounts:
-        - name: did-material
-          mountPath: /did-material
       command:
         - /bin/sh
       args:
         - -ec
         - |
           #!/bin/sh
-          source /did-material/did.env
-          export GENERAL_ORGANIZATION_DID=$DID
+          export GENERAL_ORGANIZATION_DID=did:web:ic.dea.k8s.fiware.org
           ./application -Dquarkus.http.host=0.0.0.0
 
     ingress:
@@ -436,7 +376,6 @@ data-space-connector:
         url: http://rainbow:8080
 
   trusted-issuers-list:
-    # only open for clean up in the tests
     ingress:
       til:
         enabled: false
@@ -445,7 +384,7 @@ data-space-connector:
     enabled: true
     resourcesPreset: none
     persistence:
-      enabled: false
+      enabled: true
     architecture: standalone
 
   marketplace:
@@ -456,9 +395,8 @@ data-space-connector:
         prep.sh: |-
           #!/bin/bash
   
-          export $(curl -f -X GET did-helper:3002/did-material/did.env)
-          export BAE_LP_SIOP_CLIENT_ID=$(echo ${DID})
-  
+          export BAE_LP_SIOP_CLIENT_ID=did:web:ic.dea.k8s.fiware.org
+          # TODO TIM Replace with imported certificate from ingress
           wget http://did-helper:3002/did-material/private-key.pem
           export BAE_LP_SIOP_PRIVATE_KEY=$(openssl ec -in private-key.pem -noout -text | grep 'priv:' -A 3 | tail -n +2 | tr -d ':\n ') 
           echo ${BAE_LP_SIOP_PRIVATE_KEY}
@@ -583,33 +521,10 @@ data-space-connector:
     args:
       - |
         #!/bin/sh
-        export $(cat /did-material/did.env)
+        export DID=did:web:ic.dea.k8s.fiware.org
+        export CLIENT_DID=did:web:ic.dea.k8s.fiware.org
         exec /opt/bitnami/scripts/keycloak/entrypoint.sh /opt/bitnami/scripts/keycloak/run.sh
     initContainers:
-      - name: get-did
-        image: ubuntu
-        command:
-          - /bin/bash
-        args:
-          - -ec
-          - |
-            #!/bin/bash
-            apt-get -y update; apt-get -y install wget; apt-get -y install sed;
-            
-            cd /did-material
-            wget http://did-helper:3002/did-material/cert.pfx
-            wget http://did-helper:3002/did-material/did.env
-            mkdir -p /did-material/client
-            cd /did-material/client
-            wget http://did-helper.provider.svc.cluster.local:3002/did-material/did.env
-            sed -i -e 's/DID/CLIENT_DID/g' /did-material/client/did.env
-            echo "" >> /did-material/did.env
-            echo $(cat /did-material/client/did.env) >> /did-material/did.env
-            echo $(cat /did-material/did.env)
-        volumeMounts:
-          - name: did-material
-            mountPath: /did-material
-
       - name: register-at-til
         image: quay.io/curl/curl:8.1.2
         command:
@@ -618,14 +533,13 @@ data-space-connector:
           - -ec
           - |
             #!/bin/sh
-            export $(cat /did-material/did.env)
+            export DID=did:web:ic.dea.k8s.fiware.org
+            export CLIENT_DID=did:web:ic.dea.k8s.fiware.org
             /bin/init.sh
         volumeMounts:
           - name: provider-til-registration
             mountPath: /bin/init.sh
             subPath: init.sh
-          - name: did-material
-            mountPath: /did-material
 
       - name: prepare-envs
         image: docker.io/bitnami/keycloak:26.2.1-debian-12-r0
@@ -634,23 +548,17 @@ data-space-connector:
         args:
           - -ec
           - |
-            #!/bin/sh
-            export $(cat /etc/env/did.env)
+            #!/bin/sh            
+            export DID=did:web:ic.dea.k8s.fiware.org
+            export CLIENT_DID=did:web:ic.dea.k8s.fiware.org
             cp -r /opt/bitnami/scripts/. /env-update/
             echo "export DID=$DID" >> /env-update/keycloak-env.sh
             cat /env-update/keycloak-env.sh
         volumeMounts:
           - name: kc-env
             mountPath: /env-update
-          - name: did-material
-            mountPath: /etc/env
 
     extraVolumeMounts:
-      - name: did-material
-        mountPath: /did-material
-      - name: did-material
-        mountPath: "/etc/env"
-        readOnly: true
       - name: realms
         mountPath: /opt/bitnami/keycloak/data/import
       - name: kc-env
@@ -658,8 +566,6 @@ data-space-connector:
         subPath: keycloak-env.sh
 
     extraVolumes:
-      - name: did-material
-        emptyDir: { }
       - name: kc-env
         emptyDir: { }
       - name: realms
@@ -1064,7 +970,7 @@ data-space-connector:
     enabled: true
     configMap: provider-til-registration
     til: http://trusted-issuers-list.provider.svc.cluster.local:8080
-    did: ${DID}
+    did: did:web:ic.dea.k8s.fiware.org
     credentialTypes:
       - LegalPersonCredential
-    prepScript: export $(curl -f -X GET did-helper:3002/did-material/did.env)
+    prepScript: export DID=did:web:ic.dea.k8s.fiware.org
