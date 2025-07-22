@@ -22,7 +22,7 @@ data-space-connector:
         host: broker.ic.dea.k8s.fiware.org
         upstream:
           nodes:
-            verifier.provider.svc.cluster.local:3000: 1
+            verifier.dea-ic-prov.svc.cluster.local:3000: 1
           type: roundrobin
         plugins:
           proxy-rewrite:
@@ -31,7 +31,7 @@ data-space-connector:
         host: broker.ic.dea.k8s.fiware.org
         upstream:
           nodes:
-            data-service-scorpio.provider.svc.cluster.local:9090: 1
+            data-service-scorpio.dea-ic-prov.svc.cluster.local:9090: 1
           type: roundrobin
         plugins: 
           openid-connect:
@@ -49,7 +49,7 @@ data-space-connector:
         host: up-broker.ic.dea.k8s.fiware.org
         upstream:
           nodes:
-            data-service-scorpio.provider.svc.cluster.local:9090: 1
+            data-service-scorpio.dea-ic-prov.svc.cluster.local:9090: 1
           type: roundrobin
         plugins: 
           request-validation:
@@ -74,12 +74,12 @@ data-space-connector:
         host: tpp.ic.dea.k8s.fiware.org
         upstream:
           nodes:
-            rainbow.provider.svc.cluster.local:8080: 1
+            rainbow.dea-ic-prov.svc.cluster.local:8080: 1
       - uri: /*
         host: tpp.ic.dea.k8s.fiware.org
         upstream:
           nodes:
-            rainbow.provider.svc.cluster.local:8080: 1
+            rainbow.dea-ic-prov.svc.cluster.local:8080: 1
         plugins:
           openid-connect:
             bearer_only: true
@@ -96,7 +96,7 @@ data-space-connector:
         host: tmf.ic.dea.k8s.fiware.org
         upstream:
           nodes:
-            tm-forum-api.provider.svc.cluster.local:8080: 1
+            tm-forum-api.dea-ic-prov.svc.cluster.local:8080: 1
           type: roundrobin
         plugins:
           openid-connect:
@@ -113,7 +113,7 @@ data-space-connector:
 
   credentials-config-service:
     database:
-      host: authentication-mysql.provider.svc.cluster.local
+      host: authentication-mysql.dea-ic-prov.svc.cluster.local
     ingress:
       enabled: false
     registration:
@@ -128,7 +128,7 @@ data-space-connector:
                   trustedParticipantsLists:
                     - https://tir.dea.k8s.fiware.org
                   trustedIssuersLists:
-                    - http://trusted-issuers-list.provider.svc.cluster.local:8080
+                    - http://trusted-issuers-list.dea-ic-prov.svc.cluster.local:8080
                   jwtInclusion:
                     enabled: true
                     fullInclusion: true
@@ -166,7 +166,7 @@ data-space-connector:
                   trustedParticipantsLists:
                     - https://tir.dea.k8s.fiware.org
                   trustedIssuersLists:
-                    - http://trusted-issuers-list.provider.svc.cluster.local:8080
+                    - http://trusted-issuers-list.dea-ic-prov.svc.cluster.local:8080
                   jwtInclusion:
                     enabled: true
                     fullInclusion: true
@@ -176,7 +176,7 @@ data-space-connector:
                   trustedParticipantsLists:
                     - https://tir.dea.k8s.fiware.org
                   trustedIssuersLists:
-                    - http://trusted-issuers-list.provider.svc.cluster.local:8080
+                    - http://trusted-issuers-list.dea-ic-prov.svc.cluster.local:8080
                   jwtInclusion:
                     enabled: true
                     fullInclusion: true
@@ -189,7 +189,7 @@ data-space-connector:
                   trustedParticipantsLists:
                     - https://tir.dea.k8s.fiware.org
                   trustedIssuersLists:
-                    - http://trusted-issuers-list.provider.svc.cluster.local:8080
+                    - http://trusted-issuers-list.dea-ic-prov.svc.cluster.local:8080
                   jwtInclusion:
                     enabled: true
                     fullInclusion: true
@@ -224,7 +224,7 @@ data-space-connector:
       server:
         host: https://verifier.ic.dea.k8s.fiware.org
       configRepo:
-        configEndpoint: http://credentials-config-service.provider.svc.cluster.local:8080
+        configEndpoint: http://credentials-config-service.dea-ic-prov.svc.cluster.local:8080
       alternativeConfig: /alternative-conf/server.yaml
       additionalVolumes:
         - name: signing-key
@@ -339,7 +339,7 @@ data-space-connector:
   rainbow:
     enabled: true
     db:
-      url: postgresql.provider.svc.cluster.local
+      url: postgresql.dea-ic-prov.svc.cluster.local
       user: postgres
       existingSecret: database-secret
       passwordKey: postgres-admin-password
@@ -353,29 +353,29 @@ data-space-connector:
       ## Config for Trusted Issuers List
       trusted-issuers-list:
         ## URL of the Trusted Issuers List Service
-        url: http://trusted-issuers-list.provider.svc.cluster.local:8080
+        url: http://trusted-issuers-list.dea-ic-prov.svc.cluster.local:8080
       ## Config for the TM Forum Service hosting the APIs
       product-order:
         ## URL of the TM Forum Service hosting the Product Ordering API
-        url: http://provider-tm-forum-api-product-ordering-management.provider.svc.cluster.local:8080
+        url: http://provider-tm-forum-api-product-ordering-management.dea-ic-prov.svc.cluster.local:8080
       party:
         ## URL of the TM Forum Service hosting the Party API
-        url: http://provider-tm-forum-api-party-catalog.provider.svc.cluster.local:8080
+        url: http://provider-tm-forum-api-party-catalog.dea-ic-prov.svc.cluster.local:8080
       product-catalog:
         ## URL of the TM Forum Service hosting the Product Catalog API
-        url: http://provider-tm-forum-api-product-catalog.provider.svc.cluster.local:8080
+        url: http://provider-tm-forum-api-product-catalog.dea-ic-prov.svc.cluster.local:8080
       service-catalog:
         ## URL of the TM Forum Service hosting the Service Catalog API
-        url: http://provider-tm-forum-api-service-catalog.provider.svc.cluster.local:8080
+        url: http://provider-tm-forum-api-service-catalog.dea-ic-prov.svc.cluster.local:8080
       tmforum-agreement-api:
         ## URL of the TM Forum Service hosting the Agreement API
-        url: http://provider-tm-forum-api-agreement.provider.svc.cluster.local:8080
+        url: http://provider-tm-forum-api-agreement.dea-ic-prov.svc.cluster.local:8080
       quote:
         ## URL for TM Forum Service hosting the Quote API
-        url: http://provider-tm-forum-api-quote.provider.svc.cluster.local:8080
+        url: http://provider-tm-forum-api-quote.dea-ic-prov.svc.cluster.local:8080
       rainbow:
         ## URL for the Rainbow service
-        url: http://rainbow.provider.svc.cluster.local:8080
+        url: http://rainbow.dea-ic-prov.svc.cluster.local:8080
 
   trusted-issuers-list:
     ingress:
@@ -429,48 +429,48 @@ data-space-connector:
               name: marketplace-secret-env
               key: MONGO_BAE_CHARGING_PW
         - name: BAE_CB_CUSTOMER_BILL
-          value: "http://provider-tm-forum-api-customer-bill-management.provider.svc.cluster.local:8080/tmf-api/customerBillManagement/v4"
+          value: "http://provider-tm-forum-api-customer-bill-management.dea-ic-prov.svc.cluster.local:8080/tmf-api/customerBillManagement/v4"
 
     bizEcosystemApis:
       tmForum:
         catalog:
-          host: provider-tm-forum-api-product-catalog.provider.svc.cluster.local
+          host: provider-tm-forum-api-product-catalog.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/productCatalogManagement/v4
         ordering:
-          host: provider-tm-forum-api-product-ordering-management.provider.svc.cluster.local
+          host: provider-tm-forum-api-product-ordering-management.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/productOrderingManagement/v4
         billing:
-          host: provider-tm-forum-api-account.provider.svc.cluster.local
+          host: provider-tm-forum-api-account.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/accountManagement/v4
         usage:
-          host: provider-tm-forum-api-usage-management.provider.svc.cluster.local
+          host: provider-tm-forum-api-usage-management.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/usageManagement/v4
         party:
-          host: provider-tm-forum-api-party-catalog.provider.svc.cluster.local
+          host: provider-tm-forum-api-party-catalog.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/party/v4
         customer:
-          host: provider-tm-forum-api-customer-management.provider.svc.cluster.local
+          host: provider-tm-forum-api-customer-management.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/customerManagement/v4
         resources:
-          host: provider-tm-forum-api-resource-catalog.provider.svc.cluster.local
+          host: provider-tm-forum-api-resource-catalog.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/resourceCatalog/v4
         services:
-          host: provider-tm-forum-api-service-catalog.provider.svc.cluster.local
+          host: provider-tm-forum-api-service-catalog.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/serviceCatalogManagement/v4
         resourceInventory:
-          host: provider-tm-forum-api-resource-inventory.provider.svc.cluster.local
+          host: provider-tm-forum-api-resource-inventory.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/resourceInventoryManagement/v4
         inventory:
-          host: provider-tm-forum-api-product-inventory.provider.svc.cluster.local
+          host: provider-tm-forum-api-product-inventory.dea-ic-prov.svc.cluster.local
           port: 8080
           path: /tmf-api/productInventory/v4
 
@@ -971,7 +971,7 @@ data-space-connector:
   registration:
     enabled: true
     configMap: provider-til-registration
-    til: http://trusted-issuers-list.provider.svc.cluster.local:8080
+    til: http://trusted-issuers-list.dea-ic-prov.svc.cluster.local:8080
     did: did:web:ic.dea.k8s.fiware.org
     credentialTypes:
       - LegalPersonCredential
