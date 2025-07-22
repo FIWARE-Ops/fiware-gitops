@@ -257,13 +257,8 @@ data-space-connector:
 
 
   mysql:
-
     resourcesPreset: none
     primary:
-      containerSecurityContext:
-        enabled: false
-      podSecurityContext:
-        enabled: false
       persistence:
         enabled: true
     secondary:
