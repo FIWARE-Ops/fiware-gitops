@@ -112,6 +112,8 @@ data-space-connector:
             with_body: true
 
   credentials-config-service:
+    database:
+      host: authentication-mysql.api.provider.svc.cluster.local
     ingress:
       enabled: false
     registration:
