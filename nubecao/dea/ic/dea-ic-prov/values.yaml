@@ -257,10 +257,13 @@ data-space-connector:
 
 
   mysql:
-    global:
-      defaultStorageClass: local-path
+
     resourcesPreset: none
     primary:
+      containerSecurityContext:
+        enabled: false
+      podSecurityContext:
+        enabled: false
       persistence:
         enabled: true
     secondary:
