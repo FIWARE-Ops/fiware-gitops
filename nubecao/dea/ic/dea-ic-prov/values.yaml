@@ -257,6 +257,8 @@ data-space-connector:
 
 
   mysql:
+    global:
+      defaultStorageClass: local-path
     resourcesPreset: none
     primary:
       persistence:
