@@ -223,6 +223,10 @@ data-space-connector:
         - host: verifier.ic.dea.k8s.fiware.org
           paths:
             - "/"
+      tls:
+        - secretName: verifier-tls
+          hosts:
+            - verifier.ic.dea.k8s.fiware.org
     deployment:
       image:
         repository: quay.io/wi_stefan/vcverifier
