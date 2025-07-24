@@ -19,9 +19,7 @@ data-space-connector:
             path: /
           - name: up-broker.ic.dea.k8s.fiware.org
             path: /
-        tls:
-          enabled: true
-          certFilename: broker-tls
+        tls: true
         extraTls:
           - secretName: tmf-tls
             hosts:
