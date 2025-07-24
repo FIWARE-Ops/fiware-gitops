@@ -247,18 +247,13 @@ data-space-connector:
         host: https://verifier.ic.dea.k8s.fiware.org
       configRepo:
         configEndpoint: http://credentials-config-service.dea-ic-prov.svc.cluster.local:8080
-      alternativeConfig: /alternative-conf/server.yaml
       additionalVolumes:
         - name: cert-chain
           secret:
             secretName: cert-chain
         - name: did-material
           emptyDir: {}
-        - name: alternative-conf
-          emptyDir: {}
       additionalVolumeMounts:
-        - name: alternative-conf
-          mountPath: /alternative-conf
         - name: cert-chain
           mountPath: /certificate
 
