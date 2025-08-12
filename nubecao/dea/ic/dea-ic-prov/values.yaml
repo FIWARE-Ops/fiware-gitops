@@ -27,7 +27,7 @@ data-space-connector:
           - secretName: tpp-broker-tls
             hosts:
               - tpp-broker.ic.dea.k8s.fiware.org
-          - secretName: tpp-broker-tls
+          - secretName: tpp-tls
             hosts:
               - tpp.ic.dea.k8s.fiware.org
           - secretName: up-broker-tls
