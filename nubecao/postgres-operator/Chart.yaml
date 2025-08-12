@@ -1,0 +1,12 @@
+apiVersion: v2
+name: postgres-operator
+description: Chart holder for argo-cd
+
+type: application
+version: 0.3.0
+appVersion: "v0.18.0"
+
+dependencies:
+- name: postgres-operator
+  version: 1.14.0
+  repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator

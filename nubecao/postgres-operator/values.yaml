@@ -1,0 +1,4 @@
+postgres-operator:
+  configKubernetes:
+    # default DNS domain of K8s cluster where operator is running
+    cluster_domain: k8s.fiware.org
