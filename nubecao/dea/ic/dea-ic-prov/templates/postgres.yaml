@@ -1,0 +1,19 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: dea-ic-prov-postgres
+  namespace: {{ $.Release.Namespace | quote }}
+spec:
+  teamId: "dea-ic-prov"
+  volume:
+    size: 1Gi
+  numberOfInstances: 1
+  users:
+    admin:  # database owner
+      - superuser
+      - createdb
+    odrl: []  # role for application odrl-pap
+  databases:
+    odrl: odrl  # dbname: owner
+  postgresql:
+    version: "17"
