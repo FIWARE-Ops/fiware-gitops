@@ -379,6 +379,9 @@ data-space-connector:
         url: http://rainbow.dea-ic-prov.svc.cluster.local:8080
 
   trusted-issuers-list:
+    deployment:
+      image:
+        tag: 0.2.2
     ingress:
       til:
         enabled: false
