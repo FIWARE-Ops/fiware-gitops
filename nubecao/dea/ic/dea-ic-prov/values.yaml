@@ -267,22 +267,16 @@ data-space-connector:
         enabled: true
 
   postgis:
-    primary:
-      resourcesPreset: none
-      persistence:
-        enabled: true
-    readReplicas:
-      persistence:
-        enabled: false
+    enabled: false
 
   postgresql:
-    primary:
-      resourcesPreset: none
-      persistence:
-        enabled: true
-    readReplicas:
-      persistence:
-        enabled: false
+    enabled: false
+
+managedPostgres:
+  enabled: true
+  config:
+    volume:
+      storageClass: longhorn
 
   didJson:
     enabled: true
@@ -313,10 +307,27 @@ data-space-connector:
       - oid4vp
 
   scorpio:
+    db:
+      dbhost: postgres.dea-ic-prov.svc.cluster.local
+      user: scorpio
+      existingSecret:
+        enabled: true
+        name: scorpio.postgres.credentials.postgresql.acid.zalan.do
+        key: password
     ingress:
       enabled: false
 
   odrl-pap:
+    database:
+      # -- url to connect the db at
+      url: jdbc:postgresql://postgres.dea-ic-prov.svc.cluster.local:5432/pap
+      # -- username to access the db
+      username: pap
+      # -- secret to take the password from
+      existingSecret:
+        enabled: true
+        name: pap.postgres.credentials.postgresql.acid.zalan.do
+        key: password
     deployment:
       command:
         - /bin/sh
@@ -340,10 +351,10 @@ data-space-connector:
   rainbow:
     enabled: true
     db:
-      url: postgresql.dea-ic-prov.svc.cluster.local
-      user: postgres
-      existingSecret: database-secret
-      passwordKey: postgres-admin-password
+      url: postgres.dea-ic-prov.svc.cluster.local
+      user: rainbow
+      existingSecret: rainbow.postgres.credentials.postgresql.acid.zalan.do
+      passwordKey: password
     ingress:
       enabled: false
 
@@ -518,6 +529,12 @@ data-space-connector:
           value: "0"
 
   keycloak:
+    externalDatabase:
+      host: postgres.dea-ic-prov.svc.cluster.local
+      database: keycloak
+      user: keycloak
+      existingSecret: keycloak.postgres.credentials.postgresql.acid.zalan.do
+      existingSecretPasswordKey: password
     ingress:
       enabled: true
       hostname: keycloak.ic.dea.k8s.fiware.org
