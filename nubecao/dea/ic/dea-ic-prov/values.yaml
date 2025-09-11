@@ -277,6 +277,8 @@ data-space-connector:
     config:
       volume:
         storageClass: longhorn
+      postgresql:
+        version: "16"
 
   didJson:
     enabled: true
