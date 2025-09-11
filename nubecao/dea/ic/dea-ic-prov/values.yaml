@@ -272,11 +272,11 @@ data-space-connector:
   postgresql:
     enabled: false
 
-managedPostgres:
-  enabled: true
-  config:
-    volume:
-      storageClass: longhorn
+  managedPostgres:
+    enabled: true
+    config:
+      volume:
+        storageClass: longhorn
 
   didJson:
     enabled: true
