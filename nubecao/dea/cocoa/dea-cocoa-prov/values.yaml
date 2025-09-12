@@ -77,6 +77,8 @@ data-space-connector:
     enabled: false
 
   scorpio:
+    image:
+      tag: java-5.0.9
     db:
       dbhost: postgres.dea-cocoa-prov.svc.cluster.local
       user: scorpio
