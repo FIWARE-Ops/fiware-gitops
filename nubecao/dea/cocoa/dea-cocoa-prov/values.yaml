@@ -1,0 +1,106 @@
+data-space-connector:
+  apisix:
+    image:
+      debug: true
+    dataPlane:
+      ingress:
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          nginx.ingress.kubernetes.io/backend-protocol: HTTP
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        enabled: true
+        hostname: broker.cocoa.dea.k8s.fiware.org
+        extraHosts:
+          - name: up-broker.cocoa.dea.k8s.fiware.org
+            path: /
+        tls: true
+        extraTls:
+          - secretName: up-broker-tls
+            hosts:
+              - up-broker.cocoa.dea.k8s.fiware.org
+    catchAllRoute:
+      enabled: false
+    routes: |-
+      - uri: /*
+        host: up-broker.cocoa.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            data-service-scorpio.dea-cocoa-prov.svc.cluster.local:9090: 1
+          type: roundrobin
+        plugins: 
+          request-validation:
+            header_schema: 
+              type: object
+              required:
+                - Demo
+              properties:
+                Demo:
+                  type: string
+                  pattern: Demo
+
+  credentials-config-service:
+    enabled: false
+
+  vcverifier:
+    enabled: false
+
+  mysql:
+    enabled: false
+
+  postgis:
+    enabled: false
+
+  postgresql:
+    enabled: false
+
+  managedPostgres:
+    enabled: true
+    config:
+      volume:
+        storageClass: longhorn
+      postgresql:
+        version: "16"
+
+  didJson:
+    enabled: false
+
+  dataSpaceConfig:
+    enabled: false
+
+  scorpio:
+    db:
+      dbhost: postgres.dea-cocoa-prov.svc.cluster.local
+      user: scorpio
+      existingSecret:
+        enabled: true
+        name: scorpio.postgres.credentials.postgresql.acid.zalan.do
+        key: password
+    ingress:
+      enabled: false
+
+  odrl-pap:
+    enabled: false
+
+  tm-forum-api:
+    enabled: false
+
+  rainbow:
+    enabled: false
+
+  contract-management:
+    enabled: false
+
+  trusted-issuers-list:
+    enabled: false
+
+  mongodb:
+    enabled: false
+
+  marketplace:
+    enabled: false
+
+  keycloak:
+    enabled: false
+
+  registration:
+    enabled: false
