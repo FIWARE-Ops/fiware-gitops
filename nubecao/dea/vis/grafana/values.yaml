@@ -4,6 +4,8 @@ grafana:
     repository: pulledtim/grafana
     tag: ngsi-ld
     pullPolicy: Always
+  env:
+    GF_PATHS_PLUGINS: /var/lib/my_plugins
   ingress:
     enabled: true
     annotations:
