@@ -1,0 +1,12 @@
+apiVersion: v2
+name: dea-vis-grafana
+description: Chart holder for argo-cd
+
+type: application
+version: 0.3.0
+appVersion: 0.30.0
+
+dependencies:
+  - name: grafana
+    version: 9.4.5
+    repository: https://grafana.github.io/helm-charts

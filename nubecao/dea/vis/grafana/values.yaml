@@ -1,0 +1,16 @@
+grafana:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/backend-protocol: HTTP
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    hosts:
+      - grafana.vis.dea.k8s.fiware.org
+    tls:
+      - secretName: grafana-tls
+        hosts:
+          - grafana.vis.dea.k8s.fiware.org
+  persistence:
+    enabled: true
+    storageClassName: longhorn
