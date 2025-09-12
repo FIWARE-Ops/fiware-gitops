@@ -2,7 +2,8 @@ grafana:
   image:
     registry: quay.io
     repository: pulledtim/grafana
-    tag: ngsild
+    tag: ngsi-ld
+    pullPolicy: Always
   ingress:
     enabled: true
     annotations:
