@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: context-json
+  namespace: {{ $.Release.Namespace | quote }}
+data:
+  demo-context.jsonld: |-
+    {
+      "@context": {
+        "type": "@type",
+        "id": "@id",
+        "schema": "https://schema.org/",
+        "case-agri": "https://case-agri.com/",
+        "City": "case-agri:City",
+        "Product": "case-agri:Product",
+        "StockPrice": "case-agri:StockPrice",
+        "category": "case-agri:category",
+        "name": "schema:name",
+        "description": "schema:description",
+        "hasStockPrice": "case-agri:hasStockPrice",
+        "price": "schema:price",
+        "subCategory": "case-agri:subCategory",
+        "unitOfMeasure": "schema:unitText",
+        "produits-vivriers": "case-agri:produits-vivriers",
+        "produits-manufactures": "case-agri:produits-manufactures",
+        "produits-frais": "case-agri:produits-frais",
+        "produits-hors-saison": "case-agri:produits-hors-saison",
+        "produits-de-saison": "case-agri:produits-de-saison",
+        "fruits": "case-agri:fruits",
+        "divers": "case-agri:divers",
+        "boucherie": "case-agri:boucherie",
+        "poissonnerie": "case-agri:poissonnerie"
+      }
+    }
+  demo-context-en.jsonld: |-
+    {
+      "@context": {
+        "type": "@type",
+        "id": "@id",
+        "schema": "https://schema.org/",
+        "case-agri": "https://case-agri.com/",
+        "City": "case-agri:City",
+        "Product": "case-agri:Product",
+        "StockPrice": "case-agri:StockPrice",
+        "category": "case-agri:category",
+        "name": "schema:name",
+        "description": "schema:description",
+        "hasStockPrice": "case-agri:hasStockPrice",
+        "price": "schema:price",
+        "subCategory": "case-agri:subCategory",
+        "unitOfMeasure": "schema:unitText",
+        "live-products": "case-agri:produits-vivriers",
+        "manufactured-goods": "case-agri:produits-manufactures",
+        "fresh-goods": "case-agri:produits-frais",
+        "off-season-goods": "case-agri:produits-hors-saison",
+        "seasonal-goods": "case-agri:produits-de-saison",
+        "fruits": "case-agri:fruits",
+        "diverse": "case-agri:divers",
+        "meat": "case-agri:boucherie",
+        "fish": "case-agri:poissonnerie"
+      }
+    }
+  demo-context-fr.jsonld: |-
+    {
+      "@context": {
+        "type": "@type",
+        "id": "@id",
+        "schema": "https://schema.org/",
+        "case-agri": "https://case-agri.com/",
+        "Ville": "case-agri:City",
+        "Produit": "case-agri:Product",
+        "PrixAction": "case-agri:StockPrice",
+        "categorie": "case-agri:category",
+        "nom": "schema:name",
+        "description": "schema:description",
+        "aPrixActione": "case-agri:hasStockPrice",
+        "pix": "schema:price",
+        "sousCategorie": "case-agri:subCategory",
+        "uniteDeMeasure": "schema:unitText",
+        "produits-vivriers": "case-agri:produits-vivriers",
+        "produits-manufactures": "case-agri:produits-manufactures",
+        "produits-frais": "case-agri:produits-frais",
+        "produits-hors-saison": "case-agri:produits-hors-saison",
+        "produits-de-saison": "case-agri:produits-de-saison",
+        "fruits": "case-agri:fruits",
+        "divers": "case-agri:divers",
+        "boucherie": "case-agri:boucherie",
+        "poissonnerie": "case-agri:poissonnerie"
+      }
+    }
