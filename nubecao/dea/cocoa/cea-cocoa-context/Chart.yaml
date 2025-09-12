@@ -1,0 +1,7 @@
+apiVersion: v2
+name: dea-cocoa-context
+description: Chart holder for argo-cd
+
+type: application
+version: 0.3.0
+appVersion: 0.30.0
