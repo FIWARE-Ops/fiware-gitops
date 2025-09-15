@@ -17,8 +17,6 @@ tutorial-demo:
         value: "true"
       SESSION_OFF:
         value: "true"
-      DEBUG:
-        value: "tutorial.*"
       CONTEXT_BROKER:
         value: "http://data-service-scorpio.dea-cocoa-prov.svc.cluster.local:9090/ngsi-ld/v1"
   service:
