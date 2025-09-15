@@ -14,9 +14,9 @@ tutorial-demo:
       IOTA_JSON_LD_CONTEXT:
         value: "https://raw.githubusercontent.com/jason-fox/csv-to-json/refs/heads/cote-divoire/data-models/demo-context.jsonld"
       DUMMY_OFF:
-        value: true
+        value: "true"
       SESSION_OFF:
-        value: true
+        value: "true"
       DEBUG:
         value: "tutorial.*"
       CONTEXT_BROKER:
