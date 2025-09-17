@@ -1,0 +1,12 @@
+apiVersion: v2
+name: mysql-operator
+description: Chart holder for argo-cd
+
+type: application
+version: 0.3.0
+appVersion: "v0.18.0"
+
+dependencies:
+- name: mysql-operator
+  version: 2.2.5
+  repository: https://mysql.github.io/mysql-operator/
