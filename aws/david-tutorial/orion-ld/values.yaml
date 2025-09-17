@@ -1,0 +1,100 @@
+orion:
+  deployment:
+    image: 
+      tag: 1.1.0
+  broker:
+    logging:
+      level: DEBUG
+    db:
+      auth: 
+        user: root
+        mech: "SCRAM-SHA-1"
+      hosts:
+        - mongodb-david-tutorial
+      user: root
+      existingSecret:
+        name: mongodb-secret
+        key: mongodb-root-password
+  mongo:
+    # we want to use the individually deployed mongodb
+    enabled: false
+  initData:
+    initEnabled: true
+    hook: post-install, post-upgrade
+    entities:
+      - name: "onboarding.david-tutorial.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:onboarding.david-tutorial.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:onboarding.david-tutorial.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:onboarding.david-tutorial.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "david-tutorial Marketplace Onboarding Service"
+                }
+            }
+          }
+      - name: "marketplace.david-tutorial.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:marketplace.david-tutorial.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:marketplace.david-tutorial.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:marketplace.david-tutorial.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "david-tutorial Marketplace"
+                }
+            }
+          }
+      - name: "provider.david-tutorial.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:provider.david-tutorial.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:provider.david-tutorial.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:provider.david-tutorial.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "david-tutorial Provider"
+                }
+            }
+          }
+      - name: "consumer.david-tutorial.fiware.dev"
+        data: |
+          {
+            "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+            "id": "urn:ngsi-ld:TrustedIssuer:did:web:consumer.david-tutorial.fiware.dev",
+            "type": "TrustedIssuer",
+            "issuer": {
+                "type": "Property",
+                "value": "did:web:consumer.david-tutorial.fiware.dev"
+            },
+            "selfDescription": {
+                "type": "Property",
+                "value": {
+                    "id": "did:web:consumer.david-tutorial.fiware.dev",
+                    "type": "gx:LegalParticipant",
+                    "gx:legalName": "david-tutorial Consumer"
+                }
+            }
+          }
