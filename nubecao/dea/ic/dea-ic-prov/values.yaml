@@ -279,6 +279,15 @@ data-space-connector:
         storageClass: longhorn
       postgresql:
         version: "16"
+        parameters:
+          max_connections: "20"
+      resources:
+        requests:
+          cpu: '1'
+          memory: 1Gi
+        limits:
+          cpu: '2'
+          memory: 2Gi
 
   didJson:
     enabled: true
