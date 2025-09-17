@@ -58,6 +58,7 @@ data-space-connector:
     config:
       volume:
         storageClass: longhorn
+        size: 10Gi
       postgresql:
         version: "16"
         parameters:
