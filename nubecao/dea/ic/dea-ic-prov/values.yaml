@@ -319,6 +319,8 @@ data-space-connector:
       - oid4vp
 
   scorpio:
+    image:
+      tag: java-5.0.9
     db:
       dbhost: postgres.dea-ic-prov.svc.cluster.local
       user: scorpio
