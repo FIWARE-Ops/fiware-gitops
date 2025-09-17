@@ -24,3 +24,23 @@ trust-anchor:
           - secretName: til-tls
             hosts:
             - tir.dea.k8s.fiware.org
+      database:
+        # -- should persistence be used?
+        persistence: true
+        # -- name of the db user
+        username: tir
+        # -- configuration for the existing secret to get the passwords from
+        existingSecret: 
+          enabled: true
+          name: mysql-database-secret
+          key: mysql-password
+        # -- host of the database
+        host:  managed-mysql
+  
+  managedMysql:
+    enabled: true
+    
+  mysql:
+    enabled: false
+  
+  

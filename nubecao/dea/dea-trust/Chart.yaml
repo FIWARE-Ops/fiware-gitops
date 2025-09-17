@@ -8,5 +8,5 @@ appVersion: 0.30.0
 
 dependencies:
   - name: trust-anchor
-    version: 0.2.0
+    version: 0.4.0
     repository: https://fiware.github.io/data-space-connector/
