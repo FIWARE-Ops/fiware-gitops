@@ -1,2 +1,3 @@
-mysql-operator:
-  replicas: 1
+mariadb-operator:
+  crds:
+    enabled: false
