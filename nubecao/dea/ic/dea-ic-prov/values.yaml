@@ -295,9 +295,9 @@ data-space-connector:
           cpu: '2'
           memory: 2Gi
 
-managedMysql:
-  enabled: true
-  fullnameOverride: managed-mysql
+  managedMysql:
+    enabled: true
+    fullnameOverride: managed-mysql
 
   didJson:
     enabled: true
