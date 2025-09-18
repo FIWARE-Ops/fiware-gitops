@@ -413,6 +413,9 @@ data-space-connector:
         url: http://rainbow.dea-ic-prov.svc.cluster.local:8080
 
   trusted-issuers-list:
+    additonalEnvVars:
+      - name: LOGGER_LEVELS_ROOT
+        value: DEBUG
     database:
       host: managed-mysql.dea-ic-prov.svc.cluster.local
       username: til
