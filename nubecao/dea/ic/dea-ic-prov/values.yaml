@@ -1,3 +1,7 @@
+authentication:
+  generatePasswords:
+    enabled: false
+
 data-space-connector:
   apisix:
     image:
@@ -263,13 +267,14 @@ data-space-connector:
           mountPath: /certificate
 
   mysql:
+    enabled: false
     resourcesPreset: none
     primary:
       persistence:
-        enabled: true
+        enabled: false
     secondary:
       persistence:
-        enabled: true
+        enabled: false
 
   postgis:
     enabled: false
@@ -596,9 +601,8 @@ data-space-connector:
           - name: provider-til-registration
             mountPath: /bin/init.sh
             subPath: init.sh
-
       - name: prepare-envs
-        image: docker.io/bitnami/keycloak:26.2.1-debian-12-r0
+        image: docker.io/bitnamilegacy/keycloak:26.3.2-debian-12-r0
         command:
           - /bin/sh
         args:
