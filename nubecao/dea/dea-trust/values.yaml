@@ -39,6 +39,9 @@ trust-anchor:
   
   managedMysql:
     enabled: true
+    mariadb:
+      galera:
+        enabled: false
     
   mysql:
     enabled: false
