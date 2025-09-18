@@ -131,7 +131,12 @@ data-space-connector:
 
   credentials-config-service:
     database:
-      host: authentication-mysql.dea-ic-prov.svc.cluster.local
+      host: managed-mysql.dea-ic-prov.svc.cluster.local
+      username: ccs
+      existingSecret:
+        enabled: true
+        name: authentication-database-secret
+        key: mysql-password
     ingress:
       enabled: false
     registration:
@@ -290,6 +295,10 @@ data-space-connector:
           cpu: '2'
           memory: 2Gi
 
+managedMysql:
+  enabled: true
+  fullnameOverride: managed-mysql
+
   didJson:
     enabled: true
     port: 8080
@@ -404,6 +413,12 @@ data-space-connector:
         url: http://rainbow.dea-ic-prov.svc.cluster.local:8080
 
   trusted-issuers-list:
+    database:
+      host: managed-mysql.dea-ic-prov.svc.cluster.local
+      username: til
+      existingSecret:
+        name: authentication-database-secret
+        key: mysql-password
     deployment:
       image:
         tag: 0.2.2
