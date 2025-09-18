@@ -419,9 +419,6 @@ data-space-connector:
       existingSecret:
         name: authentication-database-secret
         key: mysql-password
-    deployment:
-      image:
-        tag: 0.2.2
     ingress:
       til:
         enabled: false
