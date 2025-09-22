@@ -635,6 +635,7 @@ data-space-connector:
             openssl pkcs12 -export \
               -in "$CRT" \
               -inkey /certs/tls.key \
+              -certfile "$CRT" \
               -out /keystore/keystore.p12 \
               -name keycloak \
               -passout pass:"test"
