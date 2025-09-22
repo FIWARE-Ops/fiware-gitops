@@ -675,7 +675,7 @@ data-space-connector:
     extraVolumes:
       - name: cert-chain
         secret:
-          name: cert-chain
+          secretName: cert-chain
       - name: keystore
         emptyDir: {}
       - name: kc-env
