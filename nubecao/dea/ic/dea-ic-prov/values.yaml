@@ -617,15 +617,67 @@ data-space-connector:
         volumeMounts:
           - name: kc-env
             mountPath: /env-update
+      - name: prepare-signing-keystore
+        image: alpine:3.20
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh","-c"]
+        args:
+          - |
+            set -euo pipefail
+            apk add --no-cache openssl
+            CRT="/certs/fullchain.crt"
+            [ -f "$CRT" ] || CRT="/certs/tls.crt"
+            if [ ! -f "$CRT" ] || [ ! -f /certs/tls.key ]; then
+              echo "Missing certificate or key in /certs (need tls.crt and tls.key)"; exit 1
+            fi
+            
+            # Create PKCS#12 keystore from TLS keypair
+            openssl pkcs12 -export \
+              -in "$CRT" \
+              -inkey /certs/tls.key \
+              -out /keystore/keystore.p12 \
+              -name keycloak \
+              -passout pass:"test"
+            
+            # Lock down permissions
+            chmod 0440 /keystore/keystore.p12
+        volumeMounts:
+          - name: cert-chain
+            mountPath: /certs
+            readOnly: true
+          - name: keystore
+            mountPath: /keystore
+
+    signingKey:
+      # -- path to the keystore containing the signing key
+       storePath: "/keystore/keystore.p12"
+      # -- password for the keystore containing the signing key
+       storePassword: "test"
+      # -- alias of the signing key
+       keyAlias: "keycloak"
+      # -- password of the signing key
+       keyPassword: ""
+      # -- algorithm of the signing key
+       keyAlgorithm: RS256
+      # -- did that the key belongs to
+       did: "did:web:ic.dea.k8s.fiware.org"
+
 
     extraVolumeMounts:
       - name: realms
         mountPath: /opt/bitnami/keycloak/data/import
+      - name: keystore
+        mountPath: /keystore
       - name: kc-env
         mountPath: /opt/bitnami/scripts/keycloak-env.sh
         subPath: keycloak-env.sh
 
     extraVolumes:
+      - name: cert-chain
+        secret:
+          name: cert-chain
+      - name: keystore
+        emptyDir: {}
       - name: kc-env
         emptyDir: { }
       - name: realms
