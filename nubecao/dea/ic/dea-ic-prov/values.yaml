@@ -656,7 +656,7 @@ data-space-connector:
       # -- alias of the signing key
        keyAlias: "keycloak"
       # -- password of the signing key
-       keyPassword: ""
+       keyPassword: "test"
       # -- algorithm of the signing key
        keyAlgorithm: RS256
       # -- did that the key belongs to
