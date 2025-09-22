@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dea-ic-demo
+  namespace: argocd
+  labels:
+    purpose: data-consumer
+spec:
+  destination:
+    namespace: dea-ic-prov
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: nubecao/dea/ic/tutorial
+    repoURL: https://github.com/FIWARE-Ops/fiware-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

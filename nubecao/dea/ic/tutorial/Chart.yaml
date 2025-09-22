@@ -1,0 +1,13 @@
+apiVersion: v2
+name: dea-ic-tutorial
+description: Chart holder for argo-cd
+
+type: application
+version: 0.3.0
+appVersion: 0.30.0
+
+dependencies:
+  - name: application
+    alias: tutorial-demo
+    repository: https://stakater.github.io/stakater-charts
+    version: 6.0.2

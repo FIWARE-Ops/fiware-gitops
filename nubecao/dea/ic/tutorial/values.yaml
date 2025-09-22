@@ -1,0 +1,43 @@
+tutorial-demo:
+  enabled: true
+  applicationName: tutorial-demo-ic
+  deployment:
+    image:
+      repository: quay.io/pulledtim/demo
+      tag: latest
+      pullPolicy: Always
+    securityContext:
+      runAsUser: 1000
+      runAsNonRoot: true
+      readOnlyRootFilesystem: true
+    env:
+      IOTA_JSON_LD_CONTEXT:
+        value: "https://raw.githubusercontent.com/jason-fox/csv-to-json/refs/heads/cote-divoire/data-models/demo-context.jsonld"
+      DUMMY_OFF:
+        value: "true"
+      SESSION_OFF:
+        value: "true"
+      DEBUG:
+        value: "tutorial.*"
+      CONTEXT_BROKER:
+        value: "http://data-service-scorpio.dea-ic-prov.svc.cluster.local:9090/ngsi-ld/v1"
+  service:
+    ports:
+      - port: 3000
+        name: http
+        protocol: TCP
+        targetPort: 3000
+  ingress:
+    enabled: true
+    hosts:
+      - host: demo.ic.dea.k8s.fiware.org
+        paths:
+          - path: /
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/backend-protocol: HTTP
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    tls:
+      - secretName: demo-tls
+        hosts:
+          - demo.ic.dea.k8s.fiware.org
