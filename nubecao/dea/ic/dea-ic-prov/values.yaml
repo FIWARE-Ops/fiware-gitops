@@ -630,7 +630,7 @@ data-space-connector:
             if [ ! -f "$CRT" ] || [ ! -f /certs/tls.key ]; then
               echo "Missing certificate or key in /certs (need tls.crt and tls.key)"; exit 1
             fi
-            wget https://letsencrypt.org/certs/isrg-root-x1-cross-signed.pem -O /keystore/root.pem
+            wget https://letsencrypt.org/certs/isrgrootx1.pem -O /keystore/root.pem
             cp "$CRT" /keystore/fullchain.crt
             cat /keystore/root.pem >> /keystore/fullchain.crt
             CRT="/keystore/fullchain.crt"
