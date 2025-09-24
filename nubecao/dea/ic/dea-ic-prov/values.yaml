@@ -631,7 +631,7 @@ data-space-connector:
               echo "Missing certificate or key in /certs (need tls.crt and tls.key)"; exit 1
             fi
             wget https://letsencrypt.org/certs/isrg-root-x1-cross-signed.pem -O /keystore/root.pem
-            cp /certs/fullchain.crt /keystore/fullchain.crt
+            cp "$CRT" /keystore/fullchain.crt
             cat /keystore/root.pem >> /keystore/fullchain.crt
             CRT="/keystore/fullchain.crt"
             
