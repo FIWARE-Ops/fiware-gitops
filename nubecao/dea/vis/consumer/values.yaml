@@ -247,7 +247,7 @@ data-space-connector:
         "vc.user-credential.credential_build_config.signing_algorithm": "ES256",
         "vc.user-credential.credential_build_config.token_jws_type": "JWT",
         "vc.user-credential.credential_build_config.proof_types_supported": "{\"jwt\":{\"proof_signing_alg_values_supported\":[\"ES256\"]}}",
-        "vc.user-credential.format": "jwt_vc",
+        "vc.user-credential.format": "vc+sd-jwt",
         "vc.user-credential.scope": "UserCredential",
         "vc.user-credential.vct": "UserCredential",
         "vc.verifiable-credential.format": "vc+sd-jwt",
@@ -257,7 +257,7 @@ data-space-connector:
         "vc.operator-credential.credential_build_config.signing_algorithm": "ES256",
         "vc.operator-credential.credential_build_config.token_jws_type": "JWT",
         "vc.operator-credential.credential_build_config.proof_types_supported": "{\"jwt\":{\"proof_signing_alg_values_supported\":[\"ES256\"]}}",
-        "vc.operator-credential.format": "jwt_vc",
+        "vc.operator-credential.format": "vc+sd-jwt",
         "vc.operator-credential.scope": "OperatorCredential",
         "vc.operator-credential.vct": "OperatorCredential"
       clientRoles: |
