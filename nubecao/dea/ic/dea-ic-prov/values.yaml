@@ -571,6 +571,7 @@ data-space-connector:
       existingSecretPasswordKey: password
     ingress:
       enabled: true
+      tls: true
       hostname: keycloak.ic.dea.k8s.fiware.org
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
