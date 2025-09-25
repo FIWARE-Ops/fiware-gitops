@@ -61,7 +61,7 @@ data-space-connector:
 
   keycloak:
     externalDatabase:
-      host: postgres.vis.svc.cluster.local
+      host: postgres.dea-vis.svc.cluster.local
       database: keycloak
       user: keycloak
       existingSecret: keycloak.postgres.credentials.postgresql.acid.zalan.do
