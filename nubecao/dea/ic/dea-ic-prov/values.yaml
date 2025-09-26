@@ -448,7 +448,7 @@ data-space-connector:
   
           export BAE_LP_SIOP_CLIENT_ID=did:web:ic.dea.k8s.fiware.org
           
-          export BAE_LP_SIOP_PRIVATE_KEY=$(cat /cert/tls.key') 
+          export BAE_LP_SIOP_PRIVATE_KEY=$(cat /cert/tls.key) 
           echo ${BAE_LP_SIOP_PRIVATE_KEY}
           /entrypoint.sh
 
