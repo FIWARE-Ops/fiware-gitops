@@ -320,6 +320,9 @@ data-space-connector:
     did: did:web:ic.dea.k8s.fiware.org
     key:
       kty: EC
+      crv: P-256
+      x: FgEMA65v-xHMmjoDi4LswTpmOg3TWZGbYUPlT_ZQ7p0
+      y: udpOrk2bAERhBxENsNt80ZadbiTMZT1kePweWidZr-A
       x5u: https://ic.dea.k8s.fiware.org/.well-known/tls.crt
 
   dataSpaceConfig:
