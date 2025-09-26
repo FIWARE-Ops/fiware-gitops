@@ -310,6 +310,7 @@ data-space-connector:
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
+        cert-manager.io/private-key-algorithm: ECDSA
         nginx.ingress.kubernetes.io/backend-protocol: HTTP
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       enabled: true
