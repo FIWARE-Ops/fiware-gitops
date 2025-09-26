@@ -451,7 +451,7 @@ data-space-connector:
   
           export BAE_LP_SIOP_CLIENT_ID=did:web:ic.dea.k8s.fiware.org
           ## Urgently replace with something robust! This is an embarrassment 
-          export BAE_LP_SIOP_PRIVATE_KEY=$(openssl ec -in /cert/tls.key -noout -text | grep 'privateExponent:' -A 18 | tail -n +2 | tr -d ':\n ') 
+          export BAE_LP_SIOP_PRIVATE_KEY=$(openssl ec -in /cert/tls.key -noout -text | grep 'priv:' -A 3 | tail -n +2 | tr -d ':\n ') 
           
           echo ${BAE_LP_SIOP_PRIVATE_KEY}
           /entrypoint.sh
