@@ -317,7 +317,9 @@ data-space-connector:
       host: ic.dea.k8s.fiware.org
       tls:
         host: ic.dea.k8s.fiware.org
+    did: did:web:ic.dea.k8s.fiware.org
     key:
+      kty: EC
       x5u: https://ic.dea.k8s.fiware.org/.well-known/tls.crt
 
   dataSpaceConfig:
