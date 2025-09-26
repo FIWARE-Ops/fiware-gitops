@@ -440,6 +440,8 @@ data-space-connector:
 
   marketplace:
     enabled: true
+    generatePasswords:
+      enabled: false
     prep:
       name: bae-prep
       script:
