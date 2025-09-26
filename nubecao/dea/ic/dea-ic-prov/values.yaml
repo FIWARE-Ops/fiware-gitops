@@ -447,9 +447,8 @@ data-space-connector:
           #!/bin/bash
   
           export BAE_LP_SIOP_CLIENT_ID=did:web:ic.dea.k8s.fiware.org
-          # TODO TIM Replace with imported certificate from ingress
-          wget http://did-helper:3002/did-material/private-key.pem
-          export BAE_LP_SIOP_PRIVATE_KEY=$(openssl ec -in private-key.pem -noout -text | grep 'priv:' -A 3 | tail -n +2 | tr -d ':\n ') 
+          
+          export BAE_LP_SIOP_PRIVATE_KEY=$(cat /cert/tls.key') 
           echo ${BAE_LP_SIOP_PRIVATE_KEY}
           /entrypoint.sh
 
@@ -543,11 +542,16 @@ data-space-connector:
       extraVolumeMounts:
         - name: bae-prep
           mountPath: /prep
+        - name: cert
+          mountPath: /cert
       extraContainerVolumes:
         - name: bae-prep
           configMap:
             name: bae-prep
             defaultMode: 0777
+        - name: cert
+          secret:
+            secretName: cert-chain
 
       additionalEnvVars:
         - name: BAE_LP_SIOP_IS_REDIRECTION
@@ -711,7 +715,7 @@ data-space-connector:
         "vc.user-credential.credential_build_config.signing_algorithm": "ES256",
         "vc.user-credential.credential_build_config.token_jws_type": "JWT",
         "vc.user-credential.credential_build_config.proof_types_supported": "{\"jwt\":{\"proof_signing_alg_values_supported\":[\"ES256\"]}}",
-        "vc.user-credential.format": "jwt_vc",
+        "vc.user-credential.format": "vc+sd-jwt",
         "vc.user-credential.scope": "LegalPersonCredential",
         "vc.user-credential.vct": "LegalPersonCredential",
         "vc.verifiable-credential.format": "vc+sd-jwt",
