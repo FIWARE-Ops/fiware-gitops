@@ -43,8 +43,8 @@ data-space-connector:
     key:
       kty: EC
       crv: P-256
-      "y": udpOrk2bAERhBxENsNt80ZadbiTMZT1kePweWidZr-A
-      x: FgEMA65v-xHMmjoDi4LswTpmOg3TWZGbYUPlT_ZQ7p0
+      "y": LfaNgVGJoeQEw3Lz50om4zOnuZH5-Wb8c4zptP_m4kQ
+      x: 1uJgRahtUYSHPd6QN8aopigT6ink2lsquFABxmAa2i0
       x5u: https://vis.dea.k8s.fiware.org/.well-known/tls.crt
 
   managedPostgres:
