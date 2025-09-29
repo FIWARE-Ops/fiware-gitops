@@ -32,13 +32,19 @@ data-space-connector:
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
+        cert-manager.io/private-key-algorithm: ECDSA
         nginx.ingress.kubernetes.io/backend-protocol: HTTP
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       enabled: true
       host: vis.dea.k8s.fiware.org
       tls:
         host: vis.dea.k8s.fiware.org
+    did: did:web:vis.dea.k8s.fiware.org
     key:
+      kty: EC
+      crv: P-256
+      "y": udpOrk2bAERhBxENsNt80ZadbiTMZT1kePweWidZr-A
+      x: FgEMA65v-xHMmjoDi4LswTpmOg3TWZGbYUPlT_ZQ7p0
       x5u: https://vis.dea.k8s.fiware.org/.well-known/tls.crt
 
   managedPostgres:
