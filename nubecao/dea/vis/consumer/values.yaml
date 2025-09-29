@@ -216,7 +216,7 @@ data-space-connector:
       # -- password of the signing key
       keyPassword: "test"
       # -- algorithm of the signing key
-      keyAlgorithm: EC
+      keyAlgorithm: ES256
       # -- did that the key belongs to
       did: "did:web:vis.dea.k8s.fiware.org"
 
