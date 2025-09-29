@@ -25,6 +25,9 @@ data-space-connector:
     enabled: false
   postgresql:
     enabled: false
+  issuance:
+    generatePasswords:
+      enabled: false
 
   didJson:
     enabled: true
