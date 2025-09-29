@@ -226,6 +226,7 @@ data-space-connector:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
+        cert-manager.io/private-key-algorithm: ECDSA
         nginx.ingress.kubernetes.io/backend-protocol: HTTP
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       hosts:
@@ -248,10 +249,10 @@ data-space-connector:
         did: did:web:verifier.ic.dea.k8s.fiware.org
         supportedModes: ["byValue","byReference"]
         clientIdentification:
-          keyPath: /signing-key/client.key.pem
+          keyPath: /certificate/tls.key
           requestKeyAlgorithm: ES256
           id: x509_san_dns:verifier.ic.dea.k8s.fiware.org
-          certificatePath: /certificate/client-chain-bundle.cert.pem
+          certificatePath: /certificate/tls.crt
       server:
         host: https://verifier.ic.dea.k8s.fiware.org
       configRepo:
@@ -259,7 +260,7 @@ data-space-connector:
       additionalVolumes:
         - name: cert-chain
           secret:
-            secretName: cert-chain
+            secretName: verifier-tls
         - name: did-material
           emptyDir: {}
       additionalVolumeMounts:
