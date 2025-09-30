@@ -351,6 +351,8 @@ data-space-connector:
         key: password
     ingress:
       enabled: false
+    logging:
+      level: DEBUG
 
   odrl-pap:
     database:
