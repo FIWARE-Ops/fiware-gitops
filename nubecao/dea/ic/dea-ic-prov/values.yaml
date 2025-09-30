@@ -384,6 +384,12 @@ data-space-connector:
       enabled: false
     ingress:
       enabled: false
+    defaultConfig:
+      additionalEnvVars:
+        - name: GENERAL_INCLUDEATTRIBUTEINLIST
+          value: "true"
+        - name: LOGGERS_LEVELS_IO_MICRONAUT_HTTP_CLIENT
+          value: "DEBUG"
 
   # -- integration of rainbow
   rainbow:
