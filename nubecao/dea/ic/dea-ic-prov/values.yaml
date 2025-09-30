@@ -377,6 +377,7 @@ data-space-connector:
 
   tm-forum-api:
     nameOverride: provider-tm-forum-api
+    serverHost: tm-forum-api
     registration:
       enabled: false
     ingress:
