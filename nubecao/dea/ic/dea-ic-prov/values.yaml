@@ -239,8 +239,8 @@ data-space-connector:
             - verifier.ic.dea.k8s.fiware.org
     deployment:
       image:
-        repository: quay.io/wi_stefan/vcverifier
-        tag: 10.0.1
+        repository: quay.io/fiware/vcverifier
+        tag: 6.3.0-pre-67
         pullPolicy: Always
       logging:
         level: DEBUG
