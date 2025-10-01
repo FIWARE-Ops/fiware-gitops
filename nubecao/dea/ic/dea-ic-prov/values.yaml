@@ -386,10 +386,10 @@ data-space-connector:
       enabled: false
     defaultConfig:
       additionalEnvVars:
-        - name: GENERAL_INCLUDEATTRIBUTEINLIST
-          value: "true"
         - name: LOGGER_LEVELS_IO_MICRONAUT_HTTP_CLIENT
           value: "DEBUG"
+        - name: GENERAL_NGSILDORQUERYVALUE
+          value: "||"
 
   # -- integration of rainbow
   rainbow:
