@@ -394,6 +394,8 @@ data-space-connector:
           value: "|"
         - name: GENERAL_INCLUDE_ATTRIBUTE_IN_LIST
           value: "true"
+        - name: GENERAL_ENCLOSE_QUERY
+          value: "true"
 
   # -- integration of rainbow
   rainbow:
