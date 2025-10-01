@@ -388,7 +388,7 @@ data-space-connector:
       additionalEnvVars:
         - name: LOGGER_LEVELS_IO_MICRONAUT_HTTP_CLIENT
           value: "DEBUG"
-        - name: GENERAL_NGSILDORQUERYVALUE
+        - name: GENERAL_NGSILD_OR_QUERY_VALUE
           value: "||"
 
   # -- integration of rainbow
