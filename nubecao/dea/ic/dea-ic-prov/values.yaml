@@ -391,7 +391,9 @@ data-space-connector:
         - name: LOGGER_LEVELS_IO_MICRONAUT_HTTP_CLIENT
           value: "DEBUG"
         - name: GENERAL_NGSILD_OR_QUERY_VALUE
-          value: "||"
+          value: "|"
+        - name: GENERAL_INCLUDE_ATTRIBUTE_IN_LIST
+          value: "true"
 
   # -- integration of rainbow
   rainbow:
