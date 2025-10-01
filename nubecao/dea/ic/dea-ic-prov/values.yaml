@@ -385,6 +385,8 @@ data-space-connector:
     ingress:
       enabled: false
     defaultConfig:
+      image:
+        tag: 1.3.17
       additionalEnvVars:
         - name: LOGGER_LEVELS_IO_MICRONAUT_HTTP_CLIENT
           value: "DEBUG"
