@@ -1,0 +1,118 @@
+data-space-connector:
+  apisix:
+    image:
+      debug: true
+    dataPlane:
+      ingress:
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          nginx.ingress.kubernetes.io/backend-protocol: HTTP
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        enabled: true
+        hostname: broker.sodexam.dea.k8s.fiware.org
+        extraHosts:
+          - name: up-broker.sodexam.dea.k8s.fiware.org
+            path: /
+        tls: true
+        extraTls:
+          - secretName: up-broker-tls
+            hosts:
+              - up-broker.sodexam.dea.k8s.fiware.org
+    catchAllRoute:
+      enabled: false
+    routes: |-
+      - uri: /*
+        host: up-broker.sodexam.dea.k8s.fiware.org
+        upstream:
+          nodes:
+            data-service-scorpio.dea-sodexam-prov.svc.cluster.local:9090: 1
+          type: roundrobin
+        plugins: 
+          request-validation:
+            header_schema: 
+              type: object
+              required:
+                - Demo
+              properties:
+                Demo:
+                  type: string
+                  pattern: Demo
+
+  credentials-config-service:
+    enabled: false
+
+  vcverifier:
+    enabled: false
+
+  mysql:
+    enabled: false
+
+  postgis:
+    enabled: false
+
+  postgresql:
+    enabled: false
+
+  managedPostgres:
+    enabled: true
+    config:
+      volume:
+        storageClass: longhorn
+        size: 10Gi
+      postgresql:
+        version: "16"
+        parameters:
+          max_connections: "20"
+      resources:
+        requests:
+          cpu: '1'
+          memory: 1Gi
+        limits:
+          cpu: '2'
+          memory: 2Gi
+
+  didJson:
+    enabled: false
+
+  dataSpaceConfig:
+    enabled: false
+
+  scorpio:
+    image:
+      tag: java-5.0.9
+    db:
+      dbhost: postgres.dea-sodexam-prov.svc.cluster.local
+      user: scorpio
+      existingSecret:
+        enabled: true
+        name: scorpio.postgres.credentials.postgresql.acid.zalan.do
+        key: password
+    ingress:
+      enabled: false
+
+  odrl-pap:
+    enabled: false
+
+  tm-forum-api:
+    enabled: false
+
+  rainbow:
+    enabled: false
+
+  contract-management:
+    enabled: false
+
+  trusted-issuers-list:
+    enabled: false
+
+  mongodb:
+    enabled: false
+
+  marketplace:
+    enabled: false
+
+  keycloak:
+    enabled: false
+
+  registration:
+    enabled: false
